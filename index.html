@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DroneBetter</title>
+    <style type="text/css">
+      body {background-color: #000000; color: #ffffff; font-family: monospace;}
+      a:link {color: #00ffff;}
+      a:visited {color: #ffff00;}
+      /*use #ff00ff for deadlinks*/
+      oeissectname {font-family: serif;}
+      dt {display: list-item; list-style-type: disc; list-style-position: inside; padding-left: 16px} /*making this modification without specifying the padding causes the dt's padding-left to be truncated; when replacing it, list-style-position prevents the bullet point from being left behind*/
+    </style>
+    <script>
+      class OEISTally extends HTMLElement {
+        constructor() {super(); this._inited=false;}
+      
+        connectedCallback() {
+          if (this._inited) return;
+          setTimeout(()=>this._init(),0);}
+      
+        _init() {
+          if (this._inited) return;
+          this._inited=true;
+          const suffix=this.getAttribute("href");
+          const a=document.createElement("a");
+          a.href="https://oeis.org/wiki/User:Natalia_L._Skirrow"+(suffix?'/'+suffix:'');
+          if (this.childNodes.length) {while (this.firstChild) a.appendChild(this.firstChild);}
+          else {a.textContent = suffix?suffix.replace(/_/g,' '):"OEISwiki userpage";}
+          this.appendChild(a);}}
+      
+      customElements.define("oeis-tally", OEISTally);
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <h1>DroneBetter's personal website</h1>
+    <p>under construction; I have taken a few formatting things from others' websites I like, and am planning to take a lot more</p>
+    <h2>about me</h2>
+    <p>amateur programmer/mathematician and (as of 2025-26) third-year undergraduate maths student.</p>
+    <p>(like many many others before me) I rediscovered the Stirling numbers (as coefficients of the change-of-basis matrix between \((x^n,)_n\) and \(({x\choose n},)_n\), about as soon as I learned about matrices in school), but had a tendency to skip the OEIS's <oeissectname>COMMENTS</oeissectname> sections and go straight to the <oeissectname>FORMULAS</oeissectname>.</p>
+    <p>i then read Knuth's excellent 1992 writeup <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, which informed me that in fact these basis change coefficients are not just combinatorially interesting but also tools for finding other interesting combinatorial facts/identities with.</p>
+    <p>since then, i have written quite a lot about them; my biggest OEISwiki page is <i><oeis-tally href=an_introduction_to_Stirling_numbers /></i>.</p>
+    <p>physically residing in the UK for now</p>
+    <details open>
+      <summary>mathsery</summary>
+      <dl>
+        <dt>refining Stirling's approximation with the first term for its \(\log\)'s Euler-Maclaurin Laurent series (turning it from a lower to an upper bound on the factorial) makes it accurate enough that its errors' product converges; this product is closer to 1 than you may expect!</dt>
+        <dd>\(\prod_{n=1}^\infty\frac{\sqrt{\tau n}\left(\frac ne\right)^ne^{\frac1{12n}}}{n!}=\frac{e^{\frac{1+\gamma}{12}-2\zeta'(-1)}}{\sqrt[4]\tau}<1+\frac1{355}\)<br />as explained in my page <i><oeis-tally href="Stirling's_approximations" /></i></dd>
+      </dl>
+    </details>
+    <details open>
+      <summary>things to do/put here</summary>
+      <dl>
+        <dt>copy all of my writings on <oeis-tally>my OEISwiki account</oeis-tally> over</dt>
+        <dd>
+          <p>the mainspace has been quite neglected, and the new <abbr title="the role acting as the highest authority in editorial disputes, that N. J. A. Sloane created to allow himself to retire from his de facto position doing that">Managing Editor</abbr> sees it as out-of-scope</p>
+          <blockquote><p>I'm not a fan of "mainspace" Wiki and do not see them as a core part of the OEIS.  For explanatory information, Wikipedia is a better place. Rather I think of these pages as supporting any curious conventions that might exist in the OEIS and perhaps as a mechanism for linking the main sequence pages.  But that's just my personal opinion, not an "official" opinion whatever that might mean.  Most of us ignore the Wiki altogether, which means you are going to have a hard time finding someone prepared to review changes.  If you want to make changes there, I would suggest trying to find out the current author and interact with them.</p>
+          <p>One more general warning is that at some point we are likely to drop <abbr title="MediaWiki alternative (which is mostly indistinguishable from a reader/editor perspective)">PmWiki</abbr> altogether and perhaps replace it with a simple markdown renderer. It's one of the most difficult pieces of our infrastructure to maintain. If that happens an effort will be made to preserve content, but the more exotic the features used the more likely the pages are to break if that transition does occur.</p></blockquote>
+          <p>-Sean A. Irvine, email correspondence</p>
+        </dd>
+        <dt>miaow</dt>
+      </dl>
+    </details>
+    <details open>
+      <summary>things already done</summary>
+      <dl></dl>
+        <dt>add MathJax (as recommended by <a href=https://11011110.github.io/blog/2015/08/04/mathml-considered-harmful.html>David Eppstein</a>)</dt>
+      </dl>
+  </body>
+</html>
