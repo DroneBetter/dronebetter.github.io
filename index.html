@@ -1,38 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DroneBetter</title>
-    <style type="text/css">
-      body {background-color: #000000; color: #ffffff; font-family: monospace;}
-      a:link {color: #00ffff;}
-      a:visited {color: #ffff00;}
-      /*use #ff00ff for deadlinks*/
-      oeissectname {font-family: serif;}
-      dt {display: list-item; list-style-type: disc; list-style-position: inside; padding-left: 16px} /*making this modification without specifying the padding causes the dt's padding-left to be truncated; when replacing it, list-style-position prevents the bullet point from being left behind*/
-    </style>
-    <script>
-      class OEISTally extends HTMLElement {
-        constructor() {super(); this._inited=false;}
-      
-        connectedCallback() {
-          if (this._inited) return;
-          setTimeout(()=>this._init(),0);}
-      
-        _init() {
-          if (this._inited) return;
-          this._inited=true;
-          const suffix=this.getAttribute("href");
-          const a=document.createElement("a");
-          a.href="https://oeis.org/wiki/User:Natalia_L._Skirrow"+(suffix?'/'+suffix:'');
-          if (this.childNodes.length) {while (this.firstChild) a.appendChild(this.firstChild);}
-          else {a.textContent = suffix?suffix.replace(/_/g,' '):"OEISwiki userpage";}
-          this.appendChild(a);}}
-      
-      customElements.define("oeis-tally", OEISTally);
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-  </head>
+  <head><script src="./js/head_loader.js"></script></head>
   <body>
+    <title>DroneBetter</title>
     <h1>DroneBetter's personal website</h1>
     <p>under construction; I have taken a few formatting things from others' websites I like, and am planning to take a lot more</p>
     <h2>about me</h2>
@@ -40,31 +10,80 @@
     <p>(like many many others before me) I rediscovered the Stirling numbers (as coefficients of the change-of-basis matrix between \((x^n,)_n\) and \(({x\choose n},)_n\), about as soon as I learned about matrices in school), but had a tendency to skip the OEIS's <oeissectname>COMMENTS</oeissectname> sections and go straight to the <oeissectname>FORMULAS</oeissectname>.</p>
     <p>i then read Knuth's excellent 1992 writeup <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, which informed me that in fact these basis change coefficients are not just combinatorially interesting but also tools for finding other interesting combinatorial facts/identities with.</p>
     <p>since then, i have written quite a lot about them; my biggest OEISwiki page is <i><oeis-tally href=an_introduction_to_Stirling_numbers /></i>.</p>
+    <p>i am trying to build a library in my userspage pages, on all the information i have which i don't know of other good resources upon. (They are not necessarily original, though a lot of them are; a lot of interesting original discoveries grew out of pages I originally expected to cover entirely known things.)</p>
     <p>physically residing in the UK for now</p>
-    <details open>
-      <summary>mathsery</summary>
+    <details closed><summary>mathsery</summary>
       <dl>
         <dt>refining Stirling's approximation with the first term for its \(\log\)'s Euler-Maclaurin Laurent series (turning it from a lower to an upper bound on the factorial) makes it accurate enough that its errors' product converges; this product is closer to 1 than you may expect!</dt>
         <dd>\(\prod_{n=1}^\infty\frac{\sqrt{\tau n}\left(\frac ne\right)^ne^{\frac1{12n}}}{n!}=\frac{e^{\frac{1+\gamma}{12}-2\zeta'(-1)}}{\sqrt[4]\tau}<1+\frac1{355}\)<br />as explained in my page <i><oeis-tally href="Stirling's_approximations" /></i></dd>
       </dl>
     </details>
-    <details open>
-      <summary>things to do/put here</summary>
+    <details closed><summary>things to do/put here</summary>
       <dl>
         <dt>copy all of my writings on <oeis-tally>my OEISwiki account</oeis-tally> over</dt>
         <dd>
           <p>the mainspace has been quite neglected, and the new <abbr title="the role acting as the highest authority in editorial disputes, that N. J. A. Sloane created to allow himself to retire from his de facto position doing that">Managing Editor</abbr> sees it as out-of-scope</p>
           <blockquote><p>I'm not a fan of "mainspace" Wiki and do not see them as a core part of the OEIS.  For explanatory information, Wikipedia is a better place. Rather I think of these pages as supporting any curious conventions that might exist in the OEIS and perhaps as a mechanism for linking the main sequence pages.  But that's just my personal opinion, not an "official" opinion whatever that might mean.  Most of us ignore the Wiki altogether, which means you are going to have a hard time finding someone prepared to review changes.  If you want to make changes there, I would suggest trying to find out the current author and interact with them.</p>
           <p>One more general warning is that at some point we are likely to drop <abbr title="MediaWiki alternative (which is mostly indistinguishable from a reader/editor perspective)">PmWiki</abbr> altogether and perhaps replace it with a simple markdown renderer. It's one of the most difficult pieces of our infrastructure to maintain. If that happens an effort will be made to preserve content, but the more exotic the features used the more likely the pages are to break if that transition does occur.</p></blockquote>
-          <p>-Sean A. Irvine, email correspondence</p>
+          <p>-Sean A. Irvine, email correspondence (2025-09-14)</p>
+          <p>this manifested when <a href=https://groups.google.com/g/seqfan/c/1qWECHZufvw/m/KCgA3fvRBQAJ>a change made</a> on 2025-10-06 broke quite a lot of rendering (ie. the positions of bounds for integrals in exponents), so I may expediate it</p>
         </dd>
         <dt>miaow</dt>
       </dl>
     </details>
-    <details open>
-      <summary>things already done</summary>
-      <dl></dl>
-        <dt>add MathJax (as recommended by <a href=https://11011110.github.io/blog/2015/08/04/mathml-considered-harmful.html>David Eppstein</a>)</dt>
+    <details closed><summary>things already done</summary>
+      <dl>
+        <dt>add MathJax (as <a href=https://11011110.github.io/blog/2015/08/04/mathml-considered-harmful.html>recommended</a> by David Eppstein)</dt>
+        <dd>my friend darcy says KaTeX is better so i may perhaps switch to that; however, this is already much better than Wikipedia's and the OEISwiki's implementations (which just render SVGs instead of HTML)</dd>
       </dl>
+    </details>
+    <details closed><summary>perturbations to things larger than me that i have been responsible for</summary>
+      <dl>
+        <dt>ConwayLife</dt>
+        <dd><p>when conducting preliminary investigations into CA growth rates for (what eventually grew into) my page <i><oeis-tally href="on_nearsighted_binary_counters" /></i>, i had <a href="https://conwaylife.com/wiki/OCA_talk:Sqrt_replicator_rule#Incorrectness_of_name">some revelations</a> upon the "logarithmic" replicator rule's replicator's growth rate (actually sqrtic); i gave <a href="https://conwaylife.com/forums/viewtopic.php?f=16&t=6240&p=171752#p171752">a brief history</a> and eventually the one who had mistakenly believed logarithmitude chimed in to say <a href="https://conwaylife.com/forums/viewtopic.php?f=16&t=6240&p=172591#p172591">the rule's name should be changed</a>, so the rule's name was changed... splendid.</p>
+          <p>note that my investigation was the easiest part; AforAmpere found the emulator that compresses the problem in space and time to make it fit in a Python one-liner, and I believe David Eppstein would have realised its growth rate during his investigations in the 1990s if he had that at his disposal too</p></dd>
+          <dt>Mathematica</dt>
+          <dd>
+            <p>i am ashamed to say i use this god damn piece of software, and that by succumbing to societal inertia i am making a small contribution to its enfurtherment. However, my usage of it has led to discovering <a href=https://mathematica.stackexchange.com/questions/315308/circumventing-apparent-errors-in-integrate-and-nintegrate>a bug with a certain Laplace transform</a> where <tt>Integrate</tt> returns a value 1 lower than the truth given by <tt>NIntegrate</tt>, which Daniel Lichtblau filed as a bug.</p>
+          <p>Also, I told my acquaintance the Wolfram employee xylochoron/<a href=https://esopsis.github.io/>esopsis</a>/Eric Parfitt about a mixed Mellin/Laplace transform which has a closed form for fixed integer \(m\) that it doesn't currently support,
+            \[\int_{t=0}^\infty\frac{e^{-ty}}{(e^t-1)^m}t^{n-1}\ dt=\Gamma(n)\sum_{k=0}^{m-1}(-1)^{m-1-k}\left[{m+y\atop k+y+1}\right]_{y+1}\zeta(n-k,m+y)\]
+            (giving some less contrived meaning to the <abbr title="or in this case, y+1-Stirling numbers; r is just used by convention">\(r\)-Stirling numbers</abbr>; see the footnote in <oeis-tally href="Stirling's_approximations#product_of_all_errors">this section</oeis-tally>), which they submitted as support ticket ID 465449.</p>
+            <p>so i am a little bit proud for my minor contributions to the behemoth</p>
+          </dd>
+        </dl>
+      </details>
+      <details closed><summary>creative projects i like</summary>
+        <dl>
+          <dt><a href=https://corru.observer>corru.observer</a></dt>
+          <dd>
+            <p>very curious story; in ≈the present day, emissaries from an alien species (the Obesk) arrive on Earth, then (following the collapse of their embassy) depart almost as quickly.</p>
+            <p>you are a contractor for the FBX in the 2050s, using a reverse-engineered <abbr title="brain-computer interface">BCI</abbr> to salvage data from <abbr title="Obeski biological computers">corrucysts</abbr>; the story takes place investigating a particularly interesting one</p>
+            <p>it is a story wrapped in a game that takes a multitude of forms; 3D components are rendered directly in HTML. The artwork uses a lot of dithering and <a href=https://corru.wiki/wiki/Soundtrack>the soundtrack</a> is quite interesting too</p>
+            <p>see also <a href=https://crxb.cc/corruskivi>the unofficial dialogue editor</a></p>
+          </dd>
+        </dl>
+      </details>
+    <details closed><summary>friends</summary>
+      <dl>
+        <dt><a href=https://terezi.gitlab.io>darcy</a></dt>
+        <dd>soulful creature which has taught me a lot about various things</dd>
+      </dl>
+    </details>
+    <details closed><summary>blogs you should read (i promise i will make my own one here eventually)</summary>
+      <dl>
+        <dt><a href=https://terezi.gitlab.io/posts>darcy's blog</a></dt>
+        <dd>she is an enthusiast of fast multiplication and also some kind of webcomic or something</dd>
+        <dt><a href=https://11011110.github.io/blog>David Eppstein</a></dt>
+        <dd>combinatoristician/geometre (and ex-cellularautomatrist who has forsworn that way of life) who gets up to all kinds of things; very approachable posts on his work and others'</dd>
+        <dt><a href=https://cp4space.hatsya.com>apg</a></dt>
+        <dd>vast knowledge about many things, also one of the most productive people of the present day at proving very novel things about Life (with SAT solvers and a library for self-constructing circuitry)</dd>
+      </dl>
+    </details>
+    <details open><summary>subpages here</summary>
+      <dl>
+        <dt><a href=relativity.html>some notes on the relativity module i'm currently doing</a></dt>
+        <dd>(only first week done thus far (although it was surprisingly dense, covering a lot of special relativity); there will likely be gaps between weeks because for some of them the lecture notes are entirely sufficient and don't require any expoundment)</dd>
+      </dl>
+    </details>
   </body>
 </html>
