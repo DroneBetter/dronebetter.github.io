@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="./js/head_loader.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--bg:#0b0b0b;--fg:#fff}
+    html,body{height:100%;margin:0}
+    .slideshow{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:2rem;box-sizing:border-box;opacity:0;transform:translateY(8%);transition:opacity .36s ease,transform .36s ease;will-change:opacity,transform;pointer-events:none}
+    .slide[aria-hidden="false"]{opacity:1;transform:translateY(0);pointer-events:auto;z-index:2}
+
+    .controls{position:fixed;left:50%;transform:translateY(-50%);bottom:20px;display:flex;gap:8px;z-index:10}
+    .controls button{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:var(--fg);padding:.5rem .9rem;cursor:pointer;font-size:1rem}
+    .controls button:focus{outline:2px solid rgba(255,255,255,0.12);outline-offset:2px}
+    
+    .slide details{max-width:min(60ch,90%)} /*make sections work*/
+  </style>
+</head>
+<body>
+  <title>Stirling presentation</title>
+  <main class="slideshow" id="slideshow" aria-roledescription="carousel">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="0" aria-hidden="false"><div style="text-align:center;color:var(--fg)">
+      <h1 style="color:var(--fg);font-size:clamp(16px,6vw,32px);margin:0">permutation statistics</h1>
+      <div style="text-align:center;color:var(--fg)"><p>Natalia L. Skirrow</p></div>
+    </div></section>
+
+    <section class="slide" role="group" aria-roledescription="slide" data-index="1" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">sequences</h1>
+        <p>here, we will consider sequences \(a(n)\) that count structures with \(n\) nodes</p>
+        <p>nodes are considered 'labelled'; swapping the positions of two nodes produces a distinct object.</p>
+        <p>but in some cases (ie. when the structures are sets), there are no positions to swap</p>
+    </div></section>
+
+    <section class="slide" role="group" aria-roledescription="slide" data-index="2" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">exponential generating functions</h1>
+        <p>we encode sequences to their e.g.f.s by taking \(A(x)=\sum_{n=0}^\infty a(n)\frac{x^n}{n!}\)</p>
+        <p>analytic functions correspond uniquely with their series expansions, and we will retrieve sequences back out of them!</p>
+        <blockquote>A generating function is a clothesline on which we hang up a sequence of numbers for display.</blockquote>
+        <p>-Herbert S. Wilf, author of <i>generatingfunctionology</i></p>
+        <p>specifically, we write \(a(n)=\left[\frac{x^n}{n!}\right]A(x)\) to mean \(\left(\frac d{dx}\right)^nA(x)\big|_{x=0}\).</p>
+        <details closed>
+          <summary>(usually, I would introduce you to ordinary generating functions first, where we would just use \([x^n]A(x)\), but those count structures that partition unlabelled nodes (ie. units in a quantity); ie. the number of ways to partition \(n\) pence into 1p,2p,5p,10p coins is \([x^n]\frac1{(1-x)(1-x^2)(1-x^5)(1-x^{10})}\))</summary>
+          <p>(however, we are somewhat short upon time; however, you will see arrays \(a(n,k)=\left[\frac{x^n}{n!}y^k\right]A(x,y)\) later on, which are e.g.f.-o.g.f. hybrids)</p>
+          <p>(though since you basically never see e.g.f.-e.g.f. arrays, so in the OEIS people refer to these hybrid e.g.f.-o.g.f.s as just e.g.f. of the array)</p>
+        </details>
+    </div></section>
+    
+    <section class="slide" role="group" aria-roledescription="slide" data-index="3" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">recapping some basic calculus</h1>
+        <p>recall that \(\frac d{dx} x^n=nx^{n-1}\); for us, it will be more useful to think of it as \(\frac d{dx}\frac{x^n}{n!}=\frac{x^{n-1}}{(n-1)!}\), ie. \(\frac d{dx}(\underbrace{0,0,\ldots,0}_{n\ 0\text{s}},1)=(\underbrace{0,\ldots,0}_{n-1\ 0\text{s}},1)\); \(\left[\frac{x^n}{n!}\right]\)</p>
+        <p></p>
+        <p>recall that \(\frac {de^x}{dx}=e^x\); setting \(y=e^x\), this becomes \(\frac dy{d\log(y)}=y\). Reciprocating, \(\frac d{dy}\log(y)=\frac1y\), and (via the chain rule) \(\frac d{dy}\log\left(\frac1{1-y}\right)=\frac1{1-y}\).</p>
+        <p>\(\frac1{1-y}=1+y\frac1{1-y}\), so by induction (replacing the occurrence of the left side in the right side with the entire right side) \(\frac1{1-y}=1+y(1+y\frac1{1-y})=1+y(1+y(1+y(\ldots)))=1+y+y^2+\ldots\)</p>
+        <p>this tells us three important facts about e.g.f.s!</p>
+        <dl>
+          <dt>
+            <p>\(\left[\frac{x^n}{n!}\right]e^x=1\)</p>
+            <p>there is \(1\) way to put \(n\) objects into an unordered set</p>
+          <dt>
+            <p>\(\left[\frac{x^n}{n!}\right]\frac1{1-x}=n!\)</p>
+            <p>there are \(n!\) ways (permutations) to put \(n\) objects into an ordered list</p>
+          </dt>
+          <dt>
+            <p>\(\left[\frac{x^n}{n!}\right]\log\left(\frac1{1-x}\right)=(n-1)!\)</p>
+            <p>there are \((n-1)!\) ways to put \(n\) objects into a cyclically-ordered list</p>
+            <p>(we group the \(n!\) permutations into equivalence classes of \(n\) each under the \(n\) cyclic shifts we can do to them)</p>
+          </dt>
+        </dl>
+    </div></section>
+
+    <section class="slide" role="group" aria-roledescription="slide" data-index="4" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">we consider sets of structures to <i>be</i> their e.g.f.s, in a sense</h1>
+        <p>as combinatorialists, we will name the sequences \(\mathrm{sets}(n)=1,\mathrm{cycles}(n)=(n-1)!,\mathrm{lists}(n)=n!\); if two sets of structures have sequences with the same \(n\)th term (ie. they have the same number of structures on \(n\) nodes), we say they are the same set, since there's a bijection between them that preserves cardinality (\(n\)).</p>
+        <p>this will make sense more concretely on the next page do not worry</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="5" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">Faà di Bruno's formula</h1>
+        <p>the first reason why we will find e.g.f.s useful is that putting them inside each other is meaningful!</p>
+        <p>if \(a(n)=\left[\frac{x^n}{n!}\right]A(x)\) counts [structure a]s with \(n\) nodes, and \(b(n)=\left[\frac{x^n}{n!}\right]B(x)\) counts [structure b]s with \(n\) nodes, then \(a(b)(n)=\left[\frac{x^n}{n!}\right]A(B(x))\) counts [structure a]s whose nodes are replaced with [structure b]s which in turn contain nodes</p>
+        <p>note that when \(b(0)\ne0\), \(a\)'s sum must be finite in order for \(a(b)\)'s terms to converge, since you can otherwise have infinitely many terms by finding [structure a]s and filling them with empty [structure b]s from \(b(0)\)</p>
+        <p>aforepromised concreteness: with the functions defined before, \(\mathrm{sets}(\mathrm{cycles})n=\left[\frac{x^n}{n!}\right]\left(\exp\left(\log\left(\frac1{1-x}\right)\right)=\frac1{1-x}\right)=\mathrm{lists}(n)\), ie. we have a surjection between sets of cycles and lists.</p>
+        <p>we can add in a \(y\) coefficient that counts the cycles! \(\mathrm{Sets}(y\mathrm{Cycles}(x))=\exp\left(\log\left(y\frac1{1-x}\right)\right)=\frac1{(1-x)^y}\), then the coefficient \(\left[\frac{x^n}{n!}y^k\right]\) inside this counts permutations with \(n\) nodes and \(k\) cycles.</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="6" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">the generalised binomial theorem</h1>
+        <p>the binomial theorem says \((1+x)^n=\sum_{k=0}^\infty{n\choose k}x^k\) (when \(|x|\lt1\), however we only care about it as a generating function so radius of convergence is unimportant to us).</p>
+        <p>in fact, by writing \({n\choose k}=\frac{n!}{k!(n-k)!}\) and then using \(x!=\Gamma(x+1)=\int_{t=0}^\infty\frac{t^x}{e^t}\ dt\) (holds for \(x=0\); doing integration by parts shows it abides by the same recurrence relation, and (importantly) can be evaluated at \(x\) that are negative or noninteger) we can continue it backwards.</p>
+        <img src="https://oeis.org/w/images/7/78/Binomial.png" width=820 alt="nice image by Peter Luschny" />
+        <p>for \(-n\) a negative integer, the integral diverges (due to any neighbourhood of \(t=0\) contributing infinitely much) so a fool would say that in this case \((-n)!=\infty\), but we can take the coefficient of \(\infty\) (the coefficient \([x^{-1}](-n+x)!\) in the expansion; better known to those who have done complex integration as the residue at \(x=-n\)) as \(\frac{(-1)^{n-1}}{(n-1)!}\).</p>
+        <p>so if we treat the negative parts in \({-n\choose k}=\frac{(-n)!}{k!(-n-k)!}\) as being residues instead of numbers, we can rearrange it into \((-1)^k{n+k-1\choose k}\).</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="7" aria-hidden="true"><div style="text-align:center;color:var(--fg)">
+        <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">things we can do with \(\frac1{(1-x)^y}\)</h1>
+        <p>this extension of the binomial coefficient continues to abide by the binomial theorem! \(\frac1{(1-x)^n}=\sum_{k=0}^\infty{n+k-1\choose k}x^k\). (Replacing \(x\) with \(-x\) on the left side replaces \(x^k\) with \((-x)^k\) on the right side, conveniently cancelling out the \((-1)^k\) we already had.)</p>
+        <p>this has a combinatorial meaning in ordinary o.g.f.s btw</p>
+        <p>\([x^k](1+x)^n={n\choose k}\) is the number of ways to make a set of \(k\) elements by drawing from a set of \(n\).</p>
+        <p>\([x^k]\frac1{(1-x)^n}={n+k-1\choose k}\) is the number of ways to make a multiset of \(k\) elements by drawing with replacement from a set of \(n\).</p>
+        <p>this comes up so often in combinatorics that sometimes people define \(\left(\!{n\choose k}\!\right)={n+k-1\choose k}\) (pronounced \(n\) multichoose \(k\)) for it to clean up formulas</p>
+        <p>anyway, we are interested in \(\frac1{(1-x)^y}\) as an e.g.f., not o.g.f.!</p>
+        <p>\(\left[\frac{x^n}{n!}\right]\frac1{(1-x)^y}=n!\left(\!{y\choose n}\!\right)=\frac{(y+n-1)!}{(y-1)!}=\underbrace{y(y+1)(y+2)\ldots(y+n-1)}_{n\ \text{factors}}\).</p>
+        <p>this also has its own syntax, \(y^\overline n\) (as opposed to \(y^\underline n=\frac{y!}{(y-n)!}=\underbrace{y(y-1)(y-2)\ldots(y-n+1)}_{n\ \text{factors}}\)).</p>
+        <p>so, to recap, the number of \(n\)-element \(k\)-cycle permutations is \(\left[\frac{x^n}{n!}y^k\right]\frac1{(1-x)^y}=[y^k]y^\overline n\).</p>
+    </div></section>
+  </main>
+
+  <div class="controls" aria-hidden="false">
+    <button id="prev" aria-label="prev slide">◀ prev</button>
+    <button id="next" aria-label="next slide">next ▶</button>
+  </div>
+
+  <script>
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      let idx = slides.findIndex(s => s.getAttribute('aria-hidden') === 'false');
+      if(idx < 0) idx = 0;
+
+      function show(i){
+        i = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => {
+          const visible = n === i;
+          s.setAttribute('aria-hidden', visible ? 'false' : 'true');
+          s.tabIndex = visible ? 0 : -1; // keep keyboard focus sensible
+        });
+        idx = i;
+      }
+
+      document.getElementById('prev').addEventListener('click', () => show(idx - 1));
+      document.getElementById('next').addEventListener('click', () => show(idx + 1));
+
+      // keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') show(idx + 1);
+        if (e.key === 'ArrowLeft') show(idx - 1);
+      });
+
+      // expose a small API if you want to control it externally
+      window.MinimalSlideshow = { show, slides };
+    })();
+  </script>
+</body>
+</html>

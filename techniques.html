@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script></head>
+  <body>
+    <title>mathematical techniques</title>
+    <h1>mathematical techniques revision notes</h1>
+    <p>this module is mostly comprised of a menagerie of methods that the professor (very much an applied mathematician) thinks are cool (with which i am inclined to agree!); he has permitted me to write an addendum for the section of the course on saddle-point asymptotics, since i am familiar with them for reasons entirely disjoint to his</p>
+    <details closed>
+      <summary>week 0 (misc. conventions/prerequisites)</summary>
+      <dl>
+        <dt>we use \(f_y\) to mean \(\frac\partial{\partial y}f\).</dt>
+      </dl>
+    </details>
+    <details closed>
+      <summary>weeks 1 & 2 (calculus of variations and finding stationary values)</summary>
+      <dl><details closed>
+        <summary>Lagrangian multipliers</summary>
+        <dt>a multivariate function is said to have a stationary point where its partial derivatives in each direction are all zero</dt>
+        <dd>when the function is 1D, this is an extremal point, but in 2D and up, stationary points can arise as saddle points (where the second derivative is positive in one direction and negative in another)</dd>
+        <dt>in \(n\) variables, there are \(n\) constraints and \(n\) degrees of freedom, so one should expect this to generally be close to solvable when possible (if all its partial derivatives are linear functions of the coordinates, then it becomes a problem of finding a matrix's nullspace)</dt>
+        <dt>an example given (which is trivial but elucidatory) is to find the radius of the closest approach of the curve \(g(x,y)=xy^2-1=0\) to the origin; that is, when travelling across the curve, the minimum (and thus stationary) value of \(f(x)=x^2+y^2\).</dt>
+        <dd>note that the definition of 'stationary' changes here; we are finding the stationary value of \(f\) with respect to each direction along the surface induced by \(g=0\), not the original space</dd>
+        <dt>the method here is to write \(x\) as a function of \(y\) or vice versa, and solve the ensuing univariate function \(f(x,y(x))\); here \(y=x^{-\frac12}\), so \(f=x^2+\frac1x\), \(f'=2x-\frac1{x^2}\) and so the minimum is found at \(x,y(x)=2^{-\frac13},2^{\frac16}\).</dt>
+        <dt>more generally, given a constraint \(g(x,y)=0\), it is often useful (when looking for stationary values of \(f\) satisfying it) to attempt to instead find stationary points of \(h=f-\lambda g\) (with \(\lambda\) a 'Lagrangian multiplier'), then find the intersection of \(h\)'s stationary points with \(g=0\).</dt>
+        <dt>specifically, since \(h=f-\lambda g\), one need only solve the simultaneous differential equations \(f_x=\lambda g_x,f_y=\lambda g_y\). Solving these (if possible) will give \(x,y\) as a function of \(\lambda\), and if these satisfy \(g(x(\lambda),y(\lambda))=0\) somewhere (which is also generally easy to find), that point is the stationary point of \(f\).</dt>
+        <dt>this scales up to higher dimensions without requiring any more constraint functions than just \(h\); each of the equalities \(f_{x_i}=\lambda g_{x_i}\) defines in general an \(n-1\)-dimensional solution-space, so intersecting all \(n\) of them together will give a 0-dimensional solution space.</dt>
+        <dt>example 2: find stationary values of \(f=x^2+4y^2+6z^2\), subject to \(g=x+y+z-17=0\).</dt>
+        <dd>the three constraints we find are \(x,y,z=\frac\lambda2,\frac\lambda8,\frac\lambda{12}\), so \(g=\frac{17}{24}\lambda-17\), so \(g=0\) when \(\lambda=24\); the stationary value of \(f\) there is 204 (a minimum, since \(f\) is convex over \(g=0\)).</dd>
+        <dt>in general, one can use multiple \(g\)s, and have a set of equations of the form \(f_{x_i}=\lambda_0{g_0}_{x_i}+\lambda_1{g_1}_{x_i}+\ldots\) that give \(x_i(\lambda_0,\lambda_1,\ldots)\); one gets a 2D surface, but then has to solve for both \(g_0,g_1\) which reduces it to a 1D point.</dt>
+      </details><details closed>
+        <summary>stationary values of integrals (and the brachistochrone)</summary>
+        <dt>given two endpoints \(P,Q\) in 2D space, we want to find the path \(C\) from \(P\) to \(Q\) that minimises the integral across it of a function \(f\left(x,y,\frac{dy}{dx}\right)\).</dt>
+        <dt>here (for our purposes) we can represent \(C\) via the function \(y(x)\).</dt>
+        <dt>for rolling a ball along a curve, conservation of (kinetic energy)+(gravitational potential) states \(\frac{v^2}2-gy=C\), so calling \(P\)'s \(y\) position 0 (with \(C=0\)) and defining positive \(y\) as gravitywards, we have \(v=\frac{d\sqrt{x^2+y^2}}{dt}=\sqrt{2gy}\); since \(\frac{d\sqrt{x^2+y^2}}{dx}=\sqrt{1+\left(\frac{dy}{dx}\right)^2}\), we can put these together for \(\frac{dt}{dx}=\sqrt{\frac{1+\left(\frac{dy}{dx}\right)^2}{2gy}}\).</dt>
+        <dt>to establish the optimality of a function \(y(x)\) over the \(\infty\)-dimensional space of functions, we can use the fact that if it's a stationary point of the metric (given by the integral), for any additive perturbation \(\eta(x)\), the effect upon the metric of adding \(\epsilon\eta\) to \(f\) (as \(\epsilon\rightarrow0\)) is asymptotically \(O(\epsilon^2)\), since the metric is an analytic function with respect to perturbations and the stationariness implies the \(\epsilon^1\) term is 0.</dt>
+        <dt>since \(\epsilon\rightarrow0\), \(f(x,y(x)+\epsilon\eta(x),y'(x)+\epsilon\eta'(x))\sim f(x,y,y')+\epsilon\left(\eta f_y+\eta'f_{y'}\right)+O(\epsilon^2)\), so \(\frac d{d\epsilon}\int_{P_x}^{Q_x}f(x,y+\epsilon\eta,y'+\epsilon\eta')\ dx=\int_{P_x}^{Q_x}\eta f_y+\eta'f_{y'}\ dx\), so in order for \(f\) to be minimised by \(y\), this integral must be 0 for every closed perturbation \(\eta\) (equalling 0 at the boundaries).</dt>
+        <dt>the second term in this integral can have integration by parts enacted upon it (noting that the \(\eta\) factor is 0 at both endpoints, so the rectangle-volume part is 0) to give \(\int_{P_x}^{Q_x}\eta\left(f_y-\frac d{dx}f_{y'}\right)\ dx\); the \(\eta\) coefficient is arbitrary, so the only way that the integral can be guaranteed 0 irrespective of it is for\[\frac d{dx}f_{y'}=f_y\]this being the <b>Euler-Lagrange equation</b>.</dt>
+        <dt>in general, Euler-Lagrange produces a second-order ODE satisfied by \(f\) across the complete domain.</dt>
+        <dt>example 0: under constraints \(f(x,y,y')=y^2+y'^2\), and \(y(0)=0,y(1)=1\), we require a \(y\) function satisfying \(2y''=2y\), ie. \(y=\frac{\sinh(x)}{\sinh(1)}\) (we treat \(y'\) as an entirely different variable from \(y\); partial-differentiating with respect to \(y'\) treats all occurrences of \(y\) as constants)</dt>
+        <dt>example 1 uses \(f(x,y,y')=y'^2-y^2\), so one obtains \(2y''=-2y\), ie. a linear combination of \(\cos(x),\sin(x)\)</dt>
+        <dt>example 2 is interestinger, using \(f=x^2y'^2+y\) produces \(2x(y'+x^2y'')=1\); this is effectively an Euler-type equation in \(y'\), with solution \(\frac{1+x^{-1}}2+c\sqrt[x]e\), which integrates to something involving an exponential integral.</dt>
+        <dt>the lecture notes explain in some detail the three cases in which \(f\) is dependent on only two of the three variables \(x,y,y'\), the ODE becomes first-order instead.</dt>
+        <dt>returning to the brachistochrone case, ignoring the \(2g\) denominator coefficient, plugging the cost function \(\sqrt{\frac{1+y'^2}y}\) in we get \(\frac{2y\cdot y''-y'^2-y'^4}{(y(1+y'^2))^{\frac32}}=-\frac{\sqrt{\frac{1+y'^2}y}}{2y}\), which simplifies to \(4y\cdot y''=y'^4-1\).</dt>
+        <dt>this is also how to derive the catenary; with \(f=y\sqrt{1+y'^2}\) (gravitational potential times length-per-\(x\) coefficient), we obtain \(\frac{y'^4+y'^2+yy''}{(y'^2+1)^{\frac32}}=\sqrt {y'^2+1}\); multiplying through, \(y'^4+y'^2+yy''=(y'^2+1)^2\), and simplifying, \(yy''-y'^2=1\); the set of values of \(y,y',y''\) form a two-sheeted hyperboloid; the two branches represent the maximum and minimum stationary points of the equation</dt>
+        <dt>note that Lagrangian multipliers can be used <i>with</i> the Euler-Lagrange equation, using \(\int_{P_x}^{Q_x}f-\lambda g\ dx\)</dt>
+        <dt>also, one can straightforwardly use multiple <abbr title="dependent">output</abbr> \(y\) variables; Euler-Lagrange must hold for every one independently</dt>
+        <dt>less straightforwardly, one can use multiple <abbr title="independent">input</abbr> \(x\) variables (in a multiply-nested integral over a volume); \(\sum_{i=0}^{n-1}\frac{\partial f_{y_{x_i}}}{\partial x_i}=f_y\)</dt>
+        <dd>where the partial derivatives with respect to \(x_i\) variables continue to behave like the \(\frac d{dx}\) in the univariate case by considering \(y,y'\) as functions of \(x\)s, <i>unlike</i> the partial derivative \(f_{y_{x_i}}\) in the numerator, that considers \(y,y_{x_i}\) as additional input axes independent from each other</dd>
+        <dt>letting \(x,y,z\) be the inputs, and \(y=\phi(x,y,z)\) the output (<abbr title="if you are a physics student who has forgotten or a maths student who hasn't covered it, this is a vector-valued function equivalent to potential for fluids, except there are no physical objects (like infinitesimal particles of water) that travel along the field lines (charged objects will overshoot at turns due to inertia)">potential</abbr> of an electric field), and energy density \(f=\epsilon_0\frac{(\nabla\phi)^2}2\) (where \((\nabla\phi)^2=\phi_x^2+\phi_y^2+\phi_z^2\), which means \(f_{\phi_{x_i}}=2\phi_{x_i}\)), energy content is the triple-integral of density over a region.</dt>
+        <dt>inputting to Euler-Lagrange, we have then \(\left(\sum_{i=0}^{n-1}\frac{\partial f_{y_{x_i}}}{\partial x_i}=2\sum_{i=0}^2\phi_{x_i,x_i}\right)=\left(f_y=0\right)\), which we can rewrite as \(\nabla^2\phi=0\), ie. given some boundary conditions, the optimal electric potential function to maximise energy inside a region is a solution to Laplace's equation. (In general, <abbr title="time-invariant">electrostatic</abbr> fields satisfy <wi-ki href="Poisson's_equation"></wi-ki> of \(\nabla^2\phi=-\frac{\rho}{\varepsilon}\), where \(\rho\) is free charge density and \(\varepsilon\) is the medium's permittivity)</dt>
+        <dt>workshop problem: find extrema of \(\int_0^1y'^2\ dx\) subject to \(y(0)=0,y(1)=1,\int_0^1xy'\ dx=0\)</dt>
+      </details></dl>
+    </details>
+  </body>
+</html>
