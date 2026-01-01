@@ -15,9 +15,11 @@
     <details closed><summary>mathsery</summary>
       <dl>
         <dt>refining Stirling's approximation with the first term for its \(\log\)'s Euler-Maclaurin Laurent series (turning it from a lower to an upper bound on the factorial) makes it accurate enough that its errors' product converges; this product is closer to 1 than you may expect!</dt>
-        <dd><oe-is href=A389380></oe-is>=\(\prod_{n=1}^\infty\frac{\sqrt{\tau n}\left(\frac ne\right)^ne^{\frac1{12n}}}{n!}=\frac{e^{\frac{1+\gamma}{12}-2\zeta'(-1)}}{\sqrt[4]\tau}<1+\frac1{355}\)<br />as explained in my page <i><oeis-tally href="Stirling's_approximations" /></i></dd>
+        <dd><oe-is href=A389380></oe-is>=\[\prod_{n=1}^\infty\frac{\sqrt{\tau n}\left(\frac ne\right)^ne^{\frac1{12n}}}{n!}=\frac{e^{\frac{1+\gamma}{12}-2\zeta'(-1)}}{\sqrt[4]\tau}<1+\frac1{355}\]<br />as explained in my page <i><oeis-tally href="Stirling's_approximations" /></i></dd>
         <dt>counting connected series-parallel partial orders on labelled sets with Lagrange inversion</dt>
-        <dd><oe-is href=A058349></oe-is>(k+1)=\[\left[\frac{x^k}{k!}\right]\left(\frac x{x+2(1-\cosh(x))}\right)^{k+1}=\sum_{i=0}^k\frac1{i!}\sum_{d=-i}^i{2i\choose i+d}d^{i+k}(-1)^{k-d}\]<br />as derived in my page <i><oeis-tally href="A058349" /></i>; i am interested in a shorter route from one side to the other!</dd>
+        <dd><oe-is href=A058349></oe-is>(k+1)=\[\left[\frac{x^k}{k!}\right]\left(\frac x{x+2(1-\cosh(x))}\right)^{k+1}=\sum_{i=0}^k\frac1{i!}\sum_{d=-i}^i{2i\choose i+d}d^{i+k}(-1)^{k-d}\]<br />as derived in my page <i><oeis-tally href=A058349 /></i>; i am interested in a shorter route from one side to the other!</dd>
+        <dt>an exact formula for the number of cycles in all \(n\)-derangements</dt>
+        <dd><oe-is href=A162973></oe-is>(n)=\[\sum_{k=0}^{n-1}(-1)^k{n!\over k!}(H_{n-k}-1)=\left\lceil\frac{n!}e\left(H_n-1+\int_{x=0}^\infty\frac{1-e^{1-e^x}}{(e^x-1)e^{nx}}\ dx\right)\right\rfloor\]where \(\lceil x(n)\rfloor=(-1)^n\lceil (-1)^nx(n)\rceil=\begin{cases}\lceil x(n)\rceil&n\ \mathrm{even}\\\lfloor x(n)\rfloor&n\ \mathrm{odd}\end{cases}\), as shown in <i><oeis-tally href=second-order_Stirling_series></oeis-tally></i><br />Watson's lemma ('an exact representation as a Laplace transform produces an asymptotically-valid asymptotic series (Poincaré expansion)') is true; the converse is definitely true if the asymptotic series is convergent, and maybe true otherwise (two such cases where it's true are Stirling's approx.'s error and Ramanujan's series for the approximation \(!n\sim\frac{n!}e\)'s error).<br />the formula is derived by assuming the converse holds here too, and proven by finding an exact representation and chasing some inequalities; interestingly, the absolute error converges to 1 from below.</dd>
         <dt>books i recommend</dt>
         <dd><dl>
           <dt>Herbert S. Wilf, <a href=https://www2.math.upenn.edu/~wilf/DownldGF.html><i>generatingfunctionology</i></a>. (1990,2004)</dt>
@@ -76,11 +78,36 @@
             <p>it is a story wrapped in a game that takes a multitude of forms; 3D components are rendered directly in HTML. The artwork uses a lot of dithering and <a href=https://corru.wiki/wiki/Soundtrack>the soundtrack</a> is quite interesting too</p>
             <p>advice for playthroughs</p>
             <dl>
-              <dt>do not be in any hurry to proceed forwards with </dt>
+              <dt>do not be in any hurry to proceed forwards with the chapters; exploring to the fullest extent possible is advisable</dt>
               <dt>when an isolated word is shown with an anomalously moving background, write it down somewhere</dt>
+              <dt>most of it doesn't require drawing maps or diagrams, except for the mazes</dt>
             </dl>
             <p>see also <a href=https://crxb.cc/corruskivi>the unofficial dialogue editor</a></p>
           </dd>
+          <dt><i>Ocmo</i></dt>
+          <dd>
+            <p><i>see also <a href=Ocmo.html>my incomplete WRs history page</a></i></p>
+            <p>a defunct iOS platformer game in which you are an octopus-like creature, which (in addition to moving and jumping) can grapple while in the air, with a tentacle which acts like a rope.</p>
+            <p>this can also be contracted, and contracting during a swing allows for acceleration via conservation of angular momentum. The ocmo operates in a "low gear" in that all its movements are slow but its contractions have a considerable amount of force behind them, which make the game's dynamics extremely interesting.</p>
+            <p>i have been fond of it for <abbr title="cannot see exactly when i started playing on account of, but i think around 2018-19ish">a long time</abbr>, and posting speedruns on <a href=https://discord.gg/QSpyBtK>the Discord server</a> since my joining on 2021-11-01.</p>
+            <p><details closed><summary>in early 2025, i began using a second finger to detach a grapple without lifting the first and ending the contraction early. (This technique had been discovered and understood (at least for braking) <a href=https://discord.com/channels/368348645382291466/691241596036972604/691516328284127262>as early as 2020-03-23</a>, but also evidently wasn't intended since it breaks the run playback feature and requires one to be screen-recording at all times)</summary>
+              <p>the benefits of multitouch detachment (aforementioned special cases of which were <abbr title="for breaking and 'a longer adjustment but not a swing,' respectively; it is curious that 2h40m did not see the potential use for swings!"><a href=https://discord.com/channels/368348645382291466/368348645382291469/691583979899584554>termed</a> the 'snip' and the 'snatch'</abbr>) may seem small, but it</p>
+              <dl>
+                <dt>saves the useless part of the swing that doesn't accelerate you</dt>
+                <dd>this is nonnegligible since the additional speed compounds itself, especially in levels about going upwards like <i>Stairway to Heaven</i>!</dd>
+                <dt>effectively brings the minimum swing duration to zero, increasing the rate at which rapidfire successive adjustments can be performed</dt>
+                <dt>reduces error rate (once you become proficient at it), compared to a single finger having to lift-(tap anywhere)-lift-(tap in destination location) as quickly as possible</dt></dl>
+              <p>it massively increases the skill ceiling, and opens many possibilities</p>
+              <p><abbr title="account deleted; i think Jouni Ipatti (programmer/designer), as opposed to Olli Raila (the artist who is still active in the server, with username Salty - Boy)">a developer</abbr> <a href=https://discord.com/channels/368348645382291466/368348645382291469/692032836768628796>said</a></p>
+              <blockquote>WOW. it is a new control mechanic that we did not design on purpose. It seems quite useful for extreme speedrunning. we were thinking of having a similar control but decided to leave it out as the control scheme was quite complicated already</blockquote>
+            </details></p>
+            <p>there are 37 ordinary levels (with iCloud leaderboards still up!) in each the Light and Dark World (the former unlocked gradually as you progress, the latter being unlocked by <abbr title="i am biased by years of speedrunning but am pretty sure i achieved the third star's time on my first successful attempt basically always; for such a speedrunning-oriented game, the stars do not incentivise speed much! (it seems the developers erred extremely far on the cautious side to make it somewhat appealing to casual players)">3-starring</abbr> their LW <abbr title="somewhat of a misnomer; the Dark World's levels are sometimes harder variations of their LW parents (although Follow the Lead extends The World Outside with a new section) but mostly entirely independent; they made a lot of levels deemed too difficult for the main game, though their relegation hereto does not affect the care put into their construction and decoration!">counterparts</abbr>), together with four "stay alive" boss levels (not speedrunnable) and one "reach the end as fast as you want while being pursued" boss in the LW, and one considerably long and true serene final level in the DW; these last two could be speedrunnable but don't measure time automatically and have no builtin leaderboards so have largely not been.</p>
+            <p>i currently have 2 of the 74 world records; <a href=https://youtu.be/e-JD-HELjlU>Ruins 2 <i>Keychain</i> in 22.10s</a> and <a href=https://youtu.be/bi65vyFnZsY>Sky 6 <i>Long Route</i> in 10.44s</a> (with <a href=https://youtu.be/biLQpNUJbUs>handcam</a>); these are both levels that the prodigious world champion <a href=https://space.bilibili.com/623735114>Xiaoyu (known to us as SXY3)</a> did not focus on, i have little doubt they could optimise further.</p>
+            <p>i intend to eventually make a page here covering the speedrun WR history and remarks by the developer for every level, since there is a lot scattered across YouTube and bilibili or tucked away in that Discord server with poor searchability</p>
+            <p>if it gets readded to the App Store or i start using an app-installing program (i think iMazing works), i will be able to reset it to try doing full-game speedruns, those seem as though they'd be fun (one has to optimise for consistency, which for me has entirely fallen by the wayside)</p>
+          </dd>
+          <dt>Jon Bois, <a href=https://www.sbnation.com/2014/8/18/5998715/the-tim-tebow-cfl-chronicles>The Tim Tebow CFL Chronicles</a>, <a href=https://www.sbnation.com/a/17776-football>17776</a></dt>
+          <dd>i like all of his works enormously and he has been responsible for causing me to cry quite a lot (in a positive way)</dd>
         </dl>
       </details>
     <details closed><summary>friends</summary>
@@ -101,8 +128,9 @@
     </details>
     <details open><summary>subpages here</summary>
       <dl>
+        <dt><a href=transgender.html>how to safely inject subcutaneously</a> (and related information that is helpful for DIY HRT in the UK specifically)</dt>
         <dt><a href=relativity.html>some notes on the relativity module i'm currently doing</a></dt>
-        <dd>(only first week done thus far (although it was surprisingly dense, covering a lot of special relativity); there will likely be gaps between weeks because for some of them the lecture notes are entirely sufficient and don't require any expoundment)</dd>
+        <dd>(only first week done thus far (although it was surprisingly dense, covering a lot of special relativity); there are gaps between weeks because for some of them the lecture notes are entirely sufficient and don't require any expoundment; not made as a general resource but perhaps useful as such)</dd>
       </dl>
     </details>
   </body>

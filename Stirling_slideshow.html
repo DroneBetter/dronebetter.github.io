@@ -184,6 +184,10 @@
     </div></section>
     <section class="slide" role="group" aria-roledescription="slide" data-index="14" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">saddle-point asymptotics!</h1>
+      <details closed><summary>saddle-point approximations of general integrals</summary>
+        <p>given an analytic function \(f\) that attains a maximum at a point \(\xi\in(a,b)\), \(F(x)^n\) will asymptotically resemble a Gaussian about that point, so we have\[I_n=\int_a^b\varphi(x)F(x)^n\ dx\underset n\sim\varphi(\xi)F(\xi)^{n+\frac12}\sqrt{\frac\tau{-nF''(\xi)}}\]</p>
+        <p>Laplace popularised this due to realising that the set of problems that can be asymptotically solved by encoding into this form is very large</p>
+      </details>
       <p>say \(F\)'s pole closest to \(0\) lies at a point \(X\) along the positive reals (so \(f(n)\) is asymptotically comprised of a \(\frac{\mathrm{some\ subexponential\ function\ of}\ n}{X^n}\) term plus some exponentially decaying oscillations)</p>
       <p>if \(F\) is admissible such that (as one approaches the pole) \(F(x)\in\Omega(e^{(\log(X-x))^2}\) (or, where the pole is at \(X=+\infty\), \(F(x)\in\Omega(e^{(\log x)^2})\)), then after dividing \(F\) by \(x^{n+1}\), you can choose the radius of a circular contour by placing it in a saddle point, such that the region around the positive reals (where it passes closest to \(X\)) dominates the rest</p>
       <p>as \(n\to\infty\), the region around \(X\) approaches a Gaussian, which can be parametrised! this yields (where \(G(x)=x\frac{f'(x)}{f(x)}\) and \(G(x_n)=n\))</p>

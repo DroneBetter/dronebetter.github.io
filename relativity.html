@@ -38,8 +38,8 @@
         <dd>that is, every <abbr title="that of a camera that does not accelerate or rotate"><b>inertial reference frame</b></abbr> observes the same laws of physics</dd>
         <dt>however, whereas Newton's physics is invariant under translation, rotation and <wi-ki href="Galilean_transformation"></wi-ki> of inertial frame (multiplying spacetime positions \(\begin{pmatrix}\vec s\\t\end{pmatrix}\) by \(\begin{pmatrix}1&-\vec v\\0&1\end{pmatrix}\)), Einstein's special relativity would replace those with <abbr title="called Lorentz transformations in the lecture notes">Lorentz boosts</abbr> (multiplying by \(\begin{pmatrix}\cosh(\zeta)&-\sinh(\zeta)\\-\sinh(\zeta)&\cosh(\zeta)\end{pmatrix}\), where \(\zeta\) is the 'rapidity' of the boost)</dt>
         <dd>this is for special relativity in 1+1D (in which case it is equivalent to multiplying the position vector by a split-complex 'unit number,' when considering time the reals and space the jmaginaries); now the full 3D case</dd>
-        <dt>(in Planck units) if a frame \(F'\) is moving at speed \(\vec v\) relative to frame \(F\), the Lorentz factor (number of seconds perceived by an observer moving with \(F'\) for what one in \(F\) measures as 1 second) is \(\gamma=\frac1{\sqrt{1-v^2}}\); with \(\alpha=\frac{\gamma^2}{1+\gamma}\), transforming from \(F\) to \(F'\) is done by</dt>
-        <dd>\[\begin{pmatrix}x'\\y'\\z'\\t'\end{pmatrix}=\begin{pmatrix}1+\alpha v_x^2&\alpha v_xv_y&\alpha v_xv_z&-\gamma v_x\\\alpha v_xv_y&1+\alpha v_y^2&\alpha v_yv_z&-\gamma v_y\\\alpha v_xv_z&\alpha v_yv_z&1+\alpha v_z^2&-\gamma v_z\\-\gamma v_x&-\gamma v_y&-\gamma v_z&\gamma\end{pmatrix}\begin{pmatrix}x\\y\\z\\t\end{pmatrix}\]</dd>
+        <div id=change_of_basis><dt>(in Planck units) if a frame \(F'\) is moving at speed \(\vec v\) relative to frame \(F\), the Lorentz factor (number of seconds perceived by an observer moving with \(F'\) for what one in \(F\) measures as 1 second) is \(\gamma=\frac1{\sqrt{1-v^2}}\); with \(\alpha=\frac{\gamma^2}{1+\gamma}\), transforming from \(F\) to \(F'\) is done by</dt>
+        <dd>\[\begin{pmatrix}x'\\y'\\z'\\t'\end{pmatrix}=\begin{pmatrix}1+\alpha v_x^2&\alpha v_xv_y&\alpha v_xv_z&-\gamma v_x\\\alpha v_xv_y&1+\alpha v_y^2&\alpha v_yv_z&-\gamma v_y\\\alpha v_xv_z&\alpha v_yv_z&1+\alpha v_z^2&-\gamma v_z\\-\gamma v_x&-\gamma v_y&-\gamma v_z&\gamma\end{pmatrix}\begin{pmatrix}x\\y\\z\\t\end{pmatrix}\]</dd></div>
         <dt>with \(u=\frac v{\Vert v\Vert}\) and \(\beta=\Vert v\Vert^2\alpha=\gamma-1\), this becomes</dt>
         <dd>\[\begin{pmatrix}x'\\y'\\z'\\t'\end{pmatrix}=\begin{pmatrix}1+\beta u_x^2&\beta u_xu_y&\beta u_xu_z&-\gamma\Vert v\Vert u_x\\\beta u_xu_y&1+\beta u_y^2&\beta u_yu_z&-\gamma\Vert v\Vert u_y\\\beta u_xu_z&\beta u_yu_z&1+\beta u_z^2&-\gamma\Vert v\Vert u_z\\-\gamma\Vert v\Vert u_x&-\gamma\Vert v\Vert u_y&-\gamma\Vert v\Vert u_z&\gamma\end{pmatrix}\begin{pmatrix}x\\y\\z\\t\end{pmatrix}\]</dd>
         <dd>the determinant of the \(3\times3\) space-to-space submatrix is again \(1+\beta(u_x^2+u_y^2+u_z^2=1)=\gamma\), and of the total is \(1\) (ie. the compression of both time and space is counteracted by the amount they add to each other).</dd>
@@ -68,6 +68,28 @@
           </tbody></table>
         <p>note that as wll as hyperboloids inside the cone (of points a constant perceptual time away from you irrespective of trajectory) and the cone (of points you could reach at lightspeed), there are also hyperboloids outsiede the cone (of points you are accursed never to access or vice versa)</p></dd>
         <dt>we can also adjust the aforementioned relativistic Michelson-Morley experiment; say instead an emitter in frame \(F\) fires off two photons \(\Delta t\) time apart, which are received by another in frame \(F'\); Newtonianly, their distance in space from the observer's reference frame is \(\Delta x'=(1-v\cos(\theta))\Delta t\) (with \(\theta\) the angle between the observer's direction to emitter and direction of motion), and Einsteinianly, their distance in \(F'\) time is thus \(\Delta t'=\frac{1-v\cos(\theta)}{\sqrt{1-v^2}}\Delta t\). (In the case that the observer is moving directly towards the emitter, this is \frac{\sqrt{1-v}}{\sqrt{1+v}}, and if moving away, \frac{\sqrt{1+v}}{\sqrt{1-v}}.)</dt>
+      </dl>
+    </details>
+    <details closed>
+      <summary>relativity vector notation</summary>
+      <dl>
+        <dt>we use superscripts to extract components of vectors, and write a change of basis as \(\vec x^\overline\alpha=(\Lambda_\beta\vec x^\beta)^\overline\alpha=\Lambda_\beta^\overline\alpha\vec x^\beta\) (using <wi-ki href=Einstein_notation>Einstein sum notation</wi-ki>, where a letter appearing multiple times means it is being summed over; unless it's Latin, in which case it sums only over space and not time (which is given index \(0\))); the change of basis is done by the overline <i>on the indexing</i> to represent that the vector \(\vec x\) remains unchanged.</dt>
+        <dt>generally if something is subscripted, it is a tuples of vectors, so the result can be superscripted to get out a variable; in particular \(\vec e_i\) (which would more consistently be written \(\vec{e_i}\)) is the \(i\)th basis vector in a basis \(\mathcal O\); seen in \(\mathcal O\), its \(i\)th component is \(1\) and all others \(0\), so we write \(\vec A=\vec e_\alpha A^\alpha\) (but if the reference frame were \(\overline{\mathcal O}\) it would be \(\vec A=\vec e_\overline\alpha A^\overline\alpha\)).</dt>
+        <dt>we can also interchange order of sub- and superscript indexing; when subscripting these tuples of vectors without superscripting, the result is a covector. \(\Lambda^\overline\alpha\vec e_\overline\alpha=\vec e\), so \(\Lambda^\overline\alpha_\alpha\vec e_\overline\alpha=\vec e_\alpha\) tells us how to do changes of basis in Einstein notation</dt>
+        <dt>concretely, if \(\overline{\mathcal O}\) is moving at speed \(\vec v\) relative to \(\mathcal O\), then <a href=#change_of_basis>the aforementioned change-of-basis matrix</a>'s term in the \(\alpha\)th column and \(\beta\)th row is \(\Lambda_\alpha^\overline\beta\) (sometimes written \(\Lambda_\alpha^\overline\beta(\vec v)\) to emphasise that it's a function of velocity).</dt>
+        <dt>one should read \(\Lambda_\alpha^\beta(\vec v)\) as "the change-of-reference-frame from \(\alpha\) (stationary) to \(\beta\) (moving with \(\vec v\)"; \(\Lambda_\beta^\gamma(-\vec v)\Lambda_\alpha^\beta(\vec v)\vec x^\alpha=\vec x^\gamma\)</dt>
+      </dl>
+    </details>
+    <details closed>
+      <summary>other facts not covered explicitly in the course</summary>
+      <dl>
+        <dt>the group formed by Lorentz boosts and spatial rotations under composition is quite interesting!</dt>
+        <dt>note that Lorentz boosts alone do <i>not</i> form a group, since two non-parallel ones compose to a boost with a spatial rotation</dt>
+        <dt>however, if you quotient by spatial rotations, you lose grouphood (since two actions now compose to an infinite set of possible actions), but retain a distance metric</dt>
+        <dt>specifically, that of a hyperbolic space, like the one <a href=https://roguetemple.com/z/hyper>HyperRogue</a> is played in!</dt>
+        <dt>moving in HR is equivalent to performing a Lorentz boost, and if you move the camera in a clockwise loop, your reference frame will be rotated anticlockwise</dt>
+        <dd>that is to say, you have angular defect, whereas in spherical space you have angular excess (as you are familiar with if you've played any space games and rotated your facing direction in a clockwise loop with pitch and yaw and found your roll shifted} clockwise)</dd>
+        <dt>see <oeis-tally href=some_hyperbolic_space_things></oeis-tally></dt>
       </dl>
     </details>
   </body>

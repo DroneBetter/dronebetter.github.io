@@ -16,8 +16,9 @@
           <dd>by assuming primes are bounded below by a polynomial (\(\rightarrow\) monomial as one considers arbitrarily distant tail sums) \(p_n\ge c_0n^{c_1}\) with \(c_1>1\), one can bound the sum above by \(\frac{\zeta(c_1)}{c_0}\); divergence contradicts this, so primes are \(p_n\in o(n^{1+\epsilon})\).</dd>
           <dt>maybe then also give the weak prime number theorem, from my page on <oeis-tally href="Stirling's_approximations"></oeis-tally> (the sum-integral-inequality-based formulation of which could also fit in such a course)</dt>
         </dl></dd>
-        <dt>for second-year teaching of multivariable calculus, start with explanation of DFT, then Chebyshev polynomials as charpoly of path graph's adj. matrix, then explain contents of <oeis-tally href=chessboards#the_fourierful_king_of_chebyshev></oeis-tally> (as a derivation of heat flow on a copper plane (surrounded by always-constant-temperature void) in the case that both space and time are discrete, before then covering the doubly-continuous case).</dt>
+        <dt>for second-year teaching of multivariable calculus, start with explanation of DFT, then Chebyshev polynomials as charpoly of path graph's adj. matrix (can be done quite easily via cofactor expansion!), then explain contents of <oeis-tally href=chessboards#the_fourierful_king_of_chebyshev></oeis-tally> (as a derivation of heat flow on a copper plane (surrounded by always-constant-temperature void) in the case that both space and time are discrete, before then covering the doubly-continuous case)</dt>
         <dd>this would also fit in a linear algebra class, since (after finding the eigenvectors) it uses the spectral theorem to provide the coefficients that change from the basis of piece-amplitudes across squares to the eigenbasis</dd>
+        <dt>if ever i teach a statistics course (heaven forbid), <a href=https://www.rpgroup.caltech.edu/embl_pboc_2023/assets/pdfs/london_bombs.pdf>this 1946 paper</a> on the distribution of V-2 bombs across London could be a nice example for the effectiveness of the law of large numbers (and the tendency of humans to see incidental clustering in random distributions as evidence of nonrandomness)</dt>
       </dl>
     </details>
     <details open><summary>things I want others to do but don't know who to contact (perhaps the reader can help)</summary>
@@ -27,17 +28,29 @@
         <dt>get Stanford University to include scans of the research reports that it currently only offers mangled by destructive OCR</dt>
         <dd><p>specifically, I found <a href=http://infolab.stanford.edu/TR/CS-TR-82-949.html>this report</a> (a very good introduction to the \(r\)-Stirling numbers), which was also funded by the Office of Naval Research, which means it has <a href=https://apps.dtic.mil/sti/pdfs/ADA123472.pdf>an upload</a> (as a direct scan!) at the Defen<abbr title="grrr (i am British)">s</abbr>e Technical Information Centre</p>
         <p>I have seen an extremely similar effect (right down to the mismatched page widths) happen to the most common (and maybe only?) free copy of Bruce C. Berndt's <i>Ramanujan's Notebooks</i> accessible on the internet; some uploads' filenames seem to imply it was converted from .djvu, so perhaps the same happened inadvertently here</p>
-        <p>the same problem seems to persist across between some and all of the papers in <a href=http://infolab.stanford.edu/TR>the directory page</a></p></dd>
+        <p>the same problem seems to persist across [between some and all] of the papers in <a href=http://infolab.stanford.edu/TR>the directory page</a></p></dd>
       </dl>
     </details>
     <details open><summary>things to do when i'm not procrastinating on so many obligations that they would serve to further distract from</summary>
       <p>(who am i kidding; i am so good at procrastinating as-is that it would probably not meaningfully alter my obligation-productivity)</p>
       <dl>
+        <dt>make a page about all the fun corollaries that come out of viewing hypergeometric theorems (à la Gauss's) through multiple lenses (slightly similarly to <i><oeis-tally href=a_nicer_hypergeometric_formulation></oeis-tally></i>); <a href=https://math.stackexchange.com/q/2735437>this answer of mine</a> employs Ruben's theorem, there are surely many more; also, it seems likely to have been already known before 1965</dt>
+        <dt>make a Wikipedia page about Euler's tree function as a more generating-function-focused counterpart of the one on the Lambert W function, with things like the expansion of \(\frac1{(1-T(x))^n}\) covered in <a href=https://math.stackexchange.com/a/5114687>this answer of mine</a></dt>
+        <dt>relatedly, make a page about Ramanujan's Q function; some of the history of its historical consideration (Cauchy, Ramanujan, Riordan, Knuth) is detailed in that answer, though not Knuth's <abbr title="note it cites the Cauchy reference correctly as its earliest publication Exercices de mathématiques, but uses page numbers as it appears in Œuvres complètes vol. 6"><a href=https://doi.org/10.1016/0196-6774(85)90037-9><i>An analysis of optimum caching</i></a></abbr> (which is where I learned of the others); also, Flajolet et al.'s <a href=https://doi.org/10.1016/0377-0427(93)E0258-N><i>On Ramanujan's Q-function</i></a></dt>
         <dt>make a wiki about maths theorems/results that lists (and gives some exposition of) corollaries of each one (or statements that are (perhaps with some manipulation) equivalent), focusing on little-known ones specifically</dt>
         <dd><p>for instance,</p><dl>
-          <dt>the above example with Stirling's approximation is pretty good!</dt>
-          <dt>also above, how the spectral theorem is all you need to transform distributions of chess pieces on reflexive graphs into eigenbases</dt>
+          <dt>the above example with Stirling's approximation and the spectral theorem (being all you need to transform distributions of chess pieces on reflexive graphs into eigenbases) are pretty good!</dt>
+          <dt>how Fenwick trees are useful for tasks both combinatorial (see <oeis-tally href=Stirling_factoradics></oeis-tally>) and numerical</dt>
+          <dd>if you have a list of floats all about the same size, adding them while minimising roundoff error is hard (and requires storing additional bits to do perfectly), but making a Fenwick tree then extracting the total sum from that is of course much better than adding them onto an accumulator one at a time; it took me an embarrassingly long time to realise the latter application after only thinking about them for the former</dd>
         </dl><p>this is somewhat similar to Pólya and Szegő's <i>Problems and Theorems in Analysis</i> (1925) and the <a href=http://www.tricki.org><abbr title="a wiki of tricks">tricki</abbr></a> (2008), whose intentions are to index problems by genre of solution type and solutions by genres of problem applicability, respectively</p></dd>
+      </dl>
+    </details>
+    <details open><summary>things to read and digest/incorporate cool results from</summary>
+      <p>(subset of preceding entry but large enough to deserve independence)</p>
+      <dl>
+        <dt>Ira M. Gessel, <a href=https://people.brandeis.edu/~gessel/homepage/papers/rookp.pdf>this paper</a> on rook polynomials (and how to decompose products of Laguerre polynomials into the basis of Laguerre polynomials; maybe make a page one day showing how to do this for various polynomial families, giving this result and its corollaries alongside \(\frac{w^\underline rh^\underline r}{r!}=[x^\underline{w+h-r}]x^\underline wx^\underline h\)), and <a href=https://people.brandeis.edu/~gessel/homepage/papers/Lagrange.pdf>this one</a> on Lagrange inversion</dt>
+        <dt>Sextus Empiricus, <a href=https://math.stackexchange.com/a/4283180>math.se answer</a> (nice diagram) and <a href=https://stats.stackexchange.com/a/547396>this stats.se answer</a> on the coupon collector's waiting time distribution being asymptotically Gumbel via <a href=https://en.wiktionary.org/wiki/Poissonization>Poissonisation</a> (also <a href=https://web.archive.org/web/20240910213045/https://dataorigami.net/2018/12/25/Poissonization-of-Multinomials.html>this nice blogpost</a>)</dt>
+        <dt>G. Cab, <a href=https://math.stackexchange.com/a/2033440>definition of r-subset numbers through Eulerians</a></dt>
       </dl>
     </details>
   </body>
