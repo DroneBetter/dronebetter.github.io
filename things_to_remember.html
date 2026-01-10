@@ -10,8 +10,13 @@
       <dl>
         <dt>for first-year teaching of sequences and series, convergence, etc., go on a detour upon getting to the example of harmonic numbers</dt>
         <dd><dl>
+          <dt><i>Concrete Mathematics</i> p.277 gives a cool formulation due to Euler</dt>
+          <dd>
+            <p>use \(\log\frac k{k-1}=\sum_{i=1}^\infty\frac1{ik^i}\) so (telescoping) \(\log\frac n1=\sum_{k=2}^n\sum_{i=1}^\infty\frac1{ik^i}\); transposing gives \(\log n=\sum_{i=1}^\infty{H^{(i)}_n-1\over i}\), so letting \(n\to\infty\), \(\log n-H_n=\sum_{i=2}^\infty{H^{(i)}_n-1\over i}\sim\sum_{i=2}^\infty{\zeta(i)-1\over i}\), we can then use that \(-H_{-x}=\sum_{n=2}^\infty\zeta(n)x^{n-1}\) (see <oeis-tally href=an_introduction_to_Stirling_numbers/more_on_Faulhabernoulli_and_Gregory#more_log-gamma_series_things>this section</oeis-tally> for a discussion) to turn it into \[\log\infty-H_\infty=\lim_{x\to1}\left(\int_0^x-H_{-t}\,dt\overset{(*)}=\log((-x)!)-\gamma x\right)-\log\frac1{1-x}=-\gamma+\lim_{x\to0}\log\big(x\Gamma(x)\big)=1-\gamma\], since \(\Gamma\)'s pole at \(0\) has residue \(1\).</p>
+            <p>the \((*)\) step follows directly from \(\gamma=-\Gamma'(1)\)</p>
+          </dd>
           <dt>show Euler's factorisation \(\sum_{n=1}^\infty n^{-s}=\prod_{p\in\mathbb P}\frac1{1-p^{-s}}\), and that if \(p_n\le c^n\) then the product is \(\le\frac1{(c^{-1};c^{-1})_\infty}=\frac1{\phi(c^{-1})}\) (the reciprocal of the <wi-ki href=Euler_function></wi-ki>)</dt>
-          <dd>the Euler function is finite within the unit disk and zero along its boundary, so the infinitude of \(\zeta(1)\) implies \(p_n\in o((1+\epsilon)^n)\) (primes growslower than exponentially)</dd>
+          <dd>the Euler function is finite within the unit disk and zero along its boundary, so the infinitude of \(H_\infty=\zeta(1)\) implies \(p_n\in o((1+\epsilon)^n)\) (primes grow slower than exponentially)</dd>
           <dt>then show theorem 1.13 on p.18 of Apostol's <i>Introduction to Analytic Number Theory</i> (1976), on divergence of sum of reciprocals of primes</dt>
           <dd>by assuming primes are bounded below by a polynomial (\(\rightarrow\) monomial as one considers arbitrarily distant tail sums) \(p_n\ge c_0n^{c_1}\) with \(c_1>1\), one can bound the sum above by \(\frac{\zeta(c_1)}{c_0}\); divergence contradicts this, so primes are \(p_n\in o(n^{1+\epsilon})\).</dd>
           <dt>maybe then also give the weak prime number theorem, from my page on <oeis-tally href="Stirling's_approximations"></oeis-tally> (the sum-integral-inequality-based formulation of which could also fit in such a course)</dt>
@@ -43,6 +48,7 @@
           <dt>how Fenwick trees are useful for tasks both combinatorial (see <oeis-tally href=Stirling_factoradics></oeis-tally>) and numerical</dt>
           <dd>if you have a list of floats all about the same size, adding them while minimising roundoff error is hard (and requires storing additional bits to do perfectly), but making a Fenwick tree then extracting the total sum from that is of course much better than adding them onto an accumulator one at a time; it took me an embarrassingly long time to realise the latter application after only thinking about them for the former</dd>
         </dl><p>this is somewhat similar to Pólya and Szegő's <i>Problems and Theorems in Analysis</i> (1925) and the <a href=http://www.tricki.org><abbr title="a wiki of tricks">tricki</abbr></a> (2008), whose intentions are to index problems by genre of solution type and solutions by genres of problem applicability, respectively</p></dd>
+        <dt>make a LifeWiki page on the <a href=https://mathoverflow.net/a/412793>bootstrap percolation</a> von Neumann CA B234/S01234 (see also <a href=https://projecteuclid.org/journals/annals-of-applied-probability/volume-18/issue-3/Slow-convergence-in-bootstrap-percolation/10.1214/07-AAP473.pdf>this paper</a> analysing the rate of convergence (by the author of the webpage linked from that answer) and <a href=https://arxiv.org/abs/0907.3097>this paper</a> on the higher-dimensional cases)</dt>
       </dl>
     </details>
     <details open><summary>things to read and digest/incorporate cool results from</summary>

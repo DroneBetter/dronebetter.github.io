@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script></head>
+  <body>
+    <title>musings</title>
+    <h1>page for some miscellaneous musings</h1>
+  <h2>on the OEIS</h2>
+    <p>some musings on the project and its culture from someone who has been inside it for a long time</p>
+    <p>the OEIS is somewhat uniquely poised as a site which both welcomes contribution from anyone and, unlike Wikipedia or StackExchange, requires moderators to manually approve of edits.</p>
+    <p>they also are chronically understaffed, and a lot of the staff they do have are chronically pedantic.</p>
+    <p>many see each open draft as an opportunity to teach a lesson in didacticism to contributors, by flagging up the issue they see in a comment and awaiting the original submitter's revision to remediate it.</p>
+    <p>the problem with this is that being thinly stretched and unable to guarantee prompt responses, this adds days to weeks of waiting time before one may come back.</p>
+  <div id=wolfram><h2>on Mathematica/WolframScript</h2></div>
+    <p>as someone who does a lot of the kind of maths that is amenable to computers, i have become familiar with a few CASs.</p>
+    <p>note that <a href=https://www.wolfram.com/wolframscript>WolframScript</a> is free for personal use, without requiring any proof of affiliation to an institution!</p>
+    <p>irrespective of my opinions on Stephen Wolfram or <a href=https://web.archive.org/web/20141117105840/http://vserver1.cscs.lsa.umich.edu/~crshalizi/reviews/wolfram>his antics</a>, Mathematica is the most extensive one for most of the things i want to do</p>
+    <p>it also benefits from inertia with a vast ecosystem put together by community goodwill; i have gotten a great deal of use out of the <a href=https://www3.risc.jku.at/research/combinat/software/ergosum>RiscErgoSum</a> library.</p>
+    <p>however, it seems some of its decisions are hostile to those wishing to depart.</p>
+    <p>a notorious example i've heard of is Mathematica's PDF exporting; <a href=https://mathematica.stackexchange.com/questions/282773/pdf-export-is-heavily-flawed-for-simplest-possible-notebook-such-as-a-bc>this mathematica.se question</a> should give you some sense of how bad it is, with the intention assumedly to incentivise not exporting them at all and instead requiring the recipient to also have Mathematica</p>
+    <p>notebooks published by Stephen Wolfram himself seem not to have any such issues, leading one to speculate that he has his own patched version. Irrespective, for the notebookiarily inclined, Jupyter resolves this.</p>
+    <p>i like its lispiness but dislike how anti-<abbr title="here this refers to manipulation of math expressions">metaprogramming</abbr> many fundamental pieces of it seem to be; see for instance this typical use case</p>
+<pre>In:= MatrixForm[Table[Series[FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0],{x,0,4}],{k,0,4}]]
+Out//MatrixForm=
+                0
+
+                     2    3    4
+                    x    x    x        5
+                x + -- + -- + -- + O[x]
+                    2    6    24
+
+                 2      3      4
+                x    2 x    5 x        5
+                -- + ---- + ---- + O[x]
+                2     3      8
+
+                 3      4
+                x    3 x        5
+                -- + ---- + O[x]
+                6     8
+
+                 4
+                x        5
+                -- + O[x]
+                24
+
+In:= MatrixForm[Table[List@@Series[FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0],{x,0,4}][[3]]*Range[k,4]!,{k,0,4}]]
+Part::partd: Part specification 0[[3]] is longer than depth of object.
+Thread::tdlen: Objects of unequal length in {0, 3} {1, 1, 2, 6, 24} cannot be combined.
+Out//MatrixForm= {0, 3} {1, 1, 2, 6, 24}
+                 {1, 1, 1, 1}
+                 {1, 4, 15}
+                 {1, 9}
+                 {1}</pre>
+    <p>context: <oe-is href=A320280></oe-is> (with offset 0) had come up in an investigation, and i wanted to add the e.g.f. to save my future self and others time, but its <font face=serif>OFFSET</font> in the database is 1, so i worked it out for that case too; i deeply distrust myself, so verified it with MatrixForm[Table[FullSimplify[(D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0)-(1-(2-E^x)*Sum[(-1)^i*Log[2-E^x]^i/i!,{i,0,k-1}])],{k,1,6}]] before contributing to the database</p>
+    <p>anyway, casting an empty Series to a List does not yield an empty list because the place where the list is meant to be is omitted.</p>
+    <p>this and many other problems like it make building anything beyond one-liners a more annoying and exceptionhandlingful experience than it ought to be!</p>
+    <p>it is also somewhat upsetting, <abbr title="to principle as principally is to principal">principly</abbr>, that its machinations are unknowable, and concerning that it's capable of being wrong. erroneous outputs are somewhat pervasive and can be encountered serendipitously; <a href=https://mathematica.stackexchange.com/questions/315308/circumventing-apparent-errors-in-integrate-and-nintegrate>this question</a> concerns one i found (a certain Laplace transform</a> upon which <tt>Integrate</tt> returns a value 1 lower than the truth given by <tt>NIntegrate</tt>), which Daniel Lichtblau filed in the issue tracker, and <a href=https://mathematica.stackexchange.com/questions/317114/summation-contains-additional-frac-zeta38-pi2-term-if-evaluated-withou>this question</a> one that persisted for the 7 years since its discovery</p>
+    <!--<p>also, i told my acquaintance the Wolfram employee xylochoron/<a href=https://esopsis.github.io/>esopsis</a>/Eric Parfitt about a mixed Mellin/Laplace transform which has a closed form for fixed integer \(m\) that it doesn't currently support,
+    \[\int_{t=0}^\infty\frac{e^{-ty}}{(e^t-1)^m}t^{n-1}\ dt=\Gamma(n)\sum_{k=0}^{m-1}(-1)^{m-1-k}\left[{m+y\atop k+y+1}\right]_{y+1}\zeta(n-k,m+y)\]
+    (giving some less contrived meaning to the <abbr title="or in this case, y+1-Stirling numbers; r is just used by convention">\(r\)-Stirling numbers</abbr>; see the footnote in <oeis-tally href="Stirling's_approximations#product_of_all_errors">this section</oeis-tally>), which they submitted as support ticket ID 465449.</p>-->
+    <p>it seems guarantees of implementation correctness (via a proof language) would be at least as useful for a CAS <wi-ki href=Compiler_correctness#Formal_verification>as a compiler</wi-ki></p>
+  <h2>on large language models</h2>
+    <p>i am a programmer and a mathematician, but (currently) identify much more strongly with both of those things as an amateur than a student or professional or otherwise one with a <abbr title="which I very much consider the spectre of a degree held over one's head (as the objective necessary to do research, that justifies all the hoops one must jump through) to be">monetary incentive</abbr> to <abbr title="this i feel an enormous dissonance with; in my undergraduateship all projects have amounted to gluing things together unimaginatively, and the British state education system teaches neither math nor computer science (only how to plug problems into machines implanted into your memory and a bunch of trivia, respectively)">crank things out</abbr> on a deadline or at scale</p>
+    <p>to this end, i consider myself a largely unbiased judge of LLMs</p>
+    <p>i had started interacting with ChatGPT in 2023, by giving it some one-liners in my typical idiosyncratic style and asking it to discern their purpose; to this end I was very thoroughly disappointed, since any sign of understanding it appeared to bear was quickly dispelled by rewriting them with the variable names ordered alphabetically by appearance and finding it display the same confidence in nonsense, or replacing i,j,x with n,k,j and watching it suddenly believe that my Faddeev-LeVerrier minpoly-finder was actually the binomial theorem</p>
+    <p>i did this because i had heard from some of my peers strong conviction in its intelligence and assumed that this, a test outside of what it had been hyperoptimised to appear intelligent upon, would be a good way of testing raw reasoning; upon getting my answer, i lost interest</p>
+    <p>then, in early 2025, a close friend on Discord (whose judgement i respect a lot more than that of the aforementioned peers) told me of their success at using <abbr title="eponymous LLM of the Chinese company that had a brief moment of attention in tech news for it, since it had similar performance to ChatGPT with a methodology requiring orders of magnitude less hardware investment (for both training and execution), upsetting NVIDIA's stock prices; it later transpired that they most likely 'distilled' ChatGPT by training on its output, which is difficult to defend against (both legally (due to geography) and morally (being that basically every commercial LLM is trained in large part on copyrighted materials))">DeepSeek-R1</abbr> on a few <abbr title="they really like olympiads for a few reasons; they measure a vastly closer approximation of thought than most mass education systems, and are already associated with personal and national prestige (see the Chinese government's investment in them)">maths problems</abbr>, and found that it was somewhat useful for their own research maths, which made me curious</p>
+    <p>however, the tipping point of my whole outlook upon them came when i was discussing a problem with my friend <wi-ki href="User:Cosmia_Nebula">Cosmia Nebula</wi-ki>. i wanted to find a formal Laurent series (termed by some a Poincaré expansion) for the error of the asymptotic \(\frac{n!}e(H_n-1)\) for <oe-is href=A162973></oe-is>, the total number of cycles in all derangements. This is easy to arrive upon!</p>
+    <dl>
+      <dt>by inclusion-exclusion, the number of \(n\)-derangements (<oe-is href=A000110></oe-is>(n)\(=!n\)) is <abbr title="the inverse binomial transform of the sequence of factorials">\(\sum_{k=0}^n(-1)^{n-k}\binom nkk!\sim\frac{n!}e\)</abbr>, where the \(\sim\) is made exact by starting \(k\) at \(-\infty\); the truncated part of the infinite series has alternating signs; each term is smaller than the one before, so larger than the tail ahead, so the sign of the error is determined entirely by the first omitted term; it alternates between being an upper and lower bound!</dt>
+      <dd>Ramanujan's contribution was to show that \((-1)^n\left(!n-\frac{n!}e\right)\sim\sum_{k=1}^m\frac{(-1)^{k-1}\mathrm{Bell}_k}{n^k}\) (showing that the absolute error, though monotonically shrinking and by all sensible definitions well-behaved, is actually quite subtle! the right side diverges as \(m\) grows while \(n\) is fixed, but converges as \(n\) grows, with each \(m\) being \(\Theta(n)\) times better than \(m-1\); this is more striking to me than Stirling's approximation, because the consideration of an optimal number of terms to use is forced by the choice to use an ordinary power series as one's basis)</dd>
+      <dt>the number of cycles in an \(n\)-permutation is expected to be \(H_n\) with variance \(H_n-H^{(2)}_n\); the expectation is a consequence (by linearity of expectation) of the fact that there are an expected \(\frac1k\) \(k\)-cycles for \(k\le n\) (see <a href=Stirling_slideshow.html>this slideshow i hastily put together</a>)</dt>
+      <dd>the unrigorous idea "maybe if we remove all the permutations with \(1\)-cycles, the expected number of \(k\)-cycles in our remaining permutations will <abbr title="a more astute (but still heuristic and handwavy) argument would be that the average 1 freed up element must increase the length-l permutations' counts by about (1/(l*n))/H_n each, which gives you n!/e * (H_n - 1 + 1/n), which is indeed the first refinement!">remain about the same</abbr>" so \(A162973(n)\sim\frac{n!}e(H_n-1)\).</dd>
+    </dl>
+    <p>being new to this area and self-taught (having approached it sideways, starting from being intrigued by Ramanujan's finding listed on A000110's page), I had some grasp of how the tools worked but little of how to apply them, and found myself hitting walls and frustration in attempted derivations repeatedly</p>
+    <p>i gave Cosmia a very thorough description of my problem, which she inputted verbatim into ChatGPT, which was able to find a similar formula on its own in reasoning mode, translating to \(A162973(n)\sim\frac{n!}e\left(H_n-1+\sum_{j=0}^\infty\frac{\int_{x=-1}^0\mathrm{Bell}_j(x)}{n^{j+1}}\right)\).</p>
+    <p>i later learned about Watson's lemma (and how its converse is an extremely useful incorrect theorem that very often holds or almost-holds), and did some more interesting things with it (that are besides the point for here) in <i><oeis-tally href=second-order_Stirling_series></oeis-tally></i></p>
+    <p>ChatGPT in particular is capable of being extremely useful at a surprisingly broad range of tasks; specifically, ones for which the possibility of hallucination is mitigated by default (since checking its correctness on them is inexpensive time/effortwise)</p>
+    <dl>
+      <dt>acting as a computer algebra system! for the kind of problem that i'd turn to WolframScript to do and see no fundamental reason for its <abbr title="this is a somewhat bad choice of adjective, since it's not so much a sliding scale as a boolean (whether it will spit my sum back at me unchanged/stall indefinitely)">ineptitude</abbr> at, ChatGPT can often be the bridge</dt>
+      <dd>its answers' annotated explanations (that it writes by default for free) supersede all use i got out of WolframAlpha Pro (when i pirated it), which in retrospect feels extremely narrow and clunky in comparison (which i mention because it was a thing that Wolfram Inc. felt worth charging money for)</dd>
+      <dt>giving guidance on what direction the next step should take; this is inextricable from the previous, but by breaking problems apart into steps and feeding them in one-at a-time, it will approach things in ways that (while standard and routine to <i>some authors</i> that it learned from) may be unknown to you or be useful in ways you didn't consider!</dt>
+      <dd>this 'intuition' (as Cosmia put it to me) outweighs its propensity for arithmetic slip-ups considerably</dd>
+      <dt>searching the internet <i>by intent</i> rather than keywords; something that traditional search engines attempted to converge towards but plateaued</dt>
+      <dd>in particular, describing a technique in terms of an integral transform and asking what it's called in the new context you're applying it is something that would previously only have been possible via a Q&A site like math.se, with the problems then being latency and that the terms in which you formulated it are so specific that it bears little worth as part of a <i>curated</i> database of problems and solutions</dd>
+      <dt>searching the internet more rapidly than before</dt>
+      <dd>i have yet to find many examples, but the best one i do have was when i was working on a problem about Ramanujan's \(Q\) function and wanted to cite Cauchy's original paper mentioned in Knuth's <i><a href=https://doi.org/10.1016/0196-6774(85)90037-9>analysis of optimum caching</a></i> so i could find and link the exact page on which he proves the general form of the convolution formula; the page number Knuth gave is for its position <b>not</b> in the original publication of <i>Exercices de Mathématiques</i>, but in fact its rerelease as part of Cauchy's collected works, which caused me a lot of frustration with the original copy found on archive.org before it occurred to me to ask ChatGPT</dd>
+    </dl>
+    <p>it is useful in a variety of applications i wouldn't have dared guess possible before witnessing them, and there is a spark of something extremely interesting within it worth nurturing and investigating</p>
+    <p>i recognise that this view is quite reminiscent of the 'hype' from CEOs and investors (which many have come to loathe), but i (frugal as i am) have not spent any money on any LLM yet!</p>
+    <p>if i were appointed benevolent dictator for life of Earth, i would establish a working group to produce a high-quality corpus of maths training data at scale by hand (many hands)</p>
+    <p>my interest in generating functions and Stirling numbers has given me some insight as to where arithmetic slips originate; fragmented and ambiguous notation is a very big factor! the most common frustration i have is it forgets that a pair of square brackets are a <a href=https://arxiv.org/abs/math/9402216>coefficient extractor</a> and pulls a factorial out of them instead of multiplying both the inside and the outside by the same amount, and it confuses the kinds of Stirling number for each other more than i think it would if Knuth's \brack and \brace were universally adopted for them</p>
+    <p>i understand that LLMs (and their counterpart of diffusion models that proliferated after a breakthrough at about the same time) are capable of evil (dilution of the internet as a repository of humanity's thought and media, as well as making SEO spam much more difficult to reliably detect automatically, including <abbr title="I have several times received links to recipes from well-intentioned family members (with very evident signs of AIhood) starting early 2024">by untrained humans</abbr>), but this should not tinge your views of its uses for good</p>
+    <p>see also <a href=https://arxiv.org/abs/2506.13131>the AlphaEvolve technical report/whitepaper</a> and (more pertinently for those interested in its application) <a href=https://arxiv.org/abs/2511.02864><i>Mathematical exploration and discovery at scale</i></a></p>
+  <h2>operating systems that lie to you and misappropriate names</h2>
+    <dl>
+      <dt>macOS comes with the clang compiler preinstalled, with the alias gcc</dt>
+      <dd>
+        <p>this has most likely cost thousands of person-hours of productivity; i spent <abbr title="no actually i am not embarrased it was entirely reasonable to assume i wasn't being deceived on purpose fuck you apple">an embarrassingly long time</abbr> trying to work out <abbr title="clang does not support OpenMP while gcc does">why OpenMP wasn't working for anything</abbr> before learning of it</p>
+        <p>the origin of this debacle is that gcc updated to GPLv3, which would force macOS to be open-source, and so it switched to clang but didn't want to break existing programs which had gcc hardcoded by giving a clear error message</p></dd>
+      <dt>Ubuntu comes with the snap package manager/extensions store, with the alias apt</dt>
+    </dl>
+    <p>i strongly advise against both if you can help it</p>
+  </body>
+</html>
