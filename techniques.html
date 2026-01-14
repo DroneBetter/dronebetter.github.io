@@ -50,6 +50,13 @@
         <dt>inputting to Euler-Lagrange, we have then \(\left(\sum_{i=0}^{n-1}\frac{\partial f_{y_{x_i}}}{\partial x_i}=2\sum_{i=0}^2\phi_{x_i,x_i}\right)=\left(f_y=0\right)\), which we can rewrite as \(\nabla^2\phi=0\), ie. given some boundary conditions, the optimal electric potential function to maximise energy inside a region is a solution to Laplace's equation. (In general, <abbr title="time-invariant">electrostatic</abbr> fields satisfy <wi-ki href="Poisson's_equation"></wi-ki> of \(\nabla^2\phi=-\frac{\rho}{\varepsilon}\), where \(\rho\) is free charge density and \(\varepsilon\) is the medium's permittivity)</dt>
         <dt>workshop problem: find extrema of \(\int_0^1y'^2\ dx\) subject to \(y(0)=0,y(1)=1,\int_0^1xy'\ dx=0\)</dt>
       </details></dl>
+    </details><details>
+      <summary>Green's functions</summary>
+      <dt>given a differential equation like \(L(y)=\dddot y+7\ddot y+14\dot y+8y=f(x)\), we can factorise the charpoly into \(({d\over dx}+1)({d\over dx}+2)({d\over dx}+4)y=f\); if we let \(s={d\over dx}\), then dividing through and partial-fraction-decomposing gives \(y=f\left(\frac1{3(1+s)}-\frac1{2(2+s)}+\frac1{6(4+s)}\right)\). Laplace transforms turn e.g.f.s into o.g.f.s, so we can represent it as \(y=\int_{t=-\infty}^xf(x-t)[t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\,dt\); this \([t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\) factor such that convolving an arbitrary \(f\) with it to obtain its accompanying \(y\) is called the Green's function.</dt>
+      <dt>in general, given an ODE which is a linear operator \(L\), the \(G\) is the solution to \(L(g)=\delta_x\)</dt>
+    </details><details>
+      <summary>things that appear in exams</summary>
+      <dt>solving a polynomial as an asymptotic series with respect to a small parameter; usually, these are given in the form \(f(x)=\epsilon\), and can be solved for \(x(\epsilon)\) by treating it as a power series about the \(\epsilon=0\) case (which will be rational because the exams are nice); ie. the 2024 case, with \((x^3+x^2-2x=(x-1)x(x+2))+6\epsilon=0\), we write out \((x_0+x_1\epsilon)^3+(x_0+x_1\epsilon)^2-2(x_0+x_1\epsilon)+6\epsilon=0\) and do the binomial expansion up to the \(\epsilon^1\) terms</dt>
     </details>
   </body>
 </html>
