@@ -16,7 +16,7 @@
       <dl><details closed>
         <summary>Lagrangian multipliers</summary>
         <dt>a multivariate function is said to have a stationary point where its partial derivatives in each direction are all zero</dt>
-        <dd>when the function is 1D, this is an extremal point, but in 2D and up, stationary points can arise as saddle points (where the second derivative is positive in one direction and negative in another)</dd>
+        <dd>when the function is 1D, this is <abbr title="assuming nonzero second derivative">an extremal point</abbr>, but in 2D and up, stationary points can arise as saddle points (where the second derivative is positive in one direction and negative in another)</dd>
         <dt>in \(n\) variables, there are \(n\) constraints and \(n\) degrees of freedom, so one should expect this to generally be close to solvable when possible (if all its partial derivatives are linear functions of the coordinates, then it becomes a problem of finding a matrix's nullspace)</dt>
         <dt>an example given (which is trivial but elucidatory) is to find the radius of the closest approach of the curve \(g(x,y)=xy^2-1=0\) to the origin; that is, when travelling across the curve, the minimum (and thus stationary) value of \(f(x)=x^2+y^2\).</dt>
         <dd>note that the definition of 'stationary' changes here; we are finding the stationary value of \(f\) with respect to each direction along the surface induced by \(g=0\), not the original space</dd>
@@ -35,6 +35,7 @@
         <dt>to establish the optimality of a function \(y(x)\) over the \(\infty\)-dimensional space of functions, we can use the fact that if it's a stationary point of the metric (given by the integral), for any additive perturbation \(\eta(x)\), the effect upon the metric of adding \(\epsilon\eta\) to \(f\) (as \(\epsilon\rightarrow0\)) is asymptotically \(O(\epsilon^2)\), since the metric is an analytic function with respect to perturbations and the stationariness implies the \(\epsilon^1\) term is 0.</dt>
         <dt>since \(\epsilon\rightarrow0\), \(f(x,y(x)+\epsilon\eta(x),y'(x)+\epsilon\eta'(x))\sim f(x,y,y')+\epsilon\left(\eta f_y+\eta'f_{y'}\right)+O(\epsilon^2)\), so \(\frac d{d\epsilon}\int_{P_x}^{Q_x}f(x,y+\epsilon\eta,y'+\epsilon\eta')\ dx=\int_{P_x}^{Q_x}\eta f_y+\eta'f_{y'}\ dx\), so in order for \(f\) to be minimised by \(y\), this integral must be 0 for every closed perturbation \(\eta\) (equalling 0 at the boundaries).</dt>
         <dt>the second term in this integral can have integration by parts enacted upon it (noting that the \(\eta\) factor is 0 at both endpoints, so the rectangle-volume part is 0) to give \(\int_{P_x}^{Q_x}\eta\left(f_y-\frac d{dx}f_{y'}\right)\ dx\); the \(\eta\) coefficient is arbitrary, so the only way that the integral can be guaranteed 0 irrespective of it is for\[\frac d{dx}f_{y'}=f_y\]this being the <b>Euler-Lagrange equation</b>.</dt>
+        <dd>note that the \(\frac d{dx}\) is not a partial derivative; you are differentiating \(\frac x{dx}f^{(0,0,1)}(x,y(x),y'(x))\)</dd>
         <dt>in general, Euler-Lagrange produces a second-order ODE satisfied by \(f\) across the complete domain.</dt>
         <dt>example 0: under constraints \(f(x,y,y')=y^2+y'^2\), and \(y(0)=0,y(1)=1\), we require a \(y\) function satisfying \(2y''=2y\), ie. \(y=\frac{\sinh(x)}{\sinh(1)}\) (we treat \(y'\) as an entirely different variable from \(y\); partial-differentiating with respect to \(y'\) treats all occurrences of \(y\) as constants)</dt>
         <dt>example 1 uses \(f(x,y,y')=y'^2-y^2\), so one obtains \(2y''=-2y\), ie. a linear combination of \(\cos(x),\sin(x)\)</dt>
@@ -52,11 +53,20 @@
       </details></dl>
     </details><details>
       <summary>Green's functions</summary>
-      <dt>given a differential equation like \(L(y)=\dddot y+7\ddot y+14\dot y+8y=f(x)\), we can factorise the charpoly into \(({d\over dx}+1)({d\over dx}+2)({d\over dx}+4)y=f\); if we let \(s={d\over dx}\), then dividing through and partial-fraction-decomposing gives \(y=f\left(\frac1{3(1+s)}-\frac1{2(2+s)}+\frac1{6(4+s)}\right)\). Laplace transforms turn e.g.f.s into o.g.f.s, so we can represent it as \(y=\int_{t=-\infty}^xf(x-t)[t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\,dt\); this \([t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\) factor such that convolving an arbitrary \(f\) with it to obtain its accompanying \(y\) is called the Green's function.</dt>
+      <dl>
+      <dt>given a differential equation like \(L(y)=\dddot y+7\ddot y+14\dot y+8y=f(x)\), we can factorise the charpoly into \(({d\over dx}+1)({d\over dx}+2)({d\over dx}+4)y=f\); if we let \(s={d\over dx}\), then dividing through and partial-fraction-decomposing gives \(y=f\cdot\left(\frac1{3(1+s)}-\frac1{2(2+s)}+\frac1{6(4+s)}\right)\). Laplace transforms turn e.g.f.s into o.g.f.s, so (considering it as a downward series in \(s\) whose preimage is an upward sum in \(t\)) we can represent it as \(y=\int_{t=-\infty}^xf(x-t)[t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\,dt\); this \([t\ge0]\left(\frac{e^{-t}}3-\frac{e^{-2t}}2+\frac{e^{-4t}}6\right)\) factor such that convolving an arbitrary \(f\) with it to obtain its accompanying \(y\) is called the Green's function.</dt>
       <dt>in general, given an ODE which is a linear operator \(L\), the \(G\) is the solution to \(L(g)=\delta_x\)</dt>
+      <dt>this is useful because \(\delta_x\) is the convolutional identity function</dt>
+      <dt>however, as shown in workshop wk.03.1, with \({d^2y\over dx^2}+{dy\over dx}-2y\), we factorise the Laplace transform image into \((s+2)(s-1)\), and so general solution \(y=Ae^x+Be^{-2x}\). \(e^x\) needs to instead be integrated leftwards to converge, so the Green's function is not just \(G(s-x)\) but \(G(x,s)=\begin{cases}G_-=A(s)e^x&x\lt s\\G_+=B(s)e^{-2x}&\text{else}\end{cases}\); so (after matching coefficients to boundary conditions \(y\to0\) as \(x\to\pm\infty\), which become \(G(s,s)=0,G^{(1,0)}(s,s)=1\); in general, all derivatives must equal 0 at \(s=x\) except for the highest one \(G^{(n-1)}\), which is \(\frac1{c_n(s)}\) where \(c_k(x)\) is the coefficient of \(y^k\)) we get \[{d^2y\over dx^2}+{dy\over dx}-2y=f\iff y(x)=\frac{-1}3\int_{-\infty}^\infty f(s)\begin{cases}e^{2(s-x)}&s\lt x\\e^{x-s}&\text{else}\end{cases}\,ds\]</dt>
+      <dt>in the module, \([x\ge0]\) is denoted \(H(x)\) the <wi-ki href=Heaviside_step_function></wi-ki></dt>
+      </dl>
     </details><details>
-      <summary>things that appear in exams</summary>
+      <summary>things that appear in exams</summary><dl>
       <dt>solving a polynomial as an asymptotic series with respect to a small parameter; usually, these are given in the form \(f(x)=\epsilon\), and can be solved for \(x(\epsilon)\) by treating it as a power series about the \(\epsilon=0\) case (which will be rational because the exams are nice); ie. the 2024 case, with \((x^3+x^2-2x=(x-1)x(x+2))+6\epsilon=0\), we write out \((x_0+x_1\epsilon)^3+(x_0+x_1\epsilon)^2-2(x_0+x_1\epsilon)+6\epsilon=0\) and do the binomial expansion up to the \(\epsilon^1\) terms</dt>
-    </details>
+      <details>
+        <summary>method of multiple scales</summary>
+        <dt>when you have a diffeq that you're trying to asymptotically solve for a variable \(x(t)\) given that it features a small perturbation vector \(\epsilon\), you can write \(x=\sum_{n=0}^\infty\epsilon^nx_n(t)\); however, when \(\epsilon t\in\Theta(1)\) (this is the only situation that ever arises in exams), this series stops converging; instead, write \(x=\sum_{n=0}^\infty\epsilon^nx_n(\tau:=t,T:=\epsilon t)\), and rewrite every \(\partial_t\) in as \(\left({d\tau\over dt}=1\right){\partial\over\partial\tau}+\left({dT\over dt}=\epsilon\right){\partial\over\partial T}\) (and likewise \(\left(d\over dt\right)^2=\left({\partial\over\partial\tau}\right)^2+2\epsilon{\partial^2\over\partial\tau\partial T}+\left(\epsilon{\partial\over\partial T}\right)^2\)), then solve this PDE you have conjured via a power series in \(\epsilon\)</dt>
+      </details>
+    </dl></details>
   </body>
 </html>

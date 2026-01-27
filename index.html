@@ -8,22 +8,42 @@
     <h2>about me</h2>
     <p>amateur programmer/mathematician and (as of 2025-26) third-year undergraduate maths student.</p>
     <p>(like many many others before me) I rediscovered the Stirling numbers (as coefficients of the change-of-basis matrix between \((x^n,)_n\) and \(({x\choose n},)_n\), about as soon as I learned about matrices in school), but had a tendency to skip the OEIS's <oeissectname>COMMENTS</oeissectname> sections and go straight to the <oeissectname>FORMULAS</oeissectname>.</p>
-    <p>i then read Knuth's excellent 1992 writeup <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, which informed me that in fact these basis change coefficients are not just combinatorially interesting but also tools for finding other interesting combinatorial facts/identities with.</p>
+    <p>i then read Knuth's excellent 1992 writeup <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, which informed me of these basis change coefficients' combinatorial interestingness, and (more importantly) their use as tools (in more regards than i could have imagined) for finding other interesting combinatorial facts.</p>
     <p>since then, i have written quite a lot about them; my biggest OEISwiki page is <i><oeis-tally href=an_introduction_to_Stirling_numbers /></i>.</p>
-    <p>i am trying to build a library in my userspage pages, on all the information i have which i don't know of other good resources upon. (They are not necessarily original, though a lot of them are; a lot of interesting original discoveries grew out of pages I originally expected to cover entirely known things.)</p>
-    <p>physically residing in the UK for now</p>
+    <p>i am trying to build a library in my userspage pages, on all the information i have which i don't know of other good resources upon (or do but want to provide unifiedly in a way faster for me to retrieve from). (They are not necessarily original, though a lot of them are; a lot of interesting original discoveries grew out of pages I originally expected to collate entirely known things.)</p>
+    <p>this website will be for smaller and miscellaneouser things; my goal state is that whenever i find a link that seems interesting, i will already have a page here that i can append it to for my later perusal</p>
+    <details closed><summary>me</summary>
+      <p>physically residing in the UK for now</p>
+      <p>my humansona is <oeis-tally>Natalia L. Skirrow</oeis-tally> (i haven't decided what the L. will mean yet) and it is the general name to use for my corporeal form</p>
+      <p>on the internet, i am ideally an it, but if you have only known me online i won't be upset at any other pronoun use</p>
+      <p>being an it is unfortunately untenable in real life; i am somewhat averse to they due to the phenomenon of bigots using degendering as a tool for making trans women more palatable and have been subjected to too many bad-faith following of experimental they/themhood exclusively mixed in with accidental misgendering/deadnaming</p>
+      <p>i consider myself spiritually adjacent to the people who use 'this one' instead of first-person pronouns but have not the wherewithal to do so</p>
+      <!--<p>i have quite a few plural friends but thus far have not identified any statistically significant signs thereto in myself; however, if this changes i may be the kind to be really annoying about it and allocate typing quirks and trollsonas per headmate</p>
+      <p>considering it entirely as a demedicalised model of consciousness, i guess i am not so opposed to the idea of compartmentalising facets of oneself but the requisite personifying</p>
+      <p>i like to think an idealised version of me wouldn't have any ego, and the idea of working in a group so closely intertwined as to be effectively an indivisible unit for which individual attribution ceases to make sense (like how the Pythagoreans published their results anonymously) appeals to me, so maybe i would be considered reverse-plural</p>-->
+    </details>
     <details closed><summary>mathsery</summary>
+      <p>criteria for inclusion in this list are not impressiveness (they are mostly rote with the right background) but surprisingness (to someone <i>without</i> the critical piece of background) that they should be possible at all</p>
       <dl>
         <dt>refining Stirling's approximation with the first term for its \(\log\)'s Euler-Maclaurin Laurent series (turning it from a lower to an upper bound on the factorial) makes it accurate enough that its errors' product converges; this product is closer to 1 than you may expect!</dt>
         <dd><oe-is href=A389380></oe-is>=\[\prod_{n=1}^\infty\frac{\sqrt{\tau n}\left(\frac ne\right)^ne^{\frac1{12n}}}{n!}=\frac{e^{\frac{1+\gamma}{12}-2\zeta'(-1)}}{\sqrt[4]\tau}<1+\frac1{355}\]<br />as explained in my page <i><oeis-tally href="Stirling's_approximations" /></i></dd>
         <dt>counting connected series-parallel partial orders on labelled sets with Lagrange inversion</dt>
         <dd><oe-is href=A058349></oe-is>(k+1)=\[\left[\frac{x^k}{k!}\right]\left(\frac x{x+2(1-\cosh(x))}\right)^{k+1}=\sum_{i=0}^k\frac1{i!}\sum_{d=-i}^i{2i\choose i+d}d^{i+k}(-1)^{k-d}\]<br />as derived in my page <i><oeis-tally href=A058349 /></i>; i am interested in a shorter route from one side to the other!</dd>
-        <dt>an exact formula for the number of cycles in all \(n\)-derangements</dt>
-        <dd><oe-is href=A162973></oe-is>(n)=\[\sum_{k=0}^{n-1}(-1)^k{n!\over k!}(H_{n-k}-1)=\left\lceil\frac{n!}e\left(H_n-1+\int_{x=0}^\infty\frac{1-e^{1-e^x}}{(e^x-1)e^{nx}}\ dx\right)\right\rfloor\]where \(\lceil x(n)\rfloor=(-1)^n\lceil (-1)^nx(n)\rceil=\begin{cases}\lceil x(n)\rceil&n\ \mathrm{even}\\\lfloor x(n)\rfloor&n\ \mathrm{odd}\end{cases}\), as shown in <i><oeis-tally href=second-order_Stirling_series></oeis-tally></i><br />Watson's lemma ('an exact representation as a Laplace transform produces an asymptotically-valid asymptotic series (Poincaré expansion)') is true; the converse is definitely true if the asymptotic series is convergent, and maybe true otherwise (two such cases where it's true are Stirling's approx.'s error and Ramanujan's series for the approximation \(!n\sim\frac{n!}e\)'s error).<br />the formula is derived by assuming the converse holds here too, and proven by finding an exact representation and chasing some inequalities; interestingly, the absolute error converges to 1 from below.</dd>
+        <dt>a formula for the number of \(n\)-derangements</dt>
+        <dd><oe-is href=A000166></oe-is>(n)=\[\begin{aligned}!n=\sum_{k=0}^{n-1}(-1)^k{n!\over k!}=\left\lceil n!\over e\right\rfloor&=\frac{n!}e+(-1)^nn\int_{t=0}^\infty{1-e^{e^{-t}-1}\over e^{nt}}\,dt\\&\sim\frac{n!}e+(-1)^n\sum_{k=1}^\infty\frac{(-1)^{k-1}\mathrm{Bell}_k}{n^k}\end{aligned}\]where
+        <dl>
+          <dt>\(\lceil x(n)\rfloor=(-1)^n\lceil (-1)^nx(n)\rceil=\begin{cases}\lceil x(n)\rceil&n\ \text{even}\\\lfloor x(n)\rfloor&n\ \text{odd}\end{cases}\) (although here it could be more simply \(!n=\left[n!\over e\right]\)); this makes the exact version with the integral (due to Ramanujan) unnecessary, but still fun</dt>
+          <dt>the series (which is a formally-valid <a href=Asymptotic_expansion>asymptotic series/Poincaré expansion</a>) comes out of the Laplace transform via <wi-ki href="Watson's_lemma"></wi-ki></dt>
+          <dt>however, it's possible to derive the series (by some clever rearrangements) and obtain the integral by assuming this is a case in which Watson's lemma's converse holds (a surprisingly viable strategy, even when Watson's lemma does not produce a convergent series; one can for instance obtain <oeis-tally href=Stirling%27s_approximations#as_a_Laplace_transform>Binet's formula for Stirling's approximation's error</oeis-tally> from its series that comes out of Euler-Maclaurin)</dt>
+        </dl></dd>
+        <dt>a formula for the number of cycles in all \(n\)-derangements</dt>
+        <dd><oe-is href=A162973></oe-is>(n)=\[\begin{aligned}\sum_{k=0}^{n-1}(-1)^k{n!\over k!}(H_{n-k}-1)&=\frac{n!}e\left(H_n-1+\int_{t=0}^\infty\frac{1-e^{1-e^t}}{(e^t-1)e^{nt}}-\frac{e^{-t}\gamma(n,-1)-e^{1-e^t-nt}\gamma(n,-e^t)}{(e^t-1)\Gamma(n)}\ dt\right)\\&=\left\lceil\frac{n!}e\left(H_n-1+\int_{t=0}^\infty\frac{1-e^{1-e^t}}{(e^t-1)e^{nt}}\ dt\right)\right\rfloor\\&\sim\frac{n!}e\left(H_n-1+\sum_{k=0}^\infty\frac{\int_{x=-1}^0\mathrm{Bell}_k(x)}{n^{k+1}}\right)\end{aligned}\]as shown in <i><oeis-tally href=second-order_Stirling_series></oeis-tally></i><br />I derived the third, inverse-Watsoned to the second, which i discovered experimentally was \(\lceil\rfloor\)able to the correct value, and chased some inequalities from the first to obtain it; interestingly, the absolute error annihilated by the \(\lceil\rfloor\) converges monotonically to 1, so it can<i>not</i> be turned into a round.</dd>
+        <dt># paths \(P\in\{(1,0,0),(1,1,0),(1,0,1),(1,1,1)\}^n\) that remain confined to the \(x\ge y+z\) tetrahedron at all points</dt>
+        <dd><oe-is href=A392627></oe-is>(n,i,j)=\[\binom ni\binom nj-\sum_{m=1}^n\sum_{k=1}^m\frac1k{m-1\choose k-1}{m\choose k-1}{n-m\choose i-k}{n-m\choose j-m-1+k}=\begin{cases}\binom ni\binom nj-\binom n{i-1}\binom n{j-1}&n\ge i+j\\0&\text{else}\end{cases}\]i found the left side in <a href=https://math.stackexchange.com/a/5090050>this answer</a> then was surprised to learn of the right side (due to <a href=http://www.cs.uwaterloo.ca/journals/JIS/VOL3/GUY/catwalks.html>Richard K. Guy, 1991</a>)</dd>
         <dt>books i recommend</dt>
         <dd><dl>
           <dt>Herbert S. Wilf, <a href=https://www2.math.upenn.edu/~wilf/DownldGF.html><i>generatingfunctionology</i></a>. (1990,2004)</dt>
-          <dt>George Pólya, Gábor Szegő, <abbr title="i am unable to find any legal free uploads a century later, but easy to pirate"><i>Problems and Theorems in Analysis</i></abbr>. (1925)</dt>
+          <dt>George Pólya, Gábor Szegő, <abbr title="i am unable to find any legal free uploads a century later, but easy to pirate; DOIs for the English version are 10.1007/978-1-4757-1640-5 and 10.1007/978-3-642-61905-2"><i>Problems and Theorems in Analysis</i></abbr>. (1925)</dt>
           <dt>Ronald Graham, Donald Knuth, Oren Patashnik, <abbr title="likewise except even easier to pirate in good quality"><i>Concrete Mathematics</i></abbr>. (1989)</dt>
           <dt>Doron Zeilberger,</dt>
           <dd><dl>
@@ -62,48 +82,57 @@
         <dt>Mathematica</dt>
         <dd>a few bugs found that it seems no-one ever encountered before! see <a href="musings.html#wolfram">this page</a></dd>
       </dl>
-      </details>
-      <details closed><summary>creative projects i like</summary>
-        <dl>
-          <dt><a href=https://corru.observer>corru.observer</a></dt>
-          <dd>
-            <p>very curious story; in ≈the present day, emissaries from an alien species (the Obesk) arrive on Earth, then (following the collapse of their embassy) depart almost as quickly.</p>
-            <p>you are a contractor for the FBX in the 2050s, using a reverse-engineered <abbr title="brain-computer interface">BCI</abbr> to salvage data from <abbr title="Obeski biological computers">corrucysts</abbr>; the story takes place investigating a <abbr title="that acted as an extension of the mind and memories of its owner, but deteriorated before its recovery to the extent of pieces of it becoming somewhat sentient when they shouldn't be">particularly interesting one</abbr></p>
-            <p>it is a story wrapped in a game that takes a multitude of forms; 3D components are rendered directly in HTML. The artwork uses a lot of dithering and <a href=https://corru.wiki/wiki/Soundtrack>the soundtrack</a> is quite interesting too</p>
-            <p>advice for playthroughs</p>
+    </details>
+    <details closed><summary>creative projects i like</summary>
+      <dl>
+        <dt><a href=https://corru.observer>corru.observer</a></dt>
+        <dd>
+          <p>very curious story; in ≈the present day, emissaries from an alien species (the Obesk) arrive on Earth, then (following the collapse of their embassy) depart almost as quickly.</p>
+          <p>you are a contractor for the FBX in the 2050s, using a reverse-engineered <abbr title="brain-computer interface">BCI</abbr> to salvage data from <abbr title="Obeski biological computers">corrucysts</abbr>; the story takes place investigating a <abbr title="that acted as an extension of the mind and memories of its owner, but deteriorated before its recovery to the extent of pieces of it becoming somewhat sentient when they shouldn't be">particularly interesting one</abbr></p>
+          <p>it is a story wrapped in a game that takes a multitude of forms; 3D components are rendered directly in HTML. The artwork uses a lot of dithering and <a href=https://corru.wiki/wiki/Soundtrack>the soundtrack</a> is quite interesting too</p>
+          <p>advice for playthroughs</p>
+          <dl>
+            <dt>do not be in any hurry to proceed forwards with the chapters; exploring to the fullest extent possible is advisable</dt>
+            <dt>when an isolated word is shown with an anomalously moving background, write it down somewhere</dt>
+            <dt>most of it doesn't require drawing maps or diagrams, except for the mazes</dt>
+          </dl>
+          <p>see also <a href=https://crxb.cc/corruskivi>the unofficial dialogue editor</a></p>
+        </dd>
+        <dt><i>Ocmo</i></dt>
+        <dd>
+          <p><i>see also <a href=Ocmo.html>my incomplete WRs history page</a></i></p>
+          <p>a defunct iOS platformer game in which you are an octopus-like creature, which (in addition to moving and jumping) can grapple while in the air, with a tentacle which acts like a rope.</p>
+          <p>this can also be contracted, and contracting during a swing allows for acceleration via conservation of angular momentum. The ocmo operates in a "low gear" in that all its movements are slow but its contractions have a considerable amount of force behind them, which make the game's dynamics extremely interesting.</p>
+          <p>i have been fond of it for <abbr title="cannot see exactly when i started playing on account of, but i think around 2018-19ish">a long time</abbr>, and posting speedruns on <a href=https://discord.gg/QSpyBtK>the Discord server</a> since my joining on 2021-11-01.</p>
+          <p><details closed><summary>in early 2025, i began using a second finger to detach a grapple without lifting the first and ending the contraction early. (This technique had been discovered and understood (at least for braking) <a href=https://discord.com/channels/368348645382291466/691241596036972604/691516328284127262>as early as 2020-03-23</a>, but also evidently wasn't intended since it breaks the run playback feature and requires one to be screen-recording at all times)</summary>
+            <p>the benefits of multitouch detachment (aforementioned special cases of which were <abbr title="for breaking and 'a longer adjustment but not a swing,' respectively; it is curious that 2h40m did not see the potential use for swings!"><a href=https://discord.com/channels/368348645382291466/368348645382291469/691583979899584554>termed</a> the 'snip' and the 'snatch'</abbr>) may seem small, but it</p>
             <dl>
-              <dt>do not be in any hurry to proceed forwards with the chapters; exploring to the fullest extent possible is advisable</dt>
-              <dt>when an isolated word is shown with an anomalously moving background, write it down somewhere</dt>
-              <dt>most of it doesn't require drawing maps or diagrams, except for the mazes</dt>
-            </dl>
-            <p>see also <a href=https://crxb.cc/corruskivi>the unofficial dialogue editor</a></p>
-          </dd>
-          <dt><i>Ocmo</i></dt>
-          <dd>
-            <p><i>see also <a href=Ocmo.html>my incomplete WRs history page</a></i></p>
-            <p>a defunct iOS platformer game in which you are an octopus-like creature, which (in addition to moving and jumping) can grapple while in the air, with a tentacle which acts like a rope.</p>
-            <p>this can also be contracted, and contracting during a swing allows for acceleration via conservation of angular momentum. The ocmo operates in a "low gear" in that all its movements are slow but its contractions have a considerable amount of force behind them, which make the game's dynamics extremely interesting.</p>
-            <p>i have been fond of it for <abbr title="cannot see exactly when i started playing on account of, but i think around 2018-19ish">a long time</abbr>, and posting speedruns on <a href=https://discord.gg/QSpyBtK>the Discord server</a> since my joining on 2021-11-01.</p>
-            <p><details closed><summary>in early 2025, i began using a second finger to detach a grapple without lifting the first and ending the contraction early. (This technique had been discovered and understood (at least for braking) <a href=https://discord.com/channels/368348645382291466/691241596036972604/691516328284127262>as early as 2020-03-23</a>, but also evidently wasn't intended since it breaks the run playback feature and requires one to be screen-recording at all times)</summary>
-              <p>the benefits of multitouch detachment (aforementioned special cases of which were <abbr title="for breaking and 'a longer adjustment but not a swing,' respectively; it is curious that 2h40m did not see the potential use for swings!"><a href=https://discord.com/channels/368348645382291466/368348645382291469/691583979899584554>termed</a> the 'snip' and the 'snatch'</abbr>) may seem small, but it</p>
-              <dl>
-                <dt>saves the useless part of the swing that doesn't accelerate you</dt>
-                <dd>this is nonnegligible since the additional speed compounds itself, especially in levels about going upwards like <i>Stairway to Heaven</i>!</dd>
-                <dt>effectively brings the minimum swing duration to zero, increasing the rate at which rapidfire successive adjustments can be performed</dt>
-                <dt>reduces error rate (once you become proficient at it), compared to a single finger having to lift-(tap anywhere)-lift-(tap in destination location) as quickly as possible</dt></dl>
-              <p>it massively increases the skill ceiling, and opens many possibilities</p>
-              <p><abbr title="account deleted; i think Jouni Ipatti (programmer/designer), as opposed to Olli Raila (the artist who is still active in the server, with username Salty - Boy)">a developer</abbr> <a href=https://discord.com/channels/368348645382291466/368348645382291469/692032836768628796>said</a></p>
-              <blockquote>WOW. it is a new control mechanic that we did not design on purpose. It seems quite useful for extreme speedrunning. we were thinking of having a similar control but decided to leave it out as the control scheme was quite complicated already</blockquote>
-            </details></p>
-            <p>there are 37 ordinary levels (with iCloud leaderboards still up!) in each the Light and Dark World (the former unlocked gradually as you progress, the latter being unlocked by <abbr title="i am biased by years of speedrunning but am pretty sure i achieved the third star's time on my first successful attempt basically always; for such a speedrunning-oriented game, the stars do not incentivise speed much! (it seems the developers erred extremely far on the cautious side to make it somewhat appealing to casual players)">3-starring</abbr> their LW <abbr title="somewhat of a misnomer; the Dark World's levels are sometimes harder variations of their LW parents (although Follow the Lead extends The World Outside with a new section) but mostly entirely independent; they made a lot of levels deemed too difficult for the main game, though their relegation hereto does not affect the care put into their construction and decoration!">counterparts</abbr>), together with four "stay alive" boss levels (not speedrunnable) and one "reach the end as fast as you want while being pursued" boss in the LW, and one considerably long and true serene final level in the DW; these last two could be speedrunnable but don't measure time automatically and have no builtin leaderboards so have largely not been.</p>
-            <p>i currently have 3 of the 74 world records; <a href=https://youtu.be/e-JD-HELjlU>Ruins 2 <i>Keychain</i> in 22.10s</a>, <a href=https://youtu.be/bi65vyFnZsY>Sky 6 <i>Long Route</i> in 10.44s</a> (with <a href=https://youtu.be/biLQpNUJbUs>handcam</a>) and <a href=-Yn5M86X4d4>Forest 6 <i>Work Around</i> in 11.51s</a> (with <a href=RBX238E68Pc>worse-quality handcam</a>); the former two are levels that the prodigious world champion <a href=https://space.bilibili.com/623735114>Xiaoyu (known to us as SXY3)</a> did not focus on (but i have little doubt could optimise further), while the last was due to a nonobvious route optimisation that (if applied together with their general performance) would let them retake it.</p>
-            <p>i intend to eventually make a page here covering the speedrun WR history and remarks by the developer for every level, since there is a lot scattered across YouTube and bilibili or tucked away in that Discord server with poor searchability</p>
-            <p>if it gets readded to the App Store or i start using an app-installing program (i think iMazing works), i will be able to reset it to try doing full-game speedruns, those seem as though they'd be fun (one has to optimise for consistency, which for me has entirely fallen by the wayside)</p>
-          </dd>
-          <dt>Jon Bois, <a href=https://www.sbnation.com/2014/8/18/5998715/the-tim-tebow-cfl-chronicles>The Tim Tebow CFL Chronicles</a>, <a href=https://www.sbnation.com/a/17776-football>17776</a></dt>
-          <dd>i like all of his works enormously and he has been responsible for causing me to cry quite a lot (in a positive way)</dd>
-        </dl>
-      </details>
+              <dt>saves the useless part of the swing that doesn't accelerate you</dt>
+              <dd>this is nonnegligible since the additional speed compounds itself, especially in levels about going upwards like <i>Stairway to Heaven</i>!</dd>
+              <dt>effectively brings the minimum swing duration to zero, increasing the rate at which rapidfire successive adjustments can be performed</dt>
+              <dt>reduces error rate (once you become proficient at it), compared to a single finger having to lift-(tap anywhere)-lift-(tap in destination location) as quickly as possible</dt></dl>
+            <p>it massively increases the skill ceiling, and opens many possibilities</p>
+            <p><abbr title="account deleted; i think Jouni Ipatti (programmer/designer), as opposed to Olli Raila (the artist who is still active in the server, with username Salty - Boy)">a developer</abbr> <a href=https://discord.com/channels/368348645382291466/368348645382291469/692032836768628796>said</a></p>
+            <blockquote>WOW. it is a new control mechanic that we did not design on purpose. It seems quite useful for extreme speedrunning. we were thinking of having a similar control but decided to leave it out as the control scheme was quite complicated already</blockquote>
+          </details></p>
+          <p>there are 37 ordinary levels (with iCloud leaderboards still up!) in each the Light and Dark World (the former unlocked gradually as you progress, the latter being unlocked by <abbr title="i am biased by years of speedrunning but am pretty sure i achieved the third star's time on my first successful attempt basically always; for such a speedrunning-oriented game, the stars do not incentivise speed much! (it seems the developers erred extremely far on the cautious side to make it somewhat appealing to casual players)">3-starring</abbr> their LW <abbr title="somewhat of a misnomer; the Dark World's levels are sometimes harder variations of their LW parents (although Follow the Lead extends The World Outside with a new section) but mostly entirely independent; they made a lot of levels deemed too difficult for the main game, though their relegation hereto does not affect the care put into their construction and decoration!">counterparts</abbr>), together with four "stay alive" boss levels (not speedrunnable) and one "reach the end as fast as you want while being pursued" boss in the LW, and one considerably long and true serene final level in the DW; these last two could be speedrunnable but don't measure time automatically and have no builtin leaderboards so have largely not been.</p>
+          <p>i currently have 3 of the 74 world records; <a href=https://youtu.be/e-JD-HELjlU>Ruins 2 <i>Keychain</i> in 22.10s</a>, <a href=https://youtu.be/bi65vyFnZsY>Sky 6 <i>Long Route</i> in 10.44s</a> (with <a href=https://youtu.be/biLQpNUJbUs>handcam</a>) and <a href=-Yn5M86X4d4>Forest 6 <i>Work Around</i> in 11.51s</a> (with <a href=RBX238E68Pc>worse-quality handcam</a>); the former two are levels that the prodigious world champion <a href=https://space.bilibili.com/623735114>Xiaoyu (known to us as SXY3)</a> did not focus on (but i have little doubt could optimise further), while the last was due to a nonobvious route optimisation that (if applied together with their general performance) would let them retake it.</p>
+          <p>i intend to eventually make a page here covering the speedrun WR history and remarks by the developer for every level, since there is a lot scattered across YouTube and bilibili or tucked away in that Discord server with poor searchability</p>
+          <p>if it gets readded to the App Store or i start using an app-installing program (i think iMazing works), i will be able to reset it to try doing full-game speedruns, those seem as though they'd be fun (one has to optimise for consistency, which for me has entirely fallen by the wayside)</p>
+        </dd>
+        <dt>Jon Bois, <a href=https://www.sbnation.com/2014/8/18/5998715/the-tim-tebow-cfl-chronicles>The Tim Tebow CFL Chronicles</a>, <a href=https://www.sbnation.com/a/17776-football>17776</a></dt>
+        <dd>i like all of his works enormously and he has been responsible for causing me to cry quite a lot (in a positive way)</dd>
+      </dl>
+    </details>
+    <details open><summary>communicating</summary>
+      <dl>
+        <dt>i appreciate the convention of <a href=https://dontasktoask.com>don't ask whether you can ask something</a></dt>
+        <dt>i am firmly entrenched in <a href=https://ask.metafilter.com/55153/Whats-the-middle-ground-between-FU-and-Welcome#830421>asking culture</a>; if i make a request, please be as forward as possible in your reasons for declining it</dt>
+        <dd>if you have two reasons, one being '<abbr title="you see i only decapitalise I when referring to myself; it is a really cool intentional decision that is the opposite of people capitalising He when referring to the Abrahamic god on account of i am really humilitous">I</abbr> don't want to" and the other a more palatable excuse, do not serve me the latter and leave the former to subtext; most likely i will miss it and pester you about whether the latter can be fixed/has fixed itself</dd>
+      <p>in general assume i am a robot that is learning what it means to be human and cannot consistently read between the lines, no matter how good it is at spewing witticisms or how much of an air of confidence and suavity that imbues it with</p>
+      <p><i>incidentally, this issue has been much more prevalent in irl interactions than on the internet; i have not had enough experience with internet friends turning into irl friends for extended durations to determine whether this is due to selection bias on my part or the fundamentally different natures, i suspect both!</i></p>
+    </dl>
+    </details>
     <details closed><summary>friends</summary>
       <dl>
         <dt><a href=https://terezi.gitlab.io>darcy</a></dt>

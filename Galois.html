@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script></head>
+  <body>
+    <title>Galois</title>
+    <h1>Galois theory revision notes</h1>
+    <p>btw did you know that Galois died in a duel</p>
+    <details open>
+      <summary>week 1</summary>
+      <table><thead><tr><th>polynomials</th><th>fields</th><th>groups</th></tr></thead><tbody>
+        <tr><td>\(x^2-4\)</td><td>\(\mathbb Q\)</td><td>\(\{e\}\)</td></tr>
+        <tr><td>\(x^2+2\)</td><td>\(\mathbb Q[i\sqrt2]\)</td><td>\(C_2\)</td></tr>
+        <tr><td>\(x^3-2\)</td><td>\(\mathbb Q[\overset{\sqrt[3]2}\alpha,\alpha\overset{e^{\tau i/3}}\omega,\alpha\omega^2]\)</td><td>\(S_3\)</td></tr>
+        <tr><td>\(x^3-3x+1\)</td><td>\(\mathbb Q[\alpha,\beta,\gamma]\)</td><td>\(C_3\)</td></tr>
+      </tbody></table>
+      <dl>
+        <dt>given a field \(F\), \(F[X]\) denotes the ring of polynomials whose coefficients are in \(F\) (with \(f\in F[X]\) given by \(a_0+\ldots+a_nx^n\) with \(n=\deg(f)\) and \(a_n\ne0\))</dt>
+        <dt>we can do truncating big-endian division (ie. the <a href=https://github.com/DroneBetter/dronery/blob/main/poly.py>poly.py</a>'s <tt>moddiv</tt> operation), so we can get \(\gcd\)s via Euclid's algorithm (ie. it's a Euclidean domain); we have divisorship and <abbr title="basically primality up to multiplication by units">irreducibility</abbr> as per ordinary ring theory</dt>
+        <dt>see <a href=https://en.wikipedia.org/wiki/Template:Commutative_ring_classes>the set of commutative ring classes</a>; since Euclidean domains are <abbr title="unique factorisation domain">UFD</abbr>s, every irreducible polynomial is prime and we have unique factorisation into primes</dt>
+        <dt>the <wi-ki href=splitting_field></wi-ki> is where all prime polynomials are linear (so all polynomials can be factorised maximally); due to the fundamental theorem of algebra, this is always a subset of \(\mathbb C\) (for a real/complex-valued original field)</dt>
+        <dt>(<b>prop. 1.2</b>) for a ring \(R\), we have that if \(\alpha=\frac rs\in\mathrm{field_{of}fractions}(R)\) is a root of \(f\in R[X]\), then \(r|[x^0]p\) and \(s|[x^{\deg(p)}]p\) (providing an easy test for getting rational roots, and more generally <abbr title="this is not examinable unfortunately; we are only tested on proving irreducibility of cubics :-(">Kronecker's method/algorithm</abbr>).</dt>
+        <dd>proof: ahaha trivial</dd>
+        <dt>we call a polynomial \(f\) <b>monic</b> if \([x^n]f=1\); in this case, all rational roots are integer</dt>
+        <dt>given a field \(F\), we write \(F^\times:=F\setminus\{0\}\)</dt>
+        <dt>(<b>prop. 1.3</b>) for \(f,g\in F[X]\) s.t. with \(\alpha\in F,\beta\in F^\times\), \(g(X)=f(u(X):=\beta X+\alpha)\), \(f\) is irreducible over \(F\) iff \(g\) is irreducible</dt>
+        <dd>in general, this is the case if \(u\) is some polynomial \(F\to F\)</dd>
+        <dt>for a prime \(p\), \(\phi:\overset{\mathbb Z}a\overset\to\mapsto\overset{\mathbb F_p}{a\% p}\) is a ring homomorphism.</dt>
+        <dt>the function \(\phi^*:\mathbb Z[X]\to\mathbb F_p[X]\) that enacts \(\phi\) on all the coefficients is also a ring homomorphism</dt>
+        <dd>proofs: ahahaha</dd>
+        <dt>(<b>prop. 1.4</b>, Gauss's lemma) if \(f\in\mathbb Z[X]\) is reducible over \(\mathbb Q[X]\), it is also reducible in \(\mathbb Z[X]\)</dt>
+        <dd>proof: Kronecker's algorithm ahahahaha</dd>
+        <dt>(<b>prop. 1.5</b>) if \(f\in\mathbb Z[X]\) and \(g\in\mathbb Q[X]\) are both monic and \(g|f\), then \(g\in\mathbb Z[x]\)</dt>
+        <dd>proof: special case of 1.4</dd>
+        <dt>(<b>prop. 1.6</b>, Eisenstein's <abbr title="hereafter 'critter'">criterion</abbr>) if all but the highest term of \(f\in\mathbb Z[X]\) are divisible by \(p\) but \(p^2\nmid[x^0]f\), then \(f\) is irreducible over \(\mathbb Q[X]\)</dt>
+        <dt>(<b>def. 1.7</b>) cyclotomic polynomials\[\Phi_n(X):=\prod_{k=0\atop\gcd(n,k)=1}^nx-e^{\frac kn\tau i}\]has special case \(\Phi_p(X)={1-x^p\over1-x}\) (and for that matter \(\Phi_{p^n}(X)={1-x^{p^n}\over1-x^{p^{n-1}}}\)</dt>
+        <dt>(<b>lem. 1.8</b>) Eisenstein's critter is quite useful, telling us \(\Phi_p(X+1)=\sum_{k=0}^{p-1}\binom p{k+1}X^k\) is irreducible; \(\Phi_p\) is too by prop 1.3</dt>
+        <dt>(<b>lem. 1.9</b>) if \(f\) is reducible in \(\mathbb Q[X]\) then it's also reducible in \(\mathbb F_p[X]\) for all \(p\in\mathbb P\) (since we can <!--multiply coefficients by their denominators' \(\lcm\) then--> homomorph \(\mathbb Q\) into \(\mathbb F_p\)s by replacing denominators with multiplicative inverses mod \(p\)); thus, by contrapositive we can show that a polynomial is irreducible in \(\mathbb Q[X]\) by finding a prime \(p\) such that it's irreducible</dt>
+      </dl>
+    </details>
+  </body>
+</html>
