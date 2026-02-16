@@ -4,16 +4,30 @@
   <body>
     <title>musings</title>
     <h1>page for some miscellaneous musings</h1>
-  <h2>on internet research cultures</h2>
+  <h2>on cultures of collaborative internet maths research platforms</h2>
     <h3>the OEIS</h3>
-    <p><i>see also <a href=https://habr.com/en/articles/701208>this nice exposition</a> about the workings</i></p>
+    <p><i>see also <a href=https://habr.com/en/articles/701208>this nice exposition</a> about its workings from a more idealistic perspective</i></p>
     <p>i have been watching the OEIS from the inside for a long time</p>
     <p>it is somewhat uniquely poised as a site which both welcomes contribution from anyone and, unlike Wikipedia or StackExchange, requires moderators to manually approve of edits.</p>
     <p>they also are chronically understaffed, and a lot of the staff they do have are chronically pedantic.</p>
     <p>many see each open draft as an opportunity to teach a lesson in didacticism to contributors, by flagging up the issue they see in a comment and awaiting the original submitter's revision to remediate it.</p>
-    <p>the problem with this is that being thinly stretched and unable to guarantee prompt responses, this adds days to weeks of waiting time before one may start a new draft slot.</p>
-    <p>many contributors who would maybe have contributed interesting things in high volume gave up early-on, and many more have snapped and been banned</p>
-    <p>i myself was subject to a year-long ban for editing in others' draft slots to increase my total output to the database, and after coming back resolved to use the wiki as my primary outlet to prevent a reoccurrence</p>
+    <p>the problem with this is that being thinly stretched and unable to guarantee prompt responses, this adds hours (at best) to weeks (usually only days) of waiting time before one may start a new draft slot.</p>
+    <p>and when the issues are things like leaving one added formula unsigned, or one program not demarcated as being in Python when it clearly starts by importing sympy, the unwillingness to fix what pointed out (and the implication that you could learn by fixing it yourself, and that it's worth slowing down your contribution by hours to days to teach you this lesson) comes across as condescending.</p>
+    <p>many contributors who demonstrably contributed interesting things in high volume over multiple-year periods have since departed, and others have snapped and been banned. (i myself was subject to a year-long ban for editing in others' draft slots, and after coming back resolved to use the wiki as my primary outlet to prevent a reoccurrence)</p>
+    <p>however, it helps a lot to bear in mind that the senior editors aren't malicious, and to be endlessly patient.</p>
+    <p>as you can possibly tell from this website, i like lightly-formatted monospaced text a lot; i've seen the lack of LaTeX support <a href=https://english.stackexchange.com/q/253916>levied</a> as a criticism/area of possible improvement a few times, but am relatively ambivalent on that front. an optional LaTeX frontend would be nice, but its usefulness would be inhibited by the existing strict rules about notation intended to minimise ambiguity (ie. we'd still have to write \(|\mathrm{Stirling1}(n,k)|\) instead of \(n\brack k\)). (I personally solve this problem by spinning up a userspace page with extended notes upon a sequence whenever I have them, but have been <abbr title="in emails with Sean A. Irvine">told</abbr> this is an unintended use case and i should expect to fight breaking changes.)</p>
+    <p>the main two areas for improvement i can see are not in the database's presentation to readers at all, but interaction between contributors; the draft review system and the place of correspondence</p>
+    <dl>
+      <dt>allowing contributors to categorise the drafts they open in one (or multiple) categories (like combinatorics, number theory, group theory, geometry, integer partitions, analysis of algorithms (rough examples)), and senior editors to filter by category of specialisation, would probably speed up the editorial process somewhat</dt>
+      <dd>the categorisation of each draft by the purpose of its contribution (rather than by the subject of the sequence) is important, since sequences can lie in multiple fields, and contributions often recontextualise them when they happen to be found elsewhere</dd>
+      <dt>i was not in the old seqfan mailing list before <a href="https://oeis.org/w/index.php?title=Main_Page&stableid=1664225#The_Sequence_Fans_mailing_list_is_reborn_as_a_Google_Group">its rebirth</a>, since i couldn't figure out how to get past <abbr href="it may have started being broken by the point i started trying">a browser-invariant wall</abbr> in its signup process, but the current solution (a Google Group) is not ideal; news (about coverage of the OEIS in media) and requests for references/programs/help are all mixed together in one big list</dt>
+      <dd>
+        <p>i would like to propose the creation of a forum, and phpBB seems the best software for that, but as a (mostly inactive) ConwayLife community member, the biggest problem with their phpBB forum is the search</p>
+        <p>it refuses to accept your query if it contains words that are too common, and (to my knowledge) doesn't allow searching for exact matches of phrases; this is particularly an issue when you want to search for a rule (if someone has written it with a slash like B3/S23, it will interpret those as two different words) or an apgcode (xq4_153 is likewise two words, <i>and</i> xq4 is too common)</p>
+        <p>(currently, if you discover a pattern and want to know if it's known, you can enter it into Catagolue and see whether it's present in a forum-scraping census like <a href=https://catagolue.hatsya.com/attribute/xp4_xm4660111ezo8fjgoo80fbzw23/b3s23/oscthread_stdin>oscthread_stdin</a>. This doesn't tell you where it was discovered or by whom, and almost certainly won't tell you even in which haul it was uploaded; the attribute pages are usually empty for some reason)</p>
+        <p>however, i don't think any analogous problems would carry over to the OEIS</p>
+      </dd>
+    </dl>
   <div id=wolfram><h2>on Mathematica/WolframScript</h2></div>
     <p>as someone who does a lot of the kind of maths that is amenable to computers, i have become familiar with a few CASs.</p>
     <p>note that <a href=https://www.wolfram.com/wolframscript>WolframScript</a> is free for personal use, without requiring any proof of affiliation to an institution!</p>
@@ -22,8 +36,9 @@
     <p>however, it seems some of its decisions are hostile to those wishing to depart.</p>
     <p>a notorious example i've heard of is Mathematica's PDF exporting; <a href=https://mathematica.stackexchange.com/questions/282773/pdf-export-is-heavily-flawed-for-simplest-possible-notebook-such-as-a-bc>this mathematica.se question</a> should give you some sense of how bad it is, with the intention assumedly to incentivise not exporting them at all and instead requiring the recipient to also have Mathematica</p>
     <p>notebooks published by Stephen Wolfram himself seem not to have any such issues, leading one to speculate that he has his own patched version. Irrespective, for the notebookiarily inclined, Jupyter resolves this.</p>
-    <p>i like its lispiness but dislike how anti-<abbr title="here this refers to manipulation of math expressions">metaprogramming</abbr> many fundamental pieces of it seem to be; see for instance this typical use case</p>
-<pre>In:= MatrixForm[Table[Series[FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0],{x,0,4}],{k,0,4}]]
+    <p>i like its lispiness (<i>see <a href=https://users.mai.liu.se/hanlu09/CAS/mathematica.html>Hans Lundmark's notes</a> for a brief overview</i>) but dislike how anti-<abbr title="here this refers to manipulation of math expressions">metaprogramming</abbr> many fundamental pieces of it seem to be; see for instance this typical use case</p>
+<pre>In:= f=FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0]
+In:= MatrixForm[Table[Series[f,{x,0,4}],{k,0,4}]]
 Out//MatrixForm=
                 0
 
@@ -47,7 +62,7 @@ Out//MatrixForm=
                 -- + O[x]
                 24
 
-In:= MatrixForm[Table[List@@Series[FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0],{x,0,4}][[3]]*Range[k,4]!,{k,0,4}]]
+In:= MatrixForm[Table[List@@Series[f,{x,0,4}][[3]]*Range[k,4]!,{k,0,4}]]
 Part::partd: Part specification 0[[3]] is longer than depth of object.
 Thread::tdlen: Objects of unequal length in {0, 3} {1, 1, 2, 6, 24} cannot be combined.
 Out//MatrixForm= {0, 3} {1, 1, 2, 6, 24}

@@ -5,6 +5,23 @@
   /*use #ff00ff for deadlinks or archive.org maybe*/
   oeissectname {font-family: serif;}
   dt {display: list-item; list-style-type: disc; list-style-position: inside; padding-left: 16px} /*making this modification without specifying the padding causes the dt's padding-left to be truncated; when replacing it, list-style-position prevents the bullet point from being left behind*/
+  details > *:not(summary){margin-left: 1em;}
+  :root{--name-width: 5ch; /* longest username */ --gap: 1ch}
+  .chat {line-height: 1.4}
+  .msg {
+    position: relative;
+    padding-left: calc(var(--name-width) + var(--gap));
+    margin: 0.25rem 0}
+  .name {
+    position: absolute;
+    left: 0;top: 0;
+    width: var(--name-width);
+    text-align: right;
+    padding-right: var(--gap);
+    font-weight: 700;
+    white-space: nowrap;
+    display: inline-block;
+    color: var(--name-color, inherit)}
 </style>
 <script>
   class OEIS extends HTMLElement {
@@ -75,10 +92,11 @@
       this._inited=true;
       const suffix=this.getAttribute("href");
       const a=document.createElement("a");
-      a.href="https://oeis.org/wiki/User:Natalia_L._Skirrow"+(suffix?'/'+suffix:'');
+      a.href="https://oeis.org/wiki/User:Natalia_L._Skirrow"+(suffix?(suffix[0]=='#'?'':'/')+suffix:'');
       if (this.childNodes.length) {while (this.firstChild) a.appendChild(this.firstChild);}
       else {a.textContent=suffix?suffix.replace(/_/g,' '):"OEISwiki userpage";}
       this.appendChild(a);}}
   customElements.define("oeis-tally",OEISTally); /*btw this thing needs to be italicised whenever self-closing with <oeis-tally ... /> or it will break horrifically btw*/
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+<link href="themes/prism.css" rel="stylesheet" /><script src="prism.js"></script>

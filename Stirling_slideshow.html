@@ -122,7 +122,7 @@
       <p>we can also be <s>tautological</s> sneakier, and write out \(\frac1{(1-x)^y}=\exp\left(y\log\left(\frac1{1-x}\right)\right)=\exp\left(\sum_{i=1}^\infty y\frac{x^i}i\right)=\prod_{i=1}^\infty\exp\left(y\frac{x^i}i\right)=\prod_{i=1}^\infty\sum_{j=0}\frac{y^j\frac{x^{ij}}{i^j}}{j!}\).</p>
       <p>here, the exponent of \(y\) in the \(i\)th multiplicand is the number of length-\(i\) cycles in a given permutation; we can replace each multiplicand's \(y\) with \(y_i\) to keep track of cycle counts for each length separately.</p>
       <p>we can then choose a particular length \(l\), and set all \(y_{i\ne l}\) to \(1\) to only keep track of the \(y_l\).</p>
-      <p>\[\left(\sum_{j=0}\frac{y_l\frac{x^{lj}}{l^j}}{j!}\right)\prod_{i=1\atop i\ne l}^\infty\sum_{j=0}\frac{\frac{x^{ij}}{i^j}}{j!}=\frac{\exp\left(y_l\frac{x^l}l\right)}{\exp\left(\frac{x^l}l\right)}\frac1{1-x}=\frac{\exp\left((y_l-1)\frac{x^l}l\right)}{1-x}\]</p>
+      <p>\[\left(\sum_{j=0}\frac{y_l^j\frac{x^{lj}}{l^j}}{j!}\right)\prod_{i=1\atop i\ne l}^\infty\sum_{j=0}\frac{\frac{x^{ij}}{i^j}}{j!}=\frac{\exp\left(y_l\frac{x^l}l\right)}{\exp\left(\frac{x^l}l\right)}\frac1{1-x}=\frac{\exp\left((y_l-1)\frac{x^l}l\right)}{1-x}\]</p>
       <p>to recap, this is now an e.g.f. from which the coeff-extraction \(\left[\frac{x^n}{n!}y_l^k\right]\) tells you the number of \(n\)-permutations with \(k\) \(l\)-cycles. (for \(l=1\) this is <oe-is href=A008290></oe-is>(n,k), for \(l=2\) <oe-is href=A114320></oe-is>(n,k))</p>
       <p>differentiating with respect to \(y_l\) then setting \(y_l\) gives us \(\frac1l\frac{x^l}{1-x}\), which tells us that \(\mathrm E[\#(\mathrm{length-}l\ \mathrm{cycles\ in\ }n\mathrm{-perm})]=\begin{cases}\frac1l&n\ge l\\0&\mathrm{else}\end{cases}\).</p>
       <p>this gives the previous fact (that the expected count of all cycles in an \(n\)-perm is \(H_n\)) as a corollary, since we can just sum the expectations over \(l\), even though the random variables defined by different \(l\)s aren't independent of each other. (However, expectations are special in this regard; for orders \(o>1\), we can't get the \(o\)th moment of a sum in terms of the \(\le o\)th moments of the constituent codependent variables, since then we also have to consider <wi-ki href=covariance></wi-ki>.)</p>
@@ -161,17 +161,24 @@
       <p>the reason for the \(c_n\)s being unnecessary is that we're concerned with fractions of factorials, where they get cancelled; \(\frac{(x+x_{\mathrm{num}})!}{(x+x_{\mathrm{den}})!}=\exp\left(\sum_{n=0}^\infty((-1)^{n-1}(n-1)!(H^{(n)}_{x_{\mathrm{num}}}-H^{(n)}_{x_{\mathrm{den}}}))x^n\right)\).</p>
       <p>we plug this into Faà di Bruno to get out
         \[\frac{\left(\frac d{dx}\right)^n\frac{(x+x_{\mathrm{num}})!}{(x+x_{\mathrm{den}})!}}{\frac{(x+x_{\mathrm{num}})!}{(x+x_{\mathrm{den}})!}}=\sum_{p\in\mathrm{perms}(n)}\prod_{c\in p}H^{(|c|)}_{d+x}-H^{(|c|)}_{n+x}\]</p>
-      <p>which is useful to us, since for the random variable \(X_n\) the number of cycles in an \(n\)-permutation, it gives us
-        \[\mathbb E\left[{X_n\choose k}\right]=\sum_{p\in\mathrm{perms}(k)}\prod_{c\in p}(-1)^{|c|-1}H^{(|c|)}_n\]
+      <p>which is useful to us, since for the random variable \(C_n\) the number of cycles in an \(n\)-permutation, it gives us
+        \[\mathbb E\left[{C_n\choose k}\right]=\sum_{p\in\mathrm{perms}(k)}\prod_{c\in p}(-1)^{|c|-1}H^{(|c|)}_n\]
         directly</p>
         <p>(the \(c\in p\) iterates over cycles; the sign of each product's contribution equals the sign of the permutation it corresponds with)</p>
+        <p>as a corollary, this gives that \(\mathrm{Var}[C_n]=H_n-H^{(2)}_n\), ie. we have a central limit theorem on random permutations; the standard deviation of cycle count grows only like the sqrt of expectation!</p>
     </div></section>
     <section class="slide" role="group" aria-roledescription="slide" data-index="12" aria-hidden="true"><div style="text-align:center">
+      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">higher moments (contd.)</h1>
+      <p>we in fact have a simpler (and possibly more surprising) characterisation of \(\mathbb E\left[{C_n\choose k}\right]\) than that; consider the sum over \(S_n\) instead of the average, ie. \(S_{n,k}:=n![\mathbb E\left[{C_n\choose k}\right]=\sum_{i=0}^n\binom ik{n\brack i}\) (counting ways to form a permutation with \(\ge k\) cycles, then choose \(k\) of the cycles).</p>
+      <p>if we keep these chosen cycles, and concatenate the rest (shifted to have their maximal element first, then ordered in ascending order of maximal element) to a single list, append an \(n+1\)th element to it and join it back into a cycle, we construct a permutation of \([n+1]\) with \(k+1\) cycles, ie. we have \(S_{n,k}={n+1\brack k+1}\).</p>
+      <p>(this is somewhat akin to the 'hockey stick' identity for binomial coefficients; see <a href=https://math.stackexchange.com/q/5116629>this math.se post</a> (in which this is \((1a)\)) and my page <i><oeis-tally href=some_number_triangle_matrix_products /> for further discussion (including illustrative proofs by generating functions) and many other such analogues)</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="13" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">other reasons to care about generating functions</h1>
       <p>following are two tools that prove quite useful, both hard to prove combinatorially but easy to obtain by simple complex analysis on generating functions</p>
       <p>(this is where the manipulations stop being on formal power series and require g.f.s to be actually evaluated as functions)</p>
     </div></section>
-    <section class="slide" role="group" aria-roledescription="slide" data-index="13" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="14" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">Cauchy's formula</h1>
       <p>say we have a sequence \(f(n)\) with o.g.f. \(F(x)\), then <b>Cauchy's formula</b></p>
       <p>\[f(n)=[x^n]F(x)=\frac1{\tau i}\oint_\gamma\frac{F(x)}{x^{n+1}}\ dx\]</p>
@@ -182,7 +189,7 @@
       <p>or in other words, \(\left[{x^n\over n!}\right]F(x)=\left[{u^{n-1}\over(n-1)!}\right]\left(\frac u{F^{-1}(u)}\right)^n\); this being the <b>Lagrange inversion theorem</b>.</p>
       <p>although it is just integration by substitution followed by integration by parts, it is quite powerful when viewed combinatorially; it effectively gives generating function methods (that turn combinatorics into calculus) the ability to reason about tree-like structures (where you can derive a closed form (and coefficient-extraction formula) for a generating function's <i>inverse</i>); see my pages on <oeis-tally href=A055349></oeis-tally> and <oeis-tally href=A058349></oeis-tally> for cool applications of this</p>
     </div></section>
-    <section class="slide" role="group" aria-roledescription="slide" data-index="14" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="15" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">saddle-point asymptotics!</h1>
       <details closed><summary>saddle-point approximations of general integrals</summary>
         <p>given an analytic function \(f\) that attains a maximum at a point \(\xi\in(a,b)\), \(F(x)^n\) will asymptotically resemble a Gaussian about that point, so we have\[I_n=\int_a^b\varphi(x)F(x)^n\ dx\underset n\sim\varphi(\xi)F(\xi)^{n+\frac12}\sqrt{\frac\tau{-nF''(\xi)}}\]</p>
@@ -194,16 +201,33 @@
       <p>\[f(n)=[x^n]F(x)\sim\frac{F(x_n)}{\sqrt{\tau G'(x_n)}x_n^{n+\frac12}}\]</p>
       <p>this formulation is known as Hayman's, though it was effectively arrived upon by Pierre-Simon Laplace; Hayman's contribution was finding a set of easy-to-apply sufficient-but-not-necessary criteria and closure properties for determining if functions are admissible</p>
       <p>using it, one can occasionally prove some very cool facts</p>
-      <p>while \(n!=\mathrm{sets}(\mathrm{cycles})(n)=\left[{x^n\over n!}\right]\left(e^{\log\frac1{1-x}}=\frac1{1-x}\right)\), <oe-is href=A000262></oe-is>(n)\(=\mathrm{sets}(\mathrm{lists})(n)=\left[{x^n\over n!}\right]e^{\frac x{1-x}}\). This has an <wi-ki href=essential_singularity></wi-ki> at \(x=1\), which is usually more difficult to analyse, but by plugging it into saddle-pointery, we get the result A000262(n) \(\sim\frac{n!e^{2\sqrt n-1/2}}{2\sqrt{\pi}n^{\frac34}}\)</p>
-      <p>we can define a map \(M\) from sets of lists onto sets of cycles by joining the lists' ends together to turn them into cycles; then \({A000262(n)\over n!}={\#(M\mathrm{'s\ domain})\over\#(M\mathrm{'s\ image})}=\mathbb E(\mathrm{\# preimages\ of\ random}\ n\mathrm{-permutation})\); since a permutation can have each length-\(l\) cycle cut into a list in \(l\) ways, this measures the expected product of cycle lengths, ie. \[\underset{p\in\mathrm{perms}(n)}{\mathbb E}\left(\prod_{c\in P}\mathrm{len}(c)\right)\sim\frac{e^{2\sqrt n-1/2}}{2\sqrt{\pi}n^{\frac34}}\]</p>
-      <p>meanwhile, we can obtain the <i>geometric</i> mean over the \(n\)-permutations quite easily; using the earlier fact that for \(l\le n\) there are an expected \(\frac1l\) \(l\)-cycles, we have \(\prod_{l=1}^nl^{\frac1l}=\exp\sum_{l=1}^n\frac{\log l}l=\exp\left(H_n\log n-\int_1^n\frac{H_t}t\ dt\right)=\exp\left(\frac{\log^2n}2+O(\log n)\right)\) (see <a href=https://math.stackexchange.com/a/1976905>this really nice math.se answer</a>)</p>
-      <p>as a heuristic argument, if we assume every \(n\)-permutation has \(\log n\) cycles, each of length \(\frac n{\log n}\), the expectation is \((\frac n{\log n})^{\log n}=\exp\left(\log n(\log n-\log\log n)\right)\); this overshoots to about the square of the true geometric mean.</p>
+      <p>while \(n!=\mathrm{sets}(\mathrm{cycles})(n)=\left[{x^n\over n!}\right]\left(e^{\log\frac1{1-x}}=\frac1{1-x}\right)\), <oe-is href=A000262></oe-is>(n)\(=\mathrm{sets}(\mathrm{lists})(n)=\left[{x^n\over n!}\right]e^{\frac x{1-x}}\). This has an <wi-ki href=essential_singularity></wi-ki> at \(x=1\), which is often considered pathological for, but can be plugged into saddlepointery; we get the result A000262(n) \(\sim\frac{n!e^{2\sqrt n-1/2}}{2\sqrt{\pi}n^{\frac34}}\)</p>
+      <p>we can define a map \(M\) from sets of lists onto sets of cycles by joining the lists' ends together to turn them into cycles; then \({A000262(n)\over n!}={\#(M\mathrm{'s\ domain})\over\#(M\mathrm{'s\ image})}=\mathbb E[\mathrm{\# preimages\ of\ random}\ n\mathrm{-permutation}]\); since a permutation can have each length-\(l\) cycle cut into a list in \(l\) ways, this measures the expected product of cycle lengths, ie. \[\underset{P\in\mathrm{perms}(n)}{\mathbb E}\left[\prod_{c\in P}\mathrm{len}(c)\right]\sim\frac{e^{2\sqrt n-1/2}}{2\sqrt{\pi}n^{\frac34}}\]</p>
+      <p>meanwhile, i am not sure how to obtain the geometric mean over permutations \(\exp\underset{P\in\mathrm{perms}(n)}{\mathbb E}\left[\frac1{|P|}\sum_{c\in P}\log(\mathrm{len}(c))\right]\) but we can take \(\exp\underset{c\in P\in\mathrm{perms}(n)}{\mathbb E}\left[\log(\mathrm{len}(c))\right]\) quite easily; using the earlier fact that for \(l\le n\) there are an expected \(\frac1l\) \(l\)-cycles, we have \(\sqrt[H_n]{\prod_{l=1}^nl^{\frac1l}}=\exp\left(\frac1{H_n}\sum_{l=1}^n\frac{\log l}l\right)=\exp\left(\log n-\frac1{H_n}\int_1^n\frac{H_t}t\ dt\right)=\exp\left({\frac{\log^2n}2+\gamma_1+O\left(\log n\over n\right)\over\log n+\gamma+O\left(\frac1n\right)}\right)\sim\sqrt{n/e^\gamma}\) (see <a href=https://math.stackexchange.com/a/1976905>this really nice math.se answer</a>)</p>
+      <p>that is, the AM-GM inequality here is asymptotically somewhat strong</p>
     </div></section>
-    <section class="slide" role="group" aria-roledescription="slide" data-index="15" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="16" aria-hidden="true"><div style="text-align:center">
+      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">the Stirling subset numbers</h1>
+      <p>(this is a somewhat anachronistically late place to put them but (to my knowledge) there aren't any similarly elementary ways to asymptotically characterise them; note that conversely, saddlepointery breaks on the cycle numbers)</p>
+      <p>with \(x_n=W\left(\frac ny\right)\sim\log\frac ny-\log\log\frac ny+o(1)\) (the <oeis-tally href="Euler's_tree_function" title="this page discusses T(x)=-W(-x) which is much better do not worry">Lambert W function</oeis-tally>), we have \(\left[x^n\over n!\right]e^{y(e^x-1)}\sim{e^{{n\over x_n}-y-n}n^n\over x_n^{n+\frac12}}\) (set \(y=1\) and substitute in the W asymptotic to count \(n\)-(sets of sets))</p>
+      <p>we again logarithmically differentiate with respect to \(y\) then set \(y:=1\) (as before) to get an asymptotic on the expectation on the number of subsets \(S_n\) (which is justified by the asymptotic converging in a neighbourhood of \(y=1\)) as \(\mathbb E[S_n]\sim{n\over W(n)}+{W(n)\over2(W(n)+1)^2}-1\approx{n\over\log n}\), and likewise \(\mathrm{Var}[S_n]\sim{n\over W(n)(W(n)+1)}-1+\frac1{2(W(n)+1)^2}-\frac3{2(W(n)+1)^3}+\frac1{(W(n)+1)^4}\approx{n\over\log^2n}\). So, asymptotically, we have the cool duality</p>
+      <table><thead>
+        <tr><th></th><th>permutation</th><th>set of sets</th></tr>
+      </thead><tbody>
+        <tr><td>pieces</td><td>\(\log n\)</td><td>\(n\over\log n\)</td></tr>
+        <tr><td>piece size</td><td>\(n\over\log n\)</td><td>\(\log n\)</td></tr>
+      </tbody></table>
+      <p>(for more details, see <i><oeis-tally href=an_introduction_to_Stirling_numbers#asymptotics_and_properties_as_statistical_distributions /></i>)</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="16" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">what my dissertation is on</h1>
-      <p>this has all been relatively simple and everything mentioned is well-understood, due to the 10-minute timeslot (I wanted to include interesting results that don't have too many prerequisites); however, my project will be on either a bijection between <oe-is href=A000262></oe-is> and <oe-is href=A058349></oe-is> (mostly detailed in <i><oeis-tally href=A058349/old></oeis-tally></i>) or the numbers <i><oeis-tally href=above_the_Stirling_triangles></oeis-tally></i></p>
+      <p>this has all been relatively simple and everything mentioned is well-understood, due to the 10-minute timeslot (I wanted to include interesting results that don't have too many prerequisites); however, my project will be on either a bijection between <oe-is href=A000262></oe-is> and <oe-is href=A058349></oe-is> (mostly detailed in <i><oeis-tally href=A058349/old /></i>) or the numbers <i><oeis-tally href=above_the_Stirling_triangles /></i></p>
       <p>for more prerequisites to understand them, I highly recommend reading Knuth's <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, Dan Rus's <a href=https://arxiv.org/abs/2501.08762><i>Yet another note on notation</i></a>, and my <oeis-tally><i>an introduction to Stirling numbers</i></oeis-tally></p>
       <p>note also that <a href=https://math.stackexchange.com/a/5108126>this math.se answer i gave</a> outlines how the numbers 'in the shadow' underneath the Stirling triangles (which need the interpolating polynomials along diagonals of Stirling's triangle to be divided by those along columns of Pascal's triangle to make them nonzero) arise in the extension of Faulhaber's theorem to nested summation</p>
+    </div></section>
+    <section class="slide" role="group" aria-roledescription="slide" data-index="17" aria-hidden="true"><div style="text-align:center">
+      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">other pages i could not fit in</h1>
+      <p>the cycle numbers' row o.g.f.s give a definition in terms of placements of \(n-k\) mirrors on distinct columns of \(n\times n\) lower-triangular chessboards; see <i><oeis-tally href=Stirling_factoradics /></i> regarding the bijection between these and \(k\)-cycle permutations</p>
     </div></section>
   </main>
 
@@ -216,7 +240,7 @@
     (function(){
       const slides = Array.from(document.querySelectorAll('.slide'));
       let idx = slides.findIndex(s => s.getAttribute('aria-hidden') === 'false');
-      if(idx < 0) idx = 0;
+      if(idx<0) idx=0;
 
       function show(i){
         i = (i + slides.length) % slides.length;

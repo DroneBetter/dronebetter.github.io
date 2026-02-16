@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>-->
+    <link href="./js/prism.css" rel="stylesheet" />
+  </head>
+  <body class="language-python match-braces rainbow-braces">
+    <script src="./js/prism.js"></script>
+    <title>meanderings</title>
+  <h1>meanderings</h1>
+    <p>things that i consider to be 'obvious'/of relatively little scientific value but might save me effort in the future to have written down</p>
+  <h2>accel_asc</h2>
+    <p>can be used to take sums/products of functions over all elements of a type of partition structure more efficiently (in exp-sqrt time) by iterating over integer partitions as 'recipes' and counting each one's multiplicity. ie. for permutations, \(n!\) is</p>
+<pre><code> lambda n: smp(lambda p: choose(n,*p)//prod(map(compose(rgetitem(1),fact),rle(p)))*prod(map(lambda c: fact(c-1),p)),accel_asc(n))
+=lambda n: smp(lambda p: fact(n)//prod(p)//prod(map(compose(rgetitem(1),fact),rle(p))),accel_asc(n))</code></pre>
+    <p>it seems worthwhile to document them all, since there are a few relations, some sequences (like <oe-is href=A293847></oe-is>) unaware that they are part of this family, and some gaps!</p>
+    <table><thead>
+      <tr>
+        <th>order the parts?</th>
+        <th><pre><code>fact(len(p))</pre></code></th>
+        <th colspan=4>no</th><th colspan=4>yes</th>
+      </tr>
+      <tr>
+        <th>same-length parts interchangeable?</th>
+        <th><pre><code>1/prod(map(compose(rgetitem(1),fact),rle(p)))</pre></code></th>
+        <th colspan=2>no</th><th colspan=2>yes</th><th colspan=2>no</th><th colspan=2>yes</th>
+      </tr>
+      <tr>
+        <th>orderedness within parts</th>
+        <th><pre><code>choose(n,*p)</pre></code></th>
+        <th>no</th><th>yes</th><th>no</th><th>yes</th><th>no</th><th>yes</th><th>no</th><th>yes</th>
+      </tr>
+    </thead><tbody>
+      <tr>
+        <td>list</td>
+        <td><pre><code>prod(map(lambda c: fact(c),p))</pre></code></td>
+        <td><oe-is href=A077365 /></td><td>&nbsp; &nbsp; <oe-is href=A053529></oe-is>(n)<br />=n!*<oe-is href=A000041></oe-is>(n)</td><td><oe-is href=A293847 /></td><td><oe-is href=A000262 /></td><td><oe-is href=A160564 /></td><td>n!*<oe-is href=A101880></oe-is>(n)</td><td><oe-is href=A051296 /></td><td>&nbsp; &nbsp; <oe-is href=A002866></oe-is>(n)<br />=n!*<oe-is href=A011782></oe-is>(n)</td>
+      </tr>
+      <tr>
+        <td>cycle</td>
+        <td><pre><code>prod(map(lambda c: fact(c-1),p))</pre></code></td>
+        <td><oe-is href=A107107 /></td><td><oe-is href=A007841 /></td><td><oe-is href=A158876></oe-is>(n)/n!</td><td>\(n!\)</td><td></td><td></td><td><oe-is href=A051295 /></td><td><oe-is href=A007840 /></td>
+      </tr>
+      <tr>
+        <td>set</td>
+        <td></td>
+        <td><oe-is href=A000041 /></td><td><oe-is href=A005651 /></td><td><oe-is href=A000262></oe-is>(n)/n!</td><td><oe-is href=A000110 /></td><td><oe-is href=A101880 /></td><td></td><td> <oe-is href=A011782></oe-is>(n)<br />=n?2<sup>n-1</sup>:1</td><td><oe-is href=A000670 /></td>
+      </tr>
+    </tbody></table>
+  </body>
+</html>
