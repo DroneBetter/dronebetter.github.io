@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head><script src="./js/head_loader.js"></script></head>
+  <head><script src="./js/head_loader.js"></script><link href="./js/prism.css" rel="stylesheet" /></head>
   <body>
+    <script src="./js/prism.js"></script>
     <title>musings</title>
-    <h1>page for some miscellaneous musings</h1>
+  <h1>page for some miscellaneous musings</h1>
+    <p>this is similarish to a blog, but more like a wiki page/the rest of my site in that everything is subject to change (and written <abbr title="mostly consisting of things that i find myself repeating in conversations, during which i occasionally have new observations; this lets me aggregate them">with the intention of such</abbr>), so sections are left undated; some may be split off into their own pages</p>
   <h2>on cultures of collaborative internet maths research platforms</h2>
     <h3>the OEIS</h3>
     <p><i>see also <a href=https://habr.com/en/articles/701208>this nice exposition</a> about its workings from a more idealistic perspective</i></p>
-    <p>i have been watching the OEIS from the inside for a long time</p>
+    <p>i have been observing the OEIS from the inside for a long time</p>
+    <p><i>admittedly i have not viewed the typical contribution process much, this largely reflects my experience and extrapolation of a few others' from clicking on usernames</i></p>
     <p>it is somewhat uniquely poised as a site which both welcomes contribution from anyone and, unlike Wikipedia or StackExchange, requires moderators to manually approve of edits.</p>
     <p>they also are chronically understaffed, and a lot of the staff they do have are chronically pedantic.</p>
     <p>many see each open draft as an opportunity to teach a lesson in didacticism to contributors, by flagging up the issue they see in a comment and awaiting the original submitter's revision to remediate it.</p>
@@ -26,6 +29,24 @@
         <p>it refuses to accept your query if it contains words that are too common, and (to my knowledge) doesn't allow searching for exact matches of phrases; this is particularly an issue when you want to search for a rule (if someone has written it with a slash like B3/S23, it will interpret those as two different words) or an apgcode (xq4_153 is likewise two words, <i>and</i> xq4 is too common)</p>
         <p>(currently, if you discover a pattern and want to know if it's known, you can enter it into Catagolue and see whether it's present in a forum-scraping census like <a href=https://catagolue.hatsya.com/attribute/xp4_xm4660111ezo8fjgoo80fbzw23/b3s23/oscthread_stdin>oscthread_stdin</a>. This doesn't tell you where it was discovered or by whom, and almost certainly won't tell you even in which haul it was uploaded; the attribute pages are usually empty for some reason)</p>
         <p>however, i don't think any analogous problems would carry over to the OEIS</p>
+        <p>there is also no ability to report a post for being on-topic but in need of moderator intervention (ie. if it merely presents a sequence and links a largely LLM-generated LaTeX file to wade through but doesn't provide an explanation on-site) since one can only flag them to Google's moderation directly</p>
+      </dd>
+    </dl>
+    <p>on the topic, i have seen the talk/essay <a href=https://gwern.net/doc/sociology/technology/2005-shirky-agroupisitsownworstenemy.pdf><i>A group is its own worst enemy</i></a> referred to a lot in the context of StackExchange. it's on how making software hosting groups is different from hosting interaction between pairs like SMS, since you must optimise for more than just ergonomics (how easy it is to send messages), also having to add abrasion in enough places to avoid unwanted contributions and maintain cohesion</p>
+    <p>from this perspective, SE is pretty good at its philosophical purpose of becoming the best possible Q&A database on each subject, and i find cohesion-maintaining a compelling activity (there is no reputation award for helpful flags, but trawling through 15 years of history to find posts asking about the same concept, and deduplicating one against the other so both become linked, and all the ideas people had in answering one can be accessed from the other); the close votes queue's size fluctuates in a way suggesting other people go on similar such 'dives'.</p>
+    <p>the OEIS's goal is for everything to be in the best state possible from the outset (Sean A. Irvine makes a personal effort to reproduce new sequences before approving them, which i <i>think</i> usually just means verifying that the program produces the terms, rather than rederiving it (which is nontrivial in cases like <oe-is href=A392624></oe-is> and so would entail superhuman productivity to do to the entire queue)), though the impression i get from a lot of Roger L. Bagula's contributions is they once had a 'contribute now, investigate later' mentality</p>
+    <p>and in this regard i find the fact that they simultaneously <abbr title="this is not so notable in and of itself; the ConwayLife wiki has <a href=https://conwaylife.com/wiki/LifeWiki:LifeWiki_is_not_Wikipedia>a similar policy</a>, since it's often the only way to have important things written thoroughly about">permit original research</abbr> (<abbr title="excluding weird edge cases">unlike Wikipedia</abbr>) and also have little to no vetting of new accounts besides a personal statement to be very noble and commendable, though perhaps <i>too</i> idealistic in the face of the generally-very-long draft review backlogs</p>
+    <p>the stated rules don't prime one for the experience to expect when contributing, and editors are usually quite merciless in enforcing certain policies, most notably</p>
+    <dl>
+      <dt>"don't include programs demonstrating methods of theoretical interest if they're not practical for computing the sequence"</dt>
+      <dd>the reasoning being that languages are ephemeral and their interpretation by future readers as exhibits/demonstrations rather than tools cannot be guaranteed</dd>
+      <dt>"don't include the means by which you arrived upon a result"</dt>
+      <dd>
+        <p>this is one that i have had a lot of friction with, since without explanation (or at least reference) to how to reproduce analogous results for analogous problems, the epistemological value (which, besides the scale, i see as <i>the</i> main factor differentiating the OEIS from other resources like the DLMF) is significantly reduced</p>
+        <p>the tendency to err <i>away</i> from explanations also has led to a small but pernicious problem of conjectures not always being denoted as such</p>
+        <p>however, there is a solution; you can just make an OEISwiki page in your userspace to store your extended notes</p>
+        <p>this fact was not immediately obvious to me, since i'd argued a bit over it and been told to comply with the convention but <i>not</i> that there is a way to appease both parties; i guess this in turn stemmed from the editors seeing my writing (filtered down to its barest results through bared teeth) and assuming there wasn't enough to say to warrant an external writeup</p>
+        <p>this feedback loop of frustration seems like a trap others could easily fall into, though a thorough case analysis (sampled from the set of <abbr title="this is a biased sampling weighted by duration spent in drafthood; this is intended since it correlates with frustration">currently-open drafts</abbr>) would be necessary</p>
       </dd>
     </dl>
   <div id=wolfram><h2>on Mathematica/WolframScript</h2></div>
@@ -37,7 +58,7 @@
     <p>a notorious example i've heard of is Mathematica's PDF exporting; <a href=https://mathematica.stackexchange.com/questions/282773/pdf-export-is-heavily-flawed-for-simplest-possible-notebook-such-as-a-bc>this mathematica.se question</a> should give you some sense of how bad it is, with the intention assumedly to incentivise not exporting them at all and instead requiring the recipient to also have Mathematica</p>
     <p>notebooks published by Stephen Wolfram himself seem not to have any such issues, leading one to speculate that he has his own patched version. Irrespective, for the notebookiarily inclined, Jupyter resolves this.</p>
     <p>i like its lispiness (<i>see <a href=https://users.mai.liu.se/hanlu09/CAS/mathematica.html>Hans Lundmark's notes</a> for a brief overview</i>) but dislike how anti-<abbr title="here this refers to manipulation of math expressions">metaprogramming</abbr> many fundamental pieces of it seem to be; see for instance this typical use case</p>
-<pre>In:= f=FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0]
+<pre><code class="language-wolfram match-braces rainbow-braces">In:= f=FullSimplify[D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0]
 In:= MatrixForm[Table[Series[f,{x,0,4}],{k,0,4}]]
 Out//MatrixForm=
                 0
@@ -69,7 +90,7 @@ Out//MatrixForm= {0, 3} {1, 1, 2, 6, 24}
                  {1, 1, 1, 1}
                  {1, 4, 15}
                  {1, 9}
-                 {1}</pre>
+                 {1}</pre></code>
     <p>context: <oe-is href=A320280></oe-is> (with offset 0) had come up in an investigation, and i wanted to add the e.g.f. to save my future self and others time, but its <font face=serif>OFFSET</font> in the database is 1, so i worked it out for that case too; i deeply distrust myself, so verified it with MatrixForm[Table[FullSimplify[(D[y/(y-1)*((2-E^x)^(1-y)-1),{y,k}]/k!/.y->0)-(1-(2-E^x)*Sum[(-1)^i*Log[2-E^x]^i/i!,{i,0,k-1}])],{k,1,6}]] before contributing to the database</p>
     <p>anyway, casting an empty Series to a List does not yield an empty list because the place where the list is meant to be is omitted.</p>
     <p>this and many other problems like it make building anything beyond one-liners a more annoying and exceptionhandlingful experience than it ought to be!</p>
@@ -120,5 +141,13 @@ Out//MatrixForm= {0, 3} {1, 1, 2, 6, 24}
       <dt>Ubuntu comes with the snap package manager/extensions store, with the alias apt</dt>
     </dl>
     <p>i strongly advise against both if you can help it</p>
+  <h2>vernacular i like</h2>
+    <p>anything without a wiktionary page should be assumed to be one of my idiosyncrasies and not added under any circumstances</p>
+    <dl>
+      <dt><a href=https://en.wiktionary.org/wiki/linearithmic>linearithmic</a></dt>
+      <dd>on this matter also sqrtic, ie. "a crude heuristic argument would suggest that the error of <oe-is href=A392624></oe-is>(n)/<oe-is href=A392625></oe-is>(n) \(\sim\zeta(2)n\) is sqrtic, but in fact it appears to be logarithmic"; i like abbreviations designed to have few characters being adapted into human speech in general</dd>
+      <dt><a href=https://en.wiktionary.org/wiki/Poissonization>Poissonization</a>... yesss being turned into a fish... most wonderful...</dt>
+      <dt>dirichlution, for Dirichlet convolution (courtesy of racheline)</dt>
+    </dl>
   </body>
 </html>

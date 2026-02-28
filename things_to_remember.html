@@ -24,6 +24,7 @@
         <dt>for second-year teaching of multivariable calculus, start with explanation of DFT, then Chebyshev polynomials as charpoly of path graph's adj. matrix (can be done quite easily via cofactor expansion!), then explain contents of <oeis-tally href=chessboards#the_fourierful_king_of_chebyshev></oeis-tally> (as a derivation of heat flow on a copper plane (surrounded by always-constant-temperature void) in the case that both space and time are discrete, before then covering the doubly-continuous case)</dt>
         <dd>this would also fit in a linear algebra class, since (after finding the eigenvectors) it uses the spectral theorem to provide the coefficients that change from the basis of piece-amplitudes across squares to the eigenbasis</dd>
         <dt>if ever i teach a statistics course (heaven forbid), <a href=https://www.rpgroup.caltech.edu/embl_pboc_2023/assets/pdfs/london_bombs.pdf>this 1946 paper</a> on the distribution of V-2 bombs across London could be a nice example for the effectiveness of the law of large numbers (and the tendency of humans to see incidental clustering in random distributions as evidence of nonrandomness)</dt>
+        <dt>for 2nd-to-3rd teaching of methods for asymptoterating functions via complex analysis, <a href=matrix.html>the matrix page</a>'s section <b>coin survival</b> is a good motivating example for why one would want to compute the inverse binomial transform of a rapidly-converging sequence (and thereby need to get around the numerical instability via eg. the <wi-ki href=Nørlund–Rice_integral></wi-ki>)</dt>
       </dl>
     </details>
     <details closed><summary>things I want others to do but don't know who to contact (perhaps the reader can help)</summary>
@@ -61,6 +62,8 @@
         <dt>investigate \(r\)-(numbers <oeis-tally href=above_the_Stirling_triangles></oeis-tally>); <a href=https://math.stackexchange.com/a/5123670>this answer</a> shows that \(B^+_n=-n\zeta(1-n)=\sum_{k=0}^n{k!\over k+1}(-1)^k{1+n\brace1+k}\) can be continued to negative \(n\), likewise for \(B(n,v)=-n\zeta(1-n,v)=\sum_{k=0}^n{k!\over k+1}(-1)^k{n+v\brace k+1}_v\)</dt>
         <dt>update list of sequences via Q function in <i><oeis-tally href="Euler's_tree_function" /></i> with <oe-is href=A089901></oe-is>(n) \(=n^n(n+Q(n)+1)\)</dt>
         <dt>page about facts in number theory with many proofs; ie. divergence of sum of reciprocals of primes (of which i know three; Euler's (given on <wi-ki href=Divergence_of_the_sum_of_the_reciprocals_of_the_primes>the Wikipedia page</wi-ki>), the one Apostol aforementionedly presents in <i>Introduction to Analytic Number Theory</i> (1976), Monson's from <a href=https://math.uchicago.edu/~may/REU2016/REUPapers/Monson.pdf><i>Finite Fourier analysis and Dirichlet's theorem</i></a> (2015))</dt>
+        <dt>essay on the factorial being better than the gamma function with reference to various identities (which i will try to remember to collect here until i split it off)</dt>
+        <dd>Ramanujan's integral (<a href=https://dlmf.nist.gov/5.13.E4>DLMF 5.13.4</a>) is much nicer as \(\int_{-\infty}^\infty{dt\over(a+t)!(b+t)!(c-t)!(d-t)!}={(a+b+c+d)!\over(a+c)!(a+d)!(b+c)!(b+d)!}\)</dd>
       </dl>
     </details>
     <details open><summary>things to read and digest/incorporate cool results from</summary>
@@ -71,6 +74,12 @@
         <dt>G. Cab, <a href=https://math.stackexchange.com/a/2033440>definition of r-subset numbers through Eulerians</a></dt>
         <dt>Peter H. van der Kamp, <a href=https://arxiv.org/abs/1201.3139><i>On the Fourier transform of the greatest common divisor</i></a> (2012), §3 'A historical remark, and generalised Ramanujan sums' mentions that J.C. Kluyver, <a href=https://dwc.knaw.nl/DL/publications/PU00013765.pdf><i>Some formulae concerning the integers less than n and prime to n</i></a> (1906) proved "Hölder’s relation" 30 years prior; <wi-ki href=Ramanujan%27s_sum#von_Sterneck>the Wikipedia page</wi-ki> does not mention this!</dt>
         <dt><a href=https://onlinelibrary.wiley.com/doi/epdf/10.1002/0471715816.ch10>this chapter from a statistics textbook</a>: was recommened for better understanding derivations of Sibuya distributions</dt>
+      </dl>
+    </details>
+    <details closed><summary>math.se deduplicate targets</summary>
+      <dl>
+        <dt>integrals of the family covered in <i><oeis-tally href=r-Stirling_numbers /></i></dt>
+        <dd><a href=https://math.stackexchange.com/q/4609845>\(\int_0^\infty{t^s\over(e^t-1)^z}\,dt\)</a>, <a href=https://math.stackexchange.com/q/1873839>\(\int\limits_0^\infty\left(t\over e^t-1\right)^n\,dt\)</a>, <a href=https://math.stackexchange.com/q/403904>\(\int_0^1{\log^nx\over(1-x)^m}\,dx=\int_0^\infty{(-t)^ne^{-t}\over(1-e^{-t})^m}\,dt\)</a><!--, <s><a href=https://math.stackexchange.com/q/116797>\(\int_0^1\left(\log x\over1-x\right)^n\,dx=\int_0^\infty\left(-t\over1-e^{-t}\right)^ne^{-t}\,dt\)</a></s>--></dd>
       </dl>
     </details>
   </body>

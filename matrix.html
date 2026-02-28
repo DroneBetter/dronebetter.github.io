@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>-->
+    <link href="./js/prism.css" rel="stylesheet" />
+  </head>
+  <body class="language-python match-braces rainbow-braces">
+    <script src="./js/prism.js"></script>
+    <title>matrix</title>
+  <h1>matrix</h1>
+    <p>in a similar manner to <a href=https://github.com/DroneBetter/dronery/blob/main/matrix.py>matrix.py</a>; that contains implementations, this collects explanations of facts for use as tools</p>
+    <p>(not quite modelled after a textbook; if an explanation of something is good, i will link it rather than attempting to reproduce it here)</p>
+    <p>though whether to store matrices as lists of column vectors or lists of row covectors is a <wi-ki href=Row-_and_column-major_order>fragmented across implementations</wi-ki>, thankfully the mathematical notation is not; \(M_{ij}\) refers to the element in the \(i\)th row and \(j\)th column, the \(i\)th component of the image of the \(j\)th basis vector (which thankfully is how Python indexing and <tt>stratrix</tt> work)</p>
+    <p>however, note that elements of vectors/matrices are 0-indexed unless specified otherwise</p>
+    <small><p>disclaimer: at time of writing, due to the way my uni operates i have only taken a first-year linalg course (which was Not Great and <abbr title="its lectures had the largest audience of any i've been to">not even specific to maths students</abbr>); the 'further linear algebra' one is delivered to two year groups at once, once per two years, and i'm writing this just on the cusp before starting it (so expect to see it changed)</p></small>
+  <h2>general facts</h2>
+    <p>in inverting a triangular matrix, each element in the output is dependent only on the submatrix from it to the diagonal in the input; see <a href=https://math.stackexchange.com/a/4801116>this post</a> on how to get a single element of an inverse thereof in terms of a determinant (warning: it is not meaningfully faster or generally useful to compute the det than the inv)</p>
+    <p>this means truncating a set of infinite triangulars to their top-left \(n\times n\) submatrices is a ring homomorphism</p>
+  <h2>geometry</h2>
+    <p>to be written</p>
+  <h3>eigenthings</h3>
+    <p>for a matrix \(M\) with an eigenvector \(\vec v\) of eigenvalue \(v\), the map of multiplying from the right by \(\vec v\) can be considered a ring homomorphism \(\mathbb C[M]\to\mathbb C[v]\)</p>
+    <p>in particular, this means we have (for any <tt>polynom</tt>) the <abbr title="if there's a more conventional name i would like to know!"><b>eigenvalue transitivity rule</b></abbr> that <tt><code>eigenvals(polynom(mat)) = map(polynom,eigenvals(mat))</tt></code></p>
+    <p>(more generally this holds for univariate functions defined by power series; they converge on the matrix iff every eigenvalue is within their radius of convergence)</p>
+    <p>recall that (as detailed in <i><oeis-tally href=linear_recurrence /></i>) the \(n\times n\) <b>companion matrix</b> \(M_{ij}=\begin{cases}-q_{j+1}&i=0\\1&i-j=1\\0&\text{else}\end{cases}\) has characteristic polynomial \(x^n+\sum_{k=1}^nq_kx^{n-k}\)</p>
+  <h4>using matrices to compute things on polynomials</h4>
+    <p>the <b>outer product</b> of two vectors \(w:=\vec v\otimes\vec  u\) is the \(\mathrm{dim}(\vec v)\cdot\mathrm{dim}(\vec u)\)-dimensional vector whose element \(w_{i,j}\) is \(v_iu_j\) (it is not a matrix; one could <abbr title="i am reticent to say linearise because that word already means something">listify</abbr> its dimensions by writing \(w_{i,j}\) as \(w_{\mathrm{dim}(\vec u)\cdot i+j}\); ie. we replace each element of \(v\) with its own \(u\) scaled by the original value)</p>
+    <p>in particular, if \(M\) is a matrix acting on vectors \(\vec v\) in a vector space \(V\) and \(N\) a matrix acting on \(\vec u\in U\), we define the matrix \(M\otimes N\) so that \((M\otimes N)(\vec v\otimes \vec u)=(M\vec v\otimes N\vec u)\); if we listify the vector space (and likewise replace each element of \(M\) with its own \(N\) scaled by the original value), this is called the <b>Kronecker product</b> of \(M\) and \(N\).</p>
+    <p>in particular, each eigenvec \(\vec v\) of \(M\) with eigenval \(\lambda_v\) outer-producted with an eigenvec \(\vec u\) of \(N\) with eigenval \(\lambda_u\) is an eigenvector of \(M\otimes N\) with eigenval \(\lambda_v\lambda_u\)</p>
+    <p>so, to take the minpoly of the product of two algebraic numbers, you can take the charpoly of the Kronecker product of their minpolies' companion matrices</p>
+    <p>via the eigenval trans. rule, the eigenvalues of \(I+M\) are 1 plus the eigenvals of \(M\); more generally, we can make the \(I\) in one of the outer-multiplicand vector spaces do something else in the other space and still have this hold, ie. \(M\otimes I_U+I_V\otimes N\) has eigenvals equal to sums of those of \(M,N\) (or linear combinations by weighting either side)</p>
+    <p>since we already know how to reciprocate an algebraic (by reversing its minpoly), this completes the proof that algebraics form a field</p>
+  <h2>Markovry</h2>
+    <p>we consider (not necessarily finite) state machines, where \(M_{ij}\) is the 'amount' (quantity, probability, etc.) of a Creature in \(j\) that moves to \(i\) (so we multiply the matrix with a vector of creatures to iterate a rule which moves/splits/reproduces them into new locations)</p>
+    <p>if all columns sum to 1, the Creature occupies a probability distribution of locations, while if they have different sums, it grows/reproduces at different rates in different places (ie. if matrix elements count multiplicities of edges between nodes, quantities of Creatures count paths by endpoint; see <i><oeis-tally href=chessboards#the_fourierful_king_of_chebyshev /></i>)</p>
+    <p>in the probability distribution case, there are some cool things one can do; in particular, there is <a href=https://math.stackexchange.com/a/4656315>a very nice result</a> allowing the computation of expected waiting time for the Creature to enter a particular state</p>
+    <p>if a matrix is partitionable into blocks to be of the form \(M=\begin{array}{|c|c|}\hline Q&S\\\hline 0&R\\\hline\end{array}\) (ie. once a Creature has undergone a transition in \(S\) to enter the (square) \(Q\) block, there is no escape; if there is you must pretend there is not), \(M^n=\begin{array}{|c|c|}\hline Q^n&S{1-R^n\over1-R}\\\hline 0&R^n\\\hline\end{array}\) (where \(1\) is the identity matrix). Since each column has sum 1, \(\lim\limits_{n\to\infty}R^n=0\), and \(\lim\limits_{n\to\infty}M^n=\begin{array}{|c|c|}\hline Q^n&{S\over1-R}\\\hline 0&0\\\hline\end{array}\)</p>
+    <p>the cool result is that \(\left(1\over1-R\right)_{ij}\) is the expected time spent in state \(i\) after starting in state \(j\), so the \(j\)th column sum is the total expected time to get from \(j\) to \(Q\).</p>
+    <p>in general this result allows one to compute waiting times efficiently, like <oe-is href=A392624></oe-is>, but in some cases it offers a way forward to solving problems that otherwise seem daunting and harrowing</p>
+  <h3>coin survival</h3>
+    <p>say you have \(n\) coins which each have a probability \(p\) of landing death (whereupon they die), and you flip all survivors each turn.</p>
+    <p>where states represent quantities of coins alive, the chance of \(j\) transitioning to \(i\) is \(M_{ij}=\binom jip^{j-i}q^i\), so \(M^n_{ij}=\binom jiq^{ni}(1-q^n)^{j-i}\), so \(\left(\frac1{1-M}\right)_{ij}=\binom ji\sum_{n=0}^\infty q^{ni}(1-q^n)^{j-i}\), and the expected waiting number of turns to termination is thus \(\sum_{n=0}^\infty\sum_{i=1}^j\binom jiq^{ni}(1-q^n)^{j-i}=\sum_{n=0}^\infty\left(1-(1-q^n)^j\right)=\sum_{i=1}^j\binom ji{(-1)^{i-1}\over1-q^i}\).</p>
+  <h3>houses of fleas (Ehrenfest model)</h3>
+    <p>houses A and B contain \(k\) and \(n-k\) fleas respectively. each turn, a random flea jumps from its house to the opposite one.</p>
+    <p>(this is sometimes equivalently formulated via random walks between vertices of a hypercube, where each flea represents a dimension)</p>
+    <p>so our Markov matrix is \(M_{ij}=\begin{cases}\frac jn&i=j-1\\1-\frac jn&i=j+1\\0&\text{else}\end{cases}\)</p>
+    <p>here we instead use the <b>fundamental theorem of ergodic Markov chains</b>; if a chain is ergodic (for any pair of states \(i,j\), the chance of hitting \(j\) starting at \(i\) <abbr title="for finite chains, this criterion reduces to 'has nonzero chance of getting from i to j in some number of iterations'; we only need this more general statement for infinite chains">converges to \(1\) as # iterations \(\to\infty\)</abbr>), it has a unique stationary distribution with eigenvalue 1, and the expected waiting time to return to a starting position is the reciprocal of the proportion of this distribution that it occupies</p>
+    <p>here we can verify that the stationary distribution has \(\binom nk\over2^n\) in state \(k\), since \(\binom nk=\frac{n-k+1}n\binom n{k-1}+\frac{k+1}n\binom n{k+1}\), so the average waiting time (via <!--the beta integral) \(\frac1{n+1}\sum_{k=0}^n{2^n\over\binom nk}=2^n\sum_{k=0}^n\int_0^1x^k(1-x)^{n-k}\,dx=\int_0^1\left((1-x)^n{1-\left(x\over1-x\right)^{n+1}\over1-{x\over1-x}}={(1-x)^{n+1}-x^{n+1}\over1-2x}\right)\,dx\)-->\(\frac1{(n+1)\binom nk}=[x^{n+1}](x-1)^{n-k}\log\frac1{1-x}\)) becomes \(2^n[x^{n+1}]{1-(x-1)^{n+1}\over1-(x-1)}\log\frac1{1-x}=\sum_{k=1}^{n+1}{2^{k-1}\over k}\)</p>
+  <h2>the spectral theorem</h2>
+    <p>(in its own section because it pertains to the two preceding ones)</p>
+    <p>there are a few nice facts that hold whenever a matrix is symmetric</p>
+    <dl>
+      <dt>all eigenvalues are real</dt>
+      <dt>the Jordan normal form is diagonal, ie. there are no higher-order generalised eigenvectors</dt>
+      <dt>eigenvectors are orthogonal, meaning</dt>
+      <dd>diagonalisation is equivalent to conjugating with a rotation matrix</dd>
+      <dd>changing into the eigenbasis is easier; just dot-product a vector \(v\) with every (normalised) eigenvector to find its magnitude in \(v\)'s decomposition</dd>
+    </dl>
+    <p>two important cases in which matrices are symmetrical are adjacency matrices of undirected graphs and quadratic forms</p>
+  <h2>quadratic forms</h2>
+    <p>a QF is a matrix \(Q\) that acts on vectors by \(Q(\vec x)=\vec x^TQ\vec x=\sum_{i,j\in[0..n)}Q_{ij}x_ix_j\)</p>
+    <p>in particular \(Q\)'s action is invariant under transferring some 'mass' from \(Q_{ij}\) to \(Q_{ji}\), so one can canonicalise it to either a triangular or symmetric matrix</p>
+    <p>so, for any QF \(Q\), written in symmetric form, it can be diagonalised as \(D:=R^{-1}QR\) so \(Q=RDR^{-1}\); recall that since \(R\) is a rotation matrix, \(R^{-1}=R^T\)</p>
+    <p>then when this diagonalised version acts on the vector \(\vec x\) it can be written as \(\vec x^TD\vec x=\vec x^TR^TQR\vec x=(R\vec x)^TQ(R\vec x)\)</p>
+    <p>ie. \(Q\) acts as a weighted sum of squares on an orthogonal basis of \(\mathbb R^n\) given by the columns of \(R^{-1}\)</p>
+    <p>this gives us a cool fact; if we consider a quadratic form's algebraic curve \(Q(\vec x)=c\) to have an associated function \(f\) from \(\mathbb S^{n-1}\) (the surface of an infinitesimal eyeball at the origin) to \(\mathbb R\), which gives the squared distance of roots in the ray outwards from each point on the eye, then (assuming nondegeneracy, ie. that \(Q\) is of full rank)</p>
+    <dl>
+      <dt>\(f\)'s output exists everywhere, and is in the extended reals \(\overline{\mathbb R}=\mathbb R\cup\{\tilde\infty\}\)</dt>
+      <dt>\(f\) is continuous with \(\overline{\mathbb R}\)'s topology</dt>
+      <dt>the set of points where \(f\)'s Jacobian is zero (ie. whose normal passes through the origin), which consists of \(k\)-spheres for each of \(f\)'s eigenvalues with multiplicity \(k\), has all occupying subspaces orthogonal to each other; you can choose an orthogonal basis for \(\mathbb R^n\) from it (which is unique if all eigenvals are distinct)</dt>
+    </dl>
+    <p>two other things about quadratic forms</p>
+    <dl>
+      <dt>a quadratic polynomial can be converted into a quadratic form (with no linear factors) by offsetting the input vector to complete the square by solving a linear equation</dt>
+      <dt>one place where they arise is the second-order Taylor series at a stationary point of a multivariate function! diagonalisation tells you whether it's extremal (if the entries all have the same sign) or a saddle point, and which directions it's maximally sensitive to perturbations in</dt>
+    </dl>
+  <h2><abbr title="linear feedback shift registers">LFSRs</abbr></h2>
+    <p>i have a somewhat nice writeup for this residing in <i><oeis-tally href=linear_recurrence /></i>, go read that (covers generalised eigenvector chains and <abbr title="Jordan normal form">JNF</abbr> through a nice example application)</p>
+  <h2>important subrings of the ring of infinite triangular matrices</h2>
+    <dl>
+      <dt>the \(n\times n\) circulant matrix in which \(M_{ij}=a_{(j-i)\%n}\) is isomorphic to the polynomial \(\sum_{k=0}^{n-1}a_kx^k\pmod{1-x^n}\), by making it infinite one need not handle wraparound, and so triangular matrices with \(M_{ij}=[j\ge i]a_{j-i}\) emulate polynomials mod \(x^n\).</dt>
+      <dd>for a circulant \(n\times n\) with the sequence \(a_k=[k=1]\), the matrix \(M\) has charpoly \(x^n-1\), each eigenvalue \(e^{\frac kn\tau i}\) having eigenvector \(v^{(k)}_j=e^{\frac{kj}n\tau i}\); through this together with eigenval trans. rule, we obtain the eigenvals/charpoly of arbitrary circulants</dd>
+      <dt>likewise, the set of Dirichlet series can be embedded; if (1-indexed) \(M_{ij}=[i|j]a_{\frac ji}\) and \(N_{ij}=[i|j]b_{\frac ji}\), then \((MN)_{ij}=\sum_{k=0}^nM_{ik}N_{kj}=\sum_{i|k|j}M_{ik}N_{kj}\overset{l=\frac ki}=\sum_{l|\frac ji}M_{i,il}N_{il,j}=\sum_{l|\frac ji}a_lb_{\frac j{il}}=[i|j](a*b)_{\frac ji}\) encodes Dirichlet convolution into matrix multiplication!</dt>
+      <dd><p>for instance, the all-1s sequence's autodirichonvolution is <oe-is href=A000005></oe-is></p><pre><code>>>> print(stratrix(matpow(tap(lambda i: tap(lambda j: j%i==0,range(1,13)),range(1,13)),2)))
+(1,2,2,3,2,4,2,4,3,4,2,6,
+  ,1, ,2, ,2, ,3, ,2, ,4,
+  , ,1, , ,2, , ,2, , ,3,
+  , , ,1, , , ,2, , , ,2,
+  , , , ,1, , , , ,2, , ,
+  , , , , ,1, , , , , ,2,
+  , , , , , ,1, , , , , ,
+  , , , , , , ,1, , , , ,
+  , , , , , , , ,1, , , ,
+  , , , , , , , , ,1, , ,
+  , , , , , , , , , ,1, ,
+  , , , , , , , , , , ,1)</pre></code>
+  <p>although this is not very useful to implement; even if you have a perfect sparse matrix handler, the # of nonzero entries is <oe-is href=A006218></oe-is>(n) \(\sim n(\log n+2\gamma-1)\), and the # of multiplications is <oe-is href=A061201></oe-is>(n) \(\sim n\left(\frac{\log^2n}2+(3\gamma-1)\log n+3(\gamma^2-\gamma-\gamma_1)+1\right)\); computing the convolution directly meanwhile takes <oe-is href=A006218></oe-is> multiplications, so using matrices is about \(\log n\) times worse in both time and space</p></dd>
+    </dl>
+  <h3>operator calculus</h3>
+    <p>you can represent operations on the vector space of power series, with Stirling numbers being the change-of-basis coefficients between ordinary and rising and falling powers, then rewrite the resulting sum formula for each term of the matrix via bivariate generating functions and annihilate the coefficient extractors; this is discussed in <i><oeis-tally href=an_introduction_to_Stirling_numbers#calculus_of_the_wrong_kinds /></i> and (more advancedly) in <a href=https://math.stackexchange.com/a/5108126>this answer</a></p>
+  <h2>external links</h2>
+    <p>see also <a href=https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf>the matrix cookbook</a> (and its adaptation into <a href=https://tensorcookbook.com>the tensor cookbook</a>)</p>
+  </body>
+</html>
