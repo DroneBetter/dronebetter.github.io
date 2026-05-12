@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head><script src="./js/head_loader.js"></script><link href="./js/prism.css" rel="stylesheet" /></head>
+  <head><script src=./js/head_loader.js></script><link href="./js/prism.css" rel="stylesheet" /></head>
   <body>
-    <script src="./js/prism.js"></script>
+    <script src=./js/prism.js></script>
     <title>musings</title>
   <h1>page for some miscellaneous musings</h1>
-    <p>this is similarish to a blog, but more like a wiki page/the rest of my site in that everything is subject to change (and written <abbr title="mostly consisting of things that i find myself repeating in conversations, during which i occasionally have new observations; this lets me aggregate them">with the intention of such</abbr>), so sections are left undated; some may be split off into their own pages</p>
+    <p>this is similarish to a blog, but more like a wiki page/the rest of my site in that everything is subject to change (and written <abbr title="this page in particular mostly consists of things that i find myself repeating in conversations, during which i occasionally have new observations; this lets me aggregate them">with the intention of such</abbr>), so sections are left undated; some may be split off into their own pages</p>
   <h2>on cultures of collaborative internet maths research platforms</h2>
     <h3>the OEIS</h3>
     <p><i>see also <a href=https://habr.com/en/articles/701208>this nice exposition</a> about its workings from a more idealistic perspective</i></p>
     <p>i have been observing the OEIS from the inside for a long time</p>
     <p><i>admittedly i have not viewed the typical contribution process much, this largely reflects my experience and extrapolation of a few others' from clicking on usernames</i></p>
-    <p>it is somewhat uniquely poised as a site which both welcomes contribution from anyone and, unlike Wikipedia or StackExchange, requires moderators to manually approve of edits.</p>
+    <p>it is somewhat uniquely poised as a site which both welcomes contribution from anyone and, unlike Wikipedia or StackExchange, requires <abbr title="referred to as editors-in-chief, as opposed to associate editors (who just review)">moderators</abbr> to manually approve of edits.</p>
     <p>they also are chronically understaffed, and a lot of the staff they do have are chronically pedantic.</p>
     <p>many see each open draft as an opportunity to teach a lesson in didacticism to contributors, by flagging up the issue they see in a comment and awaiting the original submitter's revision to remediate it.</p>
-    <p>the problem with this is that being thinly stretched and unable to guarantee prompt responses, this adds hours (at best) to weeks (usually only days) of waiting time before one may start a new draft slot.</p>
-    <p>and when the issues are things like leaving one added formula unsigned, or one program not demarcated as being in Python when it clearly starts by importing sympy, the unwillingness to fix what pointed out (and the implication that you could learn by fixing it yourself, and that it's worth slowing down your contribution by hours to days to teach you this lesson) comes across as condescending.</p>
+    <p>the problem with this is that being thinly stretched and unable to guarantee prompt responses <i>to these requested revisions</i>, this adds hours (at best) to weeks (usually only days) of waiting time before one may start a new draft slot.</p>
+    <p>and when the issues are things like leaving one added formula unsigned, or one program not demarcated as being in Python when it clearly starts by importing sympy, their unwillingness to fix what they pointed out (and the implication that you could learn by fixing it yourself, and that it's worth slowing down your contribution by hours to days to teach you this lesson) comes across as condescending.</p>
     <p>many contributors who demonstrably contributed interesting things in high volume over multiple-year periods have since departed, and others have snapped and been banned. (i myself was subject to a year-long ban for editing in others' draft slots, and after coming back resolved to use the wiki as my primary outlet to prevent a reoccurrence)</p>
-    <p>however, it helps a lot to bear in mind that the senior editors aren't malicious, and to be endlessly patient.</p>
-    <p>as you can possibly tell from this website, i like lightly-formatted monospaced text a lot; i've seen the lack of LaTeX support <a href=https://english.stackexchange.com/q/253916>levied</a> as a criticism/area of possible improvement a few times, but am relatively ambivalent on that front. an optional LaTeX frontend would be nice, but its usefulness would be inhibited by the existing strict rules about notation intended to minimise ambiguity (ie. we'd still have to write \(|\mathrm{Stirling1}(n,k)|\) instead of \(n\brack k\)). (I personally solve this problem by spinning up a userspace page with extended notes upon a sequence whenever I have them, but have been <abbr title="in emails with Sean A. Irvine">told</abbr> this is an unintended use case and i should expect to fight breaking changes.)</p>
+    <p>however, it helps a lot to bear in mind that the senior editors aren't malicious, and to try to emulate an endlessly patient entity.</p>
+    <p>as you can possibly tell from this website, i like lightly-formatted monospaced text a lot; i've seen the lack of LaTeX support <a href=https://english.stackexchange.com/q/253916>levied</a> as a criticism/area of possible improvement a few times, but am relatively ambivalent on that front. an optional LaTeX frontend would be nice, but its usefulness would be inhibited by the existing strict rules about notation intended to minimise ambiguity (ie. we'd still have to write \(|\mathrm{Stirling1}(n,k)|\) instead of \(n\brack k\)). (I personally solve this problem by spinning up a userspace page with extended notes upon a sequence whenever I have them, but have been <abbr title="in emails with Sean A. Irvine">told</abbr> this is an unintended use case and i should expect to fight breaking changes in the software.)</p>
     <p>the main two areas for improvement i can see are not in the database's presentation to readers at all, but interaction between contributors; the draft review system and the place of correspondence</p>
     <dl>
       <dt>allowing contributors to categorise the drafts they open in one (or multiple) categories (like combinatorics, number theory, group theory, geometry, integer partitions, analysis of algorithms (rough examples)), and senior editors to filter by category of specialisation, would probably speed up the editorial process somewhat</dt>
@@ -32,14 +32,21 @@
         <p>there is also no ability to report a post for being on-topic but in need of moderator intervention (ie. if it merely presents a sequence and links a largely LLM-generated LaTeX file to wade through but doesn't provide an explanation on-site) since one can only flag them to Google's moderation directly</p>
       </dd>
     </dl>
-    <p>on the topic, i have seen the talk/essay <a href=https://gwern.net/doc/sociology/technology/2005-shirky-agroupisitsownworstenemy.pdf><i>A group is its own worst enemy</i></a> referred to a lot in the context of StackExchange. it's on how making software hosting groups is different from hosting interaction between pairs like SMS, since you must optimise for more than just ergonomics (how easy it is to send messages), also having to add abrasion in enough places to avoid unwanted contributions and maintain cohesion</p>
+    <p>on the topic, i have seen the talk/essay <a href=https://gwern.net/doc/sociology/technology/2005-shirky-agroupisitsownworstenemy.pdf><i>A group is its own worst enemy</i></a> referred to in the context of StackExchange. on how making software hosting groups is different from hosting communication between pairs like SMS, since rather than optimising for ergonomics (how easy it is to send messages), one must also add abrasion in places to avoid <i>un</i>wanted contributions and maintain cohesion</p>
     <p>from this perspective, SE is pretty good at its philosophical purpose of becoming the best possible Q&A database on each subject, and i find cohesion-maintaining a compelling activity (there is no reputation award for helpful flags, but trawling through 15 years of history to find posts asking about the same concept, and deduplicating one against the other so both become linked, and all the ideas people had in answering one can be accessed from the other); the close votes queue's size fluctuates in a way suggesting other people go on similar such 'dives'.</p>
     <p>the OEIS's goal is for everything to be in the best state possible from the outset (Sean A. Irvine makes a personal effort to reproduce new sequences before approving them, which i <i>think</i> usually just means verifying that the program produces the terms, rather than rederiving it (which is nontrivial in cases like <oe-is href=A392624></oe-is> and so would entail superhuman productivity to do to the entire queue)), though the impression i get from a lot of Roger L. Bagula's contributions is they once had a 'contribute now, investigate later' mentality</p>
     <p>and in this regard i find the fact that they simultaneously <abbr title="this is not so notable in and of itself; the ConwayLife wiki has <a href=https://conwaylife.com/wiki/LifeWiki:LifeWiki_is_not_Wikipedia>a similar policy</a>, since it's often the only way to have important things written thoroughly about">permit original research</abbr> (<abbr title="excluding weird edge cases">unlike Wikipedia</abbr>) and also have little to no vetting of new accounts besides a personal statement to be very noble and commendable, though perhaps <i>too</i> idealistic in the face of the generally-very-long draft review backlogs</p>
-    <p>the stated rules don't prime one for the experience to expect when contributing, and editors are usually quite merciless in enforcing certain policies, most notably</p>
+    <p>the stated rules don't prime one for the experience to expect when contributing, and editors are usually quite merciless in enforcing certain <abbr title="or at least, less written">unwritten</abbr> policies, most notably</p>
     <dl>
       <dt>"don't include programs demonstrating methods of theoretical interest if they're not practical for computing the sequence"</dt>
-      <dd>the reasoning being that languages are ephemeral and their interpretation by future readers as exhibits/demonstrations rather than tools cannot be guaranteed</dd>
+      <dd>
+        <p>the reasoning being that languages are ephemeral and their interpretation by future readers as exhibits/demonstrations rather than tools cannot be guaranteed</p>
+        <p>i also am often told (after adding two formulas and adding an accompanying program to each) things like (in my recent revision to <oe-is>A203092</oe-is>)</p>
+        <div class=chat>
+          <p class=msg><b class=name style=--name-color:#ffffff title="Sean A. Irvine" name-width=4>Sean</b> Choose one Python program. Don't make more work for the reader.</p>
+        </div>
+        <p>which seems to be at odds with Sean's recent push for reproducibility; it would be nice to have some way of delineating programs by use case (recommended fastest (may change for different sizes of input) vs. curiosity); i would appreciate being able to collapse still-nice-to-have-but-not-so-relevant parts (like i tend to do in my wiki pages).</p>
+      </dd>
       <dt>"don't include the means by which you arrived upon a result"</dt>
       <dd>
         <p>this is one that i have had a lot of friction with, since without explanation (or at least reference) to how to reproduce analogous results for analogous problems, the epistemological value (which, besides the scale, i see as <i>the</i> main factor differentiating the OEIS from other resources like the DLMF) is significantly reduced</p>
@@ -49,6 +56,7 @@
         <p>this feedback loop of frustration seems like a trap others could easily fall into, though a thorough case analysis (sampled from the set of <abbr title="this is a biased sampling weighted by duration spent in drafthood; this is intended since it correlates with frustration">currently-open drafts</abbr>) would be necessary</p>
       </dd>
     </dl>
+    <p>i am in favour of post-hoc community self-moderation (partly because ante-hoc has been so frustrating for me), but i am unsure that math.se is a perfect system of it; see the <a href=https://sites.google.com/view/kingcapbew/a-holistic-user>first of three parts</a> of Sarvesh Ravichandran Iyer's blogpost on the matter of moderation. In summary, the most active users at writing answers and the most active at moderating are generally a bit more disjoint than would be ideal; the suspension of high-rep users (for answering low-quality questions to accrue karma before their closure) has been a semicommon occurrence since the <a href=https://math.meta.stackexchange.com/q/33508>Enforcement of Quality Standards</a> initiative started, and i don't believe an analogous situation (substituting questions for sequence entries and answers for comments/formulas) would be desirable to have in the OEIS. (Besides, there is <abbr title="albeit still nonzero, as opposed to eg. Wikipedia">less implicit obligation to respect authorial intentions</abbr>; .) However, i do think the threshold editorial role for approving edits to existing sequences should be considerably lower and (easier to receive) than that for approving new sequences.</p>
   <div id=wolfram><h2>on Mathematica/WolframScript</h2></div>
     <p>as someone who does a lot of the kind of maths that is amenable to computers, i have become familiar with a few CASs.</p>
     <p>note that <a href=https://www.wolfram.com/wolframscript>WolframScript</a> is free for personal use, without requiring any proof of affiliation to an institution!</p>
@@ -142,12 +150,17 @@ Out//MatrixForm= {0, 3} {1, 1, 2, 6, 24}
     </dl>
     <p>i strongly advise against both if you can help it</p>
   <h2>vernacular i like</h2>
-    <p>anything without a wiktionary page should be assumed to be one of my idiosyncrasies and not added under any circumstances</p>
+    <p>anything without a wiktionary page should be assumed to be one of my idiosyncrasies and not added to it under any circumstances</p>
+    <p>some of these would have more utility if widely adopted</p>
     <dl>
       <dt><a href=https://en.wiktionary.org/wiki/linearithmic>linearithmic</a></dt>
-      <dd>on this matter also sqrtic, ie. "a crude heuristic argument would suggest that the error of <oe-is href=A392624></oe-is>(n)/<oe-is href=A392625></oe-is>(n) \(\sim\zeta(2)n\) is sqrtic, but in fact it appears to be logarithmic"; i like abbreviations designed to have few characters being adapted into human speech in general</dd>
-      <dt><a href=https://en.wiktionary.org/wiki/Poissonization>Poissonization</a>... yesss being turned into a fish... most wonderful...</dt>
+        <dd>on this matter also sqrtic, ie. "a crude heuristic argument would suggest that the error of <oe-is href=A392624></oe-is>(n)/<oe-is href=A392625></oe-is>(n) \(\sim\zeta(2)n\) is sqrtic, but in fact it appears to be logarithmic"; i like abbreviations designed to have few characters (with no regard for pronunciation) being adapted into human speech in general</dd>
+      <dt><a href=https://en.wiktionary.org/wiki/Poissonization>Poissonization</a>... yesss being turned into a fish...</dt>
       <dt>dirichlution, for Dirichlet convolution (courtesy of racheline)</dt>
+      <dt>,use of a comma at the beginning of a sentence to denote prepending an intake of breath or otherwise an air of reticence/taken-abackness</dt>
+      <dt>'genfun' to mean generating function (since 'g.f.' can be misinterpreted as girlfriend and 'generating function' can be misinterpreted by the uninitiated as 'function that outputs the sequence')</dt>
+      <dt>writing 0st, 1nd, 2rd, etc. to refer to 0-indexed lists</dt>
+        <dd>in particular this is more sensical when talking about generalised eigenvectors; one would refer to an eigenvec as 2rd-order because it has 2 descendents and so (under application of the matrix) grows with degree 2</dd>
     </dl>
   </body>
 </html>

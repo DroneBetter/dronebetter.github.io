@@ -61,9 +61,19 @@
         <dt>expound upon cool result (3.1.10) of <a href=https://arxiv.org/abs/1303.1856>this nice paper on Euler-Mascheroni</a> and incorporate into <oeis-tally href="Stirling's_approximations"></oeis-tally></dt>
         <dt>investigate \(r\)-(numbers <oeis-tally href=above_the_Stirling_triangles></oeis-tally>); <a href=https://math.stackexchange.com/a/5123670>this answer</a> shows that \(B^+_n=-n\zeta(1-n)=\sum_{k=0}^n{k!\over k+1}(-1)^k{1+n\brace1+k}\) can be continued to negative \(n\), likewise for \(B(n,v)=-n\zeta(1-n,v)=\sum_{k=0}^n{k!\over k+1}(-1)^k{n+v\brace k+1}_v\)</dt>
         <dt>update list of sequences via Q function in <i><oeis-tally href="Euler's_tree_function" /></i> with <oe-is href=A089901></oe-is>(n) \(=n^n(n+Q(n)+1)\)</dt>
-        <dt>page about facts in number theory with many proofs; ie. divergence of sum of reciprocals of primes (of which i know three; Euler's (given on <wi-ki href=Divergence_of_the_sum_of_the_reciprocals_of_the_primes>the Wikipedia page</wi-ki>), the one Apostol aforementionedly presents in <i>Introduction to Analytic Number Theory</i> (1976), Monson's from <a href=https://math.uchicago.edu/~may/REU2016/REUPapers/Monson.pdf><i>Finite Fourier analysis and Dirichlet's theorem</i></a> (2015))</dt>
-        <dt>essay on the factorial being better than the gamma function with reference to various identities (which i will try to remember to collect here until i split it off)</dt>
-        <dd>Ramanujan's integral (<a href=https://dlmf.nist.gov/5.13.E4>DLMF 5.13.4</a>) is much nicer as \(\int_{-\infty}^\infty{dt\over(a+t)!(b+t)!(c-t)!(d-t)!}={(a+b+c+d)!\over(a+c)!(a+d)!(b+c)!(b+d)!}\)</dd>
+        <dt>page about facts in number theory which have many proofs to collect; ie. divergence of sum of reciprocals of primes (of which i know three; Euler's (given on <wi-ki href=Divergence_of_the_sum_of_the_reciprocals_of_the_primes>the Wikipedia page</wi-ki>), the one Apostol aforementionedly presents in <i>Introduction to Analytic Number Theory</i> (1976), Monson's from <a href=https://math.uchicago.edu/~may/REU2016/REUPapers/Monson.pdf><i>Finite Fourier analysis and Dirichlet's theorem</i></a> (2015))</dt>
+        <dt>essay on the factorial being better than (or rather, not worse than) the gamma function with reference to various identities (which i will try to remember to collect here until i split it off)</dt>
+        <dd>Ramanujan's integral (<a href=https://dlmf.nist.gov/5.13.E4>DLMF 5.13.4</a>) is much nicer as \(\int_{-\infty}^\infty{dt\over(a+t)!(b+t)!(c-t)!(d-t)!}={(a+b+c+d)!\over(a+c)!(a+d)!(b+c)!(b+d)!}\), while Barnes' (<a href=https://dlmf.nist.gov/5.13.E3>DLMF 5.13.3</a>) is nicest in the gammaful form given</dd>
+        <dt>page about inequalities (perhaps); mostly this entry is here because i saw <a href=https://www.lkozma.net/inequalities_cheat_sheet/ineq.pdf>inequalities cheat sheet</a> and realised "ooh ooh i know about this" when i saw the binomial one; specifically,</dt>
+        <dd>\[
+          \begin{matrix}
+          &&\sum_{j=0}^k\binom nj\\
+          &\!\!\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\le}}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\le}}\!\!\!\!\!\!\\
+          \binom nk\!&&&&\!\left({en\over k}\right)^k\\
+          &\!\!\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\le}}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\le}}\!\!\!\!\!\!\\
+          &&{n^k\over k!}
+          \end{matrix}
+          \]</dd>
       </dl>
     </details>
     <details open><summary>things to read and digest/incorporate cool results from</summary>
@@ -74,6 +84,13 @@
         <dt>G. Cab, <a href=https://math.stackexchange.com/a/2033440>definition of r-subset numbers through Eulerians</a></dt>
         <dt>Peter H. van der Kamp, <a href=https://arxiv.org/abs/1201.3139><i>On the Fourier transform of the greatest common divisor</i></a> (2012), §3 'A historical remark, and generalised Ramanujan sums' mentions that J.C. Kluyver, <a href=https://dwc.knaw.nl/DL/publications/PU00013765.pdf><i>Some formulae concerning the integers less than n and prime to n</i></a> (1906) proved "Hölder’s relation" 30 years prior; <wi-ki href=Ramanujan%27s_sum#von_Sterneck>the Wikipedia page</wi-ki> does not mention this!</dt>
         <dt><a href=https://onlinelibrary.wiley.com/doi/epdf/10.1002/0471715816.ch10>this chapter from a statistics textbook</a>: was recommened for better understanding derivations of Sibuya distributions</dt>
+      </dl>
+    </details>
+    <details closed><summary>large programming projects</summary>
+      <dl>
+        <dt><i>Ocmo</i> fangame (maybe entitled moOc, save for <a href=https://en.wiktionary.org/wiki/MOOC>that already being a term</a>; mo-Oc)</dt>
+        <dd>definitely to implement: replay system, n-body physics (already done), nested 2-body physics (planets form leafs of a binary tree)</dd>
+        <dd>maybe to implement: objects (based on either vicinity or touchedness) that slow down time followed by replay interpolating frames to show run at full speed</dd>
       </dl>
     </details>
     <details closed><summary>math.se deduplicate targets</summary>
