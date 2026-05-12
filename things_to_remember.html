@@ -64,16 +64,23 @@
         <dt>page about facts in number theory which have many proofs to collect; ie. divergence of sum of reciprocals of primes (of which i know three; Euler's (given on <wi-ki href=Divergence_of_the_sum_of_the_reciprocals_of_the_primes>the Wikipedia page</wi-ki>), the one Apostol aforementionedly presents in <i>Introduction to Analytic Number Theory</i> (1976), Monson's from <a href=https://math.uchicago.edu/~may/REU2016/REUPapers/Monson.pdf><i>Finite Fourier analysis and Dirichlet's theorem</i></a> (2015))</dt>
         <dt>essay on the factorial being better than (or rather, not worse than) the gamma function with reference to various identities (which i will try to remember to collect here until i split it off)</dt>
         <dd>Ramanujan's integral (<a href=https://dlmf.nist.gov/5.13.E4>DLMF 5.13.4</a>) is much nicer as \(\int_{-\infty}^\infty{dt\over(a+t)!(b+t)!(c-t)!(d-t)!}={(a+b+c+d)!\over(a+c)!(a+d)!(b+c)!(b+d)!}\), while Barnes' (<a href=https://dlmf.nist.gov/5.13.E3>DLMF 5.13.3</a>) is nicest in the gammaful form given</dd>
-        <dt>page about inequalities (perhaps); mostly this entry is here because i saw <a href=https://www.lkozma.net/inequalities_cheat_sheet/ineq.pdf>inequalities cheat sheet</a> and realised "ooh ooh i know about this" when i saw the binomial one; specifically,</dt>
-        <dd>\[
+        <dt>page about inequalities (perhaps);
+        <dd><p>mostly this entry is here because i saw <a href=https://www.lkozma.net/inequalities_cheat_sheet/ineq.pdf>inequalities cheat sheet</a> and thought "ooh ooh i know about this" when i saw the binomial one and thought writing it as a partial ordering of formulas would be cool; specifically,</p>
+          <p>\[
           \begin{matrix}
-          &&\sum_{j=0}^k\binom nj\\
-          &\!\!\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\le}}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\le}}\!\!\!\!\!\!\\
-          \binom nk\!&&&&\!\left({en\over k}\right)^k\\
-          &\!\!\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\le}}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\le}}\!\!\!\!\!\!\\
-          &&{n^k\over k!}
+          &&{n^k\over k!}\\
+          &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\le}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!\!\!\!\!\!\\
+          \binom nk\!&\!\!\!\!\le\!\!&\!\!\sum_{j=0}^k\binom nj&\le&\!\left({en\over k}\right)^k\\
+          &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\underset{\tiny \text{iff}\,k\le\frac n2}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\le}\!\!\!\!\!\!\\
+          &&{n^n\over k^k(n-k)^{n-k}}\\
+          &&&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\underset{\tiny k>1}\le}}&\binom nk2^k\\
           \end{matrix}
-          \]</dd>
+          \]</p>
+        <p>where the \(k\le n/2\) inequality is a special case of the <a href=https://math.stackexchange.com/a/5134353>binomial distribution's Chernoff bound</a>; see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of the last one into an enveloping series for \(\sum_{j=0}^k\binom nj\)</p>
+        <p>also, as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds
+          \[\sqrt{x(x+c)}&lt;(x+c)\frac{(1+\frac cx)^{\frac xc}}e&lt;x+\frac c2\]
+        (a refinement of AM-GM!)</p>
+      </dd>
       </dl>
     </details>
     <details open><summary>things to read and digest/incorporate cool results from</summary>

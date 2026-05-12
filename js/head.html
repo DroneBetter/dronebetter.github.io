@@ -55,7 +55,7 @@
       const suffix=this.getAttribute("href");
       const style=this.getAttribute("style");
       const a=document.createElement("a");
-      const channel=["368348645382291469","380424544047071242","691241596036972604","691931146971381761"][this.getAttribute("c")]
+      const channel=["368348645382291469","380424544047071242","691241596036972604","691931146971381761"][this.getAttribute("c") ?? 2]
       a.href="https://discord.com/channels/368348645382291466/"+channel+"/"+suffix;
       a.style=style;
       if (this.childNodes.length) {while (this.firstChild) a.appendChild(this.firstChild);}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="./js/head_loader.js"></script></head>
+  <body>
+    <title>A058349-related triangle</title>
+    <h1>A058349-related triangle</h1>
+<pre>nth row sum is A000262(n).
+Conjecture: kth column sum is A058349(k+1).
+a(n,k) = Sum_{i=0..n} A048994(n+1,n+1-i)*Sum_{j=0..n} C(n,j)*(-1)^(n-j)*A048993(k-i+j,j)
+A048993(k+x,x) = Sum_{n=0..2*k} C(x,n)*Sum_{i=0..k} a(n,i)*A048993(n+k-i,n)
+nth row o.g.f.: 2F0(-n,1/x-n;;x)
+E.g.f.: (1-x*y)^(1/y-1)*e^(x/(1-x*y))
+Multiplying the factors of the e.g.f. as a convolution, one obtains
+a(n,k) = Sum_{i=k..n} C(n,i)*Sum_{j=i..n} (-1)^i*A048994(i+1,j-k+1)*A271703(n-i,n-k).
+a(n+1,k+1) = (2*n+1)*a(n,k) - n*(n*a(n-1,k-1) - a(n-1,k))
+a(n,n)=n!, a(n,n-1)=n!*(n-H_n)=A067318(n), a(n,n-2)=n!*(n*(n-1)/4-n*(H_n-1)+(H_n^2-H^(2)_n)/2), H^(2)_n the second-order harmonic numbers.
+
+n\k|0 1 2  3   4     5      6       7        8         9        10       11
+---+-----------------------------------------------------------------------
+  0|1 
+  1|  1 
+  2|  1 2 
+  3|    7  6 
+  4|    3 46  24 
+  5|      55 326   120 
+  6|      15 760  2556    720 
+  7|         525  9856  22212    5040 
+  8|         105 12460 128492  212976    40320 
+  9|              5985 257068 1731276  2239344    362880 
+ 10|               945 217350 5031460 24403176  25659360   3628800 
+ 11|                    79695 6536530 97266620 361732536 318540960 39916800</pre>
+    
+  </body>
+</html>

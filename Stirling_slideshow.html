@@ -39,33 +39,34 @@
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="2" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">exponential generating functions</h1>
-      <p>we encode sequences to their e.g.f.s by taking \(A(x)=\sum_{n=0}^\infty a(n)\frac{x^n}{n!}\)</p>
+      <p>we encode sequences to their e.g.f.s by taking \(A(x)=\sum_{n=0}^\infty a(n){x^n\over n!}\)</p>
       <p>analytic functions correspond uniquely with their series expansions, and we will retrieve sequences back out of them!</p>
       <blockquote>A generating function is a clothesline on which we hang up a sequence of numbers for display.</blockquote>
       <p>-Herbert S. Wilf, author of <i>generatingfunctionology</i></p>
-      <p>specifically, we write \(a(n)=\left[\frac{x^n}{n!}\right]A(x)\) to mean \(\left(\frac d{dx}\right)^nA(x)\big|_{x=0}\).</p>
+      <p>specifically, we write \(a(n)=\left[{x^n\over n!}\right]A(x)\) to mean \(\left(\frac d{dx}\right)^nA(x)\big|_{x=0}\).</p>
+      <p>(Note that this diverges the convention proposed by Knuth in <a href=https://arxiv.org/abs/math/9402216v1><i>Bracket notation for the 'coefficient of' operator</i></a>, in whose proposal it would be \(a(n)=[n!x^n]A(x)\) since \([]\) is treated as taking a dot product of the power series on the inside and outside; here, we regard doing an operation on the inside of \([]\) as equivalent to doing its inverse on the outside.)</p>
       <details closed>
         <summary>(usually, I would introduce you to ordinary generating functions first, where we would just use \([x^n]A(x)\), but those count structures that partition unlabelled nodes (ie. units in a quantity); ie. the number of ways to partition \(n\) pence into 1p,2p,5p,10p coins is \([x^n]\frac1{(1-x)(1-x^2)(1-x^5)(1-x^{10})}\))</summary>
-        <p>(however, we are somewhat short upon time; however, you will see arrays \(a(n,k)=\left[\frac{x^n}{n!}y^k\right]A(x,y)\) later on, which are e.g.f.-o.g.f. hybrids)</p>
+        <p>(however, we are somewhat short upon time; however, you will see arrays \(a(n,k)=\left[{x^n\over n!}y^k\right]A(x,y)\) later on, which are e.g.f.-o.g.f. hybrids)</p>
         <p>(though since you basically never see e.g.f.-e.g.f. arrays, so in the OEIS people refer to these hybrid e.g.f.-o.g.f.s as just e.g.f. of the array)</p>
       </details>
     </div></section>
     
     <section class="slide" role="group" aria-roledescription="slide" data-index="3" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">recapping some basic calculus</h1>
-      <p>recall that \(\frac d{dx} x^n=nx^{n-1}\); for us, it will be more useful to think of it as \(\frac d{dx}\frac{x^n}{n!}=\frac{x^{n-1}}{(n-1)!}\), ie. \(\frac d{dx}(\underbrace{0,0,\ldots,0}_{n\ 0\text{s}},1)=(\underbrace{0,\ldots,0}_{n-1\ 0\text{s}},1)\); \(\left[\frac{x^n}{n!}\right]\)</p>
+      <p>recall that \(\frac d{dx} x^n=nx^{n-1}\); for us, it will be more useful to think of it as \(\frac d{dx}{x^n\over n!}=\frac{x^{n-1}}{(n-1)!}\), ie. \(\frac d{dx}(\underbrace{0,0,\ldots,0}_{n\ 0\text{s}},1)=(\underbrace{0,\ldots,0}_{n-1\ 0\text{s}},1)\); \(\left[{x^n\over n!}\right]\)</p>
       <p></p>
       <p>recall that \(\frac {de^x}{dx}=e^x\); setting \(y=e^x\), this becomes \(\frac dy{d\log(y)}=y\). Reciprocating, \(\frac d{dy}\log(y)=\frac1y\), and (via the chain rule) \(\frac d{dy}\log\left(\frac1{1-y}\right)=\frac1{1-y}\).</p>
       <p>\(\frac1{1-y}=1+y\frac1{1-y}\), so by induction (replacing the occurrence of the left side in the right side with the entire right side) \(\frac1{1-y}=1+y(1+y\frac1{1-y})=1+y(1+y(1+y(\ldots)))=1+y+y^2+\ldots\)</p>
       <p>this tells us three important facts about e.g.f.s!</p>
       <dl>
-        <dt>\(\left[\frac{x^n}{n!}\right]e^x=1\)</dt>
+        <dt>\(\left[{x^n\over n!}\right]e^x=1\)</dt>
         <dd>there is \(1\) way to put \(n\) objects into an unordered set</dd>
         <br />
-        <dt>\(\left[\frac{x^n}{n!}\right]\frac1{1-x}=n!\)</dt>
+        <dt>\(\left[{x^n\over n!}\right]\frac1{1-x}=n!\)</dt>
         <dd>there are \(n!\) ways (permutations) to put \(n\) objects into an ordered list</dd>
         <br />
-        <dt>\(\left[\frac{x^n}{n!}\right]\log\left(\frac1{1-x}\right)=(n-1)!\)</dt>
+        <dt>\(\left[{x^n\over n!}\right]\log\left(\frac1{1-x}\right)=(n-1)!\)</dt>
         <dd>
           <p>there are \((n-1)!\) ways to put \(n\) objects into a cyclically-ordered list</p>
           <p>(we group the \(n!\) permutations into equivalence classes of \(n\) each under the \(n\) cyclic shifts we can do to them)</p>
@@ -82,20 +83,26 @@
     <section class="slide" role="group" aria-roledescription="slide" data-index="5" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">Faà di Bruno's formula</h1>
       <p>the first reason why we will find e.g.f.s useful is that putting them inside each other is meaningful!</p>
-      <p>if \(a(n)=\left[\frac{x^n}{n!}\right]A(x)\) counts [structure a]s with \(n\) nodes, and \(b(n)=\left[\frac{x^n}{n!}\right]B(x)\) counts [structure b]s with \(n\) nodes, then \(a(b)(n)=\left[\frac{x^n}{n!}\right]A(B(x))\) counts [structure a]s whose nodes are replaced with [structure b]s which in turn contain nodes</p>
+      <p>if \(a(n)=\left[{x^n\over n!}\right]A(x)\) counts [structure a]s with \(n\) nodes, and \(b(n)=\left[{x^n\over n!}\right]B(x)\) counts [structure b]s with \(n\) nodes, then \(a(b)(n)=\left[{x^n\over n!}\right]A(B(x))\) counts [structure a]s whose nodes are replaced with [structure b]s which in turn contain nodes</p>
       <p>note that when \(b(0)\ne0\), \(a\)'s sum must be finite in order for \(a(b)\)'s terms to converge, since you can otherwise have infinitely many terms by finding [structure a]s and filling them with empty [structure b]s from \(b(0)\)</p>
-      <p>aforepromised concreteness: with the functions defined before, \(\mathrm{sets}(\mathrm{cycles})n=\left[\frac{x^n}{n!}\right]\left(\exp\left(\log\left(\frac1{1-x}\right)\right)=\frac1{1-x}\right)=\mathrm{lists}(n)\), ie. we have a surjection between sets of cycles and lists.</p>
-      <p>we can add in a \(y\) coefficient that counts the cycles! \(\mathrm{Sets}(y\mathrm{Cycles}(x))=\exp\left(y\log\left(\frac1{1-x}\right)\right)=\frac1{(1-x)^y}\), then the coefficient \(\left[\frac{x^n}{n!}y^k\right]\) inside this counts permutations with \(n\) nodes and \(k\) cycles.</p>
+      <p>aforepromised concreteness: with the functions defined before, \(\mathrm{sets}(\mathrm{cycles})(n)=\left[{x^n\over n!}\right]\left(\exp\left(\log\left(\frac1{1-x}\right)\right)=\frac1{1-x}\right)=\mathrm{lists}(n)\), ie. we have a surjection between sets of cycles and lists.</p>
+      <p>we can add in a \(y\) coefficient that counts the cycles! \(\mathrm{Sets}(y\mathrm{Cycles}(x))=\exp\left(y\log\left(\frac1{1-x}\right)\right)=\frac1{(1-x)^y}\), then the coefficient \(\left[{x^n\over n!}y^k\right]\) inside this counts permutations with \(n\) nodes and \(k\) cycles.</p>
     </div></section>
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="6" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">the generalised binomial theorem</h1>
-      <p>the binomial theorem says \((1+x)^n=\sum_{k=0}^\infty{n\choose k}x^k\) (when \(|x|\lt1\), however we only care about it as a generating function so radius of convergence is unimportant to us).</p>
-      <p>in fact, by writing \({n\choose k}=\frac{n!}{k!(n-k)!}\) and then using \(x!=\Gamma(x+1)=\int_{t=0}^\infty\frac{t^x}{e^t}\ dt\) (holds for \(x=0\); doing integration by parts shows it abides by the same recurrence relation, and (importantly) can be evaluated at \(x\) that are negative or noninteger) we can continue it backwards.</p>
-      <img src="https://oeis.org/w/images/7/78/Binomial.png" width=820 alt="nice image by Peter Luschny" />
-      <p>(btw this nice plot is from <a href=https://oeis.org/wiki/User:Peter_Luschny/ExtensionsOfTheBinomial>a nice writeup</a> by Peter Luschny on this subject, where he goes on a tangent about how Sage (on the right) is bad for making it zero in one quartile; this has bitten me in the back sometimes)</p>
-      <p>for \(-n\) a negative integer, the integral diverges (due to any neighbourhood of \(t=0\) contributing infinitely much) so a fool would say that in this case \((-n)!=\infty\), but we can take the coefficient of \(\infty\) (the coefficient \([x^{-1}](-n+x)!\) in the expansion; for those who have done complex integration, the residue of \(x!\) at \(x=-n\)) as \(\frac{(-1)^{n-1}}{(n-1)!}\).</p>
-      <p>so if we treat the negative parts in \({-n\choose k}=\frac{(-n)!}{k!(-n-k)!}\) as being residues instead of numbers (cancel out the \(\infty\)s), we can rearrange it into \((-1)^k{n+k-1\choose k}\).</p>
+      <p>how do we continue Pascal's triangle upwards to negative \(n\)? with \(\prod_a^b=\prod_{i=a}^{b-1}(i)\) (so that \(\prod_b^a=1/\prod_a^b\) and \(\prod_a^b=(-1)^{b-a}\prod_{1-b}^{1-a}\)), an unrigorous unjustified derivation is</p>
+      <p>\[\binom{-1-n}k=\frac{\prod_1^{-n}}{\prod_1^{k+1}\prod_1^{-k-n}}\overset{\text{very}\atop\text{suspicious}}=\frac{\prod_{-n-k}^{-n}}{\prod_1^{k+1}}=\frac{(-1)^k\prod_{n+1}^{n+k+1}}{\prod_1^{k+1}}=\frac{(-1)^k\frac{(n+k)!}{n!}}{k!}=(-1)^k{k+n\choose k}\]</p>
+      <p>(the step is suspicious because we cancel out a \(0/0\))</p>
+      <p>however, there are some definitions by which it works!</p>
+      <dl>
+        <dt>the binomial theorem says \((1+x)^n=\sum_{k=0}^\infty{n\choose k}x^k\) (when \(|x|\lt1\), however we only care about it <i>for its expansion</i> as a generating function so radius of convergence is unimportant to us).</dt>
+        <dd>\({d\over dx}(1+x)^{-n}=-n\cdot(1+x)^{-n-1}\), so \(\left({d\over dx}\right)^k(1+x)^{-n}=(-1)^kn^\overline k(1+x)^{-n-k}\); evaluating at \(x=0\) leaves \(n^\overline k\), which agrees with the above since \(\left.\left({d\over dx}\right)^k\ldots\right|_{x=0}=\left[{x^k\over k!}\right]\ldots=k![x^k]\ldots\).</dd><br />
+        <dt>by writing \({n\choose k}=\frac{n!}{k!(n-k)!}\) and then using \(x!=\Gamma(x+1)=\int_{t=0}^\infty\frac{t^x}{e^t}\ dt\) (which holds for \(x=0\); doing integration by parts shows it abides by the same recurrence relation as, and (importantly) can be evaluated at \(x\) that are negative or noninteger), we can continue it backwards.</dt>
+        <dd><img src="https://oeis.org/w/images/7/78/Binomial.png" width=615 alt="nice image by Peter Luschny" /><br />(btw this nice plot is from <a href=https://oeis.org/wiki/User:Peter_Luschny/ExtensionsOfTheBinomial>a nice writeup</a> by Peter Luschny on this subject, where he goes on a tangent about how Sage (on the right) is bad for making it zero in one quartile; this has bitten me in the back sometimes)</dd>
+        <dt>for \(-n\) a negative integer, the integral diverges (due to any neighbourhood of \(t=0\) contributing infinitely much) so a fool would say that in this case \((-n)!=\infty\), but we can take the coefficient of \(\infty\) (the coefficient \([x^{-1}](-n+x)!\) in the expansion; for those who have done complex integration, the residue of \(x!\) at \(x=-n\)) as \(\frac{(-1)^{n-1}}{(n-1)!}\).</dt>
+        <dt>so if we treat the negative parts in \({-n\choose k}=\frac{(-n)!}{k!(-n-k)!}\) as being residues instead of numbers (cancel out the \(\infty\)s), we can rearrange it into \((-1)^k{n+k-1\choose k}\).</dt>
+      </dl>
     </div></section>
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="7" aria-hidden="true"><div style="text-align:center">
@@ -106,18 +113,19 @@
       <p>\([x^k]\frac1{(1-x)^n}={n+k-1\choose k}\) is the number of ways to make a multiset of \(k\) elements by drawing with replacement from a set of \(n\).</p>
       <p>this comes up so often in combinatorics that sometimes people define \(\left(\!{n\choose k}\!\right)={n+k-1\choose k}\) (pronounced \(n\) multichoose \(k\)) for it to clean up formulas</p>
       <p>anyway, we are interested in \(\frac1{(1-x)^y}\) as an e.g.f., not o.g.f.!</p>
-      <p>\(\left[\frac{x^n}{n!}\right]\frac1{(1-x)^y}=n!\left(\!{y\choose n}\!\right)=\frac{(y+n-1)!}{(y-1)!}=\underbrace{y(y+1)(y+2)\ldots(y+n-1)}_{n\ \text{factors}}\).</p>
-      <p>this also has its own syntax, \(y^\overline n\) (as opposed to \(y^\underline n=\frac{y!}{(y-n)!}=\underbrace{y(y-1)(y-2)\ldots(y-n+1)}_{n\ \text{factors}}\)).</p>
-      <p>so, to recap, the number of \(n\)-element \(k\)-cycle permutations is \(\left[\frac{x^n}{n!}y^k\right]\frac1{(1-x)^y}=[y^k]y^\overline n\).</p>
+      <p>\(\left[{x^n\over n!}\right]\frac1{(1-x)^y}=n!\left(\!{y\choose n}\!\right)=\frac{(y+n-1)!}{(y-1)!}=\underbrace{y(y+1)(y+2)\cdots(y+n-1)}_{n\ \text{factors}}\).</p>
+      <p>this also has its own syntax, \(y^\overline n\) (as opposed to \(y^\underline n=\frac{y!}{(y-n)!}=\underbrace{y(y-1)(y-2)\cdots(y-n+1)}_{n\ \text{factors}}\)).</p>
+      <p>so, to recap, the number of \(n\)-element \(k\)-cycle permutations is \(\left[{x^n\over n!}y^k\right]\frac1{(1-x)^y}=[y^k]y^\overline n\).</p>
     </div></section>
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="8" aria-hidden="true"><div style="text-align:center">
-      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">logarithmic differentiation: a cool trick you may know from probability</h1>
+      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">differentiation: a cool trick you may know from probability</h1>
       <p>given the o.g.f. \(F(x)\) of a p.d.f. \(f(n)=\mathrm P(X=n)\), taking the random variable's expectation (average of possible outputs, weighted by probability) \(\mathrm E[X]=\sum_{n=0}^\infty nf(n)\) can be done by evaluating \(F'(1)\).</p>
       <p>meanwhile, for us, since we're dealing with not-quite-probability distributions that don't sum to \(1\), we need to divide by the sum of the weights, which is \(F(1)\).</p>
       <p>the expression \(\frac{F'(1)}{F(1)}\) (the expected value of a randomly-chosen element of the set counted by \(F\)) has another representation, as \(\frac d{dx}\log F(x)\big|_{x=1}\).</p>
       <p>note that in general, higher-order moments can be taken; for instance, \(\mathrm E[X^2=X^\underline 1+X^\underline 2]=\frac{F'(1)}{F(1)}+\frac{F''(1)}{F(1)}\), and \(\mathrm E[X^3=X^\underline 1+3X^\underline 2+X^\underline 3]=\frac{F'(1)}{F(1)}+3\frac{F''(1)}{F(1)}+\frac{F'''(1)}{F(1)}\).</p>
-      <p>so, if we want to know the total number of cycles in all \(n\)-permutations, we need only take \(\log\left(\left[\frac{x^n}{n!}\right]\frac d{dy}\frac1{(1-x)^y}\right)\big|_{y=1}\) (and so for the expectation of a random \(n\)-permutation only \([x^n]\)); the \(\frac d{dy}\) in question is \(\frac{\log(\frac1{1-x})}{(1-x)^y}\), so by setting \(y=1\) we have \(\frac{\log(\frac1{1-x})}{1-x}\). We know from before that \([x^i]\) in the numerator is \(\frac1i\), and division by \(1-x\) takes the partial sum of an o.g.f.'s sequence, so the expected cycle count is \(\sum_{i=1}^n\frac1i=H_n\).</p>
+      <p>so, if we want to know the total number of cycles in all \(n\)-permutations, we need only take \[\sum_{k=0}^n\left[{x^n\over n!}y^k\right]\frac1{(1-x)^y}=\left[{x^n\over n!}\right]\underbrace{\frac d{dy}\frac1{(1-x)^y}}_{\frac{\log(\frac1{1-x})}{(1-x)^y}}\big|_{y=1}=\left[{x^n\over n!}\right]\frac{\log(\frac1{1-x})}{1-x}\] (and so for the expectation of a random \(n\)-permutation only \([x^n]\), dividing by \(n!\))<!--; the \(\frac d{dy}\) in question is \(\frac{\log(\frac1{1-x})}{(1-x)^y}\), so by setting \(y=1\) we have \(\frac{\log(\frac1{1-x})}{1-x}\)-->. We know from before that \([x^i]\) in the numerator is \(\frac1i\), and division by \(1-x\) takes the partial sum of an o.g.f.'s sequence.</p>
+      <p>so the expected cycle count is \(\sum_{i=1}^n\frac1i=H_n\).</p>
     </div></section>
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="9" aria-hidden="true"><div style="text-align:center">
@@ -126,7 +134,7 @@
       <p>here, the exponent of \(y\) in the \(i\)th multiplicand is the number of length-\(i\) cycles in a given permutation; we can replace each multiplicand's \(y\) with \(y_i\) to keep track of cycle counts for each length separately.</p>
       <p>we can then choose a particular length \(l\), and set all \(y_{i\ne l}\) to \(1\) to only keep track of the \(y_l\).</p>
       <p>\[\left(\sum_{j=0}\frac{y_l^j\frac{x^{lj}}{l^j}}{j!}\right)\prod_{i=1\atop i\ne l}^\infty\sum_{j=0}\frac{\frac{x^{ij}}{i^j}}{j!}=\frac{\exp\left(y_l\frac{x^l}l\right)}{\exp\left(\frac{x^l}l\right)}\frac1{1-x}=\frac{\exp\left((y_l-1)\frac{x^l}l\right)}{1-x}\]</p>
-      <p>to recap, this is now an e.g.f. from which the coeff-extraction \(\left[\frac{x^n}{n!}y_l^k\right]\) tells you the number of \(n\)-permutations with \(k\) \(l\)-cycles. (for \(l=1\) this is <oe-is href=A008290></oe-is>(n,k), for \(l=2\) <oe-is href=A114320></oe-is>(n,k))</p>
+      <p>to recap, this is now an e.g.f. from which the coeff-extraction \(\left[{x^n\over n!}y_l^k\right]\) tells you the number of \(n\)-permutations with \(k\) \(l\)-cycles. (for \(l=1\) this is <oe-is href=A008290></oe-is>(n,k), for \(l=2\) <oe-is href=A114320></oe-is>(n,k))</p>
       <p>differentiating with respect to \(y_l\) then setting \(y_l\) gives us \(\frac1l\frac{x^l}{1-x}\), which tells us that \(\mathrm E[\#(\mathrm{length-}l\ \mathrm{cycles\ in\ }n\mathrm{-perm})]=\begin{cases}\frac1l&n\ge l\\0&\mathrm{else}\end{cases}\).</p>
       <p>this gives the previous fact (that the expected count of all cycles in an \(n\)-perm is \(H_n\)) as a corollary, since we can just sum the expectations over \(l\), even though the random variables defined by different \(l\)s aren't independent of each other. (However, expectations are special in this regard; for orders \(o>1\), we can't get the \(o\)th moment of a sum in terms of the \(\le o\)th moments of the constituent codependent variables, since then we also have to consider <wi-ki href=covariance></wi-ki>.)</p>
     </div></section>
@@ -137,7 +145,7 @@
       <p>(<wi-ki href=Jovan_Karamata></wi-ki> was the first to propose this in 1935; Donald Knuth gave <a href=https://arxiv.org/abs/math/9205211v1>a review of various notation proposals</a> (which is also a good introduction to the subject of Stirling numbers, in the contexts in which he used them), in which he concluded this was most appropriate for most purposes, and (being the author of TeX) implemented it there as {n\brack k}.)</p>
       <p>the cycle numbers have a recurrence, much alike the choose numbers' \({n+1\choose k}={n\choose k-1}+{n\choose k}\)!</p>
       <p>note that this recurrence can be interpreted as "to make a \(k\)-subset of an \(n+1\)-set, consider the \(n+1\)th element separately and either (add it onto a \(k-1\)-subset of an \(n\)-set) or (discard it and use a \(k\)-subset of an \(n\)-set)"; we want something analogous for permutations!</p>
-      <p>the analogue in question is \({n+1\brack k}=n{n\brack k}+{n\brack k-1}\); this is equivalent to the recurrence \(y^\overline{n+1}=(n+x)y^\overline n\) about the row o.g.f., or the differential equation \(f_x=xf_x+yf\) which (together with boundary conditions) characterises the e.g.f. \(f=\frac1{(1-x)^y}\), both of which are routine to derive/verify</p>
+      <p>the analogue in question is \[{n+1\brack k}=n{n\brack k}+{n\brack k-1}\] this is equivalent to the recurrence \(y^\overline{n+1}=(n+x)y^\overline n\) about the row o.g.f., or the differential equation \(f_x=xf_x+yf\) which (together with boundary conditions) characterises the e.g.f. \(f=\frac1{(1-x)^y}\), both of which are routine to derive/verify</p>
       <p>the combinatorial interpretation is we can make a permutation in \({n+1\brack k}\) by adding an \(n+1\)th element</p>
       <dl>
         <dt>to a permutation in \({n\brack k}\) in \(n\) ways, inside one of the existing cycles</dt>
@@ -148,6 +156,23 @@
     </div></section>
 
     <section class="slide" role="group" aria-roledescription="slide" data-index="11" aria-hidden="true"><div style="text-align:center">
+      <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">higher moments from 'annihilated coefficient extractors'</h1>
+      <p>in general, it is very fruitful to rewrite something like a Stirling number (for which you know the e.g.f.) as a coefficient-extraction.</p>
+      <p>multiplying the inside and the outside by the same constant, or applying the same operator like \(d\over dx\) to them, leaves the expression's output invariant.</p>
+      <p>for instance, if we let \(C_n\) be the random variable counting cycles in a permutation \(\in S_n\), we can find its moments</p>
+      <p>(we use binomial moments, since it's over the integers; this has some nice properties, like if you consider the probability density function and the moment sequence as vectors, they are a multiplication by a Pascal's-triangle matrix apart; \(\mathbb P[X=x]=\sum_{k=0}^x(-1)^{x-i}\binom xi\mathbb E\binom Xi\))</p>
+      <p>\[\begin{aligned}
+        n!\mathbb E\binom{C_n}k=&\sum_{j=k}^n\binom jk\left[n\atop j\right]\\
+        \overset{\text{rewrite into}\atop\text{coeff. extraction}}=&\sum_{j=k}^n\binom jk\left[x^n\over n!\right]{\log^j\frac1{1-x}\over j!}\\
+        \underset{\text{terms }j>n\atop\text{don't affect sum}}{\overset{\text{transpose extractor}\atop\text{and sum}}=}&\left[x^n\over n!\right]\sum_{j=k}^{\cancel n\,\infty}\binom jk{\log^j\frac1{1-x}\over j!}\\
+        \overset{\text{recognise product}\atop\text{rule in reverse}}=&\frac1{k!}\left[x^n\over n!\right]\left({\log^k\frac1{1-x}\over1-x}={d\over dx}{\log^{k+1}\frac1{1-x}\over k+1}\right)\overset{\text{if we ignore}\atop\text{the product rule}}{\underset{\text{\& regard as}\atop\text{convolution}}=}\sum_{j=k}^n{n!\over j!}\left[{j\atop k}\right]\\
+        \overset{\text{integrate inside}\atop\text{and outside of }[]}=&\left[x^{n+1}\over(n+1)!\right]{\log^{k+1}\over(k+1)!}\\
+        \overset{\text{recognise}\atop\text{column e.g.f.}}=&{n+1\brack k+1}
+        \end{aligned}\]</p>
+    </div></section>
+
+
+    <section class="slide" role="group" aria-roledescription="slide" data-index="12" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">higher moments from higher-order derivatives</h1>
       <p>for \(n\ge o\), \(n^\underline o[x^n]f(x)=[x^{n-o}]\left(\frac d{dx}\right)^of(x)\), which means that for a random variable \(X\) whose probability distribution has p.g.f. \(f(x)\), \(\mathrm E[X^\underline o]=\left(\frac d{dx}\right)^of(x)\big|_{x=1}\).</p>
       <p>we know from before that \(\frac d{dy}\frac1{(1-x)^y}=\frac{\log(\frac1{1-x})}{(1-x)^y}\), which tells us that \(\frac d{dy}y^\overline n=y^\overline n(H_{y+n-1}-H_{y-1})\).</p>
@@ -169,24 +194,24 @@
       <p>which is useful to us, since for the random variable \(C_n\) the number of cycles in an \(n\)-permutation, it gives us
         \[\mathbb E\left[{C_n\choose k}\right]=\sum_{p\in\mathrm{perms}(k)}\prod_{c\in p}(-1)^{|c|-1}H^{(|c|)}_n\]
         directly</p>
-        <p>(the \(c\in p\) iterates over cycles; the sign of each product's contribution equals the sign of the permutation it corresponds with)</p>
-        <p>as a corollary, this gives that \(\mathrm{Var}[C_n]=H_n-H^{(2)}_n\), ie. we have a central limit theorem on random permutations; the standard deviation of cycle count grows only like the sqrt of expectation!</p>
+      <p>(the \(c\in p\) iterates over cycles; the sign of each product's contribution equals the sign of the permutation it corresponds with)</p>
+      <p>as a corollary, this gives that \(\mathrm{Var}[C_n]=H_n-H^{(2)}_n\), ie. we have a central limit theorem on random permutations; the standard deviation of cycle count grows only like the sqrt of expectation!</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="12" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="13" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">higher moments (contd.)</h1>
       <p>we in fact have a simpler (and possibly more surprising) characterisation of \(\mathbb E\left[{C_n\choose k}\right]\) than that; consider the sum over \(S_n\) instead of the average, ie. \(S_{n,k}:=n![\mathbb E\left[{C_n\choose k}\right]=\sum_{i=0}^n\binom ik{n\brack i}\) (counting ways to form a permutation with \(\ge k\) cycles, then choose \(k\) of the cycles).</p>
       <p>if we keep these chosen cycles, and concatenate the rest (shifted to have their maximal element first, then ordered in ascending order of maximal element) to a single list, append an \(n+1\)th element to it and join it back into a cycle, we construct a permutation of \([n+1]\) with \(k+1\) cycles, ie. we have \(S_{n,k}={n+1\brack k+1}\).</p>
       <p>(this is somewhat akin to the 'hockey stick' identity for binomial coefficients; see <a href=https://math.stackexchange.com/q/5116629>this math.se post</a> (in which this is \((1a)\)) and my page <i><oeis-tally href=some_number_triangle_matrix_products /></i> for further discussion (including illustrative proofs by generating functions) and many other such analogues)</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="13" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="14" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">other reasons to care about generating functions</h1>
       <p>following are two tools that prove quite useful, both hard to prove combinatorially but easy to obtain by simple complex analysis on generating functions</p>
       <p>(this is where the manipulations stop being on formal power series and require g.f.s to be actually evaluated as functions)</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="14" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="15" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">Cauchy's formula</h1>
       <p>say we have a sequence \(f(n)\) with o.g.f. \(F(x)\), then <b>Cauchy's formula</b></p>
       <p>\[f(n)=[x^n]F(x)=\frac1{\tau i}\oint_\gamma\frac{F(x)}{x^{n+1}}\ dx\]</p>
@@ -198,7 +223,7 @@
       <p>although it is just integration by substitution followed by integration by parts, it is quite powerful when viewed combinatorially; it effectively gives generating function methods (that turn combinatorics into calculus) the ability to reason about tree-like structures (where you can derive a closed form (and coefficient-extraction formula) for a generating function's <i>inverse</i>); see my pages on <oeis-tally href=A055349></oeis-tally> and <oeis-tally href=A058349></oeis-tally> for cool applications of this</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="15" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="16" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">saddle-point asymptotics!</h1>
       <details closed><summary>saddle-point approximations of general integrals</summary>
         <p>given an analytic function \(f\) that attains a maximum at a point \(\xi\in(a,b)\), \(F(x)^n\) will asymptotically resemble a Gaussian about that point, so we have\[I_n=\int_a^b\varphi(x)F(x)^n\ dx\underset n\sim\varphi(\xi)F(\xi)^{n+\frac12}\sqrt{\frac\tau{-nF''(\xi)}}\]</p>
@@ -216,7 +241,7 @@
       <p>that is, the AM-GM inequality here is asymptotically somewhat strong</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="16" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="17" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">the Stirling subset numbers</h1>
       <p>(this is a somewhat anachronistically late place to put them but (to my knowledge) there aren't any similarly elementary ways to asymptotically characterise them; note that conversely, saddlepointery breaks on the cycle numbers)</p>
       <p>with \(x_n=W\left(\frac ny\right)\sim\log\frac ny-\log\log\frac ny+o(1)\) (the <oeis-tally href="Euler's_tree_function" title="this page discusses T(x)=-W(-x) which is much better do not worry">Lambert W function</oeis-tally>), we have \(\left[x^n\over n!\right]e^{y(e^x-1)}\sim{e^{{n\over x_n}-y-n}n^n\over x_n^{n+\frac12}}\) (set \(y=1\) and substitute in the W asymptotic to count \(n\)-(sets of sets))</p>
@@ -230,14 +255,14 @@
       <p>(for more details, see <i><oeis-tally href=an_introduction_to_Stirling_numbers#asymptotics_and_properties_as_statistical_distributions /></i>)</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="16" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="18" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">what my dissertation is on</h1>
       <p>this has all been relatively simple and everything mentioned is well-understood, due to the 10-minute timeslot (I wanted to include interesting results that don't have too many prerequisites); however, my project will be on either a bijection between <oe-is href=A000262></oe-is> and <oe-is href=A058349></oe-is> (mostly detailed in <i><oeis-tally href=A058349/old /></i>) or the numbers <i><oeis-tally href=above_the_Stirling_triangles /></i></p>
       <p>for more prerequisites to understand them, I highly recommend reading Knuth's <a href=https://arxiv.org/abs/math/9205211v1><i>Two notes on notation</i></a>, Dan Rus's <a href=https://arxiv.org/abs/2501.08762><i>Yet another note on notation</i></a>, and my <oeis-tally><i>an introduction to Stirling numbers</i></oeis-tally></p>
       <p>note also that <a href=https://math.stackexchange.com/a/5108126>this math.se answer i gave</a> outlines how the numbers 'in the shadow' underneath the Stirling triangles (which need the interpolating polynomials along diagonals of Stirling's triangle to be divided by those along columns of Pascal's triangle to make them nonzero) arise in the extension of Faulhaber's theorem to nested summation</p>
     </div></section>
 
-    <section class="slide" role="group" aria-roledescription="slide" data-index="17" aria-hidden="true"><div style="text-align:center">
+    <section class="slide" role="group" aria-roledescription="slide" data-index="19" aria-hidden="true"><div style="text-align:center">
       <h1 style="margin:0;font-size:clamp(16px,6vw,32px)">other pages i could not fit in</h1>
       <p>the cycle numbers' row o.g.f.s give a definition in terms of placements of \(n-k\) mirrors on distinct columns of \(n\times n\) lower-triangular chessboards; see <i><oeis-tally href=Stirling_factoradics /></i> regarding the bijection between these and \(k\)-cycle permutations</p>
     </div></section>
