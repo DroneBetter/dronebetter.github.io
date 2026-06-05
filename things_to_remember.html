@@ -67,17 +67,24 @@
         <dt>page about inequalities (perhaps);
         <dd><p>mostly this entry is here because i saw <a href=https://www.lkozma.net/inequalities_cheat_sheet/ineq.pdf>inequalities cheat sheet</a> and thought "ooh ooh i know about this" when i saw the binomial one and thought writing it as a partial ordering of formulas would be cool; specifically,</p>
           <p>\[
-          \begin{matrix}
+          \begin{array}{rcccc}
           &&{n^k\over k!}\\
           &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\le}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!\!\!\!\!\!\\
           \binom nk\!&\!\!\!\!\le\!\!&\!\!\sum_{j=0}^k\binom nj&\le&\!\left({en\over k}\right)^k\\
-          &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\underset{\tiny \text{iff}\,k\le\frac n2}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\le}\!\!\!\!\!\!\\
-          &&{n^n\over k^k(n-k)^{n-k}}\\
+          \!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}\le}&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\overset{(\ddagger)}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\underset{\tiny \text{iff}\,k\le\frac n2}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\underset{(\ast)}\le}}\!\!\!\!\!\!\\
+          \sqrt{n\over\tau k(n-k)}{n^n\over k^k(n-k)^{n-k}}&\underset{(\dagger)}\le&{n^n\over k^k(n-k)^{n-k}}\\
           &&&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\underset{\tiny k>1}\le}}&\binom nk2^k\\
-          \end{matrix}
+          \end{array}
           \]</p>
-        <p>where the \(k\le n/2\) inequality is a special case of the <a href=https://math.stackexchange.com/a/5134353>binomial distribution's Chernoff bound</a>; see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of the last one into an enveloping series for \(\sum_{j=0}^k\binom nj\)</p>
-        <p>also, as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds
+        <dl>
+          <dt> the \(k\le n/2\) inequality is a special case of the <a href=https://math.stackexchange.com/a/5134353>binomial distribution's Chernoff bound</a></dt>
+          <dt>\((\dagger)\) has \({\rm RHS\over LHS}\ge\sqrt{n\pi\over2}\) (equality when \(k=\frac n2\)) so holds when \(n\ge\frac2\pi\); this chart is mostly for the integers anyway and it is already superseded by \((\ddagger)\) so what do you care</dt>
+          <dt>\((\ddagger)\) holds because \({d\over dn}\log{\binom nk\over{n^n\over k^k(n-k)^{n-k}}}{\tt/\!\!.}k\to cn\) is \(\overbrace{\log(c^c(1-c)^{1-c})}^{\in[-\log2,0]}+\overbrace{H_n-cH_{cn}-(1-c)H_{(1-c)n}}^{\text{always nonpositive; replace}\atop\text{$\log$ with any concave function}}\)</dt>
+          <dt>\((\ast)\) is strengthenable; the LHS can be multiplied by \(e^{\sum_{m=1}^{M-1}{k^{m+1}\over m(m+1)n^m}}\) (converging as \(M\to\infty\)); where \(k(n)\in O(n^{1-\frac1M})\), the last included summand is \(\in\Theta(1)\) while the first omitted is \(\in\Theta(n^{-\frac1M})\) so \(\rm LHS\sim RHS\) (and <abbr title="where ~_log means the logarithms are asymptotic">more precisely, \(\sqrt[{M(M+1)\sqrt[M]n}]e\cdot{\rm LHS\underset{\log}\sim RHS}\)</abbr>)</dt>
+          <dd>see <a href=https://math.stackexchange.com/a/5137942>this answer</a>'s old part explaining \(n^\underline{c\sqrt n}/n^\overline{c\sqrt n}\underset{\tiny n\to\infty}\lesssim\sqrt{1+{2c\over\sqrt n-1}}e^{-c^2}\)</dd>
+          <dt>see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of the last one into an enveloping series for \(\sum_{j=0}^k\binom nj\)</dt>
+        </dl>
+        <p>also, as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds (for \(c>0\))
           \[\sqrt{x(x+c)}&lt;(x+c)\frac{(1+\frac cx)^{\frac xc}}e&lt;x+\frac c2\]
         (a refinement of AM-GM!)</p>
       </dd>
@@ -88,6 +95,7 @@
       <dl>
         <dt>Ira M. Gessel, <a href=https://people.brandeis.edu/~gessel/homepage/papers/rookp.pdf>this paper</a> on rook polynomials (and how to decompose products of Laguerre polynomials into the basis of Laguerre polynomials; maybe make a page one day showing how to do this for various polynomial families, giving this result and its corollaries alongside \(\frac{w^\underline rh^\underline r}{r!}=[x^\underline{w+h-r}]x^\underline wx^\underline h\)), and <a href=https://people.brandeis.edu/~gessel/homepage/papers/Lagrange.pdf>this one</a> on Lagrange inversion</dt>
         <dt>Sextus Empiricus, <a href=https://math.stackexchange.com/a/4283180>math.se answer</a> (nice diagram) and <a href=https://stats.stackexchange.com/a/547396>this stats.se answer</a> on the coupon collector's waiting time distribution being asymptotically Gumbel via <a href=https://en.wiktionary.org/wiki/Poissonization>Poissonisation</a> (also <a href=https://web.archive.org/web/20240910213045/https://dataorigami.net/2018/12/25/Poissonization-of-Multinomials.html>this nice blogpost</a>)</dt>
+        <dd>Matthew Aldridge, <a href=https://mpaldridge.github.io/blog/falling-moments.html><i>Falling moments</i></a> & <a href=https://mpaldridge.github.io/blog/falling-thinning.html><i>Falling and thinning</i></a> (would be nice to reference in a Wikipedia page about Poissonisation)</dd>
         <dt>G. Cab, <a href=https://math.stackexchange.com/a/2033440>definition of r-subset numbers through Eulerians</a></dt>
         <dt>Peter H. van der Kamp, <a href=https://arxiv.org/abs/1201.3139><i>On the Fourier transform of the greatest common divisor</i></a> (2012), §3 'A historical remark, and generalised Ramanujan sums' mentions that J.C. Kluyver, <a href=https://dwc.knaw.nl/DL/publications/PU00013765.pdf><i>Some formulae concerning the integers less than n and prime to n</i></a> (1906) proved "Hölder’s relation" 30 years prior; <wi-ki href=Ramanujan%27s_sum#von_Sterneck>the Wikipedia page</wi-ki> does not mention this!</dt>
         <dt><a href=https://onlinelibrary.wiley.com/doi/epdf/10.1002/0471715816.ch10>this chapter from a statistics textbook</a>: was recommened for better understanding derivations of Sibuya distributions</dt>
