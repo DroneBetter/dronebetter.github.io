@@ -68,25 +68,45 @@
         <dd><p>mostly this entry is here because i saw <a href=https://www.lkozma.net/inequalities_cheat_sheet/ineq.pdf>inequalities cheat sheet</a> and thought "ooh ooh i know about this" when i saw the binomial one and thought writing it as a partial ordering of formulas would be cool; specifically,</p>
           <p>\[
           \begin{array}{rcccc}
-          &&{n^k\over k!}\\
-          &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\le}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!\!\!\!\!\!\\
+          &&{\left(n-\frac{k-1}2\right)^k\over k!}\\
+          &\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\overset{\tiny\text{AM-GM}}\le}}\!&&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(45deg);}\le}\!\!\!\!\!\!\\
+          {n^\underline k\over k!}&&\binom nk2^k&&{n^k\over k!}\\
+          \mathrel{\style{display:inline-block; transform: rotate(-90deg);}=}&&\mathrel{\style{display:inline-block; transform: rotate(-90deg);}\le}&&\mathrel{\style{display:inline-block; transform: rotate(90deg);}\le}\\
           \binom nk\!&\!\!\!\!\le\!\!&\!\!\sum_{j=0}^k\binom nj&\le&\!\left({en\over k}\right)^k\\
-          \!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}\le}&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\overset{(\ddagger)}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\underset{\tiny \text{iff}\,k\le\frac n2}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\underset{(\ast)}\le}}\!\!\!\!\!\!\\
-          \sqrt{n\over\tau k(n-k)}{n^n\over k^k(n-k)^{n-k}}&\underset{(\dagger)}\le&{n^n\over k^k(n-k)^{n-k}}\\
-          &&&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\underset{\tiny k>1}\le}}&\binom nk2^k\\
+          \!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\overset{(\dagger)}\le}}&\mathrel{\style{display:inline-block; transform: rotate(45deg);}{\overset{(\ddagger)}\le}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\overset{\tiny\text{Chernoff}}{\underset{\tiny\text{iff}\,k\le\frac n2}\le}}}&\!\!\!\!\mathrel{\style{display:inline-block; transform: rotate(-45deg);}{\overset{(\ast)}\le}}\!\!\!\!\!\!\\
+          \sqrt{n\over\tau k(n-k)}{n^n\over k^k(n-k)^{n-k}}&\overset{(\mathrel{\style{display:inline-block; transform: rotate(180deg);}\dagger})}\le&{n^n\over k^k(n-k)^{n-k}}
           \end{array}
           \]</p>
         <dl>
           <dt> the \(k\le n/2\) inequality is a special case of the <a href=https://math.stackexchange.com/a/5134353>binomial distribution's Chernoff bound</a></dt>
-          <dt>\((\dagger)\) has \({\rm RHS\over LHS}\ge\sqrt{n\pi\over2}\) (equality when \(k=\frac n2\)) so holds when \(n\ge\frac2\pi\); this chart is mostly for the integers anyway and it is already superseded by \((\ddagger)\) so what do you care</dt>
-          <dt>\((\ddagger)\) holds because \({d\over dn}\log{\binom nk\over{n^n\over k^k(n-k)^{n-k}}}{\tt/\!\!.}k\to cn\) is \(\overbrace{\log(c^c(1-c)^{1-c})}^{\in[-\log2,0]}+\overbrace{H_n-cH_{cn}-(1-c)H_{(1-c)n}}^{\text{always nonpositive; replace}\atop\text{$\log$ with any concave function}}\)</dt>
+          <dt>\((\dagger)\) holds because for Stirling's approximation \(g(n)=\sqrt{\tau n}\left(\frac ne\right)^n\) to \(f(n)=n!\), \(g(n)\over f(n)\) is \(&lt;1\) but strictly increasing, so for \(k&lt;n\) \({g(n)\over g(k)}&ge;{f(n)\over f(k)}\), then we replace the \(1\over f(n-k)\) factor with its upper bound \(1\over g(n-k)\)</dt>
+          <dt>\((\ddagger)\) holds because \({d\over dn}\log{\binom nk\over{n^n\over k^k(n-k)^{n-k}}}{\tt/\!\!.}k\to cn\) is \(\overbrace{\log(c^c(1-c)^{1-c})}^{\in[-\log2,0]}+\overbrace{H_n-cH_{cn}-(1-c)H_{(1-c)n}}^{\text{always nonpositive; replace}\atop\text{$H$ with any concave function}}\)</dt>
+          <dt>\((\mathrel{\style{display:inline-block; transform: rotate(180deg);}\dagger})\) has \({\rm RHS\over LHS}\ge\sqrt{\frac\pi2n}\) (equality when \(k=\frac n2\)) so holds when \(n\ge\frac2\pi\); this chart is mostly for the integers anyway and it is already superseded by \((\ddagger)\) so what do you care</dt>
+          <dd><p>relevantly, note that (using the notation \(Q(n)\) and \(R(n)\) proposed by Knuth and covered in <a href=https://doi.org/10.1016/0377-0427(93)E0258-N>this paper</a>)
+            \[\begin{array}{rl}
+    R(n)-1:=&\sum_{k=2}^n{n^k\over n^\overline k}=\left(\frac en\right)^n\gamma(n+1,n)\\
+            &\,\,\mathrel{\style{display:inline-block; transform: rotate(90deg);}=}\\
+            &\int_{t=0}^n\binom nt{t^t(n-t)^{n-t}\over n^n}\overset{(\dagger)}\le\int_{t=0}^n\sqrt{n\over\tau t(n-t)}=\sqrt{n\over\tau}\mathrm{Beta}\!\left(\frac12,\frac12\right)=\sqrt{\frac\pi2n}\\
+            &\,\,\mathrel{\style{display:inline-block; transform: rotate(90deg);}{\approx}}\\
+            &\sum_{k=0}^n\binom nk\big/{n^n\over k^k(n-k)^{n-k}}<!--\overset{(\dagger)}\le\sum_{k=0}^n\sqrt{n\over\tau k(n-k)}-->\\
+            &\,\,\mathrel{\style{display:inline-block; transform: rotate(90deg);}=}\\
+    1+Q(n):=&\sum_{k=0}^n{n^\underline k\over n^k}=\int_{t=0}^\infty{\left(1+\frac tn\right)^n\over e^t}=\left(\frac en\right)^n\Gamma(n+1,n)
+            \end{array}\]
+            (see my page <oeis-tally href="Euler's_tree_function"></oeis-tally> about \(Q(n)\)); anyway, this means that while \(\min\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{2\over\pi n}\), \(\mathop{\mathbb E}\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{\pi\over2n}\)</p>
+            <p>note that the \(\approx\) can be said less wishy-washily, since \(Q(n)+R(n)={n!\over(\frac ne)^n}\), which gives that \(\mathop{\mathbb E}\limits_{k\in[0..n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\gtrsim\sqrt{\pi\over2n}{n\over n+1}\)</p>
+          </dd>
           <dt>\((\ast)\) is strengthenable; the LHS can be multiplied by \(e^{\sum_{m=1}^{M-1}{k^{m+1}\over m(m+1)n^m}}\) (converging as \(M\to\infty\)); where \(k(n)\in O(n^{1-\frac1M})\), the last included summand is \(\in\Theta(1)\) while the first omitted is \(\in\Theta(n^{-\frac1M})\) so \(\rm LHS\sim RHS\) (and <abbr title="where ~_log means the logarithms are asymptotic">more precisely, \(\sqrt[{M(M+1)\sqrt[M]n}]e\cdot{\rm LHS\underset{\log}\sim RHS}\)</abbr>)</dt>
           <dd>see <a href=https://math.stackexchange.com/a/5137942>this answer</a>'s old part explaining \(n^\underline{c\sqrt n}/n^\overline{c\sqrt n}\underset{\tiny n\to\infty}\lesssim\sqrt{1+{2c\over\sqrt n-1}}e^{-c^2}\)</dd>
-          <dt>see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of the last one into an enveloping series for \(\sum_{j=0}^k\binom nj\)</dt>
+          <dt>see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of \(\sum_{j=0}^k\binom nj\le\binom nk2^k\) into an enveloping series</dt>
         </dl>
         <p>also, as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds (for \(c>0\))
           \[\sqrt{x(x+c)}&lt;(x+c)\frac{(1+\frac cx)^{\frac xc}}e&lt;x+\frac c2\]
-        (a refinement of AM-GM!)</p>
+        (a refinement of AM-GM!); this mean is somewhat nicer than it appears!</p>
+        <dl>
+          <dt>like both the AM and the GM, subtracting \(c\) from \(x\) then replacing \(c\) with \(-c\) recovers the original expression, since \((x+c)\frac{(1+\frac cx)^{\frac xc}}e={x+c\over(1-\frac c{x+c})^{\frac xc}e}\)</dt>
+          <dt>subtracting \(c\over2\) from \(x\) then multiplying \(c\) by \(2x\), this becomes \(e&lt;({1+c\over1-c})^{\frac1{2c}}&lt;{e\over\sqrt{(1+c)(1-c)}}\)</dt>
+          <dt>it's twice as close to the AM than the GM; this is because when they're derived as approximations to it, the AM is from the midpoint rule while the GM is from the trapezoidal</dt>
+        </dl>
       </dd>
       </dl>
     </details>
