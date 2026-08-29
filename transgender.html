@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head><script src="./js/head_loader.js"></script></head>
+  <head><script src="./js/head_loader.js"></script>
+    <style type="text/css">
+      @keyframes blink {
+        50% {
+          opacity: 0.0;
+        }
+      }
+      .blink {
+        animation: blink 1s step-start 0s infinite;
+      }
+    </style>
+  </head>
   <body>
     <title>transgender</title>
   <h1>guide to transfeminine HRT (focusing on the UK)</h1>
@@ -8,15 +19,26 @@
     <p>note this is skewed towards England, especially the Londonwards side</p>
     <p>i also recommend <a href=https://diyhrt.wiki>the DIY HRT directory</a> and especially <a href=https://pghrt.diy>A PRACTICAL GUIDE TO FEMINIZING HRT</a></p>
   <h2>free physical resources</h2>
-    <h3>London-based hormone blood testing services</h3>
+    <h3>(London-based) hormone blood testing services</h3>
+    <p>try to line up your doses such that the test takes place immediately before the next one</p>
     <p>before having a blood test, ensure you are hydrated (otherwise your blood will be viscous and they will need to poke many holes in you instead of few)</p>
     <dl>
       <dt><a href=https://cliniq.org.uk/other-cliniq-health-services>cliniQ</a>: open on Tuesdays, operated out of King's College Hospital on Tuesdays 16:00-to-19:00</dt>
       <dd>
-        <p>they list liver function tests as a separate service but i'm pretty sure they perform them by default on your first visitation; generally you can just explain whatever your reasoning is to the volunteer taking the test and they will add your desired metric to the order form</p>
+        <p>they list liver function tests as a separate service but i'm pretty sure they perform them by default on your first visitation; generally you can just explain whatever your reasoning is to the volunteer taking the sample and they will add your desired tests to the order form</p>
       </dd>
       <dt><a href=https://www.dean.st/trans-non-binary-2>56T Dean Street</a>: open on Tuesdays, open on Wednesdays 16:30-to-19:00</dt>
       <dt>note that your GP will also likely be willing to perform the tests as well</dt>
+      <dd>
+        <p>your GP may be reluctant (especially if you're DIYing) but a few talking points may be useful to raise to easen their minds</p>
+        <dl>
+          <dt>blood tests are harm reduction, not endorsement</dt>
+          <dt>you don't have to interpret the results</dt>
+          <dt>having the results on hand may be useful for doctors in the future</dt>
+          <dt>they can include your own additional test at the same time if they choose</dt>
+          <dt>tell them how long it has been since your last test, and how long you expect the interval until the next test to be (generally 1 to 3 months when you've recently changed your prescription, 6 to 12 otherwise)</dt>
+        </dl>
+      </dd>
     </dl>
     <p>for both, book in advance via email</p>
     <p>both offer quite similar ranges of services (they also will administer injections if you have proof that they're from prescriptions, and provide screenings/vaccines for STIs)</p>
@@ -107,7 +129,10 @@
       <dt>like pills (oral <-> sublingual), administration routes are interchangeable even if the container says they're not</dt>
       <dd><div class=chat>
         <p class=msg><b class=name style=--name-color:#7f00ff>drone</b> i know that in attempting to do IM injections amateurly into the leg, one will often miss and dispense the oil into the surrounding fat which is not something to be concerned about<br />so do the vials which one gets from pharmacies that say "for intramuscular use only" on them only say that to minimise liability because their manufacturers are run by lawyers who don't understand the interoperability/negligibleness of the risk or is there a genuine reason?</p>
-        <p class=msg><b class=name style=--name-color:#925cb1>Mitzi</b>In the case of estrogen, basically. It's only approved for IM use, and running a trial to prove subq is fine to the FDA (given all the formulations are American) is a pointless waste of money to the manufacturer.<br />Some meds do actually need to be administered exclusively subq/IM/wherever. Administering the TB vaccine intramuscularly will land you in hospital for example. Depot antipsychotics come to mind as IM-only medication. But none of that's usually relevant to trans people (beyond depot testosterone formulations that can't be subqed because they're 4 ml)</p></div></dd>
+        <p class=msg><b class=name style=--name-color:#925cb1>Mitzi</b>In the case of estrogen, basically. It's only approved for IM use, and running a trial to prove subq is fine to the FDA (given all the formulations are American) is a pointless waste of money to the manufacturer.<br />Some meds do actually need to be administered exclusively subq/IM/wherever. Administering the TB vaccine intramuscularly will land you in hospital for example. Depot antipsychotics come to mind as IM-only medication. But none of that's usually relevant to trans people (beyond depot testosterone formulations that can't be subqed because they're 4 ml)</p>
+      </div></dd>
+      <dt><font color=#ff0000><span class="blink">IF YOU ARE TRANSMASC</span></font> you will be administering about an order of magnitude more oil, so should not do subq! and if you do IM, you should either use a longer needle or be certain you are not accidentally injecting into the fat</dt>
+      <dd>this is due to volume; 1.5ml (for any substance suspended in oil) is the general threshold beyond which subq is advised against due to the propensity to pool in fatty tissue with low uptake (allowing it to leach out through the skin), and also the irritation scales linearly.</dd>
     </dl>
   <h2>safe injection sites</h2>
     <table><thead><tr><th style=width:256px;>diagram intended for use by medical professionals (includes the back, which is not feasible for self-administration)</th><th style=width:256px;>diagram from <a href=https://www.folxhealth.com/library/hormone-self-injection-guide>FOLX health's guide</a>, which emphasises staying away from the naval (very important; there are a lot of nerves there)</th></tr></thead>
@@ -130,6 +155,10 @@
         <p>in fact, i had a blood test earlier the same day, of five stabbings, compared to each of which it was quite painless!</p>
       </dd>
       <dt>the pain you <i>do</i> experience from it does not typically last more than a day; it will likely hurt more the following evening than the night of the injection</dt>
+    </dl>
+  <h2>other useful websites</h2>
+    <dl>
+      <dt><a href=https://hrt.wtf/hrt.cat>hrt cat</a>, which explains the process to produce estradiol vials from raws (note that i am not a chemist or pharmacologist so cannot vet its accuracy, but it seems very thorough)</dt>
     </dl>
   </body>
 </html>

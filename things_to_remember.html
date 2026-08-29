@@ -81,8 +81,9 @@
           <dt> the \(k\le n/2\) inequality is a special case of the <a href=https://math.stackexchange.com/a/5134353>binomial distribution's Chernoff bound</a></dt>
           <dt>\((\dagger)\) holds because for Stirling's approximation \(g(n)=\sqrt{\tau n}\left(\frac ne\right)^n\) to \(f(n)=n!\), \(g(n)\over f(n)\) is \(&lt;1\) but strictly increasing, so for \(k&lt;n\) \({g(n)\over g(k)}&ge;{f(n)\over f(k)}\), then we replace the \(1\over f(n-k)\) factor with its upper bound \(1\over g(n-k)\)</dt>
           <dt>\((\ddagger)\) holds because \({d\over dn}\log{\binom nk\over{n^n\over k^k(n-k)^{n-k}}}{\tt/\!\!.}k\to cn\) is \(\overbrace{\log(c^c(1-c)^{1-c})}^{\in[-\log2,0]}+\overbrace{H_n-cH_{cn}-(1-c)H_{(1-c)n}}^{\text{always nonpositive; replace}\atop\text{$H$ with any concave function}}\)</dt>
-          <dt>\((\mathrel{\style{display:inline-block; transform: rotate(180deg);}\dagger})\) has \({\rm RHS\over LHS}\ge\sqrt{\frac\pi2n}\) (equality when \(k=\frac n2\)) so holds when \(n\ge\frac2\pi\); this chart is mostly for the integers anyway and it is already superseded by \((\ddagger)\) so what do you care</dt>
-          <dd><p>relevantly, note that (using the notation \(Q(n)\) and \(R(n)\) proposed by Knuth and covered in <a href=https://doi.org/10.1016/0377-0427(93)E0258-N>this paper</a>)
+          <dt>
+          \((\mathrel{\style{display:inline-block; transform: rotate(180deg);}\dagger})\) has \({\rm RHS\over LHS}\le\sqrt{\frac\pi2n}\) (equality when \(k=\frac n2\)) so holds when \(n\ge\frac2\pi\); this chart is mostly for the integers anyway and it is already superseded by \((\ddagger)\) so what do you care</dt>
+            <dd><p><details closed><summary>[collapsed] relevantly, note that (using the notation \(Q(n)\) and \(R(n)\) proposed by Knuth and covered in <a href=https://doi.org/10.1016/0377-0427(93)E0258-N>this paper</a>; see my page <oeis-tally href="Euler's_tree_function"></oeis-tally> about \(Q(n)\))</summary>
             \[\begin{array}{rl}
     R(n)-1:=&\sum_{k=2}^n{n^k\over n^\overline k}=\left(\frac en\right)^n\gamma(n+1,n)\\
             &\,\,\mathrel{\style{display:inline-block; transform: rotate(90deg);}=}\\
@@ -91,23 +92,42 @@
             &\sum_{k=0}^n\binom nk\big/{n^n\over k^k(n-k)^{n-k}}<!--\overset{(\dagger)}\le\sum_{k=0}^n\sqrt{n\over\tau k(n-k)}-->\\
             &\,\,\mathrel{\style{display:inline-block; transform: rotate(90deg);}=}\\
     1+Q(n):=&\sum_{k=0}^n{n^\underline k\over n^k}=\int_{t=0}^\infty{\left(1+\frac tn\right)^n\over e^t}=\left(\frac en\right)^n\Gamma(n+1,n)
-            \end{array}\]
-            (see my page <oeis-tally href="Euler's_tree_function"></oeis-tally> about \(Q(n)\)); anyway, this means that while \(\min\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{2\over\pi n}\), \(\mathop{\mathbb E}\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{\pi\over2n}\)</p>
+            \end{array}\]</details>
+            this means that while \(\min\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{2\over\pi n}\), \(\mathop{\mathbb E}\limits_{k\in[0,n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\lesssim\sqrt{\pi\over2n}\)</p>
             <p>note that the \(\approx\) can be said less wishy-washily, since \(Q(n)+R(n)={n!\over(\frac ne)^n}\), which gives that \(\mathop{\mathbb E}\limits_{k\in[0..n]}\binom nk\big/{n^n\over k^k(n-k)^{n-k}}\gtrsim\sqrt{\pi\over2n}{n\over n+1}\)</p>
           </dd>
           <dt>\((\ast)\) is strengthenable; the LHS can be multiplied by \(e^{\sum_{m=1}^{M-1}{k^{m+1}\over m(m+1)n^m}}\) (converging as \(M\to\infty\)); where \(k(n)\in O(n^{1-\frac1M})\), the last included summand is \(\in\Theta(1)\) while the first omitted is \(\in\Theta(n^{-\frac1M})\) so \(\rm LHS\sim RHS\) (and <abbr title="where ~_log means the logarithms are asymptotic">more precisely, \(\sqrt[{M(M+1)\sqrt[M]n}]e\cdot{\rm LHS\underset{\log}\sim RHS}\)</abbr>)</dt>
           <dd>see <a href=https://math.stackexchange.com/a/5137942>this answer</a>'s old part explaining \(n^\underline{c\sqrt n}/n^\overline{c\sqrt n}\underset{\tiny n\to\infty}\lesssim\sqrt{1+{2c\over\sqrt n-1}}e^{-c^2}\)</dd>
           <dt>see <a href=https://math.stackexchange.com/a/4916707>this old answer</a> of mine for an extension of \(\sum_{j=0}^k\binom nj\le\binom nk2^k\) into an enveloping series</dt>
-        </dl>
-        <p>also, as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds (for \(c>0\))
-          \[\sqrt{x(x+c)}&lt;(x+c)\frac{(1+\frac cx)^{\frac xc}}e&lt;x+\frac c2\]
-        (a refinement of AM-GM!); this mean is somewhat nicer than it appears!</p>
-        <dl>
-          <dt>like both the AM and the GM, subtracting \(c\) from \(x\) then replacing \(c\) with \(-c\) recovers the original expression, since \((x+c)\frac{(1+\frac cx)^{\frac xc}}e={x+c\over(1-\frac c{x+c})^{\frac xc}e}\)</dt>
-          <dt>subtracting \(c\over2\) from \(x\) then multiplying \(c\) by \(2x\), this becomes \(e&lt;({1+c\over1-c})^{\frac1{2c}}&lt;{e\over\sqrt{(1+c)(1-c)}}\)</dt>
-          <dt>it's twice as close to the AM than the GM; this is because when they're derived as approximations to it, the AM is from the midpoint rule while the GM is from the trapezoidal</dt>
+          <dt>see <a href=https://math.stackexchange.com/q/3044044>this question</a> about \(\sum_{j=0}^k\binom nj\le\left(en\over k\right)^k\), and (relating to \(\binom nj&lt;\left(en\over k\right)^k\)) <a href=https://math.stackexchange.com/a/5142034>this answer</a> for \(\sum_{k=0}^n\binom nk\big/\left(en\over k\right)^k\sim{\sqrt\pi n^{1/4}\over2^{3/4}\Gamma(3/4)}\)</dt>
         </dl>
       </dd>
+      <dt>as discussed in <a href=https://math.stackexchange.com/a/5135243>this answer</a>, we have the bounds (for \(c>0\))
+        \[\sqrt{x(x+c)}&lt;(x+c)\frac{(1+\frac cx)^{\frac xc}}e&lt;x+\frac c2\]
+        <!--\[
+        \begin{array}{rcccc}
+        &&x\frac{(1+\frac cx)^{1+\frac xc}}e\\
+        &\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\lt}&&\mathrel{\style{display:inline-block; transform: rotate(45deg);}\lt}\\
+        \sqrt{x(x+c)}&&\mathrel{\style{display:inline-block; transform: rotate(90deg);}=}&&x+\frac c2\\
+        &\mathrel{\style{display:inline-block; transform: rotate(45deg);}\lt}&&\mathrel{\style{display:inline-block; transform: rotate(-45deg);}\lt}\\
+        &&{x+c\over(1-\frac c{x+c})^{\frac xc}e}
+        \end{array}
+        \]-->
+      (a refinement of AM-GM!); this mean is somewhat nicer than it appears!</dt>
+      <dd><dl>
+        <dt>like both the AM and the GM, subtracting \(c\) from \(x\) then replacing \(c\) with \(-c\) recovers the original expression, since \((x+c)\frac{(1+\frac cx)^{\frac xc}}e={x+c\over(1-\frac c{x+c})^{\frac xc}e}\)</dt>
+        <dt>subtracting \(c\over2\) from \(x\) then multiplying \(c\) by \(2x\), this becomes \(e&lt;({1+c\over1-c})^{\frac1{2c}}&lt;{e\over\sqrt{(1+c)(1-c)}}\)</dt>
+        <dt>it's twice as close to the AM than the GM; this is because when they're derived as approximations to it, the AM is from the midpoint rule while the GM is from the trapezoidal</dt>
+      </dl></dd>
+      <dt>By the formulation counting poset homomorphisms in <a href=https://arxiv.org/pdf/math/9205211v1><i>Two notes on notation</i></a>, \({n+k\brace n}\ge{n\brack n-k}\) via a surjection, though this is not an effective bound at all</dt>
+      <dt><a href=https://math.stackexchange.com/questions/4123100/show-that-sum-k-0m-1km-binommk-left-frackm-rightn-le>this question</a> is about \(k^{\{n\}}\le n^\underline kk^{n-k}\)<!--; #(\([n]\to[k]\) surjective) &le; #(\([k]\to[n]\) injective) * #(\([n-k]\to[k]\))-->. See my comment on Marko Riedel's answer, which gives the slight improvement to \(k^{\{n\}}\le n^\underline kk^{n-k}/(n+1-k)=n^\underline{k-1}k^{n-k}\)</dt>
+      <dt><a href=https://math.stackexchange.com/q/1274187>this one</a> and <a href=https://mathoverflow.net/questions/268544/are-surjections-n-to-k-more-common-than-injections-k-to-n>this MO one</a> are about \({n^\underline k\over n^k}\le{k^{\{n\}}\over k^n}\)</dt>
+      <dt>so we have \({n^\underline k\over n^k}\le{k^{\{n\}}\over k^n}\le {n^\underline{k-1}\over k^k}\)</dt>
+      <dt><a href=https://math.stackexchange.com/questions/3817994/combinatorial-proof-of-stirling-number-inequality>this question</a> is about the latter of the two inequalities
+        \[{n\brack k}=\sum_{S\subseteq\{0..n-1\}\atop|S|=n-k}\prod_{i\in S}i\le\sum_{S\subseteq\{1..n-1\}\atop|S|=n-k}\prod_{i=1}^{n-k}(n-i)={n-1\choose k-1}(n-1)^\underline{n-k}\]
+        \[{n\brack k}=\sum_{S\subseteq\{0..n-1\}\atop|S|=n-k}\prod_{i\in S}i\le\frac1{(n-k)!}\sum_{S\in\{0..n-1\}^{n-k}}\prod_{i\in S}i={\left(\sum_{i=0}^{n-1}i\right)^{n-k}\over(n-k)!}={\binom n2^{n-k}\over (n-k)!}\]
+      </dt>
+      <dd><a href=https://math.stackexchange.com/questions/3831483/another-upper-bound-for-the-stirling-numbers-of-the-first-kind>this question</a> is about \({n\brack k}\leq{n-1\choose k-1}(n/2)^{n-k}\), which is stronger than the latter (and beats the former for \(k\le\left({\log(2)-1\over W_{-1}(2(\log(2)-1)/e)}=0.13129142\!\ldots\right)\!\cdot n+O(1)\)) comes directly out of Maclaurin's inequality.</dd>
       </dl>
     </details>
     <details open><summary>things to read and digest/incorporate cool results from</summary>
@@ -124,8 +144,11 @@
     <details closed><summary>large programming projects</summary>
       <dl>
         <dt><i>Ocmo</i> fangame (maybe entitled moOc, save for <a href=https://en.wiktionary.org/wiki/MOOC>that already being a term</a>; mo-Oc)</dt>
-        <dd>definitely to implement: replay system, n-body physics (already done), nested 2-body physics (planets form leafs of a binary tree)</dd>
-        <dd>maybe to implement: objects (based on either vicinity or touchedness) that slow down time followed by replay interpolating frames to show run at full speed</dd>
+        <dd><dl>
+          <dt>definitely to implement: replay system, n-body physics (already done), nested 2-body physics (planets form leafs of a binary tree)</dt>
+          <dt>maybe to implement: objects (based on either vicinity or touchedness) that slow down time followed by replay interpolating frames to show run at full speed</dt>
+          <dt>cool things that may be useful: <a href=https://youtu.be/KPoeNZZ6H4s>this video</a> (which discusses many implementation details!) mentions the parametrisation of second-order differential equations \[y+{2\zeta\dot y\over\tau f}+{\ddot y\over(\tau f)^2}=x+{r\zeta\dot x\over\tau f}\] for \(y\) (damped motion of an object) in response to \(x\) (undamped); \(f\) is frequency, \(\zeta\) is rate of oscillation decay (when \(\zeta=0\) the oscillations don't decay, when \(\zeta>1\) it doesn't vibrate), \(r\) determines responsiveness to jumps in \(x\) (\(y\) will overshoot when converging to a new value after a step change in \(x\) when \(r>1\))</dt>
+        </dl></dd>
       </dl>
     </details>
     <details closed><summary>math.se deduplicate targets</summary>

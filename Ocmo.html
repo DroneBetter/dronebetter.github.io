@@ -2,17 +2,18 @@
 <html>
   <head>
     <script src="./js/head_loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts/highcharts.js"></script>
     <style>
       #tables{display:flex;gap:2em;align-items:flex-start}
       table{border-collapse:collapse}
-      th,td{border:1px solid #888;padding:2px 6px;text-align:center;white-space:nowrap}
+      th,td{border:1px solid #555;padding:2px 6px;text-align:center;white-space:nowrap}
       th.level, td.level{text-align:left}
       td.region{font-weight:bold;vertical-align:top;text-align:right;background:#222}
       tfoot td{font-weight:bold;background:#080808}
       td.run{white-space:nowrap;}.lb,
-.vid{display:inline-block;width:5ch;/*ie. "59.99"*/
+      .vid{display:inline-block;width:5ch;/*ie. "59.99"*/
 text-align:right;}
-.sep{display:inline-block;width:1ch;text-align:center;}
+      .sep{display:inline-block;width:1ch;text-align:center;}
       </style></head>
   <body>
     <title>Ocmo</title>
@@ -30,7 +31,7 @@ text-align:right;}
     <p>as mentioned in <oc-mo href=1459599720610533408>this message</oc-mo>, they have denoted all TASes with 变速, and real-time runs with 原速</p>
     <p>i used to suspect them of cheating but trust them now, having seen their handcam footage</p>
   <h1>speedruns</h1>
-    <p>attempting to document all levels; currently contains WR speedruns posted to the Discord server, as well as the complete videographies of Cyraph, SXY3, 2h40m, ssssyzy and MY牧毅</p>
+    <p>attempting to document all levels; currently contains WR speedruns posted to the Discord server, as well as the complete videographies of Cyraph, SXY3, 2h40m, ssssyzy and <abbr title="their name on Game Centre is 我来也一起来"></abbr>MY牧毅</p>
     <p>note that to view videos uploaded to Discord you must be a member of the server; <a href=https://discord.gg/QSpyBtK>invite permalink</a></p>
     <p>hover over any run to see its author; when one is uploaded to multiple places, the second one is linked for redundancy with an initial (D for Discord, B for Bilibili)</p>
     <p>in cases where runs were uploaded specifying the date of achievement, that is used as the official time by this page; in fact, its creation has led SXY3 to realise there were a few they'd forgotten to upload, sometimes even with a >4-year gap</p>
@@ -85,7 +86,7 @@ text-align:right;}
       </dd>
       <dt>7: <i>Below the Tree</i></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.86</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>7.72</abbr> 2020-01-22 <abbr title="Cyraph, who also had a 7.73"><a href=https://youtu.be/fw6Jz_ckZxE>7.91</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/_Xd4ns-dgGQ>7.70</a></abbr> 2020-05-24 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1QK4y1t7fc>7.63</a></abbr> 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Jz411i72k>7.53</a></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1954y1v77P>7.84</a></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1xk4y127s8>7.70</a></abbr>--> 2024-12-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KPrpB5EYc>7.31</a>,<a href=https://www.bilibili.com/video/BV11PrpBVEft>7.29</a></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.86</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>7.72</abbr> 2020-01-22 <abbr title="Cyraph, who also had a 7.73"><a href=https://youtu.be/fw6Jz_ckZxE>7.91</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/_Xd4ns-dgGQ>7.70</a></abbr> 2020-05-24 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1QK4y1t7fc>7.63</a></abbr> 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Jz411i72k>7.53</a></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1954y1v77P>7.84</a></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1xk4y127s8>7.70</a></abbr>--> 2024-12-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KPrpB5EYc>7.31</a>,<a href=https://www.bilibili.com/video/BV11PrpBVEft>7.29</a></abbr> 2026-06-08 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Te3s6jEwa>7.26</a></abbr></p>
         <p>upper route history: 2021-08-22 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1yBkeBCEgG>7.74</a></abbr></p>
       </dd>
     </dl>
@@ -128,12 +129,12 @@ text-align:right;}
       </dd>
       <dt>4: <i>Brake</i></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.99</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/KBApXdIx28c>8.67</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691508464366780456>8.52</oc-mo></abbr><!-- 2020-04-27 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KK41157PY>8.74</a></abbr>--> 2020-06-28 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KD4y1S7ka>8.44</a></abbr><!-- 2020-07-29 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1LT4y1j7jz>8.82</a></abbr>--> 2021-08-13 <abbr title=SXY3><oc-mo href=875632406466539521>8.40</oc-mo></abbr></p>
-        <p>this is a level in which the dummy is faster to collect than the bunny, although it does not award a third star or update Game Centre; 2026-07-04 <abbr title=DroneBetter><oc-mo href=1523059281149169784>7.22</oc-mo></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.99</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/KBApXdIx28c>8.67</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691508464366780456>8.52</oc-mo></abbr><!-- 2020-04-27 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KK41157PY>8.74</a></abbr>--> 2020-06-28 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KD4y1S7ka>8.44</a></abbr><!-- 2020-07-29 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1LT4y1j7jz>8.82</a></abbr>--> 2021-08-13 <abbr title=SXY3><oc-mo href=875632406466539521>8.40</oc-mo></abbr> 2024-06-23 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Rj3s6ZED1>8.38</a></abbr></p>
+        <p>this is a level in which the dummy is faster to collect than the bunny, although it does not award a third star or update Game Centre; 2022-02-09<!--per https://discord.com/channels/368348645382291466/691241596036972604/1525566451493240934--> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1xJN36oEyj>6.67</a></abbr> <!--2026-07-04 <abbr title=DroneBetter><oc-mo href=1523059281149169784>7.22</oc-mo></abbr>--></p>
       </dd>
       <dt>5: <i>Tunnel Terror</i></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>11.19</a></abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/7nowkEnSCZA>10.80</a></abbr> 2020-05-21 <abbr title=Joe><oc-mo c=0 href=712824496532488232 style=color:#ff00ff>10.14</oc-mo></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1uf4y1d7ZX>10.96</a></abbr>--> 2021-01-30 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1KN411o7Si>10.24</a></abbr> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/0lCVTGio5tA>9.77</a></abbr> 2021-08-13 <abbr title=SXY3><oc-mo href=875608432621805619>9.74</oc-mo></abbr> 2024-12-26 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1UKC6YVEzN>9.64</a></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>11.19</a></abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/7nowkEnSCZA>10.80</a></abbr> 2020-05-21 <abbr title=Joe><oc-mo c=0 href=712824496532488232 style=color:#ff00ff>10.14</oc-mo></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1uf4y1d7ZX>10.96</a></abbr>--> 2021-01-30 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1KN411o7Si>10.24</a></abbr> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/0lCVTGio5tA>9.77</a></abbr> 2021-08-13 <abbr title=SXY3><oc-mo href=875608432621805619>9.74</oc-mo></abbr> 2024-12-26 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1UKC6YVEzN>9.64</a></abbr> 2026-08-13 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1huuf6CE7E>9.60</a></abbr></p>
       </dd>
       <dt>6: <i>Crack</i></dt>
       <dd>
@@ -163,7 +164,7 @@ text-align:right;}
       </dd>
       <dt>3: <i>Broken Wheels</i></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>12.28</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>9.13</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/UBESRiSZ_g8>9.32</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/goIEWNusYZI>9.12</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703249817840910366>8.64</oc-mo></abbr><!-- 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1XV411C74y>10.14</a></abbr>--> 2022-02-07 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Tb4y177Tv>8.58</a></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>12.28</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>9.13</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/UBESRiSZ_g8>9.32</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/goIEWNusYZI>9.12</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703249817840910366>8.64</oc-mo></abbr><!-- 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1XV411C74y>10.14</a></abbr>--> 2022-02-07 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Tb4y177Tv>8.58</a></abbr> 2023-08-11 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Kv3s61E1C>8.54</a></abbr></p>
       </dd>
       <dt>4: <i>Scrapyard</i></dt>
       <dd>
@@ -452,6 +453,7 @@ text-align:right;}
       <dt>4: <i>Ferris Wheel</i></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>14.25</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/uObCcOvp0Gs>13.75</a></abbr> 2020-04-27 <abbr title=Cyraph><a href=https://youtu.be/DLsPWNAa8-E>13.26</a></abbr><!-- 2020-10-02 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Gz4y1f7oh>13.78</a></abbr>--> 2020-10-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16i4y1E7Fx>12.90</a></abbr><!-- 2020-10-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1eA41177cX>12.99</a></abbr>--> 2020-10-05 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1jk4y1C7cR>12.76</a>,<a href=https://www.bilibili.com/video/BV1q54y1k7J6>12.19</a></abbr> 2020-11-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1sK411V7gn>11.94</a></abbr> 2021-02-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16f4y1r71P>11.71</a></abbr> 2021-03-06 <abbr title=Cyraph><a href=https://youtu.be/3T18QAN1wBs>11.33</a></abbr> <abbr title="message from 2022-08-24 but is reupload of 879599088109223948">2021-08-24</abbr> <abbr title=SXY3><oc-mo href=1012009124252364840>11.31</oc-mo></abbr><!-- 2025-07-17 <abbr title=SXY3><oc-mo c=0 href=1395443708828323861>11.77</oc-mo></abbr> [this was only a demonstration]--></p>
+        <p>TAS history: 2026-07-12 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KHN36xELi>9.57</a></abbr></p>
       </dd>
       <dt>5: <i>Throttle</i></dt>
       <dd>
@@ -532,7 +534,13 @@ text-align:right;}
     </label>
 
     <div id="tables"></div>
-    
+
+    <label>
+      <input type="checkbox" id="showPercent">
+      show percentage increase over WR
+    </label>
+    <div id="chart" style="width:100%; height:700px;" class="highcharts-dark"></div>
+    <div id="levelComparison" style="width:700px; height:700px;" class="highcharts-dark"></div>
     <script>
 
     const worlds=[
@@ -653,10 +661,10 @@ text-align:right;}
         ]
     }
     ];
-    
+
     /*[leaderboardTime, videoTime, videoURL]*/
     const players=[
-    
+
     {
       name: "SXY3",
       runs:
@@ -670,7 +678,7 @@ text-align:right;}
         [490,0,""],
         [721,721,"https://www.bilibili.com/video/BV1a94y1q7mA"],
         [729,729,"https://www.bilibili.com/video/BV1e8kbBCEAx"],
-        [726,729/*not typo*/,"https://www.bilibili.com/video/BV11PrpBVEft"],
+        [726,726,"https://www.bilibili.com/video/BV1Te3s6jEwa"],
         [328,328,"https://www.bilibili.com/video/BV1FX4y127uB"],//Cave
         [273,273,"https://www.bilibili.com/video/BV1rq4y1b7r1"],
         [1204,1204,"https://www.bilibili.com/video/BV1VWgpzaEYy"],//Mountain
@@ -678,13 +686,13 @@ text-align:right;}
         [233,233,"https://www.bilibili.com/video/BV1am4y1L7ij"],//Grave
         [566,566,"https://www.bilibili.com/video/BV1Mk4y1C7tU"],
         [317,317,"https://www.bilibili.com/video/BV11y4y1n7EN"],
-        [838,840,"https://discord.com/channels/368348645382291466/691241596036972604/875632406466539521"],
-        [964,964,"https://www.bilibili.com/video/BV1UKC6YVEzN"],
+        [838,838,"https://www.bilibili.com/video/BV1Rj3s6ZED1"],
+        [960,960,"https://www.bilibili.com/video/BV1huuf6CE7E"],
         [570,0,""],
-        [949,0,""],
+        [949,949,"https://www.bilibili.com/video/BV15E3s64E3k"],
         [398,398,"https://www.bilibili.com/video/BV1BYZ3BkEC4"],//Ruins
         [688,688,"https://discord.com/channels/368348645382291466/691241596036972604/1465661730402336932"],
-        [854,858,"https://www.bilibili.com/video/BV1Tb4y177Tv"],
+        [854,854,"https://www.bilibili.com/video/BV1Kv3s61E1C"],
         [1144,1144,"https://www.bilibili.com/video/BV1Ye6DBYE58"],
         [760,760,"https://www.bilibili.com/video/BV18cixBLEHc"],
         [587,587,"https://www.bilibili.com/video/BV1Yb4y1j7kT"],
@@ -698,7 +706,7 @@ text-align:right;}
         [1270,1270,"https://www.bilibili.com/video/BV1CEr4BJEtR"],
         [1113,1126,"https://www.bilibili.com/video/BV12y4y1k7Dm"],
         [1068,0,""],
-        [374,381,"https://www.bilibili.com/video/BV1Qt4y1B7Wk"],//DHatchery
+        [376/*per https://discord.com/channels/368348645382291466/691241596036972604/1525566157200035951*/,381,"https://www.bilibili.com/video/BV1Qt4y1B7Wk"],//DHatchery
         [507,507,"https://www.bilibili.com/video/BV1esk4BuEnS"],
         [1212,0,""],
         [386/*it says 372 erroneously due to mistaken upload https://discord.com/channels/368348645382291466/691241596036972604/1468864339648712907 which cannot be easily fixed on Game Centre*/,386,"https://www.bilibili.com/video/BV1GMcnzaE75"],//DForest
@@ -836,21 +844,21 @@ text-align:right;}
         [1269,1269,"https://discord.com/channels/368348645382291466/691241596036972604/1461986510977892462"],//Mountain
         [794,794,"https://discord.com/channels/368348645382291466/691241596036972604/1515549562683654264"],
         [240,0,""],//Grave
-        [576,576,"https://discord.com/channels/368348645382291466/691241596036972604/1370815152521347152"],
+        [568,568,"https://discord.com/channels/368348645382291466/691241596036972604/1542562495493967952"],
         [330,0,""],
-        [861,878,"https://discord.com/channels/368348645382291466/691241596036972604/912406006489829397"],
-        [1021,1021,"https://discord.com/channels/368348645382291466/691241596036972604/1354492650472083698"],
-        [604,648,"https://discord.com/channels/368348645382291466/691241596036972604/1031682671925022730"],
-        [984,984,"https://discord.com/channels/368348645382291466/691241596036972604/1490853789391917202"],
+        [847,847,"https://youtu.be/SWbF8tmS6Pw"],
+        [980,980,"https://discord.com/channels/368348645382291466/691241596036972604/1531288673457410318"],
+        [555,555,"https://youtu.be/2YgG_Pvxfug"],
+        [957,957,"https://youtu.be/rSkuw5F8weY"],
         [413,0,""],//Ruins
-        [712,712,"https://discord.com/channels/368348645382291466/691241596036972604/1440207999623762093"],
+        [698,698,"https://discord.com/channels/368348645382291466/691241596036972604/1526413514242134129"],
         [862,862,"https://discord.com/channels/368348645382291466/691241596036972604/1429121068655710320"],
         [1174,1174,"https://discord.com/channels/368348645382291466/691241596036972604/1484028725078265866"],
         [783,783,"https://discord.com/channels/368348645382291466/691241596036972604/1483934488525541557"],
         [602,602,"https://discord.com/channels/368348645382291466/691241596036972604/1504144854194716844"],
-        [531,531,"https://discord.com/channels/368348645382291466/691241596036972604/1494778204467101937"],//Pylons
+        [526,526,"https://youtu.be/lT3g9JehRtY"],//Pylons
         [526,526,"https://discord.com/channels/368348645382291466/691241596036972604/1392534598340317315"],
-        [988,988,"https://discord.com/channels/368348645382291466/691241596036972604/1523110102482288742"],
+        [983,983,"https://discord.com/channels/368348645382291466/691241596036972604/1528371952698265803"],
         [1018,1018,"https://discord.com/channels/368348645382291466/691241596036972604/1440399413167128658"],
         [878,878,"https://discord.com/channels/368348645382291466/691241596036972604/1394389965747650590"],//Sky
         [548,548,"https://discord.com/channels/368348645382291466/691241596036972604/1513703448032313405"],
@@ -861,7 +869,7 @@ text-align:right;}
         [388,391,"https://discord.com/channels/368348645382291466/691241596036972604/1016773988657152052"],//DHatchery
         [529,529,"https://discord.com/channels/368348645382291466/691241596036972604/1369726713403281418"],
         [1369,1369,"https://discord.com/channels/368348645382291466/691241596036972604/1451770950596034602"],
-        [422,0,""],//DForest
+        [405,405,"https://discord.com/channels/368348645382291466/691241596036972604/1543283903073222696"],//DForest
         [568,568,"https://discord.com/channels/368348645382291466/691241596036972604/1483978713870897264"],
         [629,629,"https://discord.com/channels/368348645382291466/691241596036972604/1421833630279274553"],
         [1382,1382,"https://discord.com/channels/368348645382291466/691241596036972604/1507110350846165143"],
@@ -870,19 +878,19 @@ text-align:right;}
         [714,714,"https://discord.com/channels/368348645382291466/691241596036972604/1013141046873575474"],
         [927,927,"https://discord.com/channels/368348645382291466/691241596036972604/1449193331815874614"],//DCave
         [314,317,"https://discord.com/channels/368348645382291466/691241596036972604/1401720323149398228"],
-        [1321,1321,"https://discord.com/channels/368348645382291466/691241596036972604/1466908179102433466"],//DMountain
+        [1307,1307,"https://youtu.be/gghV6fFfG6g"],//DMountain
         [1256,1256,"https://discord.com/channels/368348645382291466/691241596036972604/1456461013120586028"],
         [589,589,"https://discord.com/channels/368348645382291466/691241596036972604/1440994849053478912"],//DGrave
         [1793,0,""],
         [613,613,"https://discord.com/channels/368348645382291466/691241596036972604/1453123082540552404"],
-        [1388,1388,"https://discord.com/channels/368348645382291466/691241596036972604/1437976645578526841"],
+        [1333,1333,"https://youtu.be/3-mrF5oLHQk"],
         [1191,1191,"https://discord.com/channels/368348645382291466/691241596036972604/1476365431626268836"],
         [963,963,"https://discord.com/channels/368348645382291466/691241596036972604/1402308983972302848"],
         [1447,1447,"https://discord.com/channels/368348645382291466/691241596036972604/1445531708085637201"],
         [536,536,"https://discord.com/channels/368348645382291466/691241596036972604/1427805530683871365"],//DRuins
         [2210,2210,"https://discord.com/channels/368348645382291466/691241596036972604/1432909653175697459"],
         [1827,0,""],
-        [1630,1630,"https://discord.com/channels/368348645382291466/691241596036972604/1437099017669578922"],
+        [1616,1616,"https://discord.com/channels/368348645382291466/691241596036972604/1531788167303139438"],
         [1911,1911,"https://discord.com/channels/368348645382291466/691241596036972604/1483986232890363995"],
         [3915/*to my great shame*/,0,""],
         [407,0,""],//DPylons
@@ -897,23 +905,268 @@ text-align:right;}
         [2500,2500,"https://discord.com/channels/368348645382291466/691241596036972604/1516142233483743393"],
       ]
     },
-    
+    {
+      name: "2h40m",
+      runs:
+      [
+        [369,0,""],//Hatchery
+        [508,508,"https://www.bilibili.com/video/BV1LE411P7YR"],
+        [607,0,""],
+        [199,0,""],//Forest
+        [501,0,""],
+        [471,0,""],
+        [494,494,"https://www.bilibili.com/video/BV1mE411w79P"],
+        [736,0,""],
+        [745,0,""],
+        [772,0,""],
+        [330,330,"https://www.bilibili.com/video/BV1fE411A7XN"],//Cave
+        [281,0,""],
+        [1238,1245,"https://discord.com/channels/368348645382291466/691241596036972604/703249098962370560"],//Mountain
+        [831,0,""],
+        [233,233,"https://discord.com/channels/368348645382291466/691241596036972604/691504675656040498"],//Grave
+        [569,0,""],
+        [320,321,"https://discord.com/channels/368348645382291466/691241596036972604/691505109271838761"],
+        [852,852,"https://discord.com/channels/368348645382291466/691241596036972604/691508464366780456"],
+        [1042,0,""],
+        [566,566,"https://www.bilibili.com/video/BV1GE411P7XA"],
+        [998,0,""],
+        [417,0,""],//Ruins
+        [749,0,""],
+        [864,864,"https://discord.com/channels/368348645382291466/691241596036972604/703249817840910366"],
+        [1272,0,""],
+        [820,0,""],
+        [626,0,""],
+        [525,525,"https://www.bilibili.com/video/BV18e411x7Cx"],//Pylons
+        [646,0,""],
+        [974,974,"https://www.bilibili.com/video/BV1V64y1u7fa"],
+        [1150,0,""],
+        [899,0,""],//Sky
+        [566,0,""],
+        [646,0,""],
+        [1328,0,""],
+        [1197,0,""],
+        [1056,1161,"https://www.bilibili.com/video/BV1KE411P7Zc"],
+        [383,0,""],//DHatchery
+        [525,0,""],
+        [1192,1192,"https://discord.com/channels/368348645382291466/691241596036972604/702609559335862385"],
+        [392,392,"https://discord.com/channels/368348645382291466/691241596036972604/691509273179586560"],//DForest
+        [627,0,""],
+        [603,603,"https://www.bilibili.com/video/BV12E411w7Qq"],
+        [1449,0,""],
+        [647,647,"https://www.bilibili.com/video/BV15E411P7hu"],
+        [1199,1199,"https://discord.com/channels/368348645382291466/691241596036972604/702593120491274290"],
+        [726,726,"https://discord.com/channels/368348645382291466/691241596036972604/703252475133558884"],
+        [1000,0,""],//DCave
+        [318,0,""],
+        [1371,0,""],//DMountain
+        [1153,0,""],
+        [568,0,""],//DGrave
+        [1624,0,""],
+        [566,0,""],
+        [1401,0,""],
+        [1226,0,""],
+        [1059,0,""],
+        [1408,0,""],
+        [551,0,""],//DRuins
+        [2246,2246,"https://discord.com/channels/368348645382291466/691241596036972604/703249857724547072"],
+        [1741,0,""],
+        [1729,0,""],
+        [1296,0,""],
+        [2977,0,""],
+        [402,0,""],//DPylons
+        [1345,1382,"https://www.bilibili.com/video/BV1LE411P7cq"],
+        [1392,0,""],
+        [925,925,"https://www.bilibili.com/video/BV1SK4y1C7zJ"],
+        [864,0,""],//DSky
+        [597,0,""],
+        [1015,0,""],
+        [1344,0,""],
+        [1103,1256,"https://www.bilibili.com/video/BV1QE411w7YQ"],
+        [2343,2343,"https://discord.com/channels/368348645382291466/691241596036972604/691562010457931786"],
+      ]
+    },
+    {
+      name: "MY牧毅",
+      runs:
+      [
+        [357,365,"https://www.bilibili.com/video/BV1PT4y1E72e"],//Hatchery
+        [551,0,""],
+        [599,602,"https://www.bilibili.com/video/BV1tC4y1b7n5"],
+        [196,201,"https://www.bilibili.com/video/BV1Kv41117h5"],//Forest
+        [494,0,""],
+        [470,0,""],
+        [485,0,""],
+        [749,777,"https://www.bilibili.com/video/BV1c64y1M7DA"],
+        [735,755,"https://www.bilibili.com/video/BV1it4y1D71m"],
+        [742,753,"https://www.bilibili.com/video/BV1Jz411i72k"],
+        [341,0,""],//Cave
+        [277,280,"https://www.bilibili.com/video/BV1da4y1h7Kp"],
+        [1388,0,""],//Mountain
+        [811,827,"https://www.bilibili.com/video/BV11Z4y1H7K2"],
+        [243,0,""],//Grave
+        [582,0,""],
+        [328,331,"https://www.bilibili.com/video/BV1dT4y1L7XJ"],
+        [844,844,"https://www.bilibili.com/video/BV1KD4y1S7ka"],
+        [1049,0,""],
+        [603,0,"0"],
+        [966,966,"https://www.bilibili.com/video/BV1FK411M7U1"],
+        [393,413,"https://www.bilibili.com/video/BV1if4y1X7cq"],//Ruins
+        [709,709,"https://www.bilibili.com/video/BV1vK411J75Q"],
+        [910,1014,"https://www.bilibili.com/video/BV1XV411C74y"],
+        [1276,1355,"https://www.bilibili.com/video/BV1RV411d7YC"],
+        [852,923,"https://www.bilibili.com/video/BV1M5411s7Dk"],
+        [624,684,"https://www.bilibili.com/video/BV1d54y1D7xk"],
+        [548,0,""],//Pylons
+        [544,623,"https://www.bilibili.com/video/BV1th411Z77X"],
+        [1071,0,""],
+        [1355,1416,"https://www.bilibili.com/video/BV1hT4y1g7iT"],
+        [875,885,"https://www.bilibili.com/video/BV1ET4y1J7mg"],//Sky
+        [544,549,"https://www.bilibili.com/video/BV1RK4y1v7qg"],
+        [657,674,"https://www.bilibili.com/video/BV135411x7Fn"],
+        [1338,1418,"https://www.bilibili.com/video/BV1tV411d7F5"],
+        [1231,1328,"https://www.bilibili.com/video/BV1cK4y1t7qo"],
+        [1464,0,""],
+        [398,0,""],//DHatchery
+        [536,736,"https://www.bilibili.com/video/BV1ap4y1Q7ki"],
+        [1457,0,""],
+        [389,433,"https://www.bilibili.com/video/BV1Nf4y1S7xg"],//DForest
+        [545,593,"https://www.bilibili.com/video/BV1oT4y157je"],
+        [621,0,""],
+        [1491,1522,"https://www.bilibili.com/video/BV1NV411C7vW"],
+        [663,0,""],
+        [1583/*presumably didn't know about shortcut*/,0,""],
+        [749,749,"https://www.bilibili.com/video/BV1ZK411H7fE"],
+        [1238,0,""],//DCave
+        [303,317,"https://www.bilibili.com/video/BV11g4y1i7Mq"],
+        [1783,0,""],//DMountain
+        [1283,0,""],
+        [595,0,""],//DGrave
+        [2867,0,""],
+        [600,0,""],
+        [1705,0,""],
+        [1279,1634,"https://www.bilibili.com/video/BV16p4y1X7Sd"],
+        [1292,0,""],
+        [1624,0,""],
+        [575,606,"https://www.bilibili.com/video/BV1pV411Z7yr"],//DRuins
+        [2718,0,""],
+        [4166/*surprising; 88th place as of 2026-08-22*/,0,""],
+        [1658,2191,"https://www.bilibili.com/video/BV1nZ4y1s7GB"],
+        [2669,0,""],
+        [4162,0,""],
+        [417,0,""],//DPylons
+        [1636,0,""],
+        [1514,1514,"https://www.bilibili.com/video/BV1bz4y1Q722"],
+        [993,0,""],
+        [827,838,"https://www.bilibili.com/video/BV1rz4y1Q7U7"],//DSky
+        [613,624,"https://www.bilibili.com/video/BV1tt4y117B1"],
+        [1377,0,""],
+        [1466,0,""],
+        [1185,0,""],
+        [2194,0,""],
+      ]
+    },
+    {
+      name: "sssyzy",/*they have two Game Centre accounts, sssyzy and sssyzy9; using the minimum which is not always by the same one*/
+      runs:
+      [
+        [374,0,""],//Hatchery
+        [559,0,""],
+        [603,606,"https://www.bilibili.com/video/BV16t4y1U7AY"],
+        [199,202,"https://www.bilibili.com/video/BV1Th411R7cv"/*mislabelled as Forest 2*/],//Forest
+        [508,541,"https://www.bilibili.com/video/BV14A411Y75A"],
+        [480,477,"https://www.bilibili.com/video/BV1Y54y127tc"/*this is not an error but in fact the first case i've found where the in-game leaderboard time is slower*/],
+        [507,0,""],
+        [745,748,"https://www.bilibili.com/video/BV13h411o7BC"],
+        [753,759,"https://www.bilibili.com/video/BV1E54y1e7XW"],
+        [762,770,"https://www.bilibili.com/video/BV1xk4y127s8"],
+        [344,0,""],//Cave
+        [279,0,""],
+        [1338,0,""],//Mountain
+        [835,0,""],
+        [249,0,""],//Grave
+        [578,636,"https://www.bilibili.com/video/BV1hv411v7Gz"],
+        [324,345,"https://www.bilibili.com/video/BV1SZ4y1T7bb"],
+        [855,882,"https://www.bilibili.com/video/BV1LT4y1j7jz"],
+        [1018,1024,"https://www.bilibili.com/video/BV1KN411o7Si"],
+        [650,0,""],
+        [1038,1038,"https://www.bilibili.com/video/BV1eG411S7NJ"],
+        [420,0,""],//Ruins
+        [738,0,""],
+        [889,0,""],
+        [1215,1225,"https://www.bilibili.com/video/BV1SV41117VU"],
+        [811,0,""],
+        [629,0,""],
+        [536,570,"https://www.bilibili.com/video/BV1D54y1U74h"],//Pylons
+        [579,653,"https://www.bilibili.com/video/BV1Rk4y117Ky"],
+        [1032,1140,"https://www.bilibili.com/video/BV1YC4y1t7pv"],
+        [1105,1116,"https://www.bilibili.com/video/BV1BD4y1R7iP"],
+        [893,0,""],//Sky
+        [555,731,"https://www.bilibili.com/video/BV1r64y1T73G"],
+        [664,685,"https://www.bilibili.com/video/BV1e54y1e7To"],
+        [1326,0,""],
+        [1161,1299,"https://www.bilibili.com/video/BV16K4y1Y7uP"/*mislabelled as Sky 6*/],
+        [1575/*believe it or not, as of 2026-08-29, this is 10th place and exactly 1.00 ahead of 11th place*/,0,""],
+        [393,0,""],//DHatchery
+        [534,0,""],
+        [1362,1362,"https://www.bilibili.com/video/BV1AK4y1L7bK"],
+        [427,0,""],//DForest
+        [575,575,"https://www.bilibili.com/video/BV1tv4y1Z76e"],
+        [641,0,""],
+        [1382,1384,"https://www.bilibili.com/video/BV1NP4y1x7Wi"],
+        [668,0,""],
+        [1229,1280,"https://www.bilibili.com/video/BV1hX4y157Qp"],
+        [738,0,""],
+        [1052,1052,"https://www.bilibili.com/video/BV1ip4y1p7w8"],//DCave
+        [318/*came after 2h40m*/,0,""],
+        [1401,0,""],//DMountain
+        [1854,0,""],
+        [1165,0,""],//DGrave
+        [1548,1590,"https://www.bilibili.com/video/BV17p4y1p79x"],
+        [582,585,"https://www.bilibili.com/video/BV1Sh411p7B1"],
+        [1505,0,""],
+        [1273,0,""],
+        [1164,0,""],
+        [1389,1389,"https://www.bilibili.com/video/BV1Wb4y197jC"],
+        [542,544,"https://www.bilibili.com/video/BV1Ta4y1E7UV"],//DRuins
+        [2874,0,""],
+        [2659,0,""],
+        [1728,1776,"https://www.bilibili.com/video/BV1qt4y1q7Le"],
+        [1925,0,""],
+        [3754,0,""],
+        [400,400,"https://www.bilibili.com/video/BV1XV411q7at"],//DPylons
+        [1691,0,""],
+        [1330,1341,"https://www.bilibili.com/video/BV1o5411J7uH"],
+        [986,0,""],
+        [811,835,"https://www.bilibili.com/video/BV1h5411j7qm"],//DSky
+        [610,0,""],
+        [1069,1144,"https://www.bilibili.com/video/BV1jZ4y1V7sc"],
+        [1233,1299,"https://www.bilibili.com/video/BV1eA41177cX"],
+        [1012,1022,"https://www.bilibili.com/video/BV1qK4y1S7Cy"],
+        [2824,0,""],
+      ]
+    },
     ];
-    
+
     function fmt(cs){
       if(!cs) return "";
 
       const minutes=Math.floor(cs/6000);
-      const seconds=Math.floor(cs/100) % 60;
-      const centis=cs % 100;
+      const seconds=Math.floor(cs/100)%60;
+      const centis=cs%100;
 
       if(minutes) return `${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
 
       return `${seconds}.${String(centis).padStart(2,"0")}`;
     }
-    
+
     function fmtDiff(cs){
-        return cs ? "+"+(cs/100).toFixed(2) : "WR";
+      const minutes=Math.floor(cs/6000);
+      const seconds=Math.floor(cs/100)%60;
+      const centis=cs%100;
+
+      if(minutes) return "+"+`${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
+
+      return cs ? "+"+`${seconds?seconds:""}.${String(centis).padStart(2,"0")}` : "WR";
     }
 
     function cell(tuple, best){
@@ -933,17 +1186,14 @@ text-align:right;}
 
     const best=Array(74).fill(Infinity);
 
-    for (const p of players) for (i=0; i<74;i++) {
+    for (const p of players) for (i=0;i<74;i++) {
       const t=p.runs[i]?.[0];
       if (t && t<best[i])
         best[i]=t;
     }
 
     function makeTable(world,startIndex){
-      let html=`<table>
-      <thead>
-      <tr>
-        <th colspan="2">${world.name}</th>`;
+      let html=`<table><thead><tr><th colspan="2">${world.name}</th>`;
 
       for(const p of players) html+=`<th>${p.name}</th>`;
       html+="</tr></thead><tbody>";
@@ -966,32 +1216,338 @@ text-align:right;}
 
       for(const p of players){
         let sum=0;
-    
+
         for(let i=startIndex;i<index;i++){
           const t=p.runs[i]?.[0];
           if(t) sum += t-(showDeficits?best[i]:0);
           }
-    
+
         html+=`<td>${showDeficits?fmtDiff(sum):fmt(sum)}</td>`;
       }
-    
+
       html+="</tr></tfoot></table>";
-    
+
       return html;
     }
-    
-    
-    function render(){
-      document.getElementById("tables").innerHTML =
-          makeTable(worlds[0],0)+makeTable(worlds[1],37);
+
+    function getLevelLabels(){
+
+      const labels = [];
+
+      const levelNameWidth = Math.max(
+        ...worlds.flatMap(world => world.regions.flatMap(([, levels]) => levels.map(level => level.length)))
+      );
+
+      for(const world of worlds){
+
+        for(const [region, levels] of world.regions){
+
+          for(let i = 0; i < levels.length; i++){
+
+            const regionPart = i?'':region;
+
+            const levelNumber = String(i + 1);
+
+            const levelName = levels[i];
+
+            const padding = "&nbsp;".repeat(levelNameWidth +1- levels[i].length);
+
+            labels.push(
+              `${regionPart} ${levelNumber} ${levelName} ${padding}`
+            );
+          }
+        }
+      }
+
+      return labels;
     }
 
-    const checkbox=document.getElementById("showDeficits");
+    Highcharts.setOptions({colors: Highcharts.getOptions().colors});
+    function renderChart(){
+      const categories = getLevelLabels();
 
-    let showDeficits=checkbox.checked;
+      const series = players.map(p => ({
+        name: p.name,
 
-    checkbox.addEventListener("change", () => {
-        showDeficits=checkbox.checked;
+        data: p.runs.map((run, i) => {
+          const t = run?.[0];
+
+          if(!t || !Number.isFinite(best[i])) return null;
+
+          if(showPercent) return 100 * (t - best[i]) / best[i];
+
+          if(showDeficits) return t - best[i];
+
+          return t;
+        }),
+
+        connectNulls: false
+      }));
+
+      let title;
+      let yTitle;
+      let formatter;
+
+      if(showPercent){
+
+        title = "percentage increase over world record";
+        yTitle = "increase (%)";
+
+        formatter = value =>
+          value === 0
+            ? "WR"
+            : "+" + value.toFixed(2) + "%";
+
+      } else if(showDeficits){
+
+        title = "time deficit from world record";
+        yTitle = "deficit";
+
+        formatter = value =>
+          value === 0
+            ? "WR"
+            : "+" + (value / 100).toFixed(2);
+
+      } else {
+
+        title = "level times";
+        yTitle = "time";
+
+        formatter = value => {
+          const cs = Math.round(value);
+
+          const minutes = Math.floor(cs / 6000);
+          const seconds = Math.floor(cs / 100) % 60;
+          const centis = cs % 100;
+
+          if(minutes)
+            return `${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
+
+          return `${seconds}.${String(centis).padStart(2,"0")}`;
+        };
+      }
+
+      Highcharts.chart("chart", {
+        title:{
+          text:title
+        },
+
+        xAxis:{
+          categories:categories,
+          labels:{
+            rotation:-90,
+            y: -4,
+            formatter: function(){return `<span>${this.value}</span>`;},
+            style:{fontFamily:"monospace"}
+          },
+
+          plotLines:[{
+            value:36.5,
+            width:1,
+            color:"#666",
+            zIndex:5
+          }]
+        },
+
+        yAxis:{
+          title:{
+            text:yTitle
+          },
+
+          min: 0,
+
+          max: showPercent?100/3:showDeficits?1000:4000,
+
+          labels:{
+            formatter:function(){
+              return formatter(this.value);
+            }
+          }
+        },
+
+        tooltip:{
+          formatter:function(){
+
+            const value = this.y;
+
+            let display;
+
+            if(showPercent){
+
+              display = value === 0
+                ? "WR"
+                : "+" + value.toFixed(2) + "%";
+
+            } else if(showDeficits){
+
+              display = value === 0
+                ? "WR"
+                : "+" + (value / 100).toFixed(2);
+
+            } else {
+
+              display = formatter(value);
+            }
+
+            return `<b>${this.series.name}</b><br>` +
+                 `${this.key}<br>` +
+                 `${display}`;
+          }
+        },
+
+        legend:{
+          enabled:true
+        },
+
+        plotOptions:{
+          series:{
+            animation:false,
+            marker:{
+              enabled:false
+            }
+          }
+        },
+
+        series:series
+      });
+    }
+
+    const levelLabels = [];
+
+    for(const [region, levels] of worlds[0].regions){
+      for(let i = 0; i < levels.length; i++){
+        levelLabels.push(`${region} ${i + 1}`);
+      }
+    }
+    function renderLevelComparison(){
+
+      const lightBest = best.slice(0, 37);
+      const darkBest  = best.slice(37, 74);
+
+      const series = players.map((p, playerIndex) => {
+
+        const data = [];
+
+        for(let i = 0; i < 37; i++){
+
+          const light = p.runs[i]?.[0];
+          const dark  = p.runs[i + 37]?.[0];
+
+          if(!light || !dark) continue; // we require both times to exist
+
+          let x, y;
+
+          if(showDeficits){
+            x = light - lightBest[i];
+            y = dark - darkBest[i];
+          } else {
+            x = light;
+            y = dark;
+          }
+
+          data.push({
+            x: x,
+            y: y,
+            level: levelLabels[i]
+          });
+        }
+
+        return {
+          name: p.name,
+          data: data,
+          type: "scatter",
+          marker: {
+            enabled: true,
+            radius: 4
+          }
+        };
+      });
+
+      Highcharts.chart("levelComparison", {
+
+        chart: {
+          type: "scatter"
+        },
+
+        title: {
+          text: showDeficits
+            ? "Dark World vs. Light World deficits"
+            : "Dark World vs. Light World times"
+        },
+
+        xAxis: {
+          title: {
+            text: showDeficits
+              ? "Light World deficit"
+              : "Light World time"
+          },
+
+          min: 0,
+          max: showDeficits?1000:4000,
+
+          labels: {
+            formatter: function(){return showDeficits?"+"+(this.value/100).toFixed(2):fmt(this.value);}
+          }
+        },
+
+        yAxis: {
+          title: {
+            text: showDeficits
+              ? "Dark World deficit"
+              : "Dark World time"
+          },
+
+          min: 0,
+          max: showDeficits?1000:4000,
+
+          labels: {
+            formatter: function(){return showDeficits?"+"+(this.value/100).toFixed(2):fmt(this.value);}
+          }
+        },
+
+        tooltip: {
+          formatter: function(){
+
+            const valueX = showDeficits?"+"+(this.point.x/100).toFixed(2):fmt(this.point.x);
+
+            const valueY = showDeficits?"+"+(this.point.y/100).toFixed(2):fmt(this.point.y);
+
+            return `<b>${this.series.name}</b><br>` +
+                `${this.point.level}<br>` +
+                `Light: ${valueX}<br>` +
+                `Dark: ${valueY}`;
+          }
+        },
+
+        plotOptions: {
+          series: {
+            animation: false
+          }
+        },
+
+        series: series
+      });
+    }
+
+    function render(){
+      document.getElementById("tables").innerHTML = makeTable(worlds[0],0)+makeTable(worlds[1],37);
+      renderChart();
+      renderLevelComparison();
+    }
+
+    const deficitCheckbox = document.getElementById("showDeficits");
+    const percentCheckbox = document.getElementById("showPercent");
+
+    let showDeficits = deficitCheckbox.checked;
+    let showPercent = percentCheckbox.checked;
+
+    deficitCheckbox.addEventListener("change", () => {
+        showDeficits = deficitCheckbox.checked;
+        render();
+    });
+
+    percentCheckbox.addEventListener("change", () => {
+        showPercent = percentCheckbox.checked;
         render();
     });
 
