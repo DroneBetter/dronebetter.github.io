@@ -4,7 +4,10 @@
     <script src="./js/head_loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts/highcharts.js"></script>
     <style>
-      #tables{display:flex;gap:2em;align-items:flex-start}
+      #tables{display:flex;flex-flow:row wrap;align-items:flex-start;column-gap:1em;row-gap:1em}
+      #tables table{margin:0;flex:0 0 auto}
+      .viewerControl{margin:0 0 .5em 0}
+      .viewerSubcontrol{margin-left:2em}
       table{border-collapse:collapse}
       th,td{border:1px solid #555;padding:2px 6px;text-align:center;white-space:nowrap}
       th.level, td.level{text-align:left}
@@ -14,6 +17,31 @@
       .vid{display:inline-block;width:5ch;/*ie. "59.99"*/
 text-align:right;}
       .sep{display:inline-block;width:1ch;text-align:center;}
+      .playerButton,.worldButton,.regionButton,.totalPlayerButton{font:inherit;color:inherit;border:0;background:transparent;padding:0;cursor:pointer;}
+      .playerButton{font-weight:normal;}
+      .playerButton.selected{font-weight:bold;}
+      .hidePlayerButton{font:inherit;font-size:.85em;color:inherit;border:0;background:transparent;padding:0 .15em;margin-left:.35em;cursor:pointer;}
+      th.hiddenPlayerHeader{border-left:0;}
+      td.hiddenPlayerSpacer{border:0!important;background:transparent!important;padding:0!important;}
+      .worldButton{font-weight:bold;}
+      .worldTriangle{display:inline-block;width:1.5em;text-align:center;font-size:1.15em;}
+      .regionButton{display:flex;align-items:center;justify-content:flex-end;gap:.35em;width:100%;font-weight:bold;}
+      .regionTriangle{display:inline-block;width:1em;text-align:center;}
+      .totalPlayerButton{display:block;width:100%;min-height:1.2em;}
+      .playerButton:focus-visible,.worldButton:focus-visible,.regionButton:focus-visible,.totalPlayerButton:focus-visible{outline:2px solid currentColor;outline-offset:2px;}
+      .aggregateTime{display:inline-grid;grid-template-columns:6ch 1ch 2ch;width:9ch;justify-content:center;vertical-align:middle;font-variant-numeric:tabular-nums;text-align:center;}
+      .aggregateInteger{text-align:right;}
+      .aggregateDot{text-align:center;}
+      .aggregateFraction{text-align:left;}
+      .aggregateLabel{grid-column:1/-1;text-align:center;}
+      table caption{caption-side:top;text-align:left;padding:0 0 4px 0;font-size:smaller;}
+      td.sortedRun{background-clip:padding-box;}
+      td.wr,th.wr{font-variant-numeric:tabular-nums;width:9ch;min-width:9ch;text-align:center;padding-left:3px;padding-right:3px}
+      .referenceButton{font:inherit;color:inherit;border:0;background:transparent;padding:0;cursor:pointer}
+      .referenceButton:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+      td.wr .aggregateTime{margin:0 auto;}
+      th.stemSpacer,td.stemSpacer{min-width:1ch;padding-left:3px;padding-right:3px;border:0!important;background:transparent!important;}
+      #tables table{margin-left:0;margin-right:auto;}
       </style></head>
   <body>
     <title>Ocmo</title>
@@ -41,50 +69,50 @@ text-align:right;}
   <h2>Light World</h2>
     <h3>Hatchery</h3>
     <dl>
-      <dt>1: <i>Meet Ocmo</i></dt>
+      <dt>1: <i>Meet Ocmo</i> <small>(j_tutorial_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>3.86</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>3.69</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/beNjaAikLoM>3.68</a></abbr> 2020-07-12 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1PT4y1E72e>3.65</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/5_IrMrxPE2Y>3.62</a></abbr> 2026-01-18 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV12Qz2BrEAQ>3.59</a></abbr> 2026-01-25 <abbr title=SXY3><oc-mo href=1464881787225378867>3.55</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1obzvBoE5d>B</a></abbr>)</p>
       </dd>
-      <dt>2: <i>Learning to Walk</i></dt>
+      <dt>2: <i>Learning to Walk</i> <small>(j_tutorial_10.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.68</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/nGGy4UmC7p4>5.62</a></abbr> 2020-03-21 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1LE411P7YR>5.08</a></abbr> (<abbr title=2h40m><oc-mo href=691262837242462249>D</oc-mo></abbr>)</p>
       </dd>
-      <dt>3: <i>The World Outside</i></dt>
+      <dt>3: <i>The World Outside</i> <small>(j_tutorial_08.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.31</a></abbr> <abbr title="per next two videos">between</abbr> <abbr title=Cyraph style=color:#ff00ff>6.03</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/slFd7n-E55Y>6.26</a></abbr> 2020-07-01 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1dp4y1U7FU>6.07</a></abbr> 2020-07-19 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1tC4y1b7n5>6.02</a></abbr><!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16t4y1U7AY>6.06</a></abbr>--> 2020-11-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Ti4y1j7Vb>5.97</a></abbr> <abbr title="message sent 2022-08-24 but is higher-quality reupload of 875633444296744970">2021-08-13</abbr> <abbr title=SXY3><oc-mo href=1011989413049409556>5.93</oc-mo></abbr> 2023-08-07 <abbr title=SXY3><oc-mo href=1138113936965783607>5.89</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1ah4y1k7UE>B</a></abbr>)</p>
       </dd>
     </dl>
     <h3>Forest</h3>
     <dl>
-      <dt>1: <i>High Jump</i></dt>
+      <dt>1: <i>High Jump</i> <small>(strict_learn_shorten.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>2.02</a></abbr> <abbr title="per next video">between</abbr> <abbr title="Cyraph followed by 2h40m" style=color:#ff00ff>1.99</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/uSdaq8yRCAY>2.01</a></abbr> 2020-08-26 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Th411R7cv>2.02</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Joe style=color:#ff00ff>1.98</abbr> 2020-08-26 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Kv41117h5>2.01</a></abbr> 2026-01-20 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1VMkjB3EAS>1.94</a></abbr></p>
         <p>TAS history: 2023-07-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1qP411z7Ua>1.94</a></abbr>; the TAS has been met in real time but after many many slowed-down attempts 1.94 has not been subseded</p>
         <p>the dummy has been reached in <a href=https://www.bilibili.com/video/BV1mTixBgEgr>2.89</a> on 2025-02-09</p>
       </dd>
-      <dt>2: <i>Mushroom Lake</i></dt>
+      <dt>2: <i>Mushroom Lake</i> <small>(demo_204.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>5.75</a></abbr> <abbr title="per next video, which also shows Cyraph had 5.49">between</abbr> <abbr title=Routalanttu style=color:#ff00ff>5.45</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/QlV97YHPKhc>5.79</a></abbr> 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV14A411Y75A>5.41</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/P2Lh8vbONew>5.17</a></abbr> 2021-02-01 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1B5411J7E8>5.00</a></abbr> 2021-08-13 <abbr title=SXY3><oc-mo href=875603759546400768>4.98</oc-mo></abbr> <abbr title="uploaded 2025-07-22">2025-02-14</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1ERgpzuETt>4.94</a></abbr> 2025-07-24 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1nbZ3BLEJw>4.90</a></abbr></p>
       </dd>
-      <dt>3: <i>The Pit</i></dt>
+      <dt>3: <i>The Pit</i> <small>(j_wallswat_02.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>4.84</a></abbr> <abbr title="per next video">between</abbr> <abbr title="Salty - Boy" style=color:#ff00ff>4.74</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/nN9yrqYSEqA>4.81</a></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1954y1v7bt>4.85</a></abbr>--> 2020-08-25 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Y54y127tc>4.77</a></abbr> 2020-08-31 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1FZ4y1T7KU>4.73</a></abbr> 2020-09-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Yi4y1M7Ho>4.71</a></abbr></p>
       </dd>
-      <dt>4: <i>Inside the Hill</i></dt>
+      <dt>4: <i>Inside the Hill</i> <small>(j_tutorial_07.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>5.58</a></abbr> <abbr title="per next video">between</abbr> <abbr title=honeyblue style=color:#ff00ff>5.29</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/79GdqE8HQpY>5.31</a></abbr> 2020-03-22 <abbr title=2h40m><oc-mo c=0 href=691236004727750727>4.94</oc-mo></abbr> (<abbr title=2h40m><a href=https://www.bilibili.com/video/BV1mE411w79P>B</a></abbr>) 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/QDCsjM8M9a0>4.88</a></abbr></p>
       </dd>
-      <dt>5: <i>Mountain Pass</i></dt>
+      <dt>5: <i>Mountain Pass</i> <small>(<abbr title="metsa is a Finnish word, meaning forest or timber">j_metsa_01.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.79</a></abbr> <abbr title="per next video">between</abbr> <abbr title="Luke 225" style=color:#ff00ff>7.33</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/udDp09ByUuo>7.66</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/ihT9zzJgJhc>7.33</a></abbr><!-- 2020-04-23 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1c64y1M7DA>7.77</a></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV13h411o7BC>7.48</a></abbr>--> 2023-07-21 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1a94y1q7mA>7.21</a></abbr> (<abbr title=SXY3><oc-mo href=1138489419825942528>D</oc-mo></abbr>)</p>
         <p>on 2023-07-21, SXY3 also uploaded a non-WR <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1PF411X7uV>7.25</a></abbr> with a different route</p>
       </dd>
-      <dt>6: <i>Downhill</i></dt>
+      <dt>6: <i>Downhill</i> <small>(j_downhill_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.91</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Routalanttu style=color:#ff00ff>7.40</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/IDJJhAqnG5A>7.69</a></abbr> 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1ak4y1m7af>7.69</a></abbr> 2020-08-12 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1it4y1D71m>7.55</a></abbr><!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1E54y1e7XW>7.59</a></abbr>--> 2021-02-13 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1trkbBKEXQ>7.39</a>,<a href=https://www.bilibili.com/video/BV1trkbBKE9q>7.38</a></abbr> <abbr title="checked with SXY3, who confirmed that being a digit-swap away from the preceding times' date is not an error">2022-01-13</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1smkbBwEey>7.35</a></abbr> 2026-01-12 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Pjr4BQE3G>7.33</a>,<a href=https://www.bilibili.com/video/BV1Cjr4BDEar>7.31</a></abbr> 2026-01-19 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1e8kbBCEAx>7.29</a></abbr></p>
         <p>dummy WR history: 2022-02-17 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV14ykbBPE4X>8.38</a></abbr></p>
       </dd>
-      <dt>7: <i>Below the Tree</i></dt>
+      <dt>7: <i>Below the Tree</i> <small>(j_easy_parkour_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.86</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>7.72</abbr> 2020-01-22 <abbr title="Cyraph, who also had a 7.73"><a href=https://youtu.be/fw6Jz_ckZxE>7.91</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/_Xd4ns-dgGQ>7.70</a></abbr> 2020-05-24 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1QK4y1t7fc>7.63</a></abbr> 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Jz411i72k>7.53</a></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1954y1v77P>7.84</a></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1xk4y127s8>7.70</a></abbr>--> 2024-12-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KPrpB5EYc>7.31</a>,<a href=https://www.bilibili.com/video/BV11PrpBVEft>7.29</a></abbr> 2026-06-08 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Te3s6jEwa>7.26</a></abbr></p>
         <p>upper route history: 2021-08-22 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1yBkeBCEgG>7.74</a></abbr></p>
@@ -92,51 +120,51 @@ text-align:right;}
     </dl>
     <h3>Cave</h3>
     <dl>
-      <dt>1: <i>Rabbit Hole</i></dt>
+      <dt>1: <i>Rabbit Hole</i> <small>(rabbit_hole_03_cave.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>3.65</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>3.42</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/Us5sF34M82U>3.57</a></abbr> 2020-03-21 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1fE411A7XN>3.30</a></abbr> (<abbr title=2h40m><oc-mo c=0 href=691238800772300830>D</oc-mo></abbr>) 2023-04-29 <abbr title=SXY3><oc-mo href=1101892560961675384>3.28</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1FX4y127uB>B</a></abbr>)</p>
         <p>SXY3 also shared <oc-mo href=1102966330895896709>an alternate route</oc-mo> hitting two platforms and achieving 3.31, which they noted is much more consistent</p>
       </dd>
-      <dt>2: <i>W</i></dt>
+      <dt>2: <i>W</i> <small>(j_w_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>3.00</a></abbr> 2020-01-22 <abbr title="Cyraph, whose PB was WR 2.84"><a href=https://youtu.be/femZLTT3JXw>2.93</a></abbr> <abbr title="per next video">between</abbr> <abbr title=webserf style=color:#ff00ff>2.80</abbr> 2020-04-18 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1zz411B7MZ>2.93</a></abbr> <abbr title="per next video">between</abbr> <abbr title=YusufAlsdeek style=color:#ff00ff>2.79</abbr> 2020-07-15 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1da4y1h7Kp>2.80</a></abbr> 2021-01-02 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV175411p7us>2.76</a></abbr> <abbr title="note that this tied Joe the Gamer's lost then-WR from an unknown time earlier">2022-02-03</abbr> <abbr title=SXY3><oc-mo href=938678403832348722>2.74</oc-mo></abbr> 2022-02-10 <abbr title=SXY3><oc-mo href=941191363976904754>2.73</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1rq4y1b7r1>B</a></abbr>)</p>
       </dd>
     </dl>
     <h3>Mountain</h3>
     <dl>
-      <dt>1: <i>The Ridge</i></dt>
+      <dt>1: <i>The Ridge</i> <small>(j_easy_climbing_02.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.03</a></abbr> 2020-01-22 <abbr title="Cyraph, whose PB was WR 13.61"><a href=https://youtu.be/0jRLfWS_Y8Q>13.78</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703249098962370560>12.45</oc-mo></abbr> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/aX1sMAc2fyY>12.19</a></abbr> 2021-03-16 <abbr title=Joe><oc-mo c=0 href=821360460325584896 style=color:#ff00ff>tied</oc-mo>,<oc-mo c=0 href=821361929632088074 style=color:#ff00ff>12.04</oc-mo></abbr> 2025-02-08 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1VWgpzaEYy>tied</a></abbr></p>
       </dd>
-      <dt>2: <i>Steppes</i></dt>
+      <dt>2: <i>Steppes</i> <small>(j_mountain_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>9.59</a></abbr> 2019-03-20 <abbr title="Cyraph; note this followed an unrecorded 8.34 and the WR was 8.32"><a href=https://youtu.be/WGiWi6dTLXw>8.42</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Routalanttu style=color:#ff00ff>8.21</abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/InGGY0mA-yc>8.25</a></abbr> <abbr title="per next video">between</abbr> <abbr title=YusufAlsdeek style=color:#ff00ff>8.18</abbr> 2020-06-17 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV11Z4y1H7K2>8.27</a></abbr> 2020-08-14 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1ot4y1D76m>8.08</a></abbr> 2020-08-18 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1wh411o7Sp>7.93</a></abbr> 2020-12-06 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV175411G7ZN>7.86</a></abbr> 2026-01-29 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV12Ecnz9ErU>7.72</a></abbr></p>
       </dd>
     </dl>
     <h3>Grave</h3>
     <dl>
-      <dt>1: <i>Faster!</i></dt>
+      <dt>1: <i>Faster!</i> <small>(strict_fast_drop_02.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>2.56</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691504675656040498>2.33</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1am4y1L7ij>tied</a> on 2023-07-23</abbr>)</p>
       </dd>
-      <dt>2: <i>Slimefalls</i></dt>
+      <dt>2: <i>Slimefalls</i> <small>(j_downhill_slime_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.12</a></abbr> <abbr title="per next video">between</abbr> <abbr title="3-way tie between 2h40m, Bobo Boyafternoon and Cyraph" style=color:#ff00ff>5.76</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/4YGHeZ9EolE>5.87</a></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1hv411v7Gz>6.36</a></abbr>--> 2020-10-06 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Mk4y1C7tU>5.66</a></abbr></p>
       </dd>
-      <dt>3: <i>Twin Peaks</i></dt>
+      <dt>3: <i>Twin Peaks</i> <small>(j_mk_climb_09.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>3.41</a></abbr> 2020-01-22 <abbr title="Cyraph, who had WR 3.38"><a href=https://youtu.be/uMZsWSDMa9I>3.44</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691505109271838761>3.21</oc-mo></abbr><!-- 2020-07-22 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1dT4y1L7XJ>3.31</a></abbr>--> 2020-07-22 <abbr title=Joe><oc-mo c=0 href=735295726439104573 style=color:#ff00ff>3.18</oc-mo></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1SZ4y1T7bb>3.45</a></abbr>--> 2021-02-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV11y4y1n7EN>3.17</a></abbr></p>
       </dd>
-      <dt>4: <i>Brake</i></dt>
+      <dt>4: <i>Brake</i> <small>(j_mk_tunnel.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.99</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/KBApXdIx28c>8.67</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691508464366780456>8.52</oc-mo></abbr><!-- 2020-04-27 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KK41157PY>8.74</a></abbr>--> 2020-06-28 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1KD4y1S7ka>8.44</a></abbr><!-- 2020-07-29 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1LT4y1j7jz>8.82</a></abbr>--> 2021-08-13 <abbr title=SXY3><oc-mo href=875632406466539521>8.40</oc-mo></abbr> 2024-06-23 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Rj3s6ZED1>8.38</a></abbr></p>
         <p>this is a level in which the dummy is faster to collect than the bunny, although it does not award a third star or update Game Centre; 2022-02-09<!--per https://discord.com/channels/368348645382291466/691241596036972604/1525566451493240934--> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1xJN36oEyj>6.67</a></abbr> <!--2026-07-04 <abbr title=DroneBetter><oc-mo href=1523059281149169784>7.22</oc-mo></abbr>--></p>
       </dd>
-      <dt>5: <i>Tunnel Terror</i></dt>
+      <dt>5: <i>Tunnel Terror</i> <small>(j_slime_02.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>11.19</a></abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/7nowkEnSCZA>10.80</a></abbr> 2020-05-21 <abbr title=Joe><oc-mo c=0 href=712824496532488232 style=color:#ff00ff>10.14</oc-mo></abbr><!-- 2020-08-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1uf4y1d7ZX>10.96</a></abbr>--> 2021-01-30 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1KN411o7Si>10.24</a></abbr> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/0lCVTGio5tA>9.77</a></abbr> 2021-08-13 <abbr title=SXY3><oc-mo href=875608432621805619>9.74</oc-mo></abbr> 2024-12-26 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1UKC6YVEzN>9.64</a></abbr> 2026-08-13 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1huuf6CE7E>9.60</a></abbr></p>
       </dd>
-      <dt>6: <i>Crack</i></dt>
+      <dt>6: <i>Crack</i> <small>(<abbr title="jarru is a Finnish word, meaning brake">jarru_01.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.26</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/etoO3RdR2B0>6.03</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/nsIvfbgaQrM>5.86</a></abbr> 2020-03-22 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1GE411P7XA>5.66</a></abbr> (<abbr title=2h40m><oc-mo href=691516328284127262>D</oc-mo></abbr>) 2020-05-11 <abbr title=Cyraph><a href=https://youtu.be/iRGrcB8778c>5.42</a></abbr> (<abbr title=Cyraph><a href=https://youtu.be/ReVNh8LFkiw>gameplay</a></abbr>)</p>
         <p>the shortcut (that all WRs use) <oc-mo c=0 href=702604365885734973>was intended</oc-mo>! on 2020-04-22,</p>
@@ -145,57 +173,57 @@ text-align:right;}
           <p class=msg><b class=name style=--name-color:#ff003f title="Salty - Boy">Salty</b> Crack was made on purpose. I wanted it to seem impossible though</p>
         </div>
       </dd>
-      <dt>7: <i>Slime Dripping</i></dt>
+      <dt>7: <i>Slime Dripping</i> <small>(<abbr title="'padon pohja' translates from Finnish to 'base of the dam'">j_padon_pohja_01.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>11.63</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>10.69</abbr> 2020-01-22 <abbr title="Cyraph, who had PB 10.71"><a href=https://youtu.be/ev0l1c-XaTE>11.58</a></abbr> <abbr title="per next video">between</abbr> <abbr title=YusufAlsdeek style=color:#ff00ff>9.94</abbr> 2020-06-10 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Ji4y1x7ec>11.05</a></abbr> 2020-07-05 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV18g4y1v7UZ>9.77</a></abbr> 2020-08-16 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1FK411M7U1>9.66</a></abbr> 2020-11-12 <abbr title=Joe><oc-mo c=0 href=776346158619820054 style=color:#ff00ff>9.64</oc-mo></abbr> 2021-03-06 <abbr title=Cyraph><a href=https://youtu.be/c3RsJrWwikM>9.60</a></abbr> 2021-11-06 <abbr title=Joe><oc-mo href=906570143595905076 style=color:#ff00ff>9.56</oc-mo></abbr> 2022-02-03 <abbr title=SXY3><oc-mo href=938681968445521950>9.49</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1MS4y1G7Aw>B</a></abbr>)<!-- 2023-11-27 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1eG411S7NJ>10.38</a></abbr>--></p>
       </dd>
     </dl>
     <h3>Ruins</h3>
     <dl>
-      <dt>1: <i>Building Speed</i></dt>
+      <dt>1: <i>Building Speed</i> <small>(<abbr title="graffa is Finnish for graphics; perhaps it was appended to distinguish it from the version without finished decorations in their development folder">j_mk_dot_02_graffa.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>4.59</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>4.17</abbr> 2020-01-22 <abbr title="Cyraph, who had PB 10.71"><a href=https://youtu.be/cHlryx-T_Jw>4.20</a></abbr> 2020-04-20 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1QQ4y1K73H>4.16</a></abbr> 2020-05-31 <abbr title=Joe><oc-mo c=0 href=716721180492693588 style=color:#ff00ff>4.15</oc-mo></abbr> 2020-08-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1if4y1X7cq>4.13</a></abbr> 2022-09-20 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1BYZ3BkEC4>3.98</a></abbr></p>
         <p>dummy WR history: <abbr title="uploaded 2026-01-13">2023-06-28</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV11hr5BXEbD>5.95</a></abbr></p>
       </dd>
-      <dt>2: <i>Wipe the Dust</i></dt>
+      <dt>2: <i>Wipe the Dust</i> <small>(j_mk_05.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.41</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/_RU4rSxDPXw>7.69</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/6JRcKeZxj7s>7.42</a></abbr> 2020-05-19 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1ap4y1Q7ki>7.36</a></abbr> 2020-07-26 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1vK411J75Q>7.09</a></abbr> 2020-12-06 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1VA41147xe>7.08</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/V0kUmXjfofE>6.99</a></abbr> <abbr title="uploaded 2026-01-13">2021-08-16</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV14tr5BREBg>6.95</a></abbr> 2026-01-26 <abbr title=SXY3><oc-mo href=1465661274259062947>6.89</oc-mo>,<oc-mo href=1465661730402336932>6.88</oc-mo></abbr></p>
         <p>dummy WR history: 2022-08-24 <abbr title=SXY3><oc-mo href=1011993045467676683>9.05</oc-mo></abbr></p>
       </dd>
-      <dt>3: <i>Broken Wheels</i></dt>
+      <dt>3: <i>Broken Wheels</i> <small>(<abbr title="finni is Finnish for acne or pimple (which tells you a lot about the Finns' sense of place in the world i guess :-)">j_mk_finnit_02.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>12.28</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>9.13</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/UBESRiSZ_g8>9.32</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/goIEWNusYZI>9.12</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703249817840910366>8.64</oc-mo></abbr><!-- 2020-06-02 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1XV411C74y>10.14</a></abbr>--> 2022-02-07 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Tb4y177Tv>8.58</a></abbr> 2023-08-11 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Kv3s61E1C>8.54</a></abbr></p>
       </dd>
-      <dt>4: <i>Scrapyard</i></dt>
+      <dt>4: <i>Scrapyard</i> <small>(j_mk_parkour_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>14.84</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>12.76</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/q-slJUReYgQ>13.75</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/lsoMovT5GVM>12.33</a></abbr><!-- 2020-05-05 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1RV411d7YC>13.55</a></abbr> 2020-09-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1pD4y1m7LD>12.66</a></abbr>--> 2020-10-04 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1SV41117VU>12.25</a></abbr> 2020-10-08 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1HA41177ag>11.87</a>,<a href=https://www.bilibili.com/video/BV1Cy4y1k7n5>11.74</a></abbr> 2025-01-26 <abbr title=SXY3><oc-mo href=1333100562991939584>11.54</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1DfisB1Ema>B</a></abbr>) 2026-01-08 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1g2rKB6EX7>11.48</a></abbr> 2026-01-10 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Ye6DBYE58>11.44</a></abbr></p>
         <p>SXY3 has achieved fast times in a plethora of other routes; their WR was done in what they term route 1.1, see also <a href=https://www.bilibili.com/video/BV131rKB3E52>route 1.2 (11.50)</a>, <a href=https://www.bilibili.com/video/BV1AcrTBcEZx>route 2.1.1 (11.73)</a>, <a href=https://www.bilibili.com/video/BV131rKB3E2m>route 2.1.2 (11.67)</a>, <a href=https://www.bilibili.com/video/BV1pwrTB8ESh>route 2.1.3 (11.65)</a>, <a href=https://www.bilibili.com/video/BV1PwrTB8ETC>route 2.2 (11.90)</a>, <a href=https://www.bilibili.com/video/BV1WcrTBcEvE>route 2.3 (11.70)</a></p>
       </dd>
-      <dt>5: <i>Trap Door</i></dt>
+      <dt>5: <i>Trap Door</i> <small>(j_mk_03.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>9.61</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/c52QxMP5IVU>8.28</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>8.13</abbr> 2020-05-08 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1M5411s7Dk>9.23</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/1UCP8-CugVU>7.86</a></abbr> 2025-07-23 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV18cixBLEHc>7.60</a></abbr></p>
         <p>dummy WR history: 2026-01-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1gbkwB8EGD>9.43</a></abbr></p>
       </dd>
-      <dt>6: <i>Gate Keeper</i></dt>
+      <dt>6: <i>Gate Keeper</i> <small>(<abbr title="sumu is Finnish for fog">sumu_hinged_puzzle.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>9.78</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/gtMi2crevNk>6.37</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>6.26</abbr> 2020-05-26 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1d54y1D7xk>6.84</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/RXxfJefr16o>6.19</a></abbr> 2021-02-02 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1uo4y1d735>6.16,6.13,6.12,6.09</a></abbr> 2021-02-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV12A411u7rt>5.97</a></abbr> 2022-02-03 <abbr title=SXY3><oc-mo href=938679324230443038>5.87</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Yb4y1j7kT>B</a></abbr>)</p>
       </dd>
     </dl>
     <h3>Pylons</h3>
     <dl>
-      <dt>1: <i>Dots in the Sky</i></dt>
+      <dt>1: <i>Dots in the Sky</i> <small>(olli_103_2.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.27</a></abbr> <abbr title="per description; testified to by next video, although it was only uploaded on 2020-03-29">2020-01-05</abbr> <abbr title=2h40m><a href=https://www.bilibili.com/video/BV18e411x7Cx>5.25</a></abbr> 2020-01-22 <abbr title="Cyraph, whose PB was 6.04"><a href=https://youtu.be/ina0zrdgKEs>6.20</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/-BMh0PNGaZo>5.25</a></abbr><!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1D54y1U74h>5.70</a></abbr>--></p>
       </dd>
-      <dt>2: <i>Hang Time</i></dt>
+      <dt>2: <i>Hang Time</i> <small>(j_chain_puzzle_climb_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.98</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/nUu8oPBmdLk>6.19</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Joe style=color:#ff00ff>6.16</abbr> 2020-08-05 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1th411Z77X>6.23</a></abbr><!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Rk4y117Ky>6.53</a></abbr>--> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/oMd_cbs7MfQ>5.28</a></abbr> 2022-08-24 <abbr title=SXY3><oc-mo href=1011992251041320970>5.21</oc-mo></abbr></p>
       </dd>
-      <dt>3: <i>Fallen Pylon</i></dt>
+      <dt>3: <i>Fallen Pylon</i> <small>(j_mk_climb_07.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.68</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/Q6zVStDjeIk>10.62</a></abbr> 2020-03-21 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1FE411P7nn>10.07</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691551074334801981>9.74</oc-mo></abbr> (<abbr title=2h40m><a href=https://www.bilibili.com/video/BV1V64y1u7fa>B</a></abbr>)<!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1YC4y1t7pv>11.40</a></abbr>--> 2023-05-02 <abbr title=SXY3><oc-mo href=1102968983583457361>9.69</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1GKhneEE2p>B</a></abbr>) <abbr title="uploaded 2025-07-22">2025-02-08</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1oZgpzMEdZ>9.56</a></abbr></p>
       </dd>
-      <dt>4: <i>The Lift</i></dt>
+      <dt>4: <i>The Lift</i> <small>(<abbr title="Google Translate says this means 'scab trail' or 'scab-covered leg' depending on spacing">rupustopol.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.33</a></abbr> 2020-02-01 <abbr title="Cyraph; note that they said 'I still can't repeat my 11:19, this is the best I could capture on video.'"><a href=https://youtu.be/D2T_Z1MIl_w>11.51</a></abbr><!-- 2020-05-29 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1hT4y1g7iT>14.16</a></abbr>--> 2020-06-20 <abbr title="inverted_vOmOv; note that this one came after a 11.03 that was subject to a recording error"><a href="https://www.bilibili.com/video/BV1Ap4y1Q7Gi?p=2">11.05</a></abbr><!-- 2020-10-06 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1BD4y1R7iP>11.16</a></abbr>--> 2021-01-07 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1D54y1W7vP>10.48</a></abbr> 2021-03-12 <abbr title=Cyraph><a href=https://youtu.be/UwDiJCE2FBY>10.35</a></abbr> 2021-08-13 <abbr title=SXY3><oc-mo href=875596529304485899>9.93</oc-mo></abbr> 2025-07-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1QZisBjEbi>9.60</a></abbr></p>
         <p>the 9.60 was via an entirely new route that ignores the second vertical platform to slalom up the dots on the left.</p>
@@ -210,31 +238,31 @@ text-align:right;}
     </dl>
     <h3>Sky</h3>
     <dl>
-      <dt>1: <i>Cables</i></dt>
+      <dt>1: <i>Cables</i> <small>(j_cables_02.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>9.71</a></abbr> 2020-01-22 <abbr title="Cyraph, who also had a 9.15"><a href=https://youtu.be/KVbw65Qp6_E>9.16</a></abbr> <abbr title="per the next upload">between</abbr> <abbr title=2h40m style=color:#ff00ff>8.99</abbr> 2020-04-18 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1SQ4y1K7nE>9.66</a></abbr> 2020-06-14 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1ET4y1J7mg>8.85</a></abbr> <abbr title="only uploaded on 2025-07-17">2023-07-03</abbr> <abbr title=SXY3><oc-mo href=1395436870036357141>8.74</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV17Ur5B3Eg4>B</a></abbr>) <abbr title="uploaded 2025-07-22">2025-02-01</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Q4gpzbEJF>8.72</a></abbr></p>
       </dd>
-      <dt>2: <i>Action Points</i></dt>
+      <dt>2: <i>Action Points</i> <small>(<abbr title="apparently otto is Finnish for intake or withdrawal">otto_5.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.09</a></abbr> 2019-07-30 <abbr title=山芋蓝T恤><a href="https://www.bilibili.com/video/BV1jt411c7Jh?p=37">5.89</a></abbr> <abbr title="before next video; unknown whether it predated 山芋蓝T恤's">unknown</abbr> <abbr title=Cyraph style=color:#ff00ff>5.62</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/J5oUHPS-W-0>5.95</a></abbr><!-- 2020-05-15 <abbr title=inverted_vOmOv><a href=https://www.bilibili.com/video/BV1se411W7vD>6.09</a></abbr>--> 2020-08-09 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1RK4y1v7qg>5.49</a></abbr> 2020-09-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1s54y1m7YG>5.46</a></abbr> 2023-06-26 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1uZryB2EZm>5.42</a></abbr></p>
       </dd>
-      <dt>3: <i>Hardwired</i></dt>
+      <dt>3: <i>Hardwired</i> <small>(j_cables_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.32</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/1BlS4TCiXBE>6.98</a></abbr> <abbr title="per next video; unsure where it lies in relation to preceding video">earlier</abbr> <abbr title=2h40m style=color:#ff00ff>6.46</abbr> 2020-04-18 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Hf4y1S7ws>7.49</a></abbr> 2020-05-21 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV135411x7Fn>6.74</a></abbr><!-- 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1e54y1e7To>6.85</a></abbr>--> 2022-01-28 <abbr title=SXY3><oc-mo href=936643441406922784>6.44</oc-mo></abbr> 2022-02-11 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1s44y1H7TX>6.40</a></abbr> 2023-06-29 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1WFkwBJEEf>6.34</a></abbr></p>
         <p>WR history for alternate route (going underneath the vertical slime wall at start): 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1e54y1e7To>6.85</a></abbr> 2025-11-03 <abbr title=DroneBetter><oc-mo href=1434749615919464499>6.60</oc-mo></abbr> 2026-01-16 <abbr title=SXY3><oc-mo href=1461816781487345855>6.50</oc-mo></abbr> 2026-05-09 <abbr title=DroneBetter><oc-mo href=1502657438200107131>6.38</oc-mo></abbr></p>
         <p>the bottom route is very competitive with the top route by chaining a swing off the first pivot with a swing on the circular drum at the start; I am inclined to believe that a sub-6.34 could be achieved with it</p>
       </dd>
-      <dt>4: <i>Platforms</i></dt>
+      <dt>4: <i>Platforms</i> <small>(<abbr title="Google Translate says tolpat huippu means 'poles peak' or 'the posts are top-notch'">j_tolpat_huippu_01.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>14.35</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Routalanttu style=color:#ff00ff>13.43</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/TCBP6ERkW0Q>13.86</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/fufxublfIBk>13.78</a></abbr> <abbr title="appears in next but not in previous">between</abbr> <abbr title=2h40m style=color:#ff00ff>13.28</abbr> 2020-05-06 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1tV411d7F5>14.18</a></abbr> 2020-10-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1rt4y1q7Pi>13.20</a></abbr> 2021-01-27 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1kv4y1f7DJ>12.92</a></abbr> 2021-01-29 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1tt4y167VE>12.86</a></abbr> 2022-08-24 <abbr title=SXY3><oc-mo href=1011994715991838840>12.82</oc-mo></abbr> 2026-01-13 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1CEr4BJEtR>12.70</a></abbr></p>
         <p>the 12.86 and the 12.70 both go underneath the starting platform anticlockwise instead of over it clockwise; SXY3's <abbr title=SXY3><oc-mo href=1461813094505517099>records</oc-mo></abbr> for time to hit the end-of-second-platform slime are 3.49 with vs. 3.61 without, but it limits speed, preventing a clean jump over the entire diagonal girder; going underneath and swinging around this girder, however, lets you speed up and carry even more momentum onwards.</p>
       </dd>
-      <dt>5: <i>Inside Girders</i></dt>
+      <dt>5: <i>Inside Girders</i> <small>(<abbr title="tolppaketju is Finnish for 'chain of posts'">j_tolppaketju_01.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.71</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/r9LkvjFZwuw>11.73</a></abbr><!-- 2020-05-12 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1cK4y1t7qo>13.28</a></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16K4y1Y7uP>12.99</a></abbr>--> 2020-09-05 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Df4y1Q7PD>11.33</a></abbr> 2020-10-04 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV12y4y1k7Dm>11.26</a></abbr> 2021-05-03 <abbr title=Joe><oc-mo c=0 href=838697320303558668 style=color:#ff00ff>11.24</oc-mo></abbr> 2021-05-04 <abbr title=Joe><oc-mo c=0 href=839052259555016714 style=color:#ff00ff>11.14</oc-mo>,<oc-mo href=839060483926523915 style=color:#ff00ff>10.97</oc-mo></abbr></p>
         <p>SXY3's record on the intended route (bouncing off the wall after going around the S) is 2024-08-09 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1d2YvePEuz>11.41</a></abbr></p>
       </dd>
-      <dt>6: <i>Long Route</i></dt>
+      <dt>6: <i>Long Route</i> <small>(tower_of_doom_04.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>17.21</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>12.07</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/a-Ht_zfJ3C4>13.89</a></abbr> 2020-03-22 <abbr title=2h40m><oc-mo href=691243908587454487>11.61</oc-mo></abbr> (<abbr title=2h40m><a href=https://www.bilibili.com/video/BV1KE411P7Zc>B</a></abbr>) 2021-03-12 <abbr title=Cyraph><a href=https://youtu.be/nUIwDbNR4UI>10.49</a></abbr> 2025-12-15 <abbr title=DroneBetter><a href=https://youtu.be/bi65vyFnZsY>10.44</a></abbr></p>
         <p>my present WR grabs the very top of the pipe while coming out of it, which is more consistent but suboptimal; replicating it with about the same precision elsewhere but fixing that seems the easiest way to achieve timesave!</p>
@@ -253,17 +281,17 @@ text-align:right;}
   <h2>Dark World</h2>
     <h3>Hatchery</h3>
     <dl>
-      <dt>1: <i>Hello Dark World</i></dt>
+      <dt>1: <i>Hello Dark World</i> <small>(j_tutorial_01_dw2.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>4.00</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>3.83</abbr> 2020-01-22 <abbr title="Cyraph, who had a 3.93"><a href=https://youtu.be/iPk4U92Dwck>3.96</a></abbr> 2021-01-17 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1eK411u71T>3.86</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/AywnsobtQcY>3.82</a></abbr> 2021-02-09 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Qt4y1B7Wk>3.81</a></abbr> (<abbr title=SXY3><oc-mo href=874658746553483264>D</oc-mo></abbr>)</p>
       </dd>
-      <dt>2: <i>Born to Run</i></dt>
+      <dt>2: <i>Born to Run</i> <small>(ibiza.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>5.44</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>5.22</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/I7PmasCpvy8>5.39</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>5.21</abbr> 2020-05-19 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1ap4y1Q7ki>7.36</a></abbr> 2020-08-23 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1oZ4y1K7zj>5.19</a></abbr> 2021-01-09 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Z5411J7CL>5.15</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/x4Jff3NHcBw>5.14</a></abbr> <abbr title="published on 2026-01-19, but implied by the below 2022-02-07 5.18 demonstration">2022-02-13</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1prkeBrEie>5.12</a></abbr> <abbr title="latter one uploaded on 2026-01-18">2023-08-12</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1ThkeBEE64>5.10</a>,<a href=https://www.bilibili.com/video/BV1esk4BuEnS>5.07</a></abbr></p>
         <p>on 2022-02-07 SXY3 published a demonstration of a possible new route in <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1La411y7kT>5.18</a></abbr>; this 'route 2' became the WR on 2023-08-12</p>
         <p>TAS history: 2023-08-14 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1TakeBmEvK>4.97</a></abbr></p>
       </dd>
-      <dt>3: <i>Follow the Lead</i></dt>
+      <dt>3: <i>Follow the Lead</i> <small>(tutorial_03_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.65</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>12.76</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/UuYASh1u_kA>14.86</a></abbr> 2020-01-24 <abbr title=Cyraph><a href=https://youtu.be/tN3nFOZpJBA>12.42</a></abbr> 2020-04-22 <abbr title=2h40m><oc-mo href=702609559335862385>11.92</oc-mo></abbr><!-- 2020-08-19 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1ez4y1f7np>14.57</a></abbr> 2020-12-06 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1AK4y1L7bK>13.62</a></abbr>--></p>
         <p>after the 11.92s, which avoided the mushrooms entirely (a trick which is unfortunately much more annoying to do on iPhone than iPad), 2h40m said</p>
@@ -276,28 +304,28 @@ text-align:right;}
     </dl>
     <h3>Forest</h3>
     <dl>
-      <dt>1: <i>The Well</i></dt>
+      <dt>1: <i>The Well</i> <small>(high_jump_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>4.50</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/HC793rGWiCM>4.19</a></abbr><!-- <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>3.95</abbr>--> 2020-03-23 <abbr title=2h40m><oc-mo href=691509273179586560>3.92</oc-mo></abbr><!-- 2020-04-19 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Nf4y1S7xg>4.33</a></abbr>--> 2026-02-10 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1GMcnzaE75>3.86</a></abbr></p>
         <p>TAS history: 2026-02-05 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1N9FhzmEsh>3.72</a></abbr></p>
       </dd>
-      <dt>2: <i>Rain</i></dt>
+      <dt>2: <i>Rain</i> <small>(demo_204_dw2.cpd)</small></dt>
       <dd>
         <p>WR history: 2017-11-21 <abbr title=snugflag><a href=https://youtu.be/BgEEJWb-F5E>9.40</a></abbr> 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.25</a></abbr> <abbr title="seen in 2019-03-20 video, identity per leaderboard in 2020-05-01 video">between</abbr> <abbr title=Routalanttu style=color:#ff00ff>6.24</abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/ljRB444ZkKo>6.27</a></abbr><!-- 2020-05-01 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Dt4y127hg>7.18</a></abbr>--> <abbr title="per presence in next video's leaderboard (and absence from MY牧毅's 2020-05-01 7.18)">between</abbr> <abbr title=YusufAlsdeek style=color:#ff00ff>6.03</abbr> 2020-07-08 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1Kv411z78g>6.23</a></abbr> 2020-07-20 <abbr title=Joe><oc-mo c=0 href=734880867025158276 style=color:#ff00ff>6.00,5.97</oc-mo></abbr> 2020-08-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Vi4y1M7MJ>6.09</a></abbr> 2020-08-22 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1rZ4y1K7wC>5.96</a></abbr> <abbr title="actually, the fact that ssssyzy's run uploaded 3 days earlier didn't appear here implies this was done earlier, but i'm still counting WRs in publication order when no definitive date is shared">2020-08-23</abbr> <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1oT4y157je>5.93</a></abbr> 2020-08-27 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1GV411S7Tg>5.90</a></abbr> 2020-08-29 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1yT4y1L7xR>5.86</a></abbr> 2020-09-12 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1jD4y1o7Z6>5.85</a></abbr> 2020-09-20 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1SD4y1o7LJ>5.82</a>,<a href=https://www.bilibili.com/video/BV1sA411J7w7>5.73</a></abbr><!-- 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/mAm1pK5oFqw>5.82</a></abbr> 2021-02-18 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1tv4y1Z76e>5.75</a></abbr>--> 2021-05-09 <abbr title=Joe><oc-mo c=0 href=840991258772111420 style=color:#ff00ff>5.68</a></abbr> 2022-08-24 <abbr title=SXY3><oc-mo href=1011991022227701770>5.65</oc-mo></abbr></p>
       </dd>
-      <dt>3: <i>The Bowel</i></dt>
+      <dt>3: <i>The Bowel</i> <small>(gravityride.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.84</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/rILfHmMKxU0>6.31</a></abbr> 2020-03-21 <abbr title=2h40m><oc-mo c=0 href=691002220312789032>6.03</oc-mo></abbr> (<abbr title=2h40m><a href=https://www.bilibili.com/video/BV12E411w7Qq>B</a></abbr>) 2024-07-30 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1wrvkezEtB>5.93</a></abbr></p>
       </dd>
-      <dt>4: <i>Zipper</i></dt>
+      <dt>4: <i>Zipper</i> <small>(j_uppchain_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.80</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/-661Lq5_Prk>14.60</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>14.49</abbr> 2020-05-16 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1NV411C7vW>15.22</a></abbr> 2021-02-01 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1H5411J7KZ>14.15</a></abbr> 2021-02-03 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1rf4y167LB>13.98</a></abbr> 2021-08-01 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1NP4y1x7Wi>13.84</a></abbr> <abbr title="uploaded 2025-07-22">2025-01-31</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1j7gpziET9>13.81</a></abbr></p>
       </dd>
-      <dt>5: <i>Pistons</i></dt>
+      <dt>5: <i>Pistons</i> <small>(hydrauli_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.58</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/ZnsKmXx6j9A>7.08</a></abbr> 2020-03-22 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV15E411P7hu>6.47</a></abbr> (<abbr title=2h40m><oc-mo c=0 href=691236606694129714>D</oc-mo></abbr>) 2020-08-20 <abbr title=SXY3><oc-mo href=878242676380688434>6.41</oc-mo></abbr> 2022-08-24 <abbr title=SXY3><oc-mo href=1011991260799713321>6.40</oc-mo></abbr> <abbr title="uploaded 2025-07-22">2025-02-09</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1jfgpzBEuv>6.37</a></abbr></p>
       </dd>
-      <dt>6: <i>Work Around</i></dt>
+      <dt>6: <i>Work Around</i> <small>(downhill_dw_03.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.02</a></abbr> 2020-01-22 <abbr title="Cyraph; this was uploaded as a demonstration, not a speedrun; the leaderboard at the end showed that author Cyraph had the WR of 15.07 (not uploaded), and 2nd place (Routalanttu) had 15.11"><a href=https://youtu.be/qKiMUn1KGuc>15.10</a></abbr> <abbr title="recording published in 2020-04-27 had the WR bell play">some intermediate time</abbr> <abbr title=Cyraph><a href=https://youtu.be/LPezQelUwAE>12.49</a></abbr> 2020-04-22 <abbr title=2h40m><oc-mo href=702593120491274290>11.99</oc-mo></abbr><!-- 2021-02-18 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1hX4y157Qp>12.80</a></abbr>--> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/37TQF5aFQSk>11.80</a></abbr> <abbr title="message is from 2022-08-24 but is reupload of 876838069129601055; duplicated again in lower quality in 1333105622777856120 on 2025-01-26 which prompted the following reduction">2021-08-16</abbr> <abbr title=SXY3><oc-mo href=1011996042750869545>11.67</oc-mo></abbr> 2025-01-29 <abbr title=SXY3><oc-mo href=1334035611132235856>11.56</oc-mo></abbr> 2025-12-29 <abbr title=DroneBetter><a href=https://youtu.be/-Yn5M86X4d4>11.51</a></abbr>, 2026-01-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1thi7BQEab>11.23</a></abbr></p>
         <p>my times: <s><oc-mo href=1030767165437137037>15.82</oc-mo></s> <s><oc-mo href=1332532700006842419>14.66</oc-mo></s> <s><oc-mo href=1371864933930631168>13.84</oc-mo></s> <s><oc-mo href=1437944996274896896>12.01</oc-mo></s> <s><oc-mo href=1453123082540552404>11.98</oc-mo></s> <s><oc-mo href=1453190158714273918>11.81 (3rd)</oc-mo></s> <s><oc-mo href=1454147403526574130>11.80 (tied 2nd) 11.70 (untied 2nd)</oc-mo></s> <s><oc-mo href=1455025791166582970>11.65 and 11.57</oc-mo></s> <a href=https://youtu.be/-Yn5M86X4d4>11.51 (1st)</a></p>
@@ -313,20 +341,20 @@ text-align:right;}
         <p>note that SXY3's message with the 11.56 contains a 13.01 which is done without the skip, suggesting that it only saves about 1.45 if played optimally; however, such optimised execution of the non-skip route as they did is somewhat harder than the skip!</p>
         <p>skipless WR history: 2021-08-16 <abbr title=SXY3><oc-mo href=876838854517198920>13.52</oc-mo></abbr> 2025-01-29 <abbr title=SXY3><oc-mo href=1334035611132235856>13.01</oc-mo></abbr></p>
       </dd>
-      <dt>7: <i>Spinning Jenny</i></dt>
+      <dt>7: <i>Spinning Jenny</i> <small>(<abbr title="Google Translates to 'fog moving pimples'">sumu_liikkuvat_finnit.cpd</abbr>)</small></dt>
       <dd>
         <p> WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.92</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/ovSP3w7cGis>7.40</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703252475133558884>7.26</oc-mo></abbr> <abbr title="per next video">between</abbr> <abbr title=YusufAlsdeek style=color:#ff00ff>7.22</abbr> 2020-06-05 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1ZK411H7fE>7.49</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/5-zGtKDU4mw>7.08</a></abbr> 2021-08-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1GZiLBxEf4>6.99</a></abbr></p>
       </dd>
     </dl>
     <h3>Cave</h3>
     <dl>
-      <dt>1: <i>The Blue Pill</i></dt>
+      <dt>1: <i>The Blue Pill</i> <small>(rabbit_hole_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>14.28</a></abbr> 2020-05-11 <abbr title=Cyraph><a href=https://youtu.be/QrVvTw8ZDcE>11.48</a></abbr><!-- 2020-05-17 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV17t4y117J9>12.65</a>,<a href=https://www.bilibili.com/video/BV1bz4y1d7iB>12.38</a></abbr>--> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/ruh2THsp41s>10.55</a></abbr> 2021-02-15 <abbr title="ssssyzy; menu shows WR is 10.00"><a href=https://www.bilibili.com/video/BV1ip4y1p7w8>10.52</a></abbr> 2023-04-29 <abbr title=SXY3><oc-mo href=1101894547707023410>9.83</oc-mo></abbr> 2023-05-01 <abbr title=SXY3><oc-mo href=1102423774600630332>9.70</oc-mo></abbr><!-- (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1CF411o7Es>B</a></abbr>)--> 2023-08-11 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV13r4y1Z7nV>9.39</a></abbr> 2023-08-20 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Fw41197Yy>8.93</a></abbr></p>
         <p>TAS history: 2023-08-20 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Wm4y1M76j>7.76</a></abbr></p>
         <p>it took me a long time to realise <a href=https://girlcockx.com/TeamOCMO/status/868513987238952960>its terrain is just <i>Rabbit Hole</i>'s in reverse</a></p>
       </dd>
-      <dt>2: <i>U</i></dt>
+      <dt>2: <i>U</i> <small>(op_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>3.41</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>3.27</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/JQNe2wHKsuI>3.27</a></abbr> 2020-06-07 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV11g4y1i7Mq>3.17</a></abbr> 2020-12-12 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Fa411c7FX>3.15</a></abbr> 2021-03-28 <abbr title=Joe><oc-mo c=0 href=825615550096736276 style=color:#ff00ff>3.13</oc-mo></abbr> 2023-08-09 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1rj411z7N5>3.01</a></abbr></p>
         <p>TAS history: <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1YV41137Vq>2.97</a></abbr></p>
@@ -334,45 +362,45 @@ text-align:right;}
     </dl>
     <h3>Mountain</h3>
     <dl>
-      <dt>1: <i>The Brooke</i></dt>
+      <dt>1: <i>The Brooke</i> <small>(ridge_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>21.02</a></abbr> 2020-02-01 <abbr title=Cyraph><a href=https://youtu.be/26JsCBnttqk>14.46</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/TME3GSETzi4>13.50</a></abbr> 2021-01-13 <abbr title=Joe><oc-mo c=0 href=798800784422731777 style=color:#ff00ff>12.97</oc-mo></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/CNB-jEB4Nsc>12.67</a></abbr></p>
       </dd>
-      <dt>2: <i>Stairway to Heaven</i></dt>
+      <dt>2: <i>Stairway to Heaven</i> <small>(putin.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.19</a></abbr> 2020-02-01 <abbr title=Cyraph><a href=https://youtu.be/UsdG51wjATI>10.75</a></abbr> 2021-03-06 <abbr title=Cyraph><a href=https://youtu.be/pOz6pYOavTQ>9.69</a></abbr> 2025-01-31 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16DZgB3EPa>9.50</a></abbr></p>
       </dd>
     </dl>
     <h3>Grave</h3>
     <dl>
-      <dt>1: <i>Slow Down!</i></dt>
+      <dt>1: <i>Slow Down!</i> <small>(strict_drop_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.15</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/vfkQR8s5atc>5.86</a></abbr> 2021-08-16 <abbr title=SXY3><oc-mo href=876837035695038504>5.41</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV1hV4y1t7N6>B</a></abbr>)</p>
       </dd>
-      <dt>2: <i>Tarzan</i></dt>
+      <dt>2: <i>Tarzan</i> <small>(j_rotator_dw_03.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>30.43</a></abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/wrnZ6Z92gaA>17.89</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/KwxAk37iKg8>16.51</a></abbr> 2020-05-12 <abbr title=Cyraph><a href=https://youtu.be/VdIw7SIxgSw>15.39</a></abbr><!-- 2020-11-14 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1x5411V7Ru>17.87</a></abbr> 2021-02-04 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV17p4y1p79x>15.90</a></abbr>--> 2021-08-16 <abbr title=SXY3><oc-mo href=876837511119392778>14.88</oc-mo></abbr> 2026-10-30 <abbr title=DroneBetter><a href=https://youtu.be/s7oR73yd3jg>14.52</a></abbr> (<abbr title=DroneBetter><a href=https://youtu.be/bKYbVYQpbOU>handcam</a></abbr>)</p>
       </dd>
-      <dt>3: <i>Potato</i></dt>
+      <dt>3: <i>Potato</i> <small>(baby_jesus.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>7.43</a></abbr> 2020-02-01 <abbr title=Cyraph><a href=https://youtu.be/jt6sNc84Y1M>5.75</a></abbr> 2020-04-27 <abbr title=Cyraph><a href=https://youtu.be/JyyqxhW_kkI-E>5.59</a></abbr><!-- 2021-09-21 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Sh411p7B1>5.85</a></abbr>--> 2026-01-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1PwrrBtEuQ>5.56</a></abbr></p>
         <p>WR history climbing the left wall instead: 2026-01-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1kKrrBREjH>5.97</a></abbr></p>
       </dd>
-      <dt>4: <i>Emmental</i></dt>
+      <dt>4: <i>Emmental</i> <small>(<abbr title="vaikea is Finnish for difficult">vaikea_3.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.13</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/eSVJ4QTinKw>14.53</a></abbr> 2020-09-13 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1sT4y1A7jF>13.38</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/0csLKONCINE>13.30</a></abbr> 2021-01-31 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1VA411u7fG>13.13</a></abbr> 2023-07-23 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Kz4y1x7FF>12.97</a></abbr></p>
       </dd>
-      <dt>5: <i>Subway</i></dt>
+      <dt>5: <i>Subway</i> <small>(<abbr title="apparently Mallorca is just an island in Spain">mallorca.cpd</abbr>)</small></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>15.20</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/UEr11FCFhJk>12.59</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>12.26</abbr> 2020-04-29 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV16p4y1X7Sd>16.34s</a></abbr> 2020-07-21 <abbr title=Joe><oc-mo c=0 href=735146941096394795 style=color:#ff00ff>11.98</oc-mo></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/scd9al-i1Ug>11.95</a></abbr> 2021-02-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16z4y1U7n2>11.82</a></abbr> 2021-03-28 <abbr title=Joe><oc-mo c=0 href=825600440186961942 style=color:#ff00ff>11.73</oc-mo></abbr> 2021-05-09 <abbr title=Joe><oc-mo c=0 href=841045898473373706 style=color:#ff00ff>11.33</oc-mo></abbr> 2021-05-10 <abbr title=Joe><oc-mo href=841229851939962880 style=color:#ff00ff>10.56</oc-mo></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>15.20</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/UEr11FCFhJk>12.59</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>12.26</abbr> 2020-04-29 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV16p4y1X7Sd>16.34s</a></abbr> 2020-07-21 <abbr title=Joe><oc-mo c=0 href=735146941096394795 style=color:#ff00ff>11.98</oc-mo></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/scd9al-i1Ug>11.95</a></abbr> 2021-02-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16z4y1U7n2>11.82</a></abbr> 2021-03-28 <abbr title=Joe><oc-mo c=0 href=825600440186961942 style=color:#ff00ff>11.73</oc-mo></abbr> 2021-05-09 <abbr title=Joe><oc-mo c=0 href=841045898473373706 style=color:#ff00ff>11.33</oc-mo></abbr> 2021-05-10 <abbr title=Joe><oc-mo href=841229851939962880 style=color:#ff00ff>10.56</oc-mo></abbr> 2026-11-06 <abbr title=SXY3><oc-mo href=1568341341220507668>11.20</oc-mo></abbr></p>
         <p>assumedly, the .77 timesave was due to a very difficult shortcut at the beginning ()</p>
       </dd>
-      <dt>6: <i>Needle Eye</i></dt>
+      <dt>6: <i>Needle Eye</i> <small>(<abbr title="maybe this is an artefact of a time when the game was intended to be much smaller in scope">o_final_boss.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>15.54</a></abbr> <abbr title="seen in 山芋蓝T恤's run but only uploaded 2020-01-22">between</abbr> <abbr title=Cyraph><a href=https://youtu.be/KS4Svko_Nac>10.36</a></abbr> 2019-07-27 <abbr title=山芋蓝T恤><a href="https://www.bilibili.com/video/BV16t411P78Q?p=18">14.09</a></abbr> 2020-06-03 <abbr title=Joe><oc-mo c=0 href=717582663388495912 style=color:#ff00ff>10.11,9.84</oc-mo></abbr> 2021-01-11 <abbr title=Joe><oc-mo c=0 href=798181872290627614 style=color:#ff00ff>9.44</oc-mo></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/xXzvi8jXV3A>9.53</a></abbr> 2021-03-16 <abbr title="Joe, who said that at some point in between their last run and this Cyraph got an unpublished 9.43"><oc-mo c=0 href=821366578523144222 style=color:#ff00ff>9.42</oc-mo></abbr> 2021-08-24 <abbr title=SXY3><oc-mo href=879599379558834236>9.40</oc-mo></abbr> <abbr title="uploaded 2025-07-22">2025-02-07</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV13tgpzfEnj>9.15</a></abbr></p>
         <p>as a challenge run, it is possible to complete the level without touching any surface besides the one you start on (the first wall being reasonably difficult/tedious, the second just slightly slower, but tricky when braking high upward speed); for that, the timeline is 2025-02-10 <abbr title=DroneBetter><oc-mo href=1338548468993626114>14.26</oc-mo></abbr> 2026-01-16 <abbr title=DroneBetter><oc-mo href=1461765214969135250>10.65</oc-mo></abbr></p>
       </dd>
-      <dt>7: <i>Donkey Kong</i></dt>
+      <dt>7: <i>Donkey Kong</i> <small>(<abbr title="viistokatto is Finnish for '[sloping, slanted or oblique] roof'">viistokatto_dw.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>16.90</a></abbr> <abbr title="per next video">between</abbr> <abbr title="Salty - Boy" style=color:#ff00ff>14.03</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/Sz191pbH7Rk>14.22</a></abbr> 2021-02-18<!-- <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Nv411v7LU>14.33</a></abbr>--> 2021-03-06 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Wb4y197jC>13.89</a></abbr> 2021-03-12 <abbr title=Cyraph><a href=https://youtu.be/2tgdeoiptWY>12.97</a></abbr></p>
         <p>the artist/level architect Salty - Boy held back from setting good times post-release (to avoid demotivating the players) on all levels except this one, upon which they competed with Routalanttu. This means the very early (<abbr title="i remember seeing some of Routatlanttu's runs uploaded to Unity's Everyplay before it was shut down; i believe this superseded external sites for them">pre-external-upload</abbr>) WR history here is better than everywhere else, so the WR runs since with surviving recordings are sparser because they had a harder baseline to surpass</p>
@@ -380,24 +408,24 @@ text-align:right;}
     </dl>
     <h3>Ruins</h3>
     <dl>
-      <dt>1: <i>Velocity is Best</i></dt>
+      <dt>1: <i>Velocity is Best</i> <small>(satans_cradle.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>6.27</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/W_WQQ-lMMoM>5.89</a></abbr> <abbr title="per the next video">between</abbr> <abbr title="Cyraph, followed by 2h40m" style=color:#ff00ff>5.70</abbr> 2020-04-18 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1pV411Z7yr>6.06</a></abbr> 2020-09-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Ta4y1E7UV>5.44</a></abbr> 2023-05-11 <abbr title=SXY3><oc-mo href=1106236473369440367>5.36</oc-mo></abbr> 2026-01-26 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1L2zaBUEdf>5.31</a></abbr></p>
       </dd>
-      <dt>2: <i>Keychain</i></dt>
+      <dt>2: <i>Keychain</i> <small>(<abbr title="Google Translate (and search results) have no idea what bailimat means">bailimat.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>31.93</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>23.00</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/MRFClkCSgh0>23.30</a></abbr> 2020-04-24 <abbr title=2h40m><oc-mo href=703249857724547072>22.46</oc-mo></abbr> 2020-05-11 <abbr title=Cyraph><a href=https://youtu.be/tFAzZWkt0W0>22.35</a></abbr> 2025-10-29 <abbr title=DroneBetter><oc-mo href=1432909653175697459>22.10</oc-mo></abbr> 2026-01-14 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1UcrpBLEMT>22.04</a>,<a href=https://www.bilibili.com/video/BV1McrpBjE53>21.74</a></abbr></p>
         <p>SXY3 also shared a <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1CMrpB6E2E>22.83</a></abbr> route PB</p>
       </dd>
-      <dt>3: <i>Flywheel</i></dt>
+      <dt>3: <i>Flywheel</i> <small>(flywheel.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.69</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>18.55</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/w1NsTiI6ofY>18.58</a></abbr> 2020-05-11 <abbr title=Cyraph><a href=https://youtu.be/GAoneTMZQgg>17.45</a></abbr> 2021-08-24 <abbr title=SXY3><oc-mo href=879600340910080000>15.69</oc-mo></abbr> 2021-08-29 <abbr title=SXY3><oc-mo href=881542118336770078>14.49</oc-mo></abbr> (<abbr title=SXY3><a href=https://www.bilibili.com/video/BV14cVceuEtv>B</a></abbr>) 2025-01-29 <abbr title=SXY3><oc-mo href=1334035857421635595>14.25</oc-mo></abbr></p>
       </dd>
-      <dt>4: <i>Sinking</i></dt>
+      <dt>4: <i>Sinking</i> <small>(j_sinking_long2.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.55</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>16.95</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/G6pyvb7GNw4>18.41</a></abbr> 2020-02-01 <abbr title=Cyraph><a href=https://youtu.be/YA51T0r_fJU>16.92</a></abbr><!-- 2020-05-03 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1nZ4y1s7GB>21.91</a></abbr> 2020-09-29 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1qt4y1q7Le>17.76</a></abbr>--> 2020-11-25 <abbr title=Joe><oc-mo href=781273211157217280 style=color:#ff00ff>16.27</oc-mo></abbr> 2021-05-17 <abbr title=Joe><oc-mo c=0 href=843765014321823784 style=color:#ff00ff>16.03</oc-mo>,<oc-mo href=843911717242273822 style=color:#ff00ff>15.79</oc-mo></abbr> 2025-11-09 <abbr title=DroneBetter><oc-mo href=1437099017669578922>16.30</oc-mo></abbr> 2026-01-27 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1ikcnzMEA5>16.03</a></abbr></p>
       </dd>
-      <dt>5: <i>Revolving Doors</i></dt>
+      <dt>5: <i>Revolving Doors</i> <small>(j_mk_wheels_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.47</a></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>14.93</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/ECT5og8nVkM>15.10</a></abbr> 2021-02-24 <abbr title=Cyraph><a href=https://youtu.be/ozs0bHIsWL0>12.86</a></abbr> 2023-08-01 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV15N411h7M3>12.73</a></abbr></p>
         <p>getting an early cycle on the vertical lift is very difficult, as <a href=https://twitter.com/TeamOCMO/status/1240688417375023110>speculated about on 2020-03-19</a></p>
@@ -407,60 +435,61 @@ text-align:right;}
         </div>
         <p>SXY3 created a <abbr title="low-optimisation tool-assisted demonstration">LOTAD</abbr> on 2023-08-05 demonstrating that with an early cycle and going above the last spinner, <abbr title=SXY3><oc-mo href=1137261367569698886>11.54</oc-mo></abbr> can theoretically be achieved</p>
       </dd>
-      <dt>6: <i>Wheel of Unfortune</i></dt>
+      <dt>6: <i>Wheel of Unfortune</i> <small>(j_vp_03.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>37.99</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/9hUdi30TPNM>33.56</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/EI-gXo_CQvY>33.05</a></abbr> 2020-05-11 <abbr title=Cyraph><a href=https://youtu.be/h8tHt9MshCY>29.62</a></abbr> 2021-01-25 <abbr title=Cyraph><a href=https://youtu.be/X176u4UOsxE>29.29</a></abbr> 2023-05-11 <abbr title=SXY3><oc-mo href=1106236473369440367>29.09</oc-mo></abbr></p>
+        <p>if you have looked at the WRs along the standard route and wondered 'hmm might it be faster to do a slingshot over the last big slime barrier instead of under (and avoid being constrained by the cycle),' the answer is it's possible but probably not faster; 2026-11-11 <abbr title=DroneBetter><a href=https://youtu.be/58k5pXeD34Q>31.98</a></abbr></p>
       </dd>
     </dl>
     <h3>Pylons</h3>
     <dl>
-      <dt>1: <i>Rotors</i></dt>
+      <dt>1: <i>Rotors</i> <small>(spots_dw2.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>4.09</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/V-tT8hNjNp0>4.03</a></abbr> 2021-01-31 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1XV411q7at>4.00</a></abbr> 2023-08-24 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1A8411X7sq>3.83</a></abbr> 2023-08-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1jh4y1U7Sx>3.72</a></abbr></p>
         <p>TAS history: 2023-08-24 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Gh4y1T76g>3.78</a></abbr> 2023-08-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Lu411N7cj>3.62</a></abbr></p>
       </dd>
-      <dt>2: <i>Pull Up</i></dt>
+      <dt>2: <i>Pull Up</i> <small>(<abbr title="Sevastopol is a fortress and naval base in Ukraine">sevastopol_dw.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>23.48</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/1KqPp_6WcNk>15.47</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/Sr2ETreDtcc>13.96</a></abbr> 2020-03-22 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1LE411P7cq>13.82</a></abbr> (<abbr title=2h40m><oc-mo href=703249012018511981>D</oc-mo></abbr>) 2020-04-27 <abbr title=Cyraph><a href=https://youtu.be/0HDCl3a1DOc>11.88</a></abbr> 2023-08-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1DMZ3BfEMu>11.47</a></abbr></p>
       </dd>
-      <dt>3: <i>Uppercut</i></dt>
+      <dt>3: <i>Uppercut</i> <small>(<abbr title="Tolonen is a Finnish surname belonging to several notable people; what did they mean by this">tolonen.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.16</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/Dm9pB5kNodU>14.26</a></abbr> &lt;2020-04-20 <abbr title="2h40m, per a screenshot of the leaderboard by oceanmud"><oc-mo c=0 href=701911688873771049 style=color:#ff00ff>13.92</oc-mo></abbr> <abbr title="per next video">between</abbr> <abbr title=Cyraph style=color:#ff00ff>13.58</abbr> 2020-07-30 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1bz4y1Q722>15.14</a></abbr> 2020-08-25 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1x54y1v7mX>13.48</a></abbr> 2021-01-31 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1o5411J7uH>13.41</a></abbr> 2021-02-09 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Fy4y1Y7j1>13.16</a></abbr> 2024-07-05 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV18MZ3BfErB>12.96</a></abbr></p>
         <p></p>
       </dd>
-      <dt>4: <i>Escalator</i></dt>
+      <dt>4: <i>Escalator</i> <small>(<abbr title="ketjulompakko is Finnish for 'chain wallet' (ie. wallet with chain that clips onto a belt loop to make loss/theft harder)">ketjulompakko.cpd</abbr>)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>11.20</a></abbr> 2022-01-22 <abbr title=Cyraph><a href=https://youtu.be/fN4iYczghtg>9.52</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691538274031894599>9.25</oc-mo></abbr> (<abbr title=2h40m><a href=https://www.bilibili.com/video/BV1SK4y1C7zJ>B</a></abbr>) 2020-04-27 <abbr title=Cyraph><a href=https://youtu.be/RjlDxTotnDU>9.15</a></abbr> 2024-07-04 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV13TZ3BhEXN>8.86</a></abbr></p>
       </dd>
     </dl>
     <h3>Sky</h3>
     <dl>
-      <dt>1: <i>Daisy Chain</i></dt>
+      <dt>1: <i>Daisy Chain</i> <small>(tolppa_01_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>9.19</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/RiZ2WdxYg7Q>8.92</a></abbr> 2020-02-01 <abbr title=Cyraph><a href=https://youtu.be/7EXyGgjrnpE>8.62</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/1gLtwztJvkY>8.41</a></abbr><!-- 2020-04-29 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1EK41157Cm>9.01</a></abbr>--> 2020-06-21 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1rz4y1Q7U7>8.38</a></abbr> 2020-08-29 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1w5411b7pA>8.08</a></abbr> 2020-10-02 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1h5411j7qm>8.35</a></abbr> <abbr title="uploaded 2021-02-24 but was WR at time of accomplishment and superseded by SXY3's">between</abbr> <abbr title=Cyraph><a href=https://youtu.be/lKpkfj59Z7w>8.04</a></abbr> 2021-01-15 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1vFZ3BNEte>7.97</a></abbr></p>
         <p>in a conversation with my friend wind7, they asked whether it could be completed by only touching 2 distinct hookpoints; i confirmed that it can, in 2026-05-29 <abbr title=DroneBetter><oc-mo href=1510030635174203545>16.20</oc-mo></abbr> (it requires shuffling the chain along by throwing yourself upwards, which makes it a very unique alternate route)</p>
       </dd>
-      <dt>2: <i>Fudge</i></dt>
+      <dt>2: <i>Fudge</i> <small>(action_points_dw.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>8.54</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>7.29</abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/DIbjNGpjJuE>7.12</a></abbr> <abbr title="per next video">between</abbr> <abbr title=2h40m style=color:#ff00ff>5.97</abbr> 2020-05-14 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1tt4y117B1>6.24</a></abbr> 2022-08-24 <abbr title=SXY3><oc-mo href=1011991272724107328>5.97</oc-mo></abbr></p>
         <p>all known WRs with videos were done by going through the fudge at the start; MY牧毅 also shared 2020-05-14 <abbr title=MY牧毅><a href=https://www.bilibili.com/video/BV1DT4y1u7ro>7.22</a></abbr> from going entirely underneath at the start, and i shared 2021-11-15 <abbr title=DroneBetter><oc-mo href=909603764523118634>7.18</oc-mo></abbr> from going beneath the final spinner too</p>
       </dd>
-      <dt>3: <i>Hang Over</i></dt>
+      <dt>3: <i>Hang Over</i> <small>(hingewire_2.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>17.48</a></abbr> 2019-03-20 <abbr title=Cyraph><a href=https://youtu.be/ncmiqMfC0L8>10.11</a></abbr><!-- 2020-10-24 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1jZ4y1V7sc>11.44</a></abbr>--> 2020-12-04 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1Tz4y1C781>9.80</a></abbr> 2021-01-26 <abbr title=Cyraph><a href=https://youtu.be/cl2t7rXb0Lg>9.67</a></abbr> 2021-02-15 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1vFZ3BNEyw>9.63</a></abbr> <abbr title="uploaded 2025-07-22">2025-02-13</abbr> <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1BdgpzzETG>9.33</a></abbr></p>
         <p>it is possible to go over the revolving door here, albeit tightly, as demonstrated in 2024-08-11 <abbr title=SXY3><oc-mo href=1471918400703037653>10.35</oc-mo></abbr></p>
       </dd>
-      <dt>4: <i>Ferris Wheel</i></dt>
+      <dt>4: <i>Ferris Wheel</i> <small>(ferryswheel_04.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>14.25</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/uObCcOvp0Gs>13.75</a></abbr> 2020-04-27 <abbr title=Cyraph><a href=https://youtu.be/DLsPWNAa8-E>13.26</a></abbr><!-- 2020-10-02 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1Gz4y1f7oh>13.78</a></abbr>--> 2020-10-03 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16i4y1E7Fx>12.90</a></abbr><!-- 2020-10-05 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1eA41177cX>12.99</a></abbr>--> 2020-10-05 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1jk4y1C7cR>12.76</a>,<a href=https://www.bilibili.com/video/BV1q54y1k7J6>12.19</a></abbr> 2020-11-28 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1sK411V7gn>11.94</a></abbr> 2021-02-16 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV16f4y1r71P>11.71</a></abbr> 2021-03-06 <abbr title=Cyraph><a href=https://youtu.be/3T18QAN1wBs>11.33</a></abbr> <abbr title="message from 2022-08-24 but is reupload of 879599088109223948">2021-08-24</abbr> <abbr title=SXY3><oc-mo href=1012009124252364840>11.31</oc-mo></abbr><!-- 2025-07-17 <abbr title=SXY3><oc-mo c=0 href=1395443708828323861>11.77</oc-mo></abbr> [this was only a demonstration]--></p>
         <p>TAS history: 2026-07-12 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KHN36xELi>9.57</a></abbr></p>
       </dd>
-      <dt>5: <i>Throttle</i></dt>
+      <dt>5: <i>Throttle</i> <small>(<abbr title="vinssi is Finnish for winch">vinssi_01.cpd</abbr>)</small></dt>
       <dd>
-        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.70</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/SRkZm0xaf4c>11.24</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/0VJAqMvs5TA>10.78</a></abbr><!-- 2020-09-30 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1m54y1k7ZY>11.54</a></abbr>--> 2021-01-07 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16t4y1r7X4>10.25</a></abbr> 2021-02-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1qK4y1S7Cy>10.22</a></abbr><!-- 2024-06-14 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16HVtezEhp>10.27</a></abbr>--> 2024-08-02 <abbr title=SXY3><a href=https://discord.com/channels/368348645382291466/691241596036972604/1012009124252364840>10.11</a></abbr></p>
+        <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>19.70</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/SRkZm0xaf4c>11.24</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/0VJAqMvs5TA>10.78</a></abbr><!-- 2020-09-30 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1m54y1k7ZY>11.54</a></abbr>--> 2021-01-07 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16t4y1r7X4>10.25</a></abbr> 2021-02-20 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV1qK4y1S7Cy>10.22</a></abbr><!-- 2024-06-14 <abbr title=ssssyzy><a href=https://www.bilibili.com/video/BV16HVtezEhp>10.27</a></abbr>--> 2024-08-02 <abbr title=SXY3><a href=https://www.bilibili.com/video/BV1KFiueHE8F>10.11</a></abbr></p>
         <p>the level has also been completed remarkably quickly without substantially moving the chain; 2020-03-22 <abbr title=2h40m><a href=https://www.bilibili.com/video/BV1QE411w7YQ>12.56</a></abbr> 2024-08-09 <abbr title=SXY3><a href=1>11.57</a></abbr></p>
       </dd>
-      <dt>6: <i>Long and Hard</i></dt>
+      <dt>6: <i>Long and Hard</i> <small>(long_route_dw_01.cpd)</small></dt>
       <dd>
         <p>WR history: 2018-01-04 <abbr title=Routalanttu><a href=https://x.com/TeamOCMO/status/948924976501022720 style=color:#ff00ff>41.57</a></abbr> 2020-01-22 <abbr title=Cyraph><a href=https://youtu.be/pvm3qPQEcZg>26.10</a></abbr> 2020-03-11 <abbr title=Cyraph><a href=https://youtu.be/Zg2FebcE4nI>24.83</a></abbr> 2020-03-23 <abbr title=2h40m><oc-mo href=691562010457931786>23.43</a></abbr> 2020-11-24 <abbr title=Cyraph><a href=https://youtu.be/dA9i6gUsE8Y>22.39</a></abbr> 2020-11-25 <abbr title=Joe><oc-mo c=0 href=781016729865551873 style=color:#ff00ff>22.25</oc-mo></abbr></p>
         <p>this one is interesting</p>
@@ -526,12 +555,20 @@ text-align:right;}
       <dt><i>Brake</i> and <i>Tunnel Terror</i> are the wrong way around in the Game Centre menu</dt>
       <dt>pressing the Game Centre button in <i>Zipper</i> takes you to the leaderboard sets menu, not the level-specific leaderboard like everywhere else</dt>
     </dl>
+  <h2>developer interviews</h2>
+    <p>there are a few available!</p>
+    <dl>
+      <dt>2014-06-25 <a href=https://web.archive.org/web/20140703215032/https://www.appspy.com/feature/8686/hands-on-with-ocmo-the-hardcore-platformer-that-aaaaaaargh-alien-spider-thingies>a brief expository AppSpy post</a> with <a href=https://youtu.be/A6P7fW9ud7E>a video</a>, in which a developer shows the game as it existed then to Peter Willington, promising it would come out 'at the end of the year' (as you can see, the game since Grew in scope a bit)</dt>
+      <dt>2017-11-16 <a href=https://www.ifanzine.com/interview-jouni-ipatti-talks-hardcore-physics-platformer-ocmo>one between Jouni Ipatti and Ruan Shiels of iFanzine</a></dt>
+      <dt>2018-05-03 <a href=https://www.pocketgamer.biz/the-big-indie-pitch-interviews-team-ocmo>one between TeamOCMO and Sophia Aubrey Drake of Pocket Gamer</a></dt>
+    </dl>
   <h2>interesting artistic decisions</h2>
     <p>generally (oversimplified; see <a href=https://pmc.ncbi.nlm.nih.gov/articles/PMC3612940><i>The pupil as a measure of emotional arousal and autonomic activation</i></a>) human pupils dilate in response to happy stimuli and constrict to bad ones.</p>
     <p>quite a few games have monocular entities that convey information about their surroundings; <i>Terraria</i> has the <a href=https://terraria.wiki.gg/wiki/Suspicious_Looking_Tentacle>suspicious looking tentacle</a><!-- (comprised <abbr title="with some nerve-cord-looking appendages dangling">primarily</abbr> of an eye)-->, which has both a pupil and iris, dilating at treasure and constricting at enemies; this was added in 1.3.0.1, which was released on 2015-06-30 (long before <i>Ocmo</i>)</p>
-    <p>however, ocmo's eye is maximally open by default; the eyelids only become apparent when narrowed while moving quickly (which also causes the pupil to shrink so its centre can be further towards the edge), so pupil dilation is used in lieu of further widening, which i find still effective!</p>
+    <p>however, ocmo's eye is maximally open by default; the eyelids only become apparent when narrowed while moving quickly (which also causes the pupil to shrink so its centre can be further towards the edge), so (when approaching slime or spinning saws) the pupil dilates in lieu of further widening, which i find still effective!</p>
     <p>upon approaching its prey, the pupil grows horizontal (like that of a toad), then upon catching it, oscillates wildly through various sizes and eccentricities of ellipse, until it's done feeding and begins to glow, the ocmo inert</p>
     <p>the inert state is immune to slime, but in some levels causes the ocmo to fall offscreen to its death. maybe death (trisection) is how ocmos reproduce, like the segmented cacti whose dropoffs can also function as independent cacti</p>
+    <p>the 2014-06-25 preview shows that originally the ocmo had many independently-blinking eyes and eight legs that were all equal in length</p>
   <h2>trivia</h2>
     <p>the name has been <oc-mo c=0 href=910116034709717012 title=2021-11-16>explained</oc-mo>!</p>
     <div class=chat>
@@ -543,17 +580,58 @@ text-align:right;}
   <h1>sheet</h1>
   <p>this is meant as an up-to-date version of <a href=https://drive.google.com/file/d/1Yc3FNTXojNnu0jKUGKzKt24Zoyn8Qm75/view>Joe the Gamer's spreadsheet</a>, complementary to speedrun.com</p>
   <p>each player has two columns; the PB on Game Centre (excluding accidentally-uploaded TASes), and the best time with published video (the first being subsumed into the second if they're the same).</p>
-    <label>
-      <input type="checkbox" id="showDeficits">show deficits from WR
-    </label>
+    <div class="viewerControl">
+      <label>
+        <input type="checkbox" id="sortedMode">
+        sort levels by time (and colour by players)
+      </label>
+    </div>
+    <div id="stemLeafControl" class="viewerControl viewerSubcontrol" hidden>
+      <label>
+        <input type="checkbox" id="stemLeafMode" checked>
+        align to selected player
+      </label>
+    </div>
+    <div class="viewerControl">
+      <label>
+        <input type="checkbox" id="ignoreUnpublished">
+        prefer video times
+      </label>
+    </div>
 
     <div id="tables"></div>
 
-    <label>
-      <input type="checkbox" id="showPercent">
-      show percentage increase over WR
-    </label>
+    <div class="viewerControl">
+      <label>
+        <input type="checkbox" id="collapsePlotRegions">
+        collapsing regions affects plots
+      </label>
+    </div>
+    <div class="viewerControl">
+      <label>
+        time mode:
+        <select id="timeMode">
+          <option value="absolute">absolute times</option>
+          <option value="differences" selected>differences from WR/PB</option>
+          <option value="percent">percentage differences from WR/PB</option>
+          <option value="logarithms">logarithmic ratios to WR/PB</option>
+        </select>
+      </label>
+    </div>
     <div id="chart" style="width:100%; height:700px;" class="highcharts-dark"></div>
+    <div class="viewerControl">
+      <label>
+        <input type="checkbox" id="connectComparison">
+        connect datapoints
+      </label>
+      <label id="comparisonOrderControl" class="viewerSubcontrol">
+        order:
+        <select id="comparisonOrder">
+          <option value="level">level order</option>
+          <option value="shortest">approximately shortest path</option>
+        </select>
+      </label>
+    </div>
     <div id="levelComparison" style="width:700px; height:700px;" class="highcharts-dark"></div>
     <script>
 
@@ -738,7 +816,7 @@ text-align:right;}
         [1488,1488,"https://discord.com/channels/368348645382291466/691241596036972604/876837511119392778"],
         [556,556,"https://www.bilibili.com/video/BV1PwrrBtEuQ"],
         [1297,1297,"https://www.bilibili.com/video/BV1Kz4y1x7FF"],
-        [1063,1182,"https://www.bilibili.com/video/BV16z4y1U7n2"],
+        [1063,1120,"https://discord.com/channels/368348645382291466/691241596036972604/1568341341220507668"/*formerly 11.82 in https://www.bilibili.com/video/BV16z4y1U7n2*/],
         [915,915,"https://www.bilibili.com/video/BV13tgpzfEnj"],
         [1306,0,""],
         [531,531,"https://www.bilibili.com/video/BV1L2zaBUEdf"],//DRuins
@@ -755,12 +833,13 @@ text-align:right;}
         [595,597,"https://discord.com/channels/368348645382291466/691241596036972604/1011991272724107328"],
         [933,933,"https://www.bilibili.com/video/BV1BdgpzzETG"],
         [1116,1131,"https://discord.com/channels/368348645382291466/691241596036972604/1012009124252364840"],
-        [1011,1011,"https://discord.com/channels/368348645382291466/691241596036972604/1012009124252364840"],
+        [1011,1011,"https://www.bilibili.com/video/BV1KFiueHE8F"],
         [2363,0,""],
       ]
     },
     {
-      name: "Cyraph",
+      name: "Cyraph Dekay",
+      shortName: "Dekay",
       runs:
       [
         [361,362,"https://youtu.be/5_IrMrxPE2Y"],//Hatchery
@@ -841,6 +920,7 @@ text-align:right;}
     },
     {
       name: "DroneBetter",
+      shortName: "Drone",
       runs:
       [
         [362,362,"https://discord.com/channels/368348645382291466/691241596036972604/1563551632502034585"],//Hatchery
@@ -885,7 +965,7 @@ text-align:right;}
         [1369,1369,"https://discord.com/channels/368348645382291466/691241596036972604/1451770950596034602"],
         [405,405,"https://discord.com/channels/368348645382291466/691241596036972604/1543283903073222696"],//DForest
         [568,568,"https://discord.com/channels/368348645382291466/691241596036972604/1483978713870897264"],
-        [607,610,"https://discord.com/channels/368348645382291466/691241596036972604/1566970983972343941"],
+        [606,606,"https://discord.com/channels/368348645382291466/691241596036972604/1568722546680012832 "],
         [1382,1382,"https://discord.com/channels/368348645382291466/691241596036972604/1507110350846165143"],
         [660,660,"https://discord.com/channels/368348645382291466/691241596036972604/1456086553020334091"],
         [1151,1151,"https://youtu.be/-Yn5M86X4d4"],
@@ -906,7 +986,7 @@ text-align:right;}
         [1827,0,""],
         [1616,1616,"https://discord.com/channels/368348645382291466/691241596036972604/1531788167303139438"],
         [1911,1911,"https://discord.com/channels/368348645382291466/691241596036972604/1483986232890363995"],
-        [2969,2969,"https://youtu.be/U0PUgu7VLZo"],
+        [2967,2967,"https://youtu.be/tvmsagCNm3E"],
         [407,0,""],//DPylons
         [1211,1211,"https://discord.com/channels/368348645382291466/691241596036972604/1480924458863689769"],
         [1334,1334,"https://discord.com/channels/368348645382291466/691241596036972604/1507947424398708747"],
@@ -1001,6 +1081,7 @@ text-align:right;}
     },
     {
       name: "MY牧毅",
+      shortName: "Muyi",
       runs:
       [
         [357,365,"https://www.bilibili.com/video/BV1PT4y1E72e"],//Hatchery
@@ -1080,7 +1161,8 @@ text-align:right;}
       ]
     },
     {
-      name: "sssyzy",/*they have two Game Centre accounts, sssyzy and sssyzy9; using the minimum which is not always by the same one*/
+      name: "sssyzy",
+      shortName: "ssyzy",/*they have two Game Centre accounts, sssyzy and sssyzy9; using the minimum which is not always by the same one*/
       runs:
       [
         [374,0,""],//Hatchery
@@ -1162,408 +1244,1058 @@ text-align:right;}
     ];
 
     function fmt(cs){
-      if(!cs) return "";
-
-      const minutes=Math.floor(cs/6000);
-      const seconds=Math.floor(cs/100)%60;
-      const centis=cs%100;
-
-      if(minutes) return `${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
-
-      return `${seconds}.${String(centis).padStart(2,"0")}`;
+      if(!Number.isFinite(cs)) return "";
+      const sign = cs < 0 ? "−" : "";
+      cs = Math.abs(Math.round(cs));
+      const minutes = Math.floor(cs / 6000);
+      const seconds = Math.floor(cs / 100) % 60;
+      const centis = cs % 100;
+      const body = minutes
+        ? `${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`
+        : `${seconds}.${String(centis).padStart(2,"0")}`;
+      return sign + body;
     }
 
-    function fmtDiff(cs){
-      const minutes=Math.floor(cs/6000);
-      const seconds=Math.floor(cs/100)%60;
-      const centis=cs%100;
-
-      if(minutes) return "+"+`${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
-
-      return cs ? "+"+`${seconds?seconds:""}.${String(centis).padStart(2,"0")}` : "WR";
+    function fmtDelta(cs, zeroLabel = "0.00"){
+      if(Math.abs(cs) < 1e-10) return zeroLabel;
+      return (cs > 0 ? "+" : "−") + fmt(Math.abs(cs));
     }
 
-    function cell(tuple, best){
-      const [lb, vid, url]=tuple;
-      if(!lb) return "";
-      let left=fmt(lb);
-      let right="";
-      if(showDeficits) left=fmtDiff(lb-best);
+    function escapeHTML(value){
+      return String(value).replace(/[&<>"']/g, character => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+      })[character]);
+    }
 
-      if(vid){
-        right=showDeficits?fmtDiff(vid-best):fmt(vid);
-        if(url) right=`<a href="${url}" target="_blank">${right}</a>`;
+    const timeModeSelect = document.getElementById("timeMode");
+    const sortedCheckbox = document.getElementById("sortedMode");
+    const stemLeafCheckbox = document.getElementById("stemLeafMode");
+    const stemLeafControl = document.getElementById("stemLeafControl");
+    const connectCheckbox = document.getElementById("connectComparison");
+    const comparisonOrderSelect = document.getElementById("comparisonOrder");
+    const comparisonOrderControl = document.getElementById("comparisonOrderControl");
+    const ignoreUnpublishedCheckbox = document.getElementById("ignoreUnpublished");
+    const collapsePlotRegionsCheckbox = document.getElementById("collapsePlotRegions");
+
+    function persistCheckbox(checkbox, key){
+      try{
+        const saved = localStorage.getItem(key);
+        if(saved !== null) checkbox.checked = saved === "true";
+      }catch(e){}
+      checkbox.addEventListener("change", () => {
+        try{ localStorage.setItem(key, String(checkbox.checked)); }catch(e){}
+      });
+    }
+
+    function restoreTimeMode(){
+      try{
+        let saved = localStorage.getItem("ocmo.timeMode");
+        if(saved === null){
+          if(localStorage.getItem("ocmo.logScale") === "true") saved = "logarithms";
+          else if(localStorage.getItem("ocmo.showPercent") === "true") saved = "percent";
+          else if(localStorage.getItem("ocmo.showDeficits") === "true") saved = "differences";
+        }else if(saved !== "logarithms" && localStorage.getItem("ocmo.showPercent") === "true"){
+          // Migrate the previous independent percentage checkbox into the new dropdown.
+          saved = "percent";
+        }
+        if(saved && Array.from(timeModeSelect.options).some(option => option.value === saved))
+          timeModeSelect.value = saved;
+      }catch(e){}
+      timeModeSelect.addEventListener("change", () => {
+        try{ localStorage.setItem("ocmo.timeMode", timeModeSelect.value); }catch(e){}
+      });
+    }
+
+    function persistSelect(select, key){
+      try{
+        const saved = localStorage.getItem(key);
+        if(saved !== null && Array.from(select.options).some(option => option.value === saved))
+          select.value = saved;
+      }catch(e){}
+      select.addEventListener("change", () => {
+        try{ localStorage.setItem(key, select.value); }catch(e){}
+      });
+    }
+
+    restoreTimeMode();
+    persistCheckbox(sortedCheckbox, "ocmo.sortedMode");
+    persistCheckbox(stemLeafCheckbox, "ocmo.stemLeafMode");
+    persistCheckbox(connectCheckbox, "ocmo.connectComparison");
+    persistSelect(comparisonOrderSelect, "ocmo.comparisonOrder");
+    persistCheckbox(ignoreUnpublishedCheckbox, "ocmo.ignoreUnpublished");
+    persistCheckbox(collapsePlotRegionsCheckbox, "ocmo.collapsePlotRegions");
+
+    let timeMode = timeModeSelect.value;
+    let sortedMode = sortedCheckbox.checked;
+    let stemLeafMode = stemLeafCheckbox.checked;
+    let connectComparison = connectCheckbox.checked;
+    let comparisonOrder = comparisonOrderSelect.value;
+    let ignoreUnpublished = ignoreUnpublishedCheckbox.checked;
+    let collapsePlotRegions = collapsePlotRegionsCheckbox.checked;
+    let selectedPlayer = null;
+    const collapsedRegions = new Set();
+    const hiddenPlayers = new Set();
+    try{
+      const savedHidden = JSON.parse(localStorage.getItem("ocmo.hiddenPlayers") || "[]");
+      for(const index of savedHidden){
+        if(Number.isInteger(index) && index >= 0 && index < players.length) hiddenPlayers.add(index);
+      }
+    }catch(e){}
+
+    const worldLengths = worlds.map(world =>
+      world.regions.reduce((sum, [, levels]) => sum + levels.length, 0)
+    );
+    const totalLevels = worldLengths.reduce((sum, n) => sum + n, 0);
+    const darkWorldStart = worldLengths[0];
+    const lightLevelCount = Math.min(worldLengths[0], worldLengths[1] || 0);
+    let best = Array(totalLevels).fill(Infinity);
+    let playerColors = Array(players.length).fill("#888888");
+    let mainChart = null;
+    let comparisonChart = null;
+
+    const tableUsesDifferences = () => timeMode !== "absolute";
+    const plotUsesDifferences = () => timeMode === "differences" || timeMode === "percent";
+    const logScale = () => timeMode === "logarithms";
+    const showPercent = () => timeMode === "percent";
+
+    function visiblePlayerIndices(){
+      return players.map((_, index) => index).filter(index => !hiddenPlayers.has(index));
+    }
+
+    function measuredRunTime(run){
+      return ignoreUnpublished ? (run?.[1] || null) : (run?.[0] || null);
+    }
+
+    function recomputeBestTimes(){
+      best = Array(totalLevels).fill(Infinity);
+      for(const player of players){
+        for(let i = 0; i < totalLevels; i++){
+          const time = measuredRunTime(player.runs[i]);
+          if(time && time < best[i]) best[i] = time;
+        }
+      }
+    }
+
+    function tintColor(color, selected = false){
+      const opacity = selected ? 0.5 : 1/3;
+      const converted = Highcharts.color(color);
+      return converted ? converted.setOpacity(opacity).get() : color;
+    }
+
+    function getRenderedSeriesColor(series, index){
+      const colorIndex = series.colorIndex ?? series.options?.colorIndex ?? index;
+      const seriesGroup = mainChart?.container?.querySelector(
+        `.highcharts-series-${series.index ?? index}`
+      );
+      const svgElements = [
+        series.graph?.element,
+        seriesGroup?.querySelector(".highcharts-graph"),
+        seriesGroup?.querySelector(".highcharts-point"),
+        seriesGroup
+      ].filter(Boolean);
+
+      for(const element of svgElements){
+        const style = getComputedStyle(element);
+        const candidates = [
+          style.stroke,
+          style.fill,
+          element.getAttribute?.("stroke"),
+          element.getAttribute?.("fill")
+        ];
+        for(const candidate of candidates){
+          if(!candidate || candidate === "none" || candidate === "currentColor" || candidate === "transparent") continue;
+          const parsed = Highcharts.color(candidate);
+          if(parsed && parsed.get("rgba") !== "rgba(0, 0, 0, 0)") return parsed.get();
+        }
       }
 
-      return `<span class="lb">${lb===vid?'':left}</span><span class="sep">/</span><span class="vid">${vid?right:''}</span>`;
+      const chartStyle = mainChart?.container ? getComputedStyle(mainChart.container) : null;
+      const cssPaletteColor = chartStyle?.getPropertyValue(`--highcharts-color-${colorIndex}`).trim();
+      if(cssPaletteColor){
+        const parsed = Highcharts.color(cssPaletteColor);
+        if(parsed) return parsed.get();
+      }
+
+      if(typeof series.color === "string" && series.color !== "none" && series.color !== "currentColor")
+        return series.color;
+
+      const palette = mainChart?.options?.colors || Highcharts.getOptions().colors || [];
+      return palette.length ? palette[colorIndex % palette.length] : "#888888";
     }
 
-    const best=Array(74).fill(Infinity);
+    function getReferenceEntry(index){
+      const bestTime = Number.isFinite(best[index]) ? best[index] : null;
+      if(selectedPlayer !== null){
+        const run = players[selectedPlayer].runs[index];
+        const videoTime = run?.[1] || null;
+        // In video-only mode, a selected player's unpublished PB is still a
+        // valid personal reference when they have no video for this level.
+        const time = ignoreUnpublished
+          ? (videoTime ?? run?.[0] ?? null)
+          : (run?.[0] ?? null);
+        const referenceIsVideo = !!videoTime && time === videoTime;
+        const url = referenceIsVideo ? (run?.[2] || "") : "";
+        return {time, url, authorIndex:selectedPlayer, bestTime, referenceIsVideo};
+      }
 
-    for (const p of players) for (i=0;i<74;i++) {
-      const t=p.runs[i]?.[0];
-      if (t && t<best[i])
-        best[i]=t;
+      if(bestTime === null) return {time:null, url:"", authorIndex:null, bestTime:null};
+      let fallbackAuthor = null;
+      for(let i = 0; i < players.length; i++){
+        const run = players[i].runs[index];
+        if(measuredRunTime(run) !== bestTime) continue;
+        if(fallbackAuthor === null) fallbackAuthor = i;
+        if(run?.[1] === bestTime && run?.[2])
+          return {time:bestTime, url:run[2], authorIndex:i, bestTime};
+      }
+      return {time:bestTime, url:"", authorIndex:fallbackAuthor, bestTime};
     }
 
-    function makeTable(world,startIndex){
-      let html=`<table><thead><tr><th colspan="2">${world.name}</th>`;
+    function sumComponent(playerIndex, indexes, component, requireAll = false){
+      let sum = 0;
+      let count = 0;
+      for(const index of indexes){
+        const time = players[playerIndex].runs[index]?.[component];
+        if(!time){
+          if(requireAll) return null;
+          continue;
+        }
+        sum += time;
+        count++;
+      }
+      return count ? sum : null;
+    }
 
-      for(const p of players) html+=`<th>${p.name}</th>`;
-      html+="</tr></thead><tbody>";
+    function sumBest(indexes){
+      let sum = 0;
+      for(const index of indexes){
+        if(!Number.isFinite(best[index])) return null;
+        sum += best[index];
+      }
+      return sum;
+    }
 
-      let index=startIndex;
+    function getReferenceForIndexes(indexes){
+      const bestTime = sumBest(indexes);
+      if(indexes.length === 1){
+        const entry = getReferenceEntry(indexes[0]);
+        return {...entry, bestTime};
+      }
+      let time = bestTime;
+      let referenceIsVideo = !ignoreUnpublished;
+      if(selectedPlayer !== null){
+        if(!ignoreUnpublished){
+          time = sumComponent(selectedPlayer, indexes, 0, false);
+        }else{
+          const completeVideoSum = sumComponent(selectedPlayer, indexes, 1, true);
+          const anyVideo = indexes.some(index => !!players[selectedPlayer].runs[index]?.[1]);
+          time = completeVideoSum !== null
+            ? completeVideoSum
+            : anyVideo
+              ? null
+              : sumComponent(selectedPlayer, indexes, 0, true);
+          referenceIsVideo = completeVideoSum !== null;
+        }
+      }
+      let authorIndex = selectedPlayer;
+      if(selectedPlayer === null){
+        const authors = indexes.map(index => getReferenceEntry(index).authorIndex);
+        if(authors.length && authors.every(author => author !== null && author === authors[0]))
+          authorIndex = authors[0];
+        else
+          authorIndex = null;
+      }
+      return {time, url:"", authorIndex, bestTime, referenceIsVideo};
+    }
 
-      for(const [region,levels] of world.regions){
-        levels.forEach((level,i)=>{
+    function sumMeasuredTimes(playerIndex, indexes){
+      if(!ignoreUnpublished)
+        return sumComponent(playerIndex, indexes, 0, false);
+      const videoSum = sumComponent(playerIndex, indexes, 1, false);
+      if(videoSum !== null) return videoSum;
+      // When the selected player has no published footage for this row (or
+      // collapsed group), use their PB as their plotted comparison value.
+      if(playerIndex === selectedPlayer)
+        return sumComponent(playerIndex, indexes, 0, false);
+      return null;
+    }
+
+    function sortDescriptor(playerIndex, indexes){
+      const pbTime = sumComponent(playerIndex, indexes, 0, false);
+      if(!ignoreUnpublished)
+        return {group:0, time:pbTime ?? Infinity};
+
+      // Keep the two populations separate: players with complete published
+      // videos are sorted by video time, then players without complete video
+      // coverage are sorted amongst themselves by their Game Centre PBs.
+      const videoTime = sumComponent(playerIndex, indexes, 1, true);
+      if(videoTime !== null)
+        return {group:0, time:videoTime};
+      // The selected player is the pivot of PB comparisons. If they have no
+      // video for this row, keep their PB in the video-time sorting group.
+      if(playerIndex === selectedPlayer)
+        return {group:0, time:pbTime ?? Infinity};
+      return {group:1, time:pbTime ?? Infinity};
+    }
+
+    function compareSortKeys(a,b){
+      return a.sortGroup-b.sortGroup || a.sortTime-b.sortTime || a.playerIndex-b.playerIndex;
+    }
+
+    function referenceLabel(){
+      return selectedPlayer === null ? "WR" : `${players[selectedPlayer].name}'s PB`;
+    }
+
+    function referenceZeroLabel(rowReference, playerIndex){
+      if(selectedPlayer === null) return "WR";
+      if(playerIndex === selectedPlayer){
+        const isPublishedWR = rowReference?.bestTime !== null &&
+          rowReference?.time === rowReference?.bestTime &&
+          (!ignoreUnpublished || rowReference?.referenceIsVideo !== false);
+        return isPublishedWR ? "WR" : "PB";
+      }
+      return "0.00";
+    }
+
+    function transformTime(time, rowReference){
+      if(!time) return null;
+      if(timeMode === "absolute") return time;
+      const reference = rowReference?.time;
+      if(!reference) return null;
+      if(timeMode === "logarithms") return time / reference;
+      if(timeMode === "percent") return 100 * (time - reference) / reference;
+      return time - reference;
+    }
+
+    function trimFixed(value, digits){
+      return Number(value).toFixed(digits).replace(/\.?0+$/, "");
+    }
+
+    function formatSignedPercent(value){
+      if(Math.abs(value) < 1e-10) return "0%";
+      return (value > 0 ? "+" : "−") + trimFixed(Math.abs(value), 2) + "%";
+    }
+
+    function formatMultiple(value){
+      return `×${trimFixed(value, 3)}`;
+    }
+
+    function formatAxisValue(value){
+      if(timeMode === "logarithms") return formatMultiple(value);
+      if(timeMode === "percent") return formatSignedPercent(value);
+      if(timeMode === "differences"){
+        if(Math.abs(value) < 1e-10) return selectedPlayer === null ? "WR" : "PB";
+        return fmtDelta(Math.round(value));
+      }
+      const rounded = Math.round(value);
+      return rounded === 0 ? "0.00" : fmt(rounded);
+    }
+
+    function formatPointValue(value, rowReference, playerIndex){
+      if(value === null || value === undefined) return "";
+      if(timeMode === "logarithms"){
+        if(Math.abs(value - 1) < 1e-10) return referenceZeroLabel(rowReference, playerIndex);
+        return formatMultiple(value);
+      }
+      if(timeMode === "percent"){
+        if(Math.abs(value) < 1e-10) return referenceZeroLabel(rowReference, playerIndex);
+        return formatSignedPercent(value);
+      }
+      if(timeMode === "differences"){
+        if(Math.abs(value) < 1e-10) return referenceZeroLabel(rowReference, playerIndex);
+        return fmtDelta(Math.round(value));
+      }
+      const rounded = Math.round(value);
+      return rounded === 0 ? "0.00" : fmt(rounded);
+    }
+
+    function tableReferenceZeroLabel(rowReference, playerIndex){
+      const special = referenceZeroLabel(rowReference, playerIndex);
+      if(special === "WR" || special === "PB") return special;
+      if(timeMode === "percent") return "0‰";
+      if(timeMode === "logarithms") return "×1.00";
+      return "0.00";
+    }
+
+    function formatTableRun(time, rowReference, playerIndex, isVideo){
+      if(!time) return "";
+      if(timeMode === "absolute") return fmt(time);
+      const reference = rowReference?.time;
+      if(!reference) return "";
+
+      const difference = time - reference;
+      const ratio = time / reference;
+      const isMeasuredWR = rowReference.bestTime !== null && time === rowReference.bestTime &&
+        (!ignoreUnpublished || isVideo);
+      const zeroLabel = tableReferenceZeroLabel(rowReference, playerIndex);
+
+      // In WR mode every record-holder is marked WR. In PB mode only the
+      // selected player's cell may display WR/PB; other players show zero.
+      if(isMeasuredWR && (selectedPlayer === null || playerIndex === selectedPlayer)) return "WR";
+      if(Math.abs(difference) < 1e-10) return zeroLabel;
+
+      if(timeMode === "percent"){
+        const perMille = Math.round(1000 * difference / reference);
+        return (perMille > 0 ? "+" : "−") + Math.abs(perMille) + "‰";
+      }
+      if(timeMode === "logarithms") return `×${ratio.toFixed(2)}`;
+      return fmtDelta(difference);
+    }
+
+    function runForRow(playerIndex, row){
+      if(row.indexes.length === 1)
+        return players[playerIndex].runs[row.indexes[0]] || [0,0,""];
+      const leaderboardSum = sumComponent(playerIndex, row.indexes, 0, false) || 0;
+      const videoSum = sumComponent(playerIndex, row.indexes, 1, true) || 0;
+      return [leaderboardSum, videoSum, ""];
+    }
+
+    function sortTimeForRow(playerIndex, row){
+      return sortDescriptor(playerIndex, row.indexes);
+    }
+
+    function aggregateTimeMarkup(text){
+      if(!text) return "";
+      const match = String(text).match(/^(.*)\.(\d{2})$/);
+      if(!match)
+        return `<span class="aggregateTime"><span class="aggregateLabel">${escapeHTML(text)}</span></span>`;
+      return `<span class="aggregateTime"><span class="aggregateInteger">${escapeHTML(match[1])}</span><span class="aggregateDot">.</span><span class="aggregateFraction">${match[2]}</span></span>`;
+    }
+
+    function cell(tuple, rowReference, playerIndex, collapsed = false){
+      const [lb=0, vid=0, url=""] = tuple || [];
+      if(collapsed){
+        const time = ignoreUnpublished ? vid : lb;
+        if(!time) return "";
+        const value = formatTableRun(time, rowReference, playerIndex, ignoreUnpublished);
+        return aggregateTimeMarkup(value);
+      }
+      if(!lb && !vid) return "";
+      const left = lb && lb !== vid
+        ? formatTableRun(lb, rowReference, playerIndex, false)
+        : "";
+      let right = vid ? formatTableRun(vid, rowReference, playerIndex, true) : "";
+      if(vid && url) right = `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${right}</a>`;
+      return `<span class="lb">${left}</span><span class="sep">${vid ? "/" : ""}</span><span class="vid">${right}</span>`;
+    }
+
+    function referenceCell(rowReference){
+      const {time, url, authorIndex} = rowReference;
+      if(!time) return `<td class="wr"></td>`;
+      const formatted = aggregateTimeMarkup(fmt(time));
+      const attributed = authorIndex === null || authorIndex === undefined
+        ? formatted
+        : `<abbr title="${escapeHTML(players[authorIndex].name)}">${formatted}</abbr>`;
+      const content = url
+        ? `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${attributed}</a>`
+        : attributed;
+      const colour = authorIndex === null || authorIndex === undefined ? null : playerColors[authorIndex];
+      const style = colour ? ` style="background-color:${tintColor(colour, authorIndex === selectedPlayer)}"` : "";
+      return `<td class="wr"${style}>${content}</td>`;
+    }
+
+    function makeTable(world, startIndex, worldIndex){
+      const visible = visiblePlayerIndices();
+      const hidden = players.map((_, i) => i).filter(i => hiddenPlayers.has(i));
+      const stemMode = sortedMode && selectedPlayer !== null && stemLeafMode && visible.includes(selectedPlayer);
+      const showReferenceColumn = !sortedMode;
+      const worldName = escapeHTML(world.name);
+      let html = "";
+      let offset = 0;
+      const regions = world.regions.map(([name, levels], regionIndex) => {
+        const indexes = Array.from({length:levels.length}, (_, i) => startIndex + offset + i);
+        offset += levels.length;
+        const collapsed = collapsedRegions.has(`${worldIndex}:${regionIndex}`);
+        return {
+          name, regionIndex, indexes, collapsed,
+          rows: collapsed
+            ? [{region:name, regionIndex, indexes, collapsed:true, label:"total"}]
+            : indexes.map((index, i) => ({region:name, regionIndex, indexes:[index], collapsed:false, label:`${i+1}: ${levels[i]}`}))
+        };
+      });
+      const rows = regions.flatMap(region => region.rows);
+      const rowLayouts = [];
+      let maxLeft = 0;
+      let maxRight = 0;
+
+      for(const row of rows){
+        const rowReference = getReferenceForIndexes(row.indexes);
+        const rowPlayers = visible.map(playerIndex => {
+          const sort = sortTimeForRow(playerIndex,row);
+          return {
+            player:players[playerIndex], playerIndex,
+            run:runForRow(playerIndex, row),
+            sortGroup:sort.group, sortTime:sort.time
+          };
+        });
+        if(sortedMode)
+          rowPlayers.sort(compareSortKeys);
+
+        if(stemMode){
+          const pivotPosition = rowPlayers.findIndex(entry => entry.playerIndex === selectedPlayer);
+          const pivot = rowPlayers[pivotPosition];
+          let left, right;
+          if(pivot && pivot.sortTime !== Infinity){
+            left = rowPlayers.slice(0,pivotPosition);
+            right = rowPlayers.slice(pivotPosition+1);
+          }else{
+            left = [];
+            right = rowPlayers.filter(entry => entry.playerIndex !== selectedPlayer);
+          }
+          maxLeft = Math.max(maxLeft,left.length);
+          maxRight = Math.max(maxRight,right.length);
+          rowLayouts.push({row,rowReference,left,pivot,right,rowPlayers});
+        }else{
+          rowLayouts.push({row,rowReference,rowPlayers});
+        }
+      }
+
+      function makeTotal(playerIndex){
+        const indexes = Array.from(
+          {length:world.regions.reduce((n,[,levels])=>n+levels.length,0)},
+          (_,i)=>startIndex+i
+        );
+        const measured = sumComponent(playerIndex,indexes,ignoreUnpublished?1:0,ignoreUnpublished);
+        const sort = sortDescriptor(playerIndex,indexes);
+
+        // The main total compares whole-world totals, not a sum/product of
+        // the displayed row-wise percentages or ratios.
+        let referenceSum = 0;
+        let referenceComplete = true;
+        for(const index of indexes){
+          const referenceTime = getReferenceEntry(index).time;
+          if(!referenceTime){
+            referenceComplete = false;
+            break;
+          }
+          referenceSum += referenceTime;
+        }
+
+        // Keep the former additive/multiplicative behaviour as a separate
+        // statistic. A collapsed region contributes one aggregate ratio.
+        let sumOfPerMille = 0;
+        let productOfRatios = 1;
+        let rowReferencesComplete = true;
+        let allRowTimesPresent = true;
+        for(const row of rows){
+          const time = ignoreUnpublished
+            ? sumComponent(playerIndex,row.indexes,1,true)
+            : sumComponent(playerIndex,row.indexes,0,false);
+          const reference = getReferenceForIndexes(row.indexes);
+          if(!reference.time){
+            rowReferencesComplete = false;
+            continue;
+          }
+          if(!time){
+            allRowTimesPresent = false;
+            continue;
+          }
+          const difference = time-reference.time;
+          sumOfPerMille += 1000*difference/reference.time;
+          productOfRatios *= time/reference.time;
+        }
+
+        let text = "";
+        let additiveText = "";
+        let multiplicativeText = "";
+        if(measured !== null && measured !== 0){
+          if(timeMode === "absolute"){
+            text = fmt(measured);
+          }else if(referenceComplete){
+            const difference = measured-referenceSum;
+            const isZero = Math.abs(difference) < 1e-10;
+            const zeroLabel = isZero
+              ? (selectedPlayer===null ? "WR" : playerIndex===selectedPlayer ? "PB"
+                : timeMode==="percent" ? "0.0%" : timeMode==="logarithms" ? "×1.00" : "0.00")
+              : "0.00";
+            if(timeMode === "differences"){
+              text = fmtDelta(difference,zeroLabel);
+            }else if(timeMode === "percent"){
+              text = isZero
+                ? zeroLabel
+                : (difference>0?"+":"−") + Math.abs(100*difference/referenceSum).toFixed(1) + "%";
+            }else if(timeMode === "logarithms"){
+              text = isZero ? zeroLabel : `×${(measured/referenceSum).toFixed(2)}`;
+            }
+          }
+        }
+
+        if((timeMode === "percent" || timeMode === "logarithms") &&
+           rowReferencesComplete && measured !== null &&
+           (!ignoreUnpublished || allRowTimesPresent)){
+          if(timeMode === "percent"){
+            const rounded = Math.round(sumOfPerMille);
+            additiveText = rounded===0
+              ? "0‰"
+              : (rounded>0?"+":"−")+Math.abs(rounded/10).toFixed(1)+"%";
+          }else{
+            multiplicativeText = `×${productOfRatios.toFixed(2)}`;
+          }
+        }
+
+        return {
+          playerIndex,text,additiveText,multiplicativeText,
+          sortGroup:sort.group,sortTime:sort.time
+        };
+      }
+      const totals = players.map((_,i)=>makeTotal(i));
+      let totalStemLayout = null;
+      if(stemMode){
+        const sortedTotals = totals.filter(total=>visible.includes(total.playerIndex))
+          .sort(compareSortKeys);
+        const pivotPosition = sortedTotals.findIndex(total=>total.playerIndex===selectedPlayer);
+        const pivot = sortedTotals[pivotPosition];
+        let left,right;
+        if(pivot && pivot.sortTime !== Infinity){
+          left=sortedTotals.slice(0,pivotPosition);
+          right=sortedTotals.slice(pivotPosition+1);
+        }else{
+          left=[];
+          right=sortedTotals.filter(total=>total.playerIndex!==selectedPlayer);
+        }
+        maxLeft=Math.max(maxLeft,left.length);
+        maxRight=Math.max(maxRight,right.length);
+        totalStemLayout={left,pivot,right};
+      }
+
+      html="<table>"; //html=`<table><caption>${stemMode?`Rows are sorted around ${escapeHTML(players[selectedPlayer].name)}'s PB.`:""} ${ignoreUnpublished?"Runs are stratified into video and not-video.":""}</caption>`;
+
+      const allCollapsed = regions.every(region=>region.collapsed);
+      const worldTriangle = allCollapsed ? "▶" : "▼";
+      html += `<thead><tr><th colspan="2"><button type="button" class="worldButton" data-toggle-world="${worldIndex}"><span class="worldTriangle">${worldTriangle}</span>${worldName}</button></th>`;
+      if(showReferenceColumn){
+        const referenceHeading = selectedPlayer===null ? "WR" : "PB";
+        html += `<th class="wr">${selectedPlayer===null ? referenceHeading : `<button type="button" class="referenceButton" data-reset-reference title="reset comparison to world records">${referenceHeading}</button>`}</th>`;
+      }
+
+      function playerHeader(playerIndex, hiddenHeader=false){
+        const selected=selectedPlayer===playerIndex?" selected":"";
+        const tint=tintColor(playerColors[playerIndex],playerIndex===selectedPlayer);
+        const cls=hiddenHeader?"playerHeader hiddenPlayerHeader":"playerHeader";
+        const visibilityText=hiddenHeader?"[+]":"[-]";
+        const visibilityTitle=hiddenHeader?"show player":"hide player";
+        const fullName=players[playerIndex].name;
+        const tableName=players[playerIndex].shortName || fullName;
+        return `<th class="${cls}" style="background-color:${tint}" title="${escapeHTML(fullName)}"><button type="button" class="playerButton${selected}" data-player="${playerIndex}" title="${escapeHTML(fullName)}">${escapeHTML(tableName)}</button><button type="button" class="hidePlayerButton" data-hide-player="${playerIndex}" title="${visibilityTitle}" aria-label="${visibilityTitle} ${escapeHTML(fullName)}">${visibilityText}</button></th>`;
+      }
+
+      if(stemMode){
+        const first=rowLayouts[0];
+        for(let i=0;i<maxLeft-first.left.length;i++) html+=`<th class="stemSpacer"></th>`;
+        for(const entry of first.left) html+=playerHeader(entry.playerIndex);
+        html+=playerHeader(first.pivot.playerIndex);
+        for(const entry of first.right) html+=playerHeader(entry.playerIndex);
+        for(let i=0;i<maxRight-first.right.length;i++) html+=`<th class="stemSpacer"></th>`;
+      }else{
+        const headerOrder=sortedMode && rowLayouts.length
+          ? rowLayouts[0].rowPlayers.map(entry=>entry.playerIndex)
+          : visible;
+        for(const playerIndex of headerOrder) html+=playerHeader(playerIndex);
+      }
+      for(const playerIndex of hidden) html+=playerHeader(playerIndex,true);
+      html += "</tr></thead><tbody>";
+
+      function runCell(entry,rowReference,collapsed){
+        if(!entry) return `<td class="run stemSpacer"></td>`;
+        const content=cell(entry.run,rowReference,entry.playerIndex,collapsed);
+        if(!sortedMode) return `<td class="run">${content}</td>`;
+        const colour=playerColors[entry.playerIndex];
+        const style=colour?` style="background-color:${tintColor(colour,entry.playerIndex===selectedPlayer)}"`:"";
+        const title=` title="${escapeHTML(entry.player.name)}"`;
+        return `<td class="run sortedRun"${style}${title}>${content}</td>`;
+      }
+
+      for(const region of regions){
+        region.rows.forEach((row,rowInRegion)=>{
+          const layout=rowLayouts[rows.indexOf(row)];
           html+="<tr>";
-          if(i===0) html+=`<td class="region" rowspan="${levels.length}">${region}</td>`;
-          html+=`<td class="level">${i+1}: ${level}</td>`;
-          for(const p of players) html+=`<td class="run">${cell(p.runs[index] || [0,0,""], best[index])}</td>`;
+          if(rowInRegion===0){
+            const triangle=region.collapsed?"▶":"▼";
+            html+=`<td class="region" rowspan="${region.rows.length}"><button type="button" class="regionButton" data-toggle-region="${worldIndex}:${region.regionIndex}" aria-expanded="${!region.collapsed}"><span class="regionTriangle">${triangle}</span>${escapeHTML(region.name)}</button></td>`;
+          }
+          html+=`<td class="level">${escapeHTML(row.label)}</td>`;
+          if(showReferenceColumn) html+=referenceCell(layout.rowReference);
+          if(stemMode){
+            const entries=[
+              ...Array(maxLeft-layout.left.length).fill(null),
+              ...layout.left,layout.pivot,...layout.right,
+              ...Array(maxRight-layout.right.length).fill(null)
+            ];
+            for(const entry of entries) html+=runCell(entry,layout.rowReference,row.collapsed);
+          }else{
+            for(const entry of layout.rowPlayers) html+=runCell(entry,layout.rowReference,row.collapsed);
+          }
+          for(const playerIndex of hidden) html+=`<td class="hiddenPlayerSpacer"></td>`;
           html+="</tr>";
-          index++;
         });
       }
 
-      html+="</tbody><tfoot><tr>";
-      html+="<td colspan='2'>total</td>";
-
-      for(const p of players){
-        let sum=0;
-
-        for(let i=startIndex;i<index;i++){
-          const t=p.runs[i]?.[0];
-          if(t) sum += t-(showDeficits?best[i]:0);
-          }
-
-        html+=`<td>${showDeficits?fmtDiff(sum):fmt(sum)}</td>`;
+      function totalCell(total, field="text"){
+        if(!total) return `<td class="stemSpacer"></td>`;
+        const playerIndex=total.playerIndex;
+        const style=sortedMode
+          ? ` style="background-color:${tintColor(playerColors[playerIndex],playerIndex===selectedPlayer)}"`
+          : "";
+        const title=` title="${escapeHTML(players[playerIndex].name)}"`;
+        const text=(ignoreUnpublished && sortedMode)?"":total[field];
+        return `<td${style}${title}><button type="button" class="totalPlayerButton" data-player="${playerIndex}">${aggregateTimeMarkup(text)}</button></td>`;
       }
 
-      html+="</tr></tfoot></table>";
+      function appendTotalPlayerCells(field="text"){
+        if(stemMode){
+          for(let i=0;i<maxLeft-totalStemLayout.left.length;i++) html+=`<td class="stemSpacer"></td>`;
+          for(const total of totalStemLayout.left) html+=totalCell(total,field);
+          html+=totalCell(totalStemLayout.pivot,field);
+          for(const total of totalStemLayout.right) html+=totalCell(total,field);
+          for(let i=0;i<maxRight-totalStemLayout.right.length;i++) html+=`<td class="stemSpacer"></td>`;
+        }else{
+          const orderedTotals=sortedMode
+            ? totals.filter(total=>visible.includes(total.playerIndex)).sort(compareSortKeys)
+            : visible.map(playerIndex=>totals[playerIndex]);
+          for(const total of orderedTotals) html+=totalCell(total,field);
+        }
+        for(const playerIndex of hidden) html+=`<td class="hiddenPlayerSpacer"></td>`;
+      }
 
+      function referenceTotalCell(){
+        if(!showReferenceColumn) return;
+        const worldIndexes = Array.from(
+          {length:world.regions.reduce((n,[,levels])=>n+levels.length,0)},
+          (_,i)=>startIndex+i
+        );
+        let referenceSum = 0;
+        let referenceComplete = true;
+        for(const index of worldIndexes){
+          const referenceTime = getReferenceEntry(index).time;
+          if(!referenceTime){ referenceComplete=false; break; }
+          referenceSum += referenceTime;
+        }
+        html += `<td class="wr">${referenceComplete ? aggregateTimeMarkup(fmt(referenceSum)) : ""}</td>`;
+      }
+
+      html += `</tbody><tfoot><tr><td colspan="2">total</td>`;
+      referenceTotalCell();
+      appendTotalPlayerCells("text");
+      html += `</tr>`;
+
+      if(timeMode === "percent" || timeMode === "logarithms"){
+        const label=timeMode === "percent" ? "sum of percentages" : "product of ratios";
+        const field=timeMode === "percent" ? "additiveText" : "multiplicativeText";
+        html += `<tr class="secondaryTotal"><td colspan="2">${label}</td>`;
+        if(showReferenceColumn) html += `<td class="wr"></td>`;
+        appendTotalPlayerCells(field);
+        html += `</tr>`;
+      }
+      html += "</tfoot></table>";
       return html;
     }
 
     function getLevelLabels(){
-
-      const labels = [];
-
-      const levelNameWidth = Math.max(
-        ...worlds.flatMap(world => world.regions.flatMap(([, levels]) => levels.map(level => level.length)))
-      );
-
+      const labels=[];
+      const levelNameWidth=Math.max(...worlds.flatMap(world=>world.regions.flatMap(([,levels])=>levels.map(level=>level.length))));
       for(const world of worlds){
-
-        for(const [region, levels] of world.regions){
-
-          for(let i = 0; i < levels.length; i++){
-
-            const regionPart = i?'':region;
-
-            const levelNumber = String(i + 1);
-
-            const levelName = levels[i];
-
-            const padding = "&nbsp;".repeat(levelNameWidth +1- levels[i].length);
-
-            labels.push(
-              `${regionPart} ${levelNumber} ${levelName} ${padding}`
-            );
+        for(const [region,levels] of world.regions){
+          for(let i=0;i<levels.length;i++){
+            const regionPart=i?"":region;
+            const levelNumber=String(i+1);
+            const levelName=levels[i];
+            const padding="&nbsp;".repeat(levelNameWidth+1-levelName.length);
+            labels.push(`${regionPart} ${levelNumber} ${levelName} ${padding}`);
           }
         }
       }
-
       return labels;
     }
 
-    Highcharts.setOptions({colors: Highcharts.getOptions().colors});
-    function renderChart(){
-      const categories = getLevelLabels();
+    function selectPlayer(playerIndex){
+      if(hiddenPlayers.has(playerIndex)) return;
+      selectedPlayer=selectedPlayer===playerIndex?null:playerIndex;
+      render();
+    }
 
-      const series = players.map(p => ({
-        name: p.name,
+    function chartDescription(){
+      if(timeMode==="logarithms") return `time ratio to ${referenceLabel()} (logarithmic scale)`;
+      if(timeMode==="percent") return `% difference from ${referenceLabel()}`;
+      if(timeMode==="differences") return `time difference from ${referenceLabel()}`;
+      return "absolute level times";
+    }
 
-        data: p.runs.map((run, i) => {
-          const t = run?.[0];
-
-          if(!t || !Number.isFinite(best[i])) return null;
-
-          if(showPercent) return 100 * (t - best[i]) / best[i];
-
-          if(showDeficits) return t - best[i];
-
-          return t;
-        }),
-
-        connectNulls: false
-      }));
-
-      let title;
-      let yTitle;
-      let formatter;
-
-      if(showPercent){
-
-        title = "percentage increase over world record";
-        yTitle = "increase (%)";
-
-        formatter = value =>
-          value === 0
-            ? "WR"
-            : "+" + value.toFixed(2) + "%";
-
-      } else if(showDeficits){
-
-        title = "time deficit from world record";
-        yTitle = "deficit";
-
-        formatter = value =>
-          value === 0
-            ? "WR"
-            : "+" + (value / 100).toFixed(2);
-
-      } else {
-
-        title = "level times";
-        yTitle = "time";
-
-        formatter = value => {
-          const cs = Math.round(value);
-
-          const minutes = Math.floor(cs / 6000);
-          const seconds = Math.floor(cs / 100) % 60;
-          const centis = cs % 100;
-
-          if(minutes)
-            return `${minutes}:${String(seconds).padStart(2,"0")}.${String(centis).padStart(2,"0")}`;
-
-          return `${seconds}.${String(centis).padStart(2,"0")}`;
-        };
-      }
-
-      Highcharts.chart("chart", {
-        title:{
-          text:title
-        },
-
-        xAxis:{
-          categories:categories,
-          labels:{
-            rotation:-90,
-            y: -4,
-            formatter: function(){return `<span>${this.value}</span>`;},
-            style:{fontFamily:"monospace"}
-          },
-
-          plotLines:[{
-            value:36.5,
-            width:1,
-            color:"#666",
-            zIndex:5
-          }]
-        },
-
-        yAxis:{
-          title:{
-            text:yTitle
-          },
-
-          min: 0,
-
-          max: showPercent?100/3:showDeficits?700:3000,
-
-          labels:{
-            formatter:function(){
-              return formatter(this.value);
-            }
-          }
-        },
-
-        tooltip:{
-          formatter:function(){
-
-            const value = this.y;
-
-            let display;
-
-            if(showPercent){
-
-              display = value === 0
-                ? "WR"
-                : "+" + value.toFixed(2) + "%";
-
-            } else if(showDeficits){
-
-              display = value === 0
-                ? "WR"
-                : "+" + (value / 100).toFixed(2);
-
-            } else {
-
-              display = formatter(value);
-            }
-
-            return `<b>${this.series.name}</b><br>` +
-                 `${this.key}<br>` +
-                 `${display}`;
-          }
-        },
-
-        legend:{
-          enabled:true
-        },
-
-        plotOptions:{
-          series:{
-            animation:false,
-            marker:{
-              enabled:false
-            }
-          }
-        },
-
-        series:series
+    function getWorldPlotRows(worldIndex){
+      const world=worlds[worldIndex];
+      const expandedLabels=getLevelLabels();
+      const rows=[];
+      let index=worldIndex===0?0:darkWorldStart;
+      world.regions.forEach(([region,levels],regionIndex)=>{
+        const indexes=Array.from({length:levels.length},(_,i)=>index+i);
+        const collapsed=collapsePlotRegions && collapsedRegions.has(`${worldIndex}:${regionIndex}`);
+        if(collapsed) rows.push({indexes,label:region,worldIndex,regionIndex,collapsed:true});
+        else indexes.forEach((levelIndex,i)=>rows.push({indexes:[levelIndex],label:expandedLabels[levelIndex],worldIndex,regionIndex,levelInRegion:i,collapsed:false}));
+        index+=levels.length;
       });
+      return rows;
     }
 
-    const levelLabels = [];
-
-    for(const [region, levels] of worlds[0].regions){
-      for(let i = 0; i < levels.length; i++){
-        levelLabels.push(`${region} ${i + 1}`);
-      }
-    }
-    function renderLevelComparison(){
-
-      const lightBest = best.slice(0, 37);
-      const darkBest  = best.slice(37, 74);
-
-      const series = players.map((p, playerIndex) => {
-
-        const data = [];
-
-        for(let i = 0; i < 37; i++){
-
-          const light = p.runs[i]?.[0];
-          const dark  = p.runs[i + 37]?.[0];
-
-          if(!light || !dark) continue; // we require both times to exist
-
-          let x, y;
-
-          if(showDeficits){
-            x = light - lightBest[i];
-            y = dark - darkBest[i];
-          } else {
-            x = light;
-            y = dark;
-          }
-
-          data.push({
-            x: x,
-            y: y,
-            level: levelLabels[i]
-          });
+    function getComparisonPlotRows(){
+      const lightWorld=worlds[0],darkWorld=worlds[1],rows=[];
+      const regionCount=Math.min(lightWorld.regions.length,darkWorld.regions.length);
+      let lightStart=0,darkStart=darkWorldStart;
+      for(let regionIndex=0;regionIndex<regionCount;regionIndex++){
+        const [region,lightLevels]=lightWorld.regions[regionIndex];
+        const [,darkLevels]=darkWorld.regions[regionIndex];
+        const count=Math.min(lightLevels.length,darkLevels.length);
+        const lightIndexes=Array.from({length:count},(_,i)=>lightStart+i);
+        const darkIndexes=Array.from({length:count},(_,i)=>darkStart+i);
+        const collapsed=collapsePlotRegions && (
+          collapsedRegions.has(`0:${regionIndex}`)||collapsedRegions.has(`1:${regionIndex}`)
+        );
+        if(collapsed){
+          rows.push({lightIndexes,darkIndexes,label:region,regionIndex,collapsed:true});
+        }else{
+          for(let i=0;i<count;i++) rows.push({lightIndexes:[lightIndexes[i]],darkIndexes:[darkIndexes[i]],label:`${region} ${i+1}`,regionIndex,levelInRegion:i,collapsed:false});
         }
+        lightStart+=lightLevels.length;
+        darkStart+=darkLevels.length;
+      }
+      return rows;
+    }
 
-        return {
-          name: p.name,
-          data: data,
-          type: "scatter",
-          marker: {
-            enabled: true,
-            radius: 4
-          }
-        };
+    function axisMinimum(){
+      if(timeMode==="absolute") return 0;
+      if(selectedPlayer!==null) return undefined;
+      return timeMode==="logarithms" ? 1 : 0;
+    }
+
+    function plotAxisMaximum(){
+      const hasCollapsedRegion =
+          collapsePlotRegions && collapsedRegions.size > 0;
+
+      return timeMode === "absolute" && !hasCollapsedRegion
+          ? 3000
+          : undefined;
+    }
+
+    function renderChart(){
+      const lightRows=getWorldPlotRows(0);
+      const darkRows=getWorldPlotRows(1);
+      const rows=[...lightRows,...darkRows];
+      const categories=rows.map(row=>row.label);
+      const series=players.map((player,playerIndex)=>({
+        name:player.name,
+        colorIndex:playerIndex,
+        visible:!hiddenPlayers.has(playerIndex),
+        showInLegend:!hiddenPlayers.has(playerIndex),
+        data:rows.map(row=>{
+          const time=sumMeasuredTimes(playerIndex,row.indexes);
+          const rowReference=getReferenceForIndexes(row.indexes);
+          return {y:transformTime(time,rowReference),custom:{rowReference,indexes:row.indexes,label:row.label,playerIndex}};
+        }),
+        connectNulls:false,
+        events:{click:function(){selectPlayer(playerIndex);}},
+        point:{events:{click:function(){selectPlayer(playerIndex);}}}
+      }));
+      if(mainChart) mainChart.destroy();
+      mainChart=Highcharts.chart("chart",{
+        title:{text:chartDescription()},
+        xAxis:{
+          categories,
+          labels:{rotation:-90,y:-4,formatter:function(){return `<span>${this.value}</span>`;},style:{fontFamily:"monospace"}},
+          plotLines:[{value:lightRows.length-0.5,width:1,color:"#666",zIndex:5}]
+        },
+        yAxis:{
+          type:timeMode==="logarithms"?"logarithmic":"linear",
+          min:axisMinimum(),
+          max:plotAxisMaximum(),
+          title:{text:timeMode==="logarithms"?`ratio to ${referenceLabel()}`:chartDescription()},
+          labels:{formatter:function(){return formatAxisValue(this.value);}}
+        },
+        tooltip:{formatter:function(){
+          const custom=this.point.custom||{};
+          return `<b>${this.series.name}</b><br>${custom.label||this.key}<br>${formatPointValue(this.y,custom.rowReference,custom.playerIndex)}`;
+        }},
+        legend:{enabled:true},
+        plotOptions:{series:{animation:false,marker:{enabled:false},cursor:"pointer"}},
+        series
       });
+      playerColors=players.map((player,index)=>getRenderedSeriesColor(mainChart.series[index],index));
+    }
 
-      Highcharts.chart("levelComparison", {
-
-        chart: {
-          type: "scatter"
-        },
-
-        title: {
-          text: showDeficits
-            ? "Dark World vs. Light World deficits"
-            : "Dark World vs. Light World times"
-        },
-
-        xAxis: {
-          title: {
-            text: showDeficits
-              ? "Light World deficit"
-              : "Light World time"
-          },
-
-          min: 0,
-          max: showDeficits?700:3000,
-
-          labels: {
-            formatter: function(){return showDeficits?"+"+(this.value/100).toFixed(2):fmt(this.value);}
+    function comparisonDistanceMatrix(pointsByPlayer,count){
+      const sums=Array.from({length:count},()=>Array(count).fill(0));
+      const counts=Array.from({length:count},()=>Array(count).fill(0));
+      const observed=[];
+      for(const points of pointsByPlayer){
+        for(let i=0;i<count;i++){
+          const a=points[i];
+          if(!a) continue;
+          for(let j=i+1;j<count;j++){
+            const b=points[j];
+            if(!b) continue;
+            const distance=Math.hypot(a.x-b.x,a.y-b.y);
+            sums[i][j]+=distance;
+            counts[i][j]++;
+            observed.push(distance);
           }
-        },
+        }
+      }
+      const positive=observed.filter(distance=>distance>1e-9).sort((a,b)=>a-b);
+      const fallback=positive.length?Math.max(1e-6,positive[Math.floor(positive.length*0.75)]*1.5):1;
+      const distances=Array.from({length:count},()=>Array(count).fill(0));
+      for(let i=0;i<count;i++) for(let j=i+1;j<count;j++)
+        distances[i][j]=distances[j][i]=counts[i][j]?sums[i][j]/counts[i][j]:fallback;
+      return distances;
+    }
 
-        yAxis: {
-          title: {
-            text: showDeficits
-              ? "Dark World deficit"
-              : "Dark World time"
-          },
+    function pathLength(path,distances){
+      let total=0;
+      for(let i=1;i<path.length;i++) total+=distances[path[i-1]][path[i]];
+      return total;
+    }
 
-          min: 0,
-          max: showDeficits?700:3000,
-
-          labels: {
-            formatter: function(){return showDeficits?"+"+(this.value/100).toFixed(2):fmt(this.value);}
+    function shortestComparisonOrder(pointsByPlayer,count){
+      if(count<3) return Array.from({length:count},(_,i)=>i);
+      const distances=comparisonDistanceMatrix(pointsByPlayer,count);
+      let bestPath=null,bestLength=Infinity;
+      for(let start=0;start<count;start++){
+        const used=Array(count).fill(false);
+        const path=[start];
+        used[start]=true;
+        while(path.length<count){
+          const last=path[path.length-1];
+          let next=-1,nextDistance=Infinity;
+          for(let candidate=0;candidate<count;candidate++) if(!used[candidate] && distances[last][candidate]<nextDistance){
+            next=candidate;nextDistance=distances[last][candidate];
           }
-        },
-
-        tooltip: {
-          formatter: function(){
-
-            const valueX = showDeficits?"+"+(this.point.x/100).toFixed(2):fmt(this.point.x);
-
-            const valueY = showDeficits?"+"+(this.point.y/100).toFixed(2):fmt(this.point.y);
-
-            return `<b>${this.series.name}</b><br>` +
-                `${this.point.level}<br>` +
-                `Light: ${valueX}<br>` +
-                `Dark: ${valueY}`;
+          if(next<0) break;
+          path.push(next);used[next]=true;
+        }
+        const length=pathLength(path,distances);
+        if(length<bestLength){bestLength=length;bestPath=path;}
+      }
+      let improved=true,passes=0;
+      while(improved && passes++<30){
+        improved=false;
+        outer: for(let i=0;i<bestPath.length-1;i++) for(let j=i+1;j<bestPath.length;j++){
+          const oldEdges=(i>0?distances[bestPath[i-1]][bestPath[i]]:0)+(j+1<bestPath.length?distances[bestPath[j]][bestPath[j+1]]:0);
+          const newEdges=(i>0?distances[bestPath[i-1]][bestPath[j]]:0)+(j+1<bestPath.length?distances[bestPath[i]][bestPath[j+1]]:0);
+          if(newEdges+1e-9<oldEdges){
+            const reversed=bestPath.slice(i,j+1).reverse();
+            bestPath.splice(i,reversed.length,...reversed);
+            improved=true;break outer;
           }
-        },
+        }
+      }
+      return bestPath;
+    }
 
-        plotOptions: {
-          series: {
-            animation: false
-          }
+    function renderLevelComparison(){
+      const rows=getComparisonPlotRows();
+      const visible=visiblePlayerIndices();
+      const rawData=visible.map(playerIndex=>rows.map(row=>{
+        const lightTime=sumMeasuredTimes(playerIndex,row.lightIndexes);
+        const darkTime=sumMeasuredTimes(playerIndex,row.darkIndexes);
+        const lightReference=getReferenceForIndexes(row.lightIndexes);
+        const darkReference=getReferenceForIndexes(row.darkIndexes);
+        const x=transformTime(lightTime,lightReference);
+        const y=transformTime(darkTime,darkReference);
+        if(x===null||y===null) return null;
+        return {x,y,custom:{label:row.label,lightReference,darkReference,lightIndexes:row.lightIndexes,darkIndexes:row.darkIndexes,playerIndex}};
+      }));
+      // Only visible players contribute to the shared shortest-path objective.
+      const order=connectComparison && comparisonOrder==="shortest"
+        ? shortestComparisonOrder(rawData,rows.length)
+        : Array.from({length:rows.length},(_,i)=>i);
+      const series=visible.map(playerIndex=>({
+        name:players[playerIndex].name,
+        color:playerColors[playerIndex],
+        colorIndex:playerIndex,
+        type:connectComparison?"line":"scatter",
+        data:order.map(index=>rawData[visible.indexOf(playerIndex)][index]),
+        marker:{enabled:true,radius:4},
+        lineWidth:connectComparison?1.5:0,
+        connectNulls:false,
+        requireSorting:false,
+        events:{click:function(){selectPlayer(playerIndex);}},
+        point:{events:{click:function(){selectPlayer(playerIndex);}}}
+      }));
+      const axisSuffix=timeMode==="logarithms"
+        ? `time ratio to ${referenceLabel()} (log scale)`
+        : timeMode==="percent"
+          ? `% difference from ${referenceLabel()}`
+          : timeMode==="differences"
+            ? `time difference from ${referenceLabel()}`
+            : "absolute time";
+      if(comparisonChart) comparisonChart.destroy();
+      comparisonChart=Highcharts.chart("levelComparison",{
+        chart:{type:"scatter"},
+        title:{text:`Light-Dark scatter: ${chartDescription()}`},
+        xAxis:{
+          type:timeMode==="logarithms"?"logarithmic":"linear",
+          min:axisMinimum(),max:plotAxisMaximum(),
+          title:{text:`Light World ${axisSuffix}`},
+          labels:{formatter:function(){return formatAxisValue(this.value);}}
         },
-
-        series: series
+        yAxis:{
+          type:timeMode==="logarithms"?"logarithmic":"linear",
+          min:axisMinimum(),max:plotAxisMaximum(),
+          title:{text:`Dark World ${axisSuffix}`},
+          labels:{formatter:function(){return formatAxisValue(this.value);}}
+        },
+        tooltip:{formatter:function(){
+          const custom=this.point.custom||{};
+          return `<b>${this.series.name}</b><br>${custom.label||""}<br>Light: ${formatPointValue(this.point.x,custom.lightReference,custom.playerIndex)}<br>Dark: ${formatPointValue(this.point.y,custom.darkReference,custom.playerIndex)}`;
+        }},
+        plotOptions:{series:{animation:false,cursor:"pointer"}},
+        series
       });
     }
 
     function render(){
-      document.getElementById("tables").innerHTML = makeTable(worlds[0],0)+makeTable(worlds[1],37);
+      stemLeafControl.hidden=!sortedMode;
+      comparisonOrderControl.hidden=!connectComparison;
+      recomputeBestTimes();
       renderChart();
+      document.getElementById("tables").innerHTML=
+        makeTable(worlds[0],0,0)+makeTable(worlds[1],darkWorldStart,1);
       renderLevelComparison();
     }
 
-    const deficitCheckbox = document.getElementById("showDeficits");
-    const percentCheckbox = document.getElementById("showPercent");
-
-    let showDeficits = deficitCheckbox.checked;
-    let showPercent = percentCheckbox.checked;
-
-    deficitCheckbox.addEventListener("change", () => {
-        showDeficits = deficitCheckbox.checked;
+    document.getElementById("tables").addEventListener("click",event=>{
+      const resetReference=event.target.closest("[data-reset-reference]");
+      if(resetReference){selectedPlayer=null;render();return;}
+      const hideButton=event.target.closest("[data-hide-player]");
+      if(hideButton){
+        const playerIndex=Number(hideButton.dataset.hidePlayer);
+        if(hiddenPlayers.has(playerIndex)) hiddenPlayers.delete(playerIndex);
+        else hiddenPlayers.add(playerIndex);
+        if(selectedPlayer===playerIndex) selectedPlayer=null;
+        try{localStorage.setItem("ocmo.hiddenPlayers",JSON.stringify([...hiddenPlayers]));}catch(e){}
         render();
+        return;
+      }
+      const playerButton=event.target.closest("[data-player]");
+      if(playerButton){selectPlayer(Number(playerButton.dataset.player));return;}
+      const regionButton=event.target.closest("[data-toggle-region]");
+      if(regionButton){
+        const key=regionButton.dataset.toggleRegion;
+        if(collapsedRegions.has(key)) collapsedRegions.delete(key); else collapsedRegions.add(key);
+        render();return;
+      }
+      const worldButton=event.target.closest("[data-toggle-world]");
+      if(worldButton){
+        const worldIndex=Number(worldButton.dataset.toggleWorld);
+        const keys=worlds[worldIndex].regions.map((_,regionIndex)=>`${worldIndex}:${regionIndex}`);
+        const allCollapsed=keys.every(key=>collapsedRegions.has(key));
+        for(const key of keys){if(allCollapsed) collapsedRegions.delete(key);else collapsedRegions.add(key);}
+        render();
+      }
     });
 
-    percentCheckbox.addEventListener("change", () => {
-        showPercent = percentCheckbox.checked;
-        render();
-    });
+    timeModeSelect.addEventListener("change",()=>{timeMode=timeModeSelect.value;render();});
+    sortedCheckbox.addEventListener("change",()=>{sortedMode=sortedCheckbox.checked;render();});
+    stemLeafCheckbox.addEventListener("change",()=>{stemLeafMode=stemLeafCheckbox.checked;render();});
+    connectCheckbox.addEventListener("change",()=>{connectComparison=connectCheckbox.checked;render();});
+    comparisonOrderSelect.addEventListener("change",()=>{comparisonOrder=comparisonOrderSelect.value;render();});
+    ignoreUnpublishedCheckbox.addEventListener("change",()=>{ignoreUnpublished=ignoreUnpublishedCheckbox.checked;render();});
+    collapsePlotRegionsCheckbox.addEventListener("change",()=>{collapsePlotRegions=collapsePlotRegionsCheckbox.checked;render();});
 
     render();
     </script>
